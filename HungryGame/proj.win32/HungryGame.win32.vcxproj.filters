@@ -51,6 +51,9 @@
     <ClInclude Include="..\Classes\BuildingScene.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\HelpScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,6 +87,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BuildingScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelpScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -225,5 +231,8 @@
     <Media Include="background.mp3">
       <Filter>resource</Filter>
     </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
