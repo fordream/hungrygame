@@ -1,0 +1,38 @@
+﻿빌드 시작: 2013-08-02 오전 6:37:35
+     1>4 노드의 "C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\external\chipmunk\proj.win32\chipmunk.vcxproj" 프로젝트(Build 대상)입니다.
+     1>Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\gamestudy\proj.win32\Debug.win32\libchipmunk.lib" /NOLOGO Debug.win32\chipmunk.obj
+         Debug.win32\cpArbiter.obj
+         Debug.win32\cpArray.obj
+         Debug.win32\cpBB.obj
+         Debug.win32\cpBBTree.obj
+         Debug.win32\cpBody.obj
+         Debug.win32\cpCollision.obj
+         Debug.win32\cpHashSet.obj
+         Debug.win32\cpPolyShape.obj
+         Debug.win32\cpShape.obj
+         Debug.win32\cpSpace.obj
+         Debug.win32\cpSpaceComponent.obj
+         Debug.win32\cpSpaceHash.obj
+         Debug.win32\cpSpaceQuery.obj
+         Debug.win32\cpSpaceStep.obj
+         Debug.win32\cpSpatialIndex.obj
+         Debug.win32\cpSweep1D.obj
+         Debug.win32\cpVect.obj
+         Debug.win32\cpConstraint.obj
+         Debug.win32\cpDampedRotarySpring.obj
+         Debug.win32\cpDampedSpring.obj
+         Debug.win32\cpGearJoint.obj
+         Debug.win32\cpGrooveJoint.obj
+         Debug.win32\cpPinJoint.obj
+         Debug.win32\cpPivotJoint.obj
+         Debug.win32\cpRatchetJoint.obj
+         Debug.win32\cpRotaryLimitJoint.obj
+         Debug.win32\cpSimpleMotor.obj
+         Debug.win32\cpSlideJoint.obj
+         chipmunk.vcxproj -> C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\gamestudy\proj.win32\Debug.win32\libchipmunk.lib
+     1>"C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\external\chipmunk\proj.win32\chipmunk.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+
+빌드했습니다.
+
+경과 시간: 00:00:00.58
