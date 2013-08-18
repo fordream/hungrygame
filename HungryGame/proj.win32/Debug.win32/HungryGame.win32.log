@@ -1,0 +1,36 @@
+﻿빌드 시작: 2013-08-18 오후 9:26:10
+     1>2 노드의 "C:\Users\pineoc\Desktop\새 폴더\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트(Build 대상)입니다.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /I"C:\Users\pineoc\Desktop\새 폴더\cocos2dx" /I"C:\Users\pineoc\Desktop\새 폴더\cocos2dx\include" /I"C:\Users\pineoc\Desktop\새 폴더\cocos2dx\kazmath\include" /I"C:\Users\pineoc\Desktop\새 폴더\cocos2dx\platform\win32" /I"C:\Users\pineoc\Desktop\새 폴더\cocos2dx\platform\third_party\win32" /I"C:\Users\pineoc\Desktop\새 폴더\cocos2dx\platform\third_party\win32\OGLES" /I"C:\Users\pineoc\Desktop\새 폴더\external" /I"C:\Users\pineoc\Desktop\새 폴더\CocosDenshion\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\BuildingScene.cpp ..\Classes\character.cpp ..\Classes\character_main.cpp ..\Classes\food.cpp ..\Classes\HelloWorldScene.cpp ..\Classes\HelpScene.cpp ..\Classes\Item.cpp ..\Classes\mainScene.cpp ..\Classes\Obstacle.cpp main.cpp music.cpp
+         music.cpp
+         main.cpp
+         Obstacle.cpp
+         mainScene.cpp
+         Item.cpp
+         HelpScene.cpp
+         HelloWorldScene.cpp
+         food.cpp
+         character_main.cpp
+         character.cpp
+         BuildingScene.cpp
+         AppDelegate.cpp
+         코드를 생성하고 있습니다...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\pineoc\Desktop\새 폴더\Debug.win32\HungryGame.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\pineoc\Desktop\새 폴더\Debug.win32\\" libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\pineoc\Desktop\새 폴더\Debug.win32\HungryGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\pineoc\Desktop\새 폴더\Debug.win32\HungryGame.win32.lib" /MACHINE:X86 Debug.win32\AppDelegate.obj
+         Debug.win32\BuildingScene.obj
+         Debug.win32\character.obj
+         Debug.win32\character_main.obj
+         Debug.win32\food.obj
+         Debug.win32\HelloWorldScene.obj
+         Debug.win32\HelpScene.obj
+         Debug.win32\Item.obj
+         Debug.win32\mainScene.obj
+         Debug.win32\Obstacle.obj
+         Debug.win32\main.obj
+         Debug.win32\music.obj
+         HungryGame.win32.vcxproj -> C:\Users\pineoc\Desktop\새 폴더\Debug.win32\HungryGame.win32.exe
+     1>"C:\Users\pineoc\Desktop\새 폴더\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+
+빌드했습니다.
+
+경과 시간: 00:00:38.54
