@@ -36,3 +36,9 @@ http://github-windows.s3.amazonaws.com/GitHubSetup.exe
 
 일단 모두 github에 대해 모르는게 많으니까
 내가 앞장서서 삽질이라는 삽질은 모두 해볼테니 모르는거 있으면 물어봐줘 ㅎㅎ
+
+//추가.
+
+http://visualstudiogallery.msdn.microsoft.com/abafc7d6-dcaa-40f4-8a5e-d6724bdb980c
+
+여기서 VS 2012에 github 플러그인을 다운 받을 수 있어.
