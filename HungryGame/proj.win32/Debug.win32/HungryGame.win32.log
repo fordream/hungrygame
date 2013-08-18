@@ -1,0 +1,143 @@
+﻿빌드 시작: 2013-08-18 오후 7:49:10
+     1>2 노드의 "C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트(Build 대상)입니다.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /I"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\cocos2dx" /I"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\cocos2dx\include" /I"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\cocos2dx\kazmath\include" /I"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\cocos2dx\platform\win32" /I"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\cocos2dx\platform\third_party\win32" /I"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\cocos2dx\platform\third_party\win32\OGLES" /I"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\external" /I"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\CocosDenshion\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\BuildingScene.cpp ..\Classes\character.cpp ..\Classes\character_main.cpp ..\Classes\food.cpp ..\Classes\HelloWorldScene.cpp ..\Classes\HelpScene.cpp ..\Classes\Item.cpp ..\Classes\mainScene.cpp ..\Classes\Obstacle.cpp main.cpp music.cpp
+         music.cpp
+         main.cpp
+         Obstacle.cpp
+         mainScene.cpp
+         Item.cpp
+         HelpScene.cpp
+         HelloWorldScene.cpp
+         food.cpp
+         character_main.cpp
+         character.cpp
+         BuildingScene.cpp
+         AppDelegate.cpp
+         코드를 생성하고 있습니다...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\Debug.win32\HungryGame.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\Debug.win32\\" libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\Debug.win32\HungryGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\Debug.win32\HungryGame.win32.lib" /MACHINE:X86 Debug.win32\AppDelegate.obj
+         Debug.win32\BuildingScene.obj
+         Debug.win32\character.obj
+         Debug.win32\character_main.obj
+         Debug.win32\food.obj
+         Debug.win32\HelloWorldScene.obj
+         Debug.win32\HelpScene.obj
+         Debug.win32\Item.obj
+         Debug.win32\mainScene.obj
+         Debug.win32\Obstacle.obj
+         Debug.win32\main.obj
+         Debug.win32\music.obj
+     1>mainScene.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>Obstacle.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>main.obj : error LNK2019: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호(참조 위치: "public: __thiscall std::_String_alloc<0,struct std::_String_base_types<char,class std::allocator<char> > >::_String_alloc<0,struct std::_String_base_types<char,class std::allocator<char> > >(class std::allocator<char> const &)" (??0?$_String_alloc@$0A@U?$_String_base_types@DV?$allocator@D@std@@@std@@@std@@QAE@ABV?$allocator@D@1@@Z) 함수)에서 확인하지 못했습니다.
+     1>music.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>food.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelpScene.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>Item.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>AppDelegate.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>BuildingScene.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character_main.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCPoint::~CCPoint(void)" (__imp_??1CCPoint@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>Obstacle.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>main.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>music.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>food.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2019: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호(참조 위치: "public: static class HelloWorld * __cdecl HelloWorld::create(void)" (?create@HelloWorld@@SAPAV1@XZ) 함수)에서 확인하지 못했습니다.
+     1>HelpScene.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>Item.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>AppDelegate.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>BuildingScene.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character_main.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCSize::~CCSize(void)" (__imp_??1CCSize@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>Obstacle.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>main.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>music.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>food.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2019: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호(참조 위치: "void __cdecl cocos2d::`dynamic atexit destructor for 'CCPointZero''(void)" (??__FCCPointZero@cocos2d@@YAXXZ) 함수)에서 확인하지 못했습니다.
+     1>HelpScene.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>Item.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>AppDelegate.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>BuildingScene.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character_main.obj : error LNK2001: "__declspec(dllimport) public: virtual __thiscall cocos2d::CCRect::~CCRect(void)" (__imp_??1CCRect@cocos2d@@UAE@XZ) 외부 기호를 확인할 수 없습니다.
+     1>BuildingScene.obj : error LNK2019: "__declspec(dllimport) public: bool __thiscall cocos2d::CCLayer::init(void)" (__imp_?init@CCLayer@cocos2d@@QAE_NXZ) 외부 기호(참조 위치: "public: virtual bool __thiscall Building::init(void)" (?init@Building@@UAE_NXZ) 함수)에서 확인하지 못했습니다.
+     1>character_main.obj : error LNK2001: "__declspec(dllimport) public: bool __thiscall cocos2d::CCLayer::init(void)" (__imp_?init@CCLayer@cocos2d@@QAE_NXZ) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2001: "__declspec(dllimport) public: bool __thiscall cocos2d::CCLayer::init(void)" (__imp_?init@CCLayer@cocos2d@@QAE_NXZ) 외부 기호를 확인할 수 없습니다.
+     1>HelpScene.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCLayer::didAccelerate(struct cocos2d::CCAcceleration *)" (?didAccelerate@CCLayer@cocos2d@@UAEXPAUCCAcceleration@2@@Z) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2019: "public: virtual void __thiscall cocos2d::CCLayer::didAccelerate(struct cocos2d::CCAcceleration *)" (?didAccelerate@CCLayer@cocos2d@@UAEXPAUCCAcceleration@2@@Z) 외부 기호(참조 위치: "public: void __thiscall std::_Wrap_alloc<class std::allocator<char> >::destroy<char *>(char * *)" (??$destroy@PAD@?$_Wrap_alloc@V?$allocator@D@std@@@std@@QAEXPAPAD@Z) 함수)에서 확인하지 못했습니다.
+     1>Obstacle.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCLayer::didAccelerate(struct cocos2d::CCAcceleration *)" (?didAccelerate@CCLayer@cocos2d@@UAEXPAUCCAcceleration@2@@Z) 외부 기호를 확인할 수 없습니다.
+     1>music.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCLayer::didAccelerate(struct cocos2d::CCAcceleration *)" (?didAccelerate@CCLayer@cocos2d@@UAEXPAUCCAcceleration@2@@Z) 외부 기호를 확인할 수 없습니다.
+     1>BuildingScene.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCLayer::didAccelerate(struct cocos2d::CCAcceleration *)" (?didAccelerate@CCLayer@cocos2d@@UAEXPAUCCAcceleration@2@@Z) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCLayer::didAccelerate(struct cocos2d::CCAcceleration *)" (?didAccelerate@CCLayer@cocos2d@@UAEXPAUCCAcceleration@2@@Z) 외부 기호를 확인할 수 없습니다.
+     1>character_main.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCLayer::didAccelerate(struct cocos2d::CCAcceleration *)" (?didAccelerate@CCLayer@cocos2d@@UAEXPAUCCAcceleration@2@@Z) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCLayer::didAccelerate(struct cocos2d::CCAcceleration *)" (?didAccelerate@CCLayer@cocos2d@@UAEXPAUCCAcceleration@2@@Z) 외부 기호를 확인할 수 없습니다.
+     1>HelpScene.obj : error LNK2001: "public: virtual class cocos2d::CCSize const & __thiscall cocos2d::CCNode::getContentSize(void)" (?getContentSize@CCNode@cocos2d@@UAEABVCCSize@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2001: "public: virtual class cocos2d::CCSize const & __thiscall cocos2d::CCNode::getContentSize(void)" (?getContentSize@CCNode@cocos2d@@UAEABVCCSize@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>Obstacle.obj : error LNK2001: "public: virtual class cocos2d::CCSize const & __thiscall cocos2d::CCNode::getContentSize(void)" (?getContentSize@CCNode@cocos2d@@UAEABVCCSize@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>music.obj : error LNK2001: "public: virtual class cocos2d::CCSize const & __thiscall cocos2d::CCNode::getContentSize(void)" (?getContentSize@CCNode@cocos2d@@UAEABVCCSize@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>BuildingScene.obj : error LNK2001: "public: virtual class cocos2d::CCSize const & __thiscall cocos2d::CCNode::getContentSize(void)" (?getContentSize@CCNode@cocos2d@@UAEABVCCSize@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2001: "public: virtual class cocos2d::CCSize const & __thiscall cocos2d::CCNode::getContentSize(void)" (?getContentSize@CCNode@cocos2d@@UAEABVCCSize@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character_main.obj : error LNK2001: "public: virtual class cocos2d::CCSize const & __thiscall cocos2d::CCNode::getContentSize(void)" (?getContentSize@CCNode@cocos2d@@UAEABVCCSize@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2001: "public: virtual class cocos2d::CCSize const & __thiscall cocos2d::CCNode::getContentSize(void)" (?getContentSize@CCNode@cocos2d@@UAEABVCCSize@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelpScene.obj : error LNK2001: "public: virtual enum cocos2d::ccGLServerState __thiscall cocos2d::CCNode::getGLServerState(void)const " (?getGLServerState@CCNode@cocos2d@@UBE?AW4ccGLServerState@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2001: "public: virtual enum cocos2d::ccGLServerState __thiscall cocos2d::CCNode::getGLServerState(void)const " (?getGLServerState@CCNode@cocos2d@@UBE?AW4ccGLServerState@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>Obstacle.obj : error LNK2001: "public: virtual enum cocos2d::ccGLServerState __thiscall cocos2d::CCNode::getGLServerState(void)const " (?getGLServerState@CCNode@cocos2d@@UBE?AW4ccGLServerState@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>music.obj : error LNK2001: "public: virtual enum cocos2d::ccGLServerState __thiscall cocos2d::CCNode::getGLServerState(void)const " (?getGLServerState@CCNode@cocos2d@@UBE?AW4ccGLServerState@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>BuildingScene.obj : error LNK2001: "public: virtual enum cocos2d::ccGLServerState __thiscall cocos2d::CCNode::getGLServerState(void)const " (?getGLServerState@CCNode@cocos2d@@UBE?AW4ccGLServerState@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2001: "public: virtual enum cocos2d::ccGLServerState __thiscall cocos2d::CCNode::getGLServerState(void)const " (?getGLServerState@CCNode@cocos2d@@UBE?AW4ccGLServerState@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character_main.obj : error LNK2001: "public: virtual enum cocos2d::ccGLServerState __thiscall cocos2d::CCNode::getGLServerState(void)const " (?getGLServerState@CCNode@cocos2d@@UBE?AW4ccGLServerState@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2001: "public: virtual enum cocos2d::ccGLServerState __thiscall cocos2d::CCNode::getGLServerState(void)const " (?getGLServerState@CCNode@cocos2d@@UBE?AW4ccGLServerState@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelpScene.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getOrderOfArrival(void)const " (?getOrderOfArrival@CCNode@cocos2d@@UBEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getOrderOfArrival(void)const " (?getOrderOfArrival@CCNode@cocos2d@@UBEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>Obstacle.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getOrderOfArrival(void)const " (?getOrderOfArrival@CCNode@cocos2d@@UBEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>music.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getOrderOfArrival(void)const " (?getOrderOfArrival@CCNode@cocos2d@@UBEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>BuildingScene.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getOrderOfArrival(void)const " (?getOrderOfArrival@CCNode@cocos2d@@UBEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2019: "public: virtual int __thiscall cocos2d::CCNode::getOrderOfArrival(void)const " (?getOrderOfArrival@CCNode@cocos2d@@UBEHXZ) 외부 기호(참조 위치: "public: __thiscall Character::Character(int,int)" (??0Character@@QAE@HH@Z) 함수)에서 확인하지 못했습니다.
+     1>character_main.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getOrderOfArrival(void)const " (?getOrderOfArrival@CCNode@cocos2d@@UBEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getOrderOfArrival(void)const " (?getOrderOfArrival@CCNode@cocos2d@@UBEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>HelpScene.obj : error LNK2001: "public: virtual class cocos2d::CCGLProgram * __thiscall cocos2d::CCNode::getShaderProgram(void)const " (?getShaderProgram@CCNode@cocos2d@@UBEPAVCCGLProgram@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2001: "public: virtual class cocos2d::CCGLProgram * __thiscall cocos2d::CCNode::getShaderProgram(void)const " (?getShaderProgram@CCNode@cocos2d@@UBEPAVCCGLProgram@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>Obstacle.obj : error LNK2001: "public: virtual class cocos2d::CCGLProgram * __thiscall cocos2d::CCNode::getShaderProgram(void)const " (?getShaderProgram@CCNode@cocos2d@@UBEPAVCCGLProgram@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>music.obj : error LNK2019: "public: virtual class cocos2d::CCGLProgram * __thiscall cocos2d::CCNode::getShaderProgram(void)const " (?getShaderProgram@CCNode@cocos2d@@UBEPAVCCGLProgram@2@XZ) 외부 기호(참조 위치: "public: void __thiscall std::_Wrap_alloc<class std::allocator<char> >::construct<char *,char * &>(char * *,char * &)" (??$construct@PADAAPAD@?$_Wrap_alloc@V?$allocator@D@std@@@std@@QAEXPAPADAAPAD@Z) 함수)에서 확인하지 못했습니다.
+     1>BuildingScene.obj : error LNK2001: "public: virtual class cocos2d::CCGLProgram * __thiscall cocos2d::CCNode::getShaderProgram(void)const " (?getShaderProgram@CCNode@cocos2d@@UBEPAVCCGLProgram@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2001: "public: virtual class cocos2d::CCGLProgram * __thiscall cocos2d::CCNode::getShaderProgram(void)const " (?getShaderProgram@CCNode@cocos2d@@UBEPAVCCGLProgram@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character_main.obj : error LNK2001: "public: virtual class cocos2d::CCGLProgram * __thiscall cocos2d::CCNode::getShaderProgram(void)const " (?getShaderProgram@CCNode@cocos2d@@UBEPAVCCGLProgram@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2001: "public: virtual class cocos2d::CCGLProgram * __thiscall cocos2d::CCNode::getShaderProgram(void)const " (?getShaderProgram@CCNode@cocos2d@@UBEPAVCCGLProgram@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelpScene.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getTag(void)" (?getTag@CCNode@cocos2d@@UAEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getTag(void)" (?getTag@CCNode@cocos2d@@UAEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>Obstacle.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getTag(void)" (?getTag@CCNode@cocos2d@@UAEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>music.obj : error LNK2019: "public: virtual int __thiscall cocos2d::CCNode::getTag(void)" (?getTag@CCNode@cocos2d@@UAEHXZ) 외부 기호(참조 위치: "public: void __thiscall std::allocator<struct std::_Container_proxy>::construct<struct std::_Container_proxy,struct std::_Container_proxy>(struct std::_Container_proxy *,struct std::_Container_proxy &&)" (??$construct@U_Container_proxy@std@@U12@@?$allocator@U_Container_proxy@std@@@std@@QAEXPAU_Container_proxy@1@$$QAU21@@Z) 함수)에서 확인하지 못했습니다.
+     1>BuildingScene.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getTag(void)" (?getTag@CCNode@cocos2d@@UAEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getTag(void)" (?getTag@CCNode@cocos2d@@UAEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>character_main.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getTag(void)" (?getTag@CCNode@cocos2d@@UAEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2001: "public: virtual int __thiscall cocos2d::CCNode::getTag(void)" (?getTag@CCNode@cocos2d@@UAEHXZ) 외부 기호를 확인할 수 없습니다.
+     1>HelpScene.obj : error LNK2001: "public: virtual class cocos2d::CCObject * __thiscall cocos2d::CCNode::getUserObject(void)const " (?getUserObject@CCNode@cocos2d@@UBEPAVCCObject@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2001: "public: virtual class cocos2d::CCObject * __thiscall cocos2d::CCNode::getUserObject(void)const " (?getUserObject@CCNode@cocos2d@@UBEPAVCCObject@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>Obstacle.obj : error LNK2001: "public: virtual class cocos2d::CCObject * __thiscall cocos2d::CCNode::getUserObject(void)const " (?getUserObject@CCNode@cocos2d@@UBEPAVCCObject@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>music.obj : error LNK2001: "public: virtual class cocos2d::CCObject * __thiscall cocos2d::CCNode::getUserObject(void)const " (?getUserObject@CCNode@cocos2d@@UBEPAVCCObject@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>BuildingScene.obj : error LNK2001: "public: virtual class cocos2d::CCObject * __thiscall cocos2d::CCNode::getUserObject(void)const " (?getUserObject@CCNode@cocos2d@@UBEPAVCCObject@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2001: "public: virtual class cocos2d::CCObject * __thiscall cocos2d::CCNode::getUserObject(void)const " (?getUserObject@CCNode@cocos2d@@UBEPAVCCObject@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>character_main.obj : error LNK2001: "public: virtual class cocos2d::CCObject * __thiscall cocos2d::CCNode::getUserObject(void)const " (?getUserObject@CCNode@cocos2d@@UBEPAVCCObject@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2001: "public: virtual class cocos2d::CCObject * __thiscall cocos2d::CCNode::getUserObject(void)const " (?getUserObject@CCNode@cocos2d@@UBEPAVCCObject@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>HelpScene.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCNode::setOrderOfArrival(int)" (?setOrderOfArrival@CCNode@cocos2d@@UAEXH@Z) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCNode::setOrderOfArrival(int)" (?setOrderOfArrival@CCNode@cocos2d@@UAEXH@Z) 외부 기호를 확인할 수 없습니다.
+     1>Obstacle.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCNode::setOrderOfArrival(int)" (?setOrderOfArrival@CCNode@cocos2d@@UAEXH@Z) 외부 기호를 확인할 수 없습니다.
+     1>music.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCNode::setOrderOfArrival(int)" (?setOrderOfArrival@CCNode@cocos2d@@UAEXH@Z) 외부 기호를 확인할 수 없습니다.
+     1>BuildingScene.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCNode::setOrderOfArrival(int)" (?setOrderOfArrival@CCNode@cocos2d@@UAEXH@Z) 외부 기호를 확인할 수 없습니다.
+     1>character.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCNode::setOrderOfArrival(int)" (?setOrderOfArrival@CCNode@cocos2d@@UAEXH@Z) 외부 기호를 확인할 수 없습니다.
+     1>character_main.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCNode::setOrderOfArrival(int)" (?setOrderOfArrival@CCNode@cocos2d@@UAEXH@Z) 외부 기호를 확인할 수 없습니다.
+     1>HelloWorldScene.obj : error LNK2001: "public: virtual void __thiscall cocos2d::CCNode::setOrderOfArrival(int)" (?setOrderOfArrival@CCNode@cocos2d@@UAEXH@Z) 외부 기호를 확인할 수 없습니다.
+     1>HelpScene.obj : error LNK2001: "public: virtual struct cocos2d::_ccColor3B const & __thiscall cocos2d::CCLayerColor::getColor(void)" (?getColor@CCLayerColor@cocos2d@@UAEABU_ccColor3B@2@XZ) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2019: "public: virtual struct cocos2d::_ccColor3B const & __thiscall cocos2d::CCLayerColor::getColor(void)" (?getColor@CCLayerColor@cocos2d@@UAEABU_ccColor3B@2@XZ) 외부 기호(참조 위치: "public: void __thiscall std::_Wrap_alloc<class std::allocator<char> >::construct<char *,char * &>(char * *,char * &)" (??$construct@PADAAPAD@?$_Wrap_alloc@V?$allocator@D@std@@@std@@QAEXPAPADAAPAD@Z) 함수)에서 확인하지 못했습니다.
+     1>HelpScene.obj : error LNK2001: "public: virtual unsigned char __thiscall cocos2d::CCLayerColor::getOpacity(void)" (?getOpacity@CCLayerColor@cocos2d@@UAEEXZ) 외부 기호를 확인할 수 없습니다.
+     1>mainScene.obj : error LNK2001: "public: virtual unsigned char __thiscall cocos2d::CCLayerColor::getOpacity(void)" (?getOpacity@CCLayerColor@cocos2d@@UAEEXZ) 외부 기호를 확인할 수 없습니다.
+     1>C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\Debug.win32\HungryGame.win32.exe : fatal error LNK1120: 14개의 확인할 수 없는 외부 참조입니다.
+     1>"C:\Users\pineoc\Documents\Visual Studio 2012\Projects\HungryGame\새 폴더\Dropbox\HungryGame(2)\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트를 빌드했습니다(Build 대상). - 실패
+
+빌드하지 못했습니다.
+
+경과 시간: 00:00:39.37

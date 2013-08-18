@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{3cbe9dee-5f88-4026-87e2-e915591974f5}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{97bfe3bf-7b27-4b3e-88db-54a728826299}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{8d16c195-ac05-4d63-9020-52dffb9eb4bb}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;png;manifest</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\characterMain.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\character.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\food.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Obstacle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Item.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="music.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mainScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BuildingScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelpScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\food.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\character.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\character_main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Obstacle.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Item.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="music.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mainScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BuildingScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelpScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="btn_goBack.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="btn_goBack_n.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="CloseNormal.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="CloseSelected.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="dog.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="down.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="down_click.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="HelloWorld.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="helpScene_bg.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="left.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="left_click.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_bg.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_btn_endgame.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_btn_endgame_n.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_btn_gamestart.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_btn_gamestart_c.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_btn_help.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_btn_help_n.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_btn_info.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_btn_info_n.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_btn_option.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="main_btn_option_c.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="mainScene_btn_dev_c.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="mainScene_btn_dev_n.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="mainScene_btn_option_c.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="mainScene_btn_option_n.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="mainScene_btn_quest_c.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="mainScene_btn_quest_n.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="mainScene_btn_start.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="right.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="right_click.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="up.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="up_click.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="토마토.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="파프리카.jpg">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="buildingSelect_bg.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="buildingSelect_btn_b1.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="buildingSelect_btn_b1_n.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="buildingSelect_btn_b2.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="buildingSelect_btn_b2_n.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="buildingSelect_btn_b3.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="buildingSelect_btn_b3_n.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="buildingSelect_btn_b4.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="buildingSelect_btn_b4_n.png">
+      <Filter>resource</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="background.mp3">
+      <Filter>resource</Filter>
+    </Media>
+  </ItemGroup>
+</Project>
