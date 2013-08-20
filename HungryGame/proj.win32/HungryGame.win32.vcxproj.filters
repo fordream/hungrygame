@@ -54,6 +54,7 @@
     <ClInclude Include="..\Classes\HelpScene.h">
       <Filter>include</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="..\Classes\gameScene.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -64,6 +65,12 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\stageSelectScene.h">
+=======
+    <ClInclude Include="..\Classes\MakerInfoScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="gameEndScene.h">
+>>>>>>> commit dev_info and gameEndScene
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -104,6 +111,7 @@
     <ClCompile Include="..\Classes\HelpScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="..\Classes\gameScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
@@ -114,6 +122,12 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\stageSelectScene.cpp">
+=======
+    <ClCompile Include="..\Classes\MakerInfoScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="gameEndScene.cpp">
+>>>>>>> commit dev_info and gameEndScene
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -250,13 +264,13 @@
     <Image Include="buildingSelect_btn_b4_n.png">
       <Filter>resource</Filter>
     </Image>
+    <Image Include="..\Resources\devinfoScene_bg.png">
+      <Filter>resource</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="background.mp3">
       <Filter>resource</Filter>
     </Media>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

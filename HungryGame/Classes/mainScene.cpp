@@ -3,6 +3,7 @@
 #include "HelpScene.h"
 #include "HelloWorldScene.h"
 #include "BuildingScene.h"
+#include "MakerInfoScene.h"
 
 using namespace cocos2d;
 
@@ -211,8 +212,7 @@ void Main::menuStartCallback(CCObject* pSender)
 
 void Main::menuDevCallback(CCObject* pSender)
 {
-	CCScene *pScene = HelloWorld::scene();
+	CCScene *pScene = MakerInfoScene::scene();
 
-	CCDirector::sharedDirector()->replaceScene(pScene);
+	CCDirector::sharedDirector()->pushScene(pScene);
 }
-
