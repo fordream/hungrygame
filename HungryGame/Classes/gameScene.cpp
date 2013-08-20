@@ -64,12 +64,12 @@ bool gameScene::init()
 
 
 
-		// 맵 간격 지정
-		int mapWidth = size.width * 0.81;
+		// 맵의 칸들 사이 간격 지정
+		int mapWidth = size.width * 0.12;
 
 		// 캐릭터가 이동할 공간의 왼쪽 맨 위 좌표
 		int map0x = size.width * 0.05 + mapWidth / 2;
-		int map0y = size.height * 0.62 + mapWidth /2;
+		int map0y = size.height * 0.6 + mapWidth /2;
 
 		// 데이터 초기화
 		int blockCnt = 4;		// 장애물의 갯수 지정

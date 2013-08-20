@@ -6,6 +6,7 @@
 #include "music.h"
 #include "HelloWorldScene.h"
 #include "mainScene.h"
+#include "stageSelectScene.h"
 
 using namespace cocos2d;
 
@@ -168,28 +169,28 @@ bool Building::init()
 // Ã¹¹øÂ° ºôµù
 void Building::menuBuild1Callback(CCObject* pSender)
 {
-	CCScene *pScene = HelloWorld::scene();
+	CCScene *pScene = stageSelect::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
 //µÎ¹øÂ° ºôµù
 void Building::menuBuild2Callback(CCObject* pSender)
 {
-	CCScene *pScene = HelloWorld::scene();
+	CCScene *pScene = stageSelect::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
 //¼¼¹øÂ° ºôµù
 void Building::menuBuild3Callback(CCObject* pSender)
 {
-	CCScene *pScene = HelloWorld::scene();
+	CCScene *pScene = stageSelect::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
 //³×¹øÂ° ºôµù
 void Building::menuBuild4Callback(CCObject* pSender)
 {
-	CCScene *pScene = HelloWorld::scene();
+	CCScene *pScene = stageSelect::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 

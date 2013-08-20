@@ -123,11 +123,15 @@
     <ClInclude Include="..\Classes\character.h" />
     <ClInclude Include="..\Classes\characterMain.h" />
     <ClInclude Include="..\Classes\food.h" />
+    <ClInclude Include="..\Classes\gameScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\HelpScene.h" />
     <ClInclude Include="..\Classes\Item.h" />
     <ClInclude Include="..\Classes\mainScene.h" />
+    <ClInclude Include="..\Classes\MakerInfoScene_J.h" />
+    <ClInclude Include="..\Classes\music.h" />
     <ClInclude Include="..\Classes\Obstacle.h" />
+    <ClInclude Include="..\Classes\stageSelectScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="music.h" />
     <ClInclude Include="resource.h" />
@@ -138,11 +142,15 @@
     <ClCompile Include="..\Classes\character.cpp" />
     <ClCompile Include="..\Classes\character_main.cpp" />
     <ClCompile Include="..\Classes\food.cpp" />
+    <ClCompile Include="..\Classes\gameScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\HelpScene.cpp" />
     <ClCompile Include="..\Classes\Item.cpp" />
     <ClCompile Include="..\Classes\mainScene.cpp" />
+    <ClCompile Include="..\Classes\MakerInfoScene_J.cpp" />
+    <ClCompile Include="..\Classes\music.cpp" />
     <ClCompile Include="..\Classes\Obstacle.cpp" />
+    <ClCompile Include="..\Classes\stageSelectScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="music.cpp" />
   </ItemGroup>
