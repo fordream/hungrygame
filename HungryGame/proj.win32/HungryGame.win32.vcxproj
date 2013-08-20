@@ -128,16 +128,11 @@
     <ClInclude Include="..\Classes\HelpScene.h" />
     <ClInclude Include="..\Classes\Item.h" />
     <ClInclude Include="..\Classes\mainScene.h" />
-<<<<<<< HEAD
-    <ClInclude Include="..\Classes\MakerInfoScene_J.h" />
     <ClInclude Include="..\Classes\music.h" />
     <ClInclude Include="..\Classes\Obstacle.h" />
     <ClInclude Include="..\Classes\stageSelectScene.h" />
-=======
     <ClInclude Include="..\Classes\MakerInfoScene.h" />
-    <ClInclude Include="..\Classes\Obstacle.h" />
     <ClInclude Include="gameEndScene.h" />
->>>>>>> commit dev_info and gameEndScene
     <ClInclude Include="main.h" />
     <ClInclude Include="music.h" />
     <ClInclude Include="resource.h" />
@@ -153,16 +148,11 @@
     <ClCompile Include="..\Classes\HelpScene.cpp" />
     <ClCompile Include="..\Classes\Item.cpp" />
     <ClCompile Include="..\Classes\mainScene.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="..\Classes\MakerInfoScene_J.cpp" />
     <ClCompile Include="..\Classes\music.cpp" />
-    <ClCompile Include="..\Classes\Obstacle.cpp" />
     <ClCompile Include="..\Classes\stageSelectScene.cpp" />
-=======
     <ClCompile Include="..\Classes\MakerInfoScene.cpp" />
     <ClCompile Include="..\Classes\Obstacle.cpp" />
     <ClCompile Include="gameEndScene.cpp" />
->>>>>>> commit dev_info and gameEndScene
     <ClCompile Include="main.cpp" />
     <ClCompile Include="music.cpp" />
   </ItemGroup>
