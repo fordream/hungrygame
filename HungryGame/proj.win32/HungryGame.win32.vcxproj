@@ -135,6 +135,7 @@
     <ClInclude Include="gameEndScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="music.h" />
+    <ClInclude Include="PauseGameScene.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +156,7 @@
     <ClCompile Include="gameEndScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="music.cpp" />
+    <ClCompile Include="PauseGameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\devinfoScene_bg.png" />
