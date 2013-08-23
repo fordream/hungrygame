@@ -5,6 +5,8 @@ get result for success Scene or fail Scene
 */
 
 #include "gameEndScene.h"
+#include "gameScene.h"
+#include "stageSelectScene.h"
 
 gameEndScene::gameEndScene(int _result)
 {
@@ -58,6 +60,11 @@ gameEndScene::gameEndScene(int _result)
 	else // result == 0 , fail the game
 	{//menu button : retry, back to select building(stage)
 
+		CCSprite *fail = CCSprite::create("end_image_fail.png");
+		fail->setPosition(ccp(size.width/2, size.height/0.8));
+		this->addChild(fail,2);
+
+
 		CCMenuItemImage *pMenu_retry = CCMenuItemImage::create(
 			"end_btn_retry.png",
 			"end_btn_retry_n.png",
@@ -74,7 +81,6 @@ gameEndScene::gameEndScene(int _result)
 		pMenu_f->setPosition(ccp(size.width/2,size.height/4));
 
 		this->addChild(pMenu_f,2);
-
 	}
 
 }
@@ -84,8 +90,31 @@ bool gameEndScene::init()
 	return true;
 }
 void gameEndScene::menu_retry(CCObject* pSender)
-{}
+{
+	/*
+	//여기서 스테이지의 idx가져와서 다시 replace 하는 방식으로 가야할듯.
+	CCScene *pScene = gameScene::scene();
+
+	CCDirector::sharedDirector()->replaceScene(pScene);
+	*/
+	
+}
 void gameEndScene::menu_nextStage(CCObject* pSender)
-{}
+{
+	/*
+	//스테이지의 idx를 가져와서 idx+1 하여 다음 스테이지를 가져오게끔 해야할 듯.
+	CCScene *pScene = gameScene::scene();
+
+	CCDirector::sharedDirector()->replaceScene(pScene);
+	*/
+}
 void gameEndScene::menu_backtoStageScene(CCObject* pSender)
-{}
+{
+	/*
+	스테이지 선택하는 Scene으로 넘어감.
+	back to selectstage Scene
+	*/
+	CCScene *pScene = stageSelect::scene();
+
+	CCDirector::sharedDirector()->replaceScene(pScene);
+}
