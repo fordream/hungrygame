@@ -265,10 +265,21 @@
     <Image Include="..\Resources\devinfoScene_bg.png">
       <Filter>resource</Filter>
     </Image>
+    <Image Include="tmw_desert_spacing.png">
+      <Filter>resource</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="background.mp3">
       <Filter>resource</Filter>
     </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gameMap.tmx">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="TestDesert.tmx">
+      <Filter>resource</Filter>
+    </None>
   </ItemGroup>
 </Project>

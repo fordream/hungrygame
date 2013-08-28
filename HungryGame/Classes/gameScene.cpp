@@ -52,6 +52,8 @@ bool gameScene::init()
 
 
 
+		/*
+
 			//배경 이미지 생성
 		CCSprite* pStageBg = CCSprite::create("img\\game\\game_bg.png");
         CC_BREAK_IF(! pStageBg);
@@ -61,6 +63,17 @@ bool gameScene::init()
 
         // Add the sprite to HelloWorld layer as a child layer.
         this->addChild(pStageBg, 0);
+
+		*/
+
+		CCTMXTiledMap *tileMap;
+
+		tileMap = CCTMXTiledMap::create("TestDesert.tmx");
+		this->addChild(tileMap,1,2);
+
+		CCSize s = tileMap->getContentSize();
+
+
 
 
 

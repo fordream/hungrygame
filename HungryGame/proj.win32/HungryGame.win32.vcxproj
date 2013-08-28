@@ -200,6 +200,7 @@
     <Image Include="main_btn_option_c.png" />
     <Image Include="right.png" />
     <Image Include="right_click.png" />
+    <Image Include="tmw_desert_spacing.png" />
     <Image Include="up.png" />
     <Image Include="up_click.png" />
     <Image Include="토마토.jpg" />
@@ -207,6 +208,10 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="background.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gameMap.tmx" />
+    <None Include="TestDesert.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
