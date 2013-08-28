@@ -4,6 +4,7 @@
 #include "HelloWorldScene.h"
 #include "BuildingScene.h"
 #include "MakerInfoScene.h"
+#include "optionScene.h"
 
 using namespace cocos2d;
 
@@ -182,7 +183,7 @@ void Main::menuCloseCallback(CCObject* pSender)
 
 void Main::menuOptionCallback(CCObject* pSender)
 {
-	CCScene *pScene = HelloWorld::scene();
+	CCScene *pScene = OptionScene::scene();
 
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }

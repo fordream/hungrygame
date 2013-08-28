@@ -1,17 +1,51 @@
-﻿Build started 2013-08-22 오전 12:51:29.
-     1>Project "C:\Users\blackbell\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" on node 2 (Build target(s)).
-     1>InitializeBuildStatus:
-         Creating "Debug.win32\HungryGame.win32.unsuccessfulbuild" because "AlwaysCreate" was specified.
-       ClCompile:
-         All outputs are up-to-date.
+﻿빌드 시작: 2013-08-28 오후 9:15:40
+     1>2 노드의 "C:\Users\pineoc\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트(Rebuild 대상)입니다.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\include /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\kazmath\include /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\platform\win32 /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32 /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32\OGLES /IC:\Users\pineoc\Documents\GitHub\hungrygame\external /IC:\Users\pineoc\Documents\GitHub\hungrygame\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\BuildingScene.cpp ..\Classes\character.cpp ..\Classes\character_main.cpp ..\Classes\food.cpp ..\Classes\gameScene.cpp ..\Classes\HelloWorldScene.cpp ..\Classes\HelpScene.cpp ..\Classes\Item.cpp ..\Classes\mainScene.cpp ..\Classes\music.cpp ..\Classes\optionScene.cpp ..\Classes\stageSelectScene.cpp ..\Classes\MakerInfoScene.cpp ..\Classes\Obstacle.cpp gameEndScene.cpp main.cpp music.cpp PauseGameScene.cpp
+         PauseGameScene.cpp
+         music.cpp
+         main.cpp
+         gameEndScene.cpp
+         Obstacle.cpp
+         MakerInfoScene.cpp
+         stageSelectScene.cpp
+         optionScene.cpp
+         music.cpp
+         mainScene.cpp
+         Item.cpp
+         HelpScene.cpp
+         HelloWorldScene.cpp
+         gameScene.cpp
+         food.cpp
+         character_main.cpp
+         character.cpp
+         BuildingScene.cpp
+         AppDelegate.cpp
+         코드를 생성하고 있습니다...
        Link:
-         All outputs are up-to-date.
-         HungryGame.win32.vcxproj -> C:\Users\blackbell\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
-       FinalizeBuildStatus:
-         Deleting file "Debug.win32\HungryGame.win32.unsuccessfulbuild".
-         Touching "Debug.win32\HungryGame.win32.lastbuildstate".
-     1>Done Building Project "C:\Users\blackbell\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\ libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.lib" /MACHINE:X86 Debug.win32\AppDelegate.obj
+         Debug.win32\BuildingScene.obj
+         Debug.win32\character.obj
+         Debug.win32\character_main.obj
+         Debug.win32\food.obj
+         Debug.win32\gameScene.obj
+         Debug.win32\HelloWorldScene.obj
+         Debug.win32\HelpScene.obj
+         Debug.win32\Item.obj
+         Debug.win32\mainScene.obj
+         Debug.win32\music.obj
+         Debug.win32\optionScene.obj
+         Debug.win32\stageSelectScene.obj
+         Debug.win32\MakerInfoScene.obj
+         Debug.win32\Obstacle.obj
+         Debug.win32\gameEndScene.obj
+         Debug.win32\main.obj
+         Debug.win32\music.obj
+         Debug.win32\PauseGameScene.obj
+     1>Debug.win32\music.obj : warning LNK4042: 개체가 두 번 이상 지정되었습니다. 나머지는 무시됩니다.
+         HungryGame.win32.vcxproj -> C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
+     1>"C:\Users\pineoc\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트를 빌드했습니다(Rebuild 대상).
 
-Build succeeded.
+빌드했습니다.
 
-Time Elapsed 00:00:00.32
+경과 시간: 00:00:40.82

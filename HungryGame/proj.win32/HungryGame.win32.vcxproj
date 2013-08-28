@@ -130,6 +130,7 @@
     <ClInclude Include="..\Classes\mainScene.h" />
     <ClInclude Include="..\Classes\music.h" />
     <ClInclude Include="..\Classes\Obstacle.h" />
+    <ClInclude Include="..\Classes\optionScene.h" />
     <ClInclude Include="..\Classes\stageSelectScene.h" />
     <ClInclude Include="..\Classes\MakerInfoScene.h" />
     <ClInclude Include="gameEndScene.h" />
@@ -150,6 +151,7 @@
     <ClCompile Include="..\Classes\Item.cpp" />
     <ClCompile Include="..\Classes\mainScene.cpp" />
     <ClCompile Include="..\Classes\music.cpp" />
+    <ClCompile Include="..\Classes\optionScene.cpp" />
     <ClCompile Include="..\Classes\stageSelectScene.cpp" />
     <ClCompile Include="..\Classes\MakerInfoScene.cpp" />
     <ClCompile Include="..\Classes\Obstacle.cpp" />
