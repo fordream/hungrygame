@@ -68,7 +68,7 @@ bool gameScene::init()
 
 		CCTMXTiledMap *tileMap;
 
-		tileMap = CCTMXTiledMap::create("TestDesert.tmx");
+		tileMap = CCTMXTiledMap::create("gameMap.tmx");
 		this->addChild(tileMap,1,2);
 
 		CCSize s = tileMap->getContentSize();

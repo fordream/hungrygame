@@ -66,10 +66,16 @@
     <ClInclude Include="..\Classes\MakerInfoScene.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="gameEndScene.h">
+    <ClInclude Include="PauseGameScene.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="PauseGameScene.h">
+    <ClInclude Include="..\Classes\gameEndScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\gameResultScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\optionScene.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -122,10 +128,16 @@
     <ClCompile Include="..\Classes\stageSelectScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="gameEndScene.cpp">
+    <ClCompile Include="PauseGameScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="PauseGameScene.cpp">
+    <ClCompile Include="..\Classes\gameEndScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\gameResultScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\optionScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

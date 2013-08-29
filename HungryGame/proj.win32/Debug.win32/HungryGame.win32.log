@@ -1,31 +1,32 @@
-﻿Build started 2013-08-28 오후 11:29:09.
-     1>Project "C:\Users\eunji\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" on node 2 (Build target(s)).
+﻿빌드 시작: 2013-08-29 오후 4:59:55
+     1>2 노드의 "C:\Users\pineoc\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트(Build 대상)입니다.
      1>ClCompile:
-         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\include /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\kazmath\include /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\win32 /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32 /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32\OGLES /IC:\Users\eunji\Documents\GitHub\hungrygame\external /IC:\Users\eunji\Documents\GitHub\hungrygame\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\gameScene.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\include /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\kazmath\include /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\platform\win32 /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32 /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32\OGLES /IC:\Users\pineoc\Documents\GitHub\hungrygame\external /IC:\Users\pineoc\Documents\GitHub\hungrygame\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\gameScene.cpp
          gameScene.cpp
        Link:
-         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\ libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.lib" /MACHINE:X86 Debug.win32\AppDelegate.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\ libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.lib" /MACHINE:X86 Debug.win32\AppDelegate.obj
          Debug.win32\BuildingScene.obj
          Debug.win32\character.obj
          Debug.win32\character_main.obj
          Debug.win32\food.obj
+         Debug.win32\gameEndScene.obj
+         Debug.win32\gameResultScene.obj
          Debug.win32\gameScene.obj
          Debug.win32\HelloWorldScene.obj
          Debug.win32\HelpScene.obj
          Debug.win32\Item.obj
          Debug.win32\mainScene.obj
          Debug.win32\music.obj
+         Debug.win32\optionScene.obj
          Debug.win32\stageSelectScene.obj
          Debug.win32\MakerInfoScene.obj
          Debug.win32\Obstacle.obj
-         Debug.win32\gameEndScene.obj
          Debug.win32\main.obj
          Debug.win32\music.obj
          Debug.win32\PauseGameScene.obj
-     1>Debug.win32\music.obj : warning LNK4042: object specified more than once; extras ignored
-         HungryGame.win32.vcxproj -> C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
-     1>Done Building Project "C:\Users\eunji\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" (Build target(s)).
+         HungryGame.win32.vcxproj -> C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
+     1>"C:\Users\pineoc\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
 
-Build succeeded.
+빌드했습니다.
 
-Time Elapsed 00:00:09.72
+경과 시간: 00:00:07.74
