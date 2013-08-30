@@ -23,6 +23,18 @@ public:
    
     // implement the "static node()" method manually
 	CREATE_FUNC(gameScene);
+
+	/*
+	pineoc's function (general function)
+	display point -> tile point function
+	*/
+	CCPoint tileCoorPosition(CCPoint);
+
+
+
+
+	CCTMXTiledMap *tileMap; // tileMap name to select stage
+
 };
 
 #endif  // __GAME_SCENE_H__

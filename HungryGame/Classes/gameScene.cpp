@@ -60,7 +60,7 @@ bool gameScene::init()
 		this->addChild(tileLayer);
 
 		
-		CCTMXTiledMap *tileMap;
+//		CCTMXTiledMap *tileMap;
 		CCTMXLayer *backgroundLayer;
 		CCTMXObjectGroup *objectgroup;
 
@@ -79,23 +79,39 @@ bool gameScene::init()
 		/* pineoc's comments
 		in example,
 		CCMTXObjectGroup *objectgroup = tileMap->objectGroupNamed("objects");
-		//it can change object generally like objects..
-		//in object, can contain spawnArea, wall, so on..
+		it can change object generally like objects..
+		in object, can contain spawnArea, wall, so on..
+		use example
+		links : http://www.raywenderlich.com/40544/cocos2d-x-tile-map-tutorial-part-2
 		*/
 		CCSize s = tileMap->getContentSize();
 
+		/*
+		pineoc's food testing part
+		*/
+		//--------------------------------------------------------
+		CCSprite *food = CCSprite::create("p.jpg");
+		food->setPosition(tileCoorPosition(ccp(3,3)));
+		//tileLayer->addChild(food);
+		this->addChild(food);
 
-
-
-
-
-
-
-
-
+		//--------------------------------------------------------
         bRet = true;
     } while (0);
 
     return bRet;
 }
 
+CCPoint gameScene::tileCoorPosition(CCPoint position)
+{//general function, for point -> tile point
+
+    int mapSize_h  = tileMap->getMapSize().height;
+    int tileSize_h = tileMap->getTileSize().height;
+    int tileSize_w = tileMap->getTileSize().width;   
+
+    //    CCLog("%d %d %d", mapSize_h,tileSize_h,tileSize_w);
+	int x = position.x /tileSize_w;
+	int y = (tileSize_h* mapSize_h -position.y) / tileSize_h;
+
+    return ccp(x,y);
+}

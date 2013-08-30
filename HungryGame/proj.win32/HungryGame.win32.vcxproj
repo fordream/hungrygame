@@ -202,13 +202,13 @@
     <Image Include="main_btn_info_n.png" />
     <Image Include="main_btn_option.png" />
     <Image Include="main_btn_option_c.png" />
+    <Image Include="p.jpg" />
     <Image Include="right.png" />
     <Image Include="right_click.png" />
     <Image Include="tmw_desert_spacing.png" />
     <Image Include="up.png" />
     <Image Include="up_click.png" />
     <Image Include="토마토.jpg" />
-    <Image Include="파프리카.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="background.mp3" />
