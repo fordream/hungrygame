@@ -48,34 +48,32 @@ bool gameScene::init()
         // add your codes below...
         //////////////////////////////////////////////////////////////////////////
 
+		
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 
+		CCLayer *tileLayer = CCLayer::create();
+		this->addChild(tileLayer);
 
-		/*
+		
+		CCTMXTiledMap *tileMap;
+		CCTMXLayer *backgroundLayer;
+		CCTMXObjectGroup *objectgroup;
 
-			//배경 이미지 생성
-		CCSprite* pStageBg = CCSprite::create("img\\game\\game_bg.png");
-        CC_BREAK_IF(! pStageBg);
+		// 맵 파일 불러오기
 
-        // Place the sprite on the center of the screen
-        pStageBg->setPosition(ccp(size.width/2, size.height/2));
+		tileMap = CCTMXTiledMap::create("map/GameMap.tmx");
+		tileMap->setPosition(size.width * 0.05, size.height * 0.35);
+	//	this->addChild(tileMap,1,2);
 
-        // Add the sprite to HelloWorld layer as a child layer.
-        this->addChild(pStageBg, 0);
+		// 맵 타일 불러오기
+		
+//		backgroundLayer = tileMap->layerNamed("wall");
+//		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
+		tileLayer->addChild(tileMap);
 
-		*/
-
-		CCTMXTiledMap *tileMap; // get .tmx file map/gameMap.tmx 
-		CCTMXLayer *background, *wall; // in .tmx file, use background and wall
-
-		tileMap = CCTMXTiledMap::create("map/gameMap.tmx");
-		background = tileMap->layerNamed("background");
-		wall = tileMap->layerNamed("wall");
-		this->addChild(tileMap,1,2);
-
-		CCTMXObjectGroup *objectgroup = tileMap->objectGroupNamed("con_wall");//object group(wall object)
-		/*in example,
+		/* pineoc's comments
+		in example,
 		CCMTXObjectGroup *objectgroup = tileMap->objectGroupNamed("objects");
 		//it can change object generally like objects..
 		//in object, can contain spawnArea, wall, so on..
