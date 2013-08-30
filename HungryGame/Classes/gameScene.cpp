@@ -1,7 +1,7 @@
 /*
 * 2013 08 18
 * Joung Daun
-* Stage Select
+* GameScene
 */
 #include "stageSelectScene.h"
 #include "music.h"
@@ -51,7 +51,11 @@ bool gameScene::init()
 		
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
-
+		/*
+		* make background scene
+		* Joung Daun
+		* http://blog.naver.com/PostView.nhn?blogId=skmzzang7979&logNo=70142661460
+		*/
 		CCLayer *tileLayer = CCLayer::create();
 		this->addChild(tileLayer);
 
@@ -68,7 +72,7 @@ bool gameScene::init()
 
 		// 맵 타일 불러오기
 		
-//		backgroundLayer = tileMap->layerNamed("wall");
+		backgroundLayer = tileMap->layerNamed("wall");
 //		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
 		tileLayer->addChild(tileMap);
 
@@ -80,32 +84,6 @@ bool gameScene::init()
 		*/
 		CCSize s = tileMap->getContentSize();
 
-
-
-
-
-		// 맵의 칸들 사이 간격 지정
-		int mapWidth = size.width * 0.12;
-
-		// 캐릭터가 이동할 공간의 왼쪽 맨 위 좌표
-		int map0x = size.width * 0.05 + mapWidth / 2;
-		int map0y = size.height * 0.6 + mapWidth /2;
-
-		// 데이터 초기화
-		int blockCnt = 4;		// 장애물의 갯수 지정
-
-		// 장애물 생성 -> 11은 (1,1)자리, 34 는 (3,4)자리라고 생각하면됨
-		int blockList[] = {11,12,34,35};
-		
-		for(int i = 0 ; i < blockCnt; i++)
-		{
-			int blockX = map0x + mapWidth * (blockList[i]/10);
-			int blockY = map0y + mapWidth * (blockList[i]%10);
-
-			// blockX와 blockY는 해당 장애물의 x y 좌표임
-
-			// 여기서 장애물 만들면 될듯!
-		}
 
 
 
