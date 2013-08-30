@@ -66,11 +66,20 @@ bool gameScene::init()
 
 		*/
 
-		CCTMXTiledMap *tileMap;
+		CCTMXTiledMap *tileMap; // get .tmx file map/gameMap.tmx 
+		CCTMXLayer *background, *wall; // in .tmx file, use background and wall
 
-		tileMap = CCTMXTiledMap::create("gameMap.tmx");
+		tileMap = CCTMXTiledMap::create("map/gameMap.tmx");
+		background = tileMap->layerNamed("background");
+		wall = tileMap->layerNamed("wall");
 		this->addChild(tileMap,1,2);
 
+		CCTMXObjectGroup *objectgroup = tileMap->objectGroupNamed("con_wall");//object group(wall object)
+		/*in example,
+		CCMTXObjectGroup *objectgroup = tileMap->objectGroupNamed("objects");
+		//it can change object generally like objects..
+		//in object, can contain spawnArea, wall, so on..
+		*/
 		CCSize s = tileMap->getContentSize();
 
 
