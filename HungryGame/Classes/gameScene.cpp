@@ -8,6 +8,7 @@
 #include "HelloWorldScene.h"
 #include "mainScene.h"
 #include "gameScene.h"
+#include "food.h"
 
 using namespace cocos2d;
 
@@ -90,11 +91,21 @@ bool gameScene::init()
 		pineoc's food testing part
 		*/
 		//--------------------------------------------------------
-		CCSprite *food = CCSprite::create("p.jpg");
-		food->setPosition(tileCoorPosition(ccp(3,3)));
-		//tileLayer->addChild(food);
-		this->addChild(food);
+		//CCSprite *food = CCSprite::create("p.jpg");
+		//food->setPosition(tileCoorPosition(ccp(3,3)));
+		////tileLayer->addChild(food);
+		//this->addChild(food);
 
+		CCTMXObjectGroup *objects = tileMap->objectGroupNamed("food");
+		CCDictionary *food1point = objects->objectNamed("food2");
+		//in this time, CCDictionary has debug error, but if ignore it twice -> food will appear
+
+		int x = ((CCString*)food1point->objectForKey("x"))->intValue();
+		int y = ((CCString*)food1point->objectForKey("y"))->intValue();
+		CCSprite *food1 = CCSprite::create("p.jpg");
+		food1->setPosition(ccp(x,y));
+		tileLayer->addChild(food1);
+		
 		//--------------------------------------------------------
         bRet = true;
     } while (0);
