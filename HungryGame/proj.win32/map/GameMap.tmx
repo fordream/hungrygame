@@ -30,4 +30,7 @@
  <objectgroup name="obstacle" width="9" height="10">
   <object name="obstaclePoint" x="96" y="48" width="48" height="48"/>
  </objectgroup>
+ <objectgroup name="foods" width="9" height="10">
+  <object name="food1" x="192" y="49" width="46" height="44"/>
+ </objectgroup>
 </map>
