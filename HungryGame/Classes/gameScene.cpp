@@ -89,7 +89,7 @@ bool gameScene::init()
 
 		/*
 		pineoc's food testing part
-		*/
+		
 		//--------------------------------------------------------
 		//CCSprite *food = CCSprite::create("p.jpg");
 		//food->setPosition(tileCoorPosition(ccp(3,3)));
@@ -106,7 +106,26 @@ bool gameScene::init()
 		food1->setPosition(ccp(x,y));
 		tileLayer->addChild(food1);
 		
-		//--------------------------------------------------------
+		//--------------------------------------------------------*/
+
+
+		//-------------- obstacle (eunji) --------------------
+
+		CCTMXObjectGroup *obstacle = tileMap->objectGroupNamed("obstacle");
+		CCDictionary *obstaclePoint = obstacle->objectNamed("obstaclePoint");
+
+		int obX = ((CCString*)obstaclePoint->objectForKey("x"))->intValue();
+		int obY = ((CCString*)obstaclePoint->objectForKey("y"))->intValue();
+
+		obstaclePosition = ccp(obX, obY);
+		this->createObstacle();
+
+		
+
+
+		//----------------------------------------------------
+		
+
         bRet = true;
     } while (0);
 
@@ -125,4 +144,15 @@ CCPoint gameScene::tileCoorPosition(CCPoint position)
 	int y = (tileSize_h* mapSize_h -position.y) / tileSize_h;
 
     return ccp(x,y);
+}
+
+void gameScene::createObstacle()
+{// 장애물 생성 위함
+
+	CCTexture2D *obTexture = CCTextureCache::sharedTextureCache()->addImage("map/meat.png");
+
+	obstacle = CCSprite::createWithTexture(obTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
+	obstacle->setPosition(obstaclePosition);
+	this->addChild(obstacle);
+
 }

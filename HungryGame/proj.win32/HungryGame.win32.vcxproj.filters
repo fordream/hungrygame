@@ -280,6 +280,9 @@
     <Image Include="p.jpg">
       <Filter>resource</Filter>
     </Image>
+    <Image Include="map\meat.png">
+      <Filter>resource</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="background.mp3">
@@ -287,10 +290,10 @@
     </Media>
   </ItemGroup>
   <ItemGroup>
-    <None Include="gameMap.tmx">
+    <None Include="TestDesert.tmx">
       <Filter>resource</Filter>
     </None>
-    <None Include="TestDesert.tmx">
+    <None Include="map\GameMap.tmx">
       <Filter>resource</Filter>
     </None>
   </ItemGroup>

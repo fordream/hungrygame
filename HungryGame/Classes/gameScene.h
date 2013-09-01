@@ -30,6 +30,10 @@ public:
 	*/
 	CCPoint tileCoorPosition(CCPoint);
 
+	void createObstacle(); // 장애물 생성 위함
+
+	CCPoint obstaclePosition;
+	CCSprite *obstacle;
 
 
 

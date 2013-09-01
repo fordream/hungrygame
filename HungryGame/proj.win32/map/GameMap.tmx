@@ -27,4 +27,7 @@
    <polyline points="0,0 240,0 240,48 0,48 0,0"/>
   </object>
  </objectgroup>
+ <objectgroup name="obstacle" width="9" height="10">
+  <object name="obstaclePoint" x="96" y="48" width="48" height="48"/>
+ </objectgroup>
 </map>
