@@ -35,9 +35,16 @@ public:
 	CCPoint obstaclePosition;
 	CCSprite *obstacle;
 
-
+	// --------------------------------- Daun Start -------------------//
 
 	CCTMXTiledMap *tileMap; // tileMap name to select stage
+	void createCharacter();
+	void ccTouchEnded(CCTouch *, CCEvent* );
+	CCSprite        *character;
+	bool ccTouchBegan(CCTouch *, CCEvent* );
+	void onEnter();
+
+	// ------------------------------Daun End ----------------------//
 
 };
 
