@@ -31,7 +31,7 @@ public:
 	display point -> tile point function
 	*/
 	CCPoint tileCoorPosition(CCPoint);
-
+	CCTMXLayer *backgroundLayer;
 	void createObstacle(); // 장애물 생성 위함
 
 	CCPoint obstaclePosition;
@@ -51,9 +51,12 @@ public:
 	//-------------------------------pineoc's start------------------//
 	void createFood(CCPoint,char*); //food create item, (point, imageName)
 	void linktochar_food();
+	bool checkDup(CCPoint); // check duplication about tile 
 	//CCPoint foodPosition; 
 	//CCSprite* food;
-	CCArray* foods; // for many foods
+	CCTMXObjectGroup *foods; // group for foods object
+	CCArray* foodArray; // for many foods
+	//CCTMXLayer* foodLayer; // for food object layer
 
 	//-----------------------------------------------------------------//
 

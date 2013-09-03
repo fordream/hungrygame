@@ -47,7 +47,7 @@ bool gameScene::init()
         //////////////////////////////////////////////////////////////////////////
         // add your codes below...
         //////////////////////////////////////////////////////////////////////////
-		foods = new CCArray; // in food array dinamic cast
+		foodArray = new CCArray; // in food array dinamic cast
 		
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
@@ -64,7 +64,7 @@ bool gameScene::init()
 
 		
 //		CCTMXTiledMap *tileMap;
-		CCTMXLayer *backgroundLayer;
+//		CCTMXLayer *backgroundLayer;
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
@@ -80,8 +80,8 @@ bool gameScene::init()
 		backgroundLayer = tileMap->layerNamed("wall");
 //		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
 		tileLayer->addChild(tileMap);
-
-
+		
+		
 		/*
 		* make character
 		* Daun..
@@ -93,11 +93,6 @@ bool gameScene::init()
 
 
 		/* pineoc's comments
-		in example,
-		CCMTXObjectGroup *objectgroup = tileMap->objectGroupNamed("objects");
-		it can change object generally like objects..
-		in object, can contain spawnArea, wall, so on..
-		use example
 		links : http://www.raywenderlich.com/40544/cocos2d-x-tile-map-tutorial-part-2
 		*/
 		CCSize s = tileMap->getContentSize();
@@ -106,14 +101,15 @@ bool gameScene::init()
 		pineoc's food testing part --------------------------------------------------------------
 		*/
 
-		CCTMXObjectGroup *objects = tileMap->objectGroupNamed("foods");
-		CCDictionary *food1point = objects->objectNamed("food1");
+		foods = tileMap->objectGroupNamed("foods");
+		CCDictionary *food1point = foods->objectNamed("food1");
 		//in this time, CCDictionary has debug error, but if ignore it twice -> food will appear
 
 		int foodX = ((CCString*)food1point->objectForKey("x"))->intValue();
 		int foodY = ((CCString*)food1point->objectForKey("y"))->intValue();
-		
 		this->createFood(ccp(foodX,foodY),"map/p.jpg");
+		
+		
 		//----------------------------------------------------------------------------------------
 
 
@@ -299,6 +295,23 @@ void gameScene::createFood(CCPoint foodpoint,char* foodImageName)
 	food->setPosition(foodpoint);
 	food->setAnchorPoint(ccp(0,0));
 	this->addChild(food);
+}
+
+/*
+check duplication function
+*/
+bool gameScene::checkDup(CCPoint location)
+{// if dup, return false
+	int tileGid = backgroundLayer->tileGIDAt(location);
+	if(tileGid == NULL)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	
 }
 
 
