@@ -13,42 +13,42 @@ using namespace cocos2d;
 
 CCScene* gameScene::scene()
 {
-    CCScene * scene = NULL;
-    do 
-    {
-        // 'scene' is an autorelease object
-        scene = CCScene::create();
-        CC_BREAK_IF(! scene);
+	CCScene * scene = NULL;
+	do 
+	{
+		// 'scene' is an autorelease object
+		scene = CCScene::create();
+		CC_BREAK_IF(! scene);
 
-        // 'layer' is an autorelease object
+		// 'layer' is an autorelease object
 		gameScene *layer = gameScene::create();
-        CC_BREAK_IF(! layer);
+		CC_BREAK_IF(! layer);
 
-        // add layer as a child to scene
-        scene->addChild(layer);
-    } while (0);
+		// add layer as a child to scene
+		scene->addChild(layer);
+	} while (0);
 
-    // return the scene
-    return scene;
+	// return the scene
+	return scene;
 }
 
 // on "init" you need to initialize your instance
 bool gameScene::init()
 {
-    bool bRet = false;
-    do 
-    {
-        //////////////////////////////////////////////////////////////////////////
-        // super init first
-        //////////////////////////////////////////////////////////////////////////
+	bool bRet = false;
+	do 
+	{
+		//////////////////////////////////////////////////////////////////////////
+		// super init first
+		//////////////////////////////////////////////////////////////////////////
 
-        CC_BREAK_IF(! CCLayer::init());
+		CC_BREAK_IF(! CCLayer::init());
 
-        //////////////////////////////////////////////////////////////////////////
-        // add your codes below...
-        //////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////
+		// add your codes below...
+		//////////////////////////////////////////////////////////////////////////
 		foods = new CCArray; // in food array dinamic cast
-		
+
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 
@@ -62,23 +62,23 @@ bool gameScene::init()
 		CCLayer *tileLayer = CCLayer::create();
 		this->addChild(tileLayer);
 
-		
-//		CCTMXTiledMap *tileMap;
+
+		//		CCTMXTiledMap *tileMap;
 		CCTMXLayer *backgroundLayer;
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
 
 		tileMap = CCTMXTiledMap::create("map/GameMap.tmx");
-	
+
 		//	tileMap->setPosition(size.width * 0.05, size.height * 0.35);
 		// -> 위에 줄이 맵 위치 이동시키는거임! 일단은 0,0으로 두는게 좋겠다!
 		//	this->addChild(tileMap,1,2);
 
 		// 맵 타일 불러오기
-		
+
 		backgroundLayer = tileMap->layerNamed("wall");
-//		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
+		//		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
 		tileLayer->addChild(tileMap);
 
 
@@ -112,7 +112,7 @@ bool gameScene::init()
 
 		int foodX = ((CCString*)food1point->objectForKey("x"))->intValue();
 		int foodY = ((CCString*)food1point->objectForKey("y"))->intValue();
-		
+
 		this->createFood(ccp(foodX,foodY),"map/p.jpg");
 		//----------------------------------------------------------------------------------------
 
@@ -128,30 +128,30 @@ bool gameScene::init()
 		obstaclePosition = ccp(obX, obY);
 		this->createObstacle();
 
-		
+
 
 
 		//----------------------------------------------------
-		
 
-        bRet = true;
-    } while (0);
 
-    return bRet;
+		bRet = true;
+	} while (0);
+
+	return bRet;
 }
 
 CCPoint gameScene::tileCoorPosition(CCPoint position)
 {//general function, for point -> tile point
 
-    int mapSize_h  = tileMap->getMapSize().height;
-    int tileSize_h = tileMap->getTileSize().height;
-    int tileSize_w = tileMap->getTileSize().width;   
+	int mapSize_h  = tileMap->getMapSize().height;
+	int tileSize_h = tileMap->getTileSize().height;
+	int tileSize_w = tileMap->getTileSize().width;   
 
-    //    CCLog("%d %d %d", mapSize_h,tileSize_h,tileSize_w);
+	//    CCLog("%d %d %d", mapSize_h,tileSize_h,tileSize_w);
 	int x = position.x /tileSize_w;
 	int y = (tileSize_h* mapSize_h -position.y) / tileSize_h;
 
-    return ccp(x,y);
+	return ccp(x,y);
 }
 
 void gameScene::createObstacle()
@@ -178,9 +178,9 @@ void gameScene::createObstacle()
 void gameScene::onEnter()
 {
 	CCLayer::onEnter();
-    
-    CCDirector* pDirector = CCDirector::sharedDirector();
-    pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+
+	CCDirector* pDirector = CCDirector::sharedDirector();
+	pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 }
 
 /*
@@ -191,7 +191,7 @@ void gameScene::onEnter()
 */
 bool gameScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event)
 {
-    return true;
+	return true;
 }
 
 /*
@@ -205,44 +205,62 @@ bool gameScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event)
 */
 void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 {
-    CCPoint touchLocation = pTouch->getLocation();
-    touchLocation = this->convertToNodeSpace(touchLocation);
+	CCPoint touchLocation = pTouch->getLocation();
+	touchLocation = this->convertToNodeSpace(touchLocation);
 
 
-    CCPoint playerPos = character->getPosition();
+	CCPoint playerPos = character->getPosition();
 
-    CCPoint diff = ccpSub(touchLocation, playerPos);
+	bool checkCrash = TRUE;
+	/********************************************************** To eunji *************
+	* check character is crash with wall
+	* 벽과 출돌했는지 확인하기
+	* 벽과 충돌한 경우 checkCrash = TRUE로,
+	* 충돌하지 않은 경우 checkCrash = FALSE로 해주세요!!
+	*/
 
-    if (abs(diff.x) > abs(diff.y)) {
-        if (diff.x > 0) {
-            playerPos.x += tileMap->getTileSize().width;
-            
-            // 캐릭터의 방향을 바꾸어준다.
-            character->setFlipX(true);
-        } else {
-            playerPos.x -= tileMap->getTileSize().width;
-            
-            // 캐릭터의 방향을 바꾸어준다.
-            character->setFlipX(false);
-        }
-    } else {
-        if (diff.y > 0) {
-            playerPos.y += tileMap->getTileSize().height;
-        } else {
-            playerPos.y -= tileMap->getTileSize().height;
-        }
-    }
-    
-    if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
-        playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
-        playerPos.y >= 0 &&
-        playerPos.x >= 0 )
-    {
-        // 캐릭터의 새로운 위치 지정
-        character->setPosition( playerPos );
-    }
-    
+	if(checkCrash)
+	{
+		// 캐릭터가 충돌한 경우 -> 일단은 방향을 바꾸든 채력을 깍든
+		// 어떻게든 하는걸로
+		// 일단은 걍 안가는 걸루~!
+	}
+	else if(!checkCrash)
+	{
+		// 캐릭터가 충돌하지 않은경우~
+		// 마우스 클릭한 방향으로 움직임!
+		CCPoint diff = ccpSub(touchLocation, playerPos);
 
+		if (abs(diff.x) > abs(diff.y)) {
+			if (diff.x > 0) {
+				playerPos.x += tileMap->getTileSize().width;
+
+				// 캐릭터의 방향을 바꾸어준다.
+				character->setFlipX(true);
+			} else {
+				playerPos.x -= tileMap->getTileSize().width;
+
+				// 캐릭터의 방향을 바꾸어준다.
+				character->setFlipX(false);
+			}
+		} else {
+			if (diff.y > 0) {
+				playerPos.y += tileMap->getTileSize().height;
+			} else {
+				playerPos.y -= tileMap->getTileSize().height;
+			}
+		}
+
+		if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
+			playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
+			playerPos.y >= 0 &&
+			playerPos.x >= 0 )
+		{
+			// 캐릭터의 새로운 위치 지정
+			character->setPosition( playerPos );
+		}
+
+	}
 }
 
 void gameScene::createCharacter()
@@ -271,20 +289,20 @@ void gameScene::createCharacter()
 	CCAnimation *animation = CCAnimation::create();
 	animation->setDelayPerUnit(0.1);
 
-	 
-	 character = CCSprite::createWithTexture(texture, CCRectMake(0,0,35,48));
-	 character->setAnchorPoint(ccp(0,0));
-	 
-	// character->setScale(0.05);
-	 character->setPosition(characterPosition);
-	 //character->setFlipX(true); // X축 기준으로 반전
-	 //character->setFlipY(true);	// Y축 기준으로 반전
 
-	 CCAnimate *animate = CCAnimate::create(animation);
-	 CCAction *rep = CCRepeatForever::create(animate);
-	 character->runAction(rep);
-	 
-	 this->addChild(character,60);
+	character = CCSprite::createWithTexture(texture, CCRectMake(0,0,35,48));
+	character->setAnchorPoint(ccp(0,0));
+
+	// character->setScale(0.05);
+	character->setPosition(characterPosition);
+	//character->setFlipX(true); // X축 기준으로 반전
+	//character->setFlipY(true);	// Y축 기준으로 반전
+
+	CCAnimate *animate = CCAnimate::create(animation);
+	CCAction *rep = CCRepeatForever::create(animate);
+	character->runAction(rep);
+
+	this->addChild(character,60);
 }
 
 
