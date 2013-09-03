@@ -35,22 +35,7 @@ CCScene* gameScene::scene()
 // on "init" you need to initialize your instance
 bool gameScene::init()
 {
-<<<<<<< HEAD
-    bool bRet = false;
-    do 
-    {
-        //////////////////////////////////////////////////////////////////////////
-        // super init first
-        //////////////////////////////////////////////////////////////////////////
 
-        CC_BREAK_IF(! CCLayer::init());
-
-        //////////////////////////////////////////////////////////////////////////
-        // add your codes below...
-        //////////////////////////////////////////////////////////////////////////
-		foodArray = new CCArray; // in food array dinamic cast
-		
-=======
 	bool bRet = false;
 	do 
 	{
@@ -63,9 +48,9 @@ bool gameScene::init()
 		//////////////////////////////////////////////////////////////////////////
 		// add your codes below...
 		//////////////////////////////////////////////////////////////////////////
-		foods = new CCArray; // in food array dinamic cast
+		foodArray = new CCArray; // in food array dinamic cast
 
->>>>>>> 2217a929160c819322d513a2bd2881545179f890
+
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 
@@ -79,15 +64,8 @@ bool gameScene::init()
 		CCLayer *tileLayer = CCLayer::create();
 		this->addChild(tileLayer);
 
-<<<<<<< HEAD
-		
-//		CCTMXTiledMap *tileMap;
-//		CCTMXLayer *backgroundLayer;
-=======
-
 		//		CCTMXTiledMap *tileMap;
 		CCTMXLayer *backgroundLayer;
->>>>>>> 2217a929160c819322d513a2bd2881545179f890
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
@@ -130,10 +108,6 @@ bool gameScene::init()
 
 		int foodX = ((CCString*)food1point->objectForKey("x"))->intValue();
 		int foodY = ((CCString*)food1point->objectForKey("y"))->intValue();
-<<<<<<< HEAD
-=======
-
->>>>>>> 2217a929160c819322d513a2bd2881545179f890
 		this->createFood(ccp(foodX,foodY),"map/p.jpg");
 		
 		
