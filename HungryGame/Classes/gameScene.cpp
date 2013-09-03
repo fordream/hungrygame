@@ -35,22 +35,7 @@ CCScene* gameScene::scene()
 // on "init" you need to initialize your instance
 bool gameScene::init()
 {
-<<<<<<< HEAD
-    bool bRet = false;
-    do 
-    {
-        //////////////////////////////////////////////////////////////////////////
-        // super init first
-        //////////////////////////////////////////////////////////////////////////
 
-        CC_BREAK_IF(! CCLayer::init());
-
-        //////////////////////////////////////////////////////////////////////////
-        // add your codes below...
-        //////////////////////////////////////////////////////////////////////////
-		foodArray = new CCArray; // in food array dinamic cast
-		
-=======
 	bool bRet = false;
 	do 
 	{
@@ -63,9 +48,13 @@ bool gameScene::init()
 		//////////////////////////////////////////////////////////////////////////
 		// add your codes below...
 		//////////////////////////////////////////////////////////////////////////
-		foods = new CCArray; // in food array dinamic cast
+		foodArray = new CCArray; // in food array dinamic cast
 
+
+<<<<<<< HEAD
 >>>>>>> Add comment to eunji about crash
+=======
+>>>>>>> correct merge problem
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 
@@ -79,15 +68,12 @@ bool gameScene::init()
 		CCLayer *tileLayer = CCLayer::create();
 		this->addChild(tileLayer);
 
-<<<<<<< HEAD
-		
-//		CCTMXTiledMap *tileMap;
-//		CCTMXLayer *backgroundLayer;
-=======
-
 		//		CCTMXTiledMap *tileMap;
 		CCTMXLayer *backgroundLayer;
+<<<<<<< HEAD
 >>>>>>> Add comment to eunji about crash
+=======
+>>>>>>> correct merge problem
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
@@ -131,9 +117,12 @@ bool gameScene::init()
 		int foodX = ((CCString*)food1point->objectForKey("x"))->intValue();
 		int foodY = ((CCString*)food1point->objectForKey("y"))->intValue();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> Add comment to eunji about crash
+=======
+>>>>>>> correct merge problem
 		this->createFood(ccp(foodX,foodY),"map/p.jpg");
 		
 		
