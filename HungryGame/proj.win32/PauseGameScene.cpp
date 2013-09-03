@@ -54,7 +54,7 @@ bool PauseGameScene::init()
 	popUpLayer=CCLayerColor::create(ccc4(255,255,255,255), 250,150);
 	popUpLayer->setAnchorPoint(ccp(0,0));
 	popUpLayer->setPosition(ccp((winSize.width-popUpLayer->getContentSize().width)/2, 
-				(winSize.height-popUpLayer->getContentSize().height)/2,   )  );
+				(winSize.height-popUpLayer->getContentSize().height)/2   )  );
 	this->addChild(popUpLayer);
 
     return true;

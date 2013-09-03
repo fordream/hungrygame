@@ -104,25 +104,18 @@ bool gameScene::init()
 		CCSize s = tileMap->getContentSize();
 
 		/*
-		pineoc's food testing part
-		
-		//--------------------------------------------------------
-		//CCSprite *food = CCSprite::create("p.jpg");
-		//food->setPosition(tileCoorPosition(ccp(3,3)));
-		////tileLayer->addChild(food);
-		//this->addChild(food);
+		pineoc's food testing part --------------------------------------------------------------
+		*/
 
-		CCTMXObjectGroup *objects = tileMap->objectGroupNamed("food");
-		CCDictionary *food1point = objects->objectNamed("food2");
+		CCTMXObjectGroup *objects = tileMap->objectGroupNamed("foods");
+		CCDictionary *food1point = objects->objectNamed("food1");
 		//in this time, CCDictionary has debug error, but if ignore it twice -> food will appear
 
-		int x = ((CCString*)food1point->objectForKey("x"))->intValue();
-		int y = ((CCString*)food1point->objectForKey("y"))->intValue();
-		CCSprite *food1 = CCSprite::create("p.jpg");
-		food1->setPosition(ccp(x,y));
-		tileLayer->addChild(food1);
-		
-		//--------------------------------------------------------*/
+		int foodx = ((CCString*)food1point->objectForKey("x"))->intValue();
+		int foody = ((CCString*)food1point->objectForKey("y"))->intValue();
+		foodPosition = ccp(foodx,foody);
+		this->createFood();
+		//----------------------------------------------------------------------------------------
 
 
 		//-------------- obstacle (eunji) --------------------
@@ -297,3 +290,17 @@ void gameScene::createCharacter()
 
 
 // -----------------------Daun End -------------------------------//
+
+//------------------------Pineoc's part---------------------------//
+void gameScene::createFood()
+{
+	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage("map/p.png");
+
+	CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(0, 0, 48, 48)); // ¸Ê¿¡ ¸ÂÃç ¼ýÀÚ ¹Ù²ã¾ßÇÔ
+	food->setPosition(foodPosition);
+	food->setAnchorPoint(ccp(0,0));
+	this->addChild(food);
+}
+
+
+//-----------------------pineoc End-------------------------------//

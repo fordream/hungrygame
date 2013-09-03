@@ -46,6 +46,11 @@ public:
 
 	// ------------------------------Daun End ----------------------//
 
+	//-------------------------------pineoc's start------------------//
+	void createFood();
+	CCPoint foodPosition;
+	CCSprite* food;
+
 };
 
 #endif  // __GAME_SCENE_H__
