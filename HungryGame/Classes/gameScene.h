@@ -14,6 +14,8 @@
 class gameScene : public cocos2d::CCLayer
 {
 public:
+	//gameScene();
+	//~gameScene();
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();  
 
@@ -47,9 +49,13 @@ public:
 	// ------------------------------Daun End ----------------------//
 
 	//-------------------------------pineoc's start------------------//
-	void createFood();
-	CCPoint foodPosition;
-	CCSprite* food;
+	void createFood(CCPoint,char*); //food create item, (point, imageName)
+	void linktochar_food();
+	//CCPoint foodPosition; 
+	//CCSprite* food;
+	CCArray* foods; // for many foods
+
+	//-----------------------------------------------------------------//
 
 };
 

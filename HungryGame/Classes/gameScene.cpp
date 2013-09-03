@@ -8,7 +8,6 @@
 #include "HelloWorldScene.h"
 #include "mainScene.h"
 #include "gameScene.h"
-#include "food.h"
 
 using namespace cocos2d;
 
@@ -48,7 +47,7 @@ bool gameScene::init()
         //////////////////////////////////////////////////////////////////////////
         // add your codes below...
         //////////////////////////////////////////////////////////////////////////
-
+		foods = new CCArray; // in food array dinamic cast
 		
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
@@ -111,10 +110,10 @@ bool gameScene::init()
 		CCDictionary *food1point = objects->objectNamed("food1");
 		//in this time, CCDictionary has debug error, but if ignore it twice -> food will appear
 
-		int foodx = ((CCString*)food1point->objectForKey("x"))->intValue();
-		int foody = ((CCString*)food1point->objectForKey("y"))->intValue();
-		foodPosition = ccp(foodx,foody);
-		this->createFood();
+		int foodX = ((CCString*)food1point->objectForKey("x"))->intValue();
+		int foodY = ((CCString*)food1point->objectForKey("y"))->intValue();
+		
+		this->createFood(ccp(foodX,foodY),"map/p.jpg");
 		//----------------------------------------------------------------------------------------
 
 
@@ -292,12 +291,12 @@ void gameScene::createCharacter()
 // -----------------------Daun End -------------------------------//
 
 //------------------------Pineoc's part---------------------------//
-void gameScene::createFood()
-{
-	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage("map/p.png");
+void gameScene::createFood(CCPoint foodpoint,char* foodImageName)
+{//collision correct, duplication correct
+	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage(foodImageName);
 
 	CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(0, 0, 48, 48)); // ¸Ê¿¡ ¸ÂÃç ¼ýÀÚ ¹Ù²ã¾ßÇÔ
-	food->setPosition(foodPosition);
+	food->setPosition(foodpoint);
 	food->setAnchorPoint(ccp(0,0));
 	this->addChild(food);
 }
