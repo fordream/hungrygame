@@ -11,6 +11,7 @@
 
 using namespace cocos2d;
 
+enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
 CCScene* gameScene::scene()
 {
 	CCScene * scene = NULL;
@@ -208,21 +209,37 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 	CCPoint playerPos = character->getPosition();
 
-	bool checkCrash = TRUE;
-	/********************************************************** To eunji *************
-	* check character is crash with wall
-	* 벽과 출돌했는지 확인하기
-	* 벽과 충돌한 경우 checkCrash = TRUE로,
-	* 충돌하지 않은 경우 checkCrash = FALSE로 해주세요!!
+	int checkCrash = nothing;
+	/********************************************************** To EVERYONE *************
+	* check character is crash with someting
+	* 충돌여부를 판단하는 공간입니다
+	* enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
+	* 즉, checkCrash가 0이면 아무것도 안부딫친거, 1이면 벽, 2이면 음식 3이면 아이템이랑 부딫친거임
 	*/
 
-	if(checkCrash)
-	{
-		// 캐릭터가 충돌한 경우 -> 일단은 방향을 바꾸든 채력을 깍든
-		// 어떻게든 하는걸로
-		// 일단은 걍 안가는 걸루~!
-	}
-	else if(!checkCrash)
+	/*
+	* 벽과 충돌했는지 확인하는 공간입니다
+	* To Eunji
+	*/
+	// 여기에 코드작성
+	/* End Eunji */
+
+
+	/* 
+	* 음식과 충돌했는지 확인하는 공간입니다
+	*/
+	// 여기에 코드작성
+	/* End blackbell */
+
+
+	/*
+	* 아이템과 충돌했는지 확인하는 공간입니다
+	*/
+	// 여기에 코드작성
+	/* end pineoc */
+
+
+	if(checkCrash == nothing)
 	{
 		// 캐릭터가 충돌하지 않은경우~
 		// 마우스 클릭한 방향으로 움직임!
@@ -257,6 +274,18 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 			character->setPosition( playerPos );
 		}
 
+	}
+	else if(checkCrash == CrashWithWall)
+	{
+		// 벽과 충돌한 경우 해야할 일
+	}
+	else if(checkCrash == CrashWithFood)
+	{
+		// 음식과 충돌한 경우 해야할 일
+	}
+	else if(checkCrash == CrashWithItem)
+	{
+		// 아이템과 충돌한 경우 해야할 일
 	}
 }
 
