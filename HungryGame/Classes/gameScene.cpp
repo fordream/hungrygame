@@ -49,12 +49,6 @@ bool gameScene::init()
 		// add your codes below...
 		//////////////////////////////////////////////////////////////////////////
 		foodArray = new CCArray; // in food array dinamic cast
-
-
-<<<<<<< HEAD
->>>>>>> Add comment to eunji about crash
-=======
->>>>>>> correct merge problem
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 
@@ -70,10 +64,6 @@ bool gameScene::init()
 
 		//		CCTMXTiledMap *tileMap;
 		CCTMXLayer *backgroundLayer;
-<<<<<<< HEAD
->>>>>>> Add comment to eunji about crash
-=======
->>>>>>> correct merge problem
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
@@ -116,13 +106,6 @@ bool gameScene::init()
 
 		int foodX = ((CCString*)food1point->objectForKey("x"))->intValue();
 		int foodY = ((CCString*)food1point->objectForKey("y"))->intValue();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> Add comment to eunji about crash
-=======
->>>>>>> correct merge problem
 		this->createFood(ccp(foodX,foodY),"map/p.jpg");
 		
 		
