@@ -26,22 +26,28 @@ bool PauseGameScene::init()
 	winSize=CCDirector::sharedDirector()->getWinSize();
 
 	CCSprite *bg = CCSprite::create("img\\pause\\pause_bg.png");
+	bg->setScale(0.5);
 	bg->setPosition(ccp(winSize.width/2,winSize.height/2));
 	this->addChild(bg,0);
 	
 	//메뉴추가
 	CCMenuItemImage* pMain = CCMenuItemImage::create(
 		"img\\pause\\pause_btn_goMain.png","img\\pause\\pause_btn_goMain_n.png", this, menu_selector(PauseGameScene::goMain));
+	pMain->setScale(0.5);
 	CCMenuItemImage* pHelp = CCMenuItemImage::create(
 		"img\\pause\\pause_btn_help.png","img\\pause\\pause_btn_help_n.png",this,menu_selector(PauseGameScene::goHelp));
+	pHelp->setScale(0.5);
 	CCMenuItemImage* pGame = CCMenuItemImage::create(
 		"img\\pause\\pause_btn_restart.png","img\\pause\\pause_btn_restart_n.png", this, menu_selector(PauseGameScene::newGame));
+	pGame->setScale(0.5);
 	CCMenuItemImage* pClose = CCMenuItemImage::create(
 		"img\\pause\\pause_btn_continue.png","img\\pause\\pause_btn_continue.png", this, menu_selector(PauseGameScene::doClose));
+	pClose->setScale(0.5);
 
 	//메뉴생성
 	CCMenu* pauseMenu=CCMenu::create(pMain, pGame, pHelp, pClose, NULL);
-	pauseMenu->setPosition(ccp(240, 100));
+	pauseMenu->setPosition(ccp(240, 450));
+	pauseMenu->alignItemsVertically();
 	this->addChild(pauseMenu,10);
 
 	//backLayer추가
@@ -51,7 +57,7 @@ bool PauseGameScene::init()
 	this->addChild(backLayer);
 
 	//popUpLayer추가
-	popUpLayer=CCLayerColor::create(ccc4(255,255,255,255), 250,150);
+	popUpLayer=CCLayerColor::create(ccc4(0,0,0,0), 250,150);
 	popUpLayer->setAnchorPoint(ccp(0,0));
 	popUpLayer->setPosition(ccp((winSize.width-popUpLayer->getContentSize().width)/2, 
 				(winSize.height-popUpLayer->getContentSize().height)/2   )  );
@@ -75,6 +81,7 @@ void PauseGameScene::goHelp( CCObject* pSender )
 	CCScene *pScene = HelpScene::scene();
 
 	CCDirector::sharedDirector()->pushScene(pScene);
+	
 }
 
 void PauseGameScene::newGame( CCObject* pSender )

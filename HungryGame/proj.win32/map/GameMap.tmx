@@ -32,6 +32,10 @@
  </objectgroup>
  <objectgroup name="foods" width="9" height="10">
   <object name="food1" x="192" y="49" width="46" height="44"/>
+  <object name="food2" x="192" y="147" width="48" height="42"/>
+  <object name="food3" x="142" y="192" width="49" height="45"/>
+  <object name="food4" x="49" y="291" width="50" height="44"/>
+  <object name="food5" x="243" y="243" width="43" height="40"/>
  </objectgroup>
  <objectgroup name="object" width="9" height="10">
   <object name="character" x="144" y="288" width="48" height="48">

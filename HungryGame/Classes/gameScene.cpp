@@ -8,8 +8,10 @@
 #include "HelloWorldScene.h"
 #include "mainScene.h"
 #include "gameScene.h"
-
+#include "PauseGameScene.h"
 using namespace cocos2d;
+
+enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
 
 CCScene* gameScene::scene()
 {
@@ -48,7 +50,8 @@ bool gameScene::init()
 		//////////////////////////////////////////////////////////////////////////
 		// add your codes below...
 		//////////////////////////////////////////////////////////////////////////
-		foodArray = new CCArray; // in food array dinamic cast
+		foodSpriteArray = new CCArray; //food sprite array dinamic cast
+
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 
@@ -63,7 +66,7 @@ bool gameScene::init()
 		this->addChild(tileLayer);
 
 		//		CCTMXTiledMap *tileMap;
-		CCTMXLayer *backgroundLayer;
+		//CCTMXLayer *backgroundLayer;
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
@@ -79,8 +82,8 @@ bool gameScene::init()
 		backgroundLayer = tileMap->layerNamed("wall");
 		//		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
 		tileLayer->addChild(tileMap);
-		
-		
+
+
 		/*
 		* make character
 		* Daun..
@@ -102,13 +105,36 @@ bool gameScene::init()
 
 		foods = tileMap->objectGroupNamed("foods");
 		CCDictionary *food1point = foods->objectNamed("food1");
-		//in this time, CCDictionary has debug error, but if ignore it twice -> food will appear
+		CCDictionary *food2point = foods->objectNamed("food2");
+		CCDictionary *food3point = foods->objectNamed("food3");
+		CCDictionary *food4point = foods->objectNamed("food4");
 
-		int foodX = ((CCString*)food1point->objectForKey("x"))->intValue();
-		int foodY = ((CCString*)food1point->objectForKey("y"))->intValue();
-		this->createFood(ccp(foodX,foodY),"map/p.jpg");
-		
-		
+		//
+
+		int food1X = ((CCString*)food1point->objectForKey("x"))->intValue();
+		int food1Y = ((CCString*)food1point->objectForKey("y"))->intValue();
+		this->createFood(ccp(food1X,food1Y),"map/p.jpg");
+
+		int food2X = ((CCString*)food2point->objectForKey("x"))->intValue();
+		int food2Y = ((CCString*)food2point->objectForKey("y"))->intValue();
+		this->createFood(ccp(food2X,food2Y),"map/green_pepper.png");
+
+		int food3X = ((CCString*)food3point->objectForKey("x"))->intValue();
+		int food3Y = ((CCString*)food3point->objectForKey("y"))->intValue();
+		this->createFood(ccp(food3X,food3Y),"map/bamboo_shoot.png");
+
+		int food4X = ((CCString*)food4point->objectForKey("x"))->intValue();
+		int food4Y = ((CCString*)food4point->objectForKey("y"))->intValue();
+		this->createFood(ccp(food4X,food4Y),"map/crab_stick.png");
+
+		std::srand(NULL);
+		int food5X = tileCoorPosition(ccp(std::rand()%10,std::rand()%20)).x;
+		int food5Y = tileCoorPosition(ccp(std::rand()%10,std::rand()%20)).y;
+		if(checkDup(ccp(food5X,food5Y)))
+			this->createFood(ccp(food5X,food5Y),"map/Big_welsh_onion.png");
+
+
+
 		//----------------------------------------------------------------------------------------
 
 
@@ -127,6 +153,27 @@ bool gameScene::init()
 
 
 		//----------------------------------------------------
+
+		//--------------Pause Btn-jiyoon start----------------
+		//일시정지 버튼 추가
+		CCMenuItemImage *btnPause = CCMenuItemImage::create(
+			"img/game/game_btn_pause.png", "img/game/game_btn_pause.png", this, menu_selector(gameScene::doPop));
+		CC_BREAK_IF(! btnPause);
+
+		btnPause->setPosition(ccp(size.width*0.5, size.height*0.9));
+
+		PauseMenu = CCMenu::create(btnPause, NULL);
+		PauseMenu->setPosition(CCPointZero);
+		CC_BREAK_IF(! PauseMenu);
+
+		this->addChild(PauseMenu, 2);
+
+		//snotification 추가
+		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+			callfuncO_selector(gameScene::doNotification),
+			"notification", NULL);
+		//"notification"이라는 메시지가 오면 해당 함수를 실행한다.
+		//-------------jiyoon End-------------------------------
 
 
 		bRet = true;
@@ -156,6 +203,7 @@ void gameScene::createObstacle()
 
 	obstacle = CCSprite::createWithTexture(obTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
 	obstacle->setPosition(obstaclePosition);
+	obstacle->setAnchorPoint(ccp(0,0)); //앵커포인트 설정.
 	this->addChild(obstacle);
 
 }
@@ -203,24 +251,61 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	CCPoint touchLocation = pTouch->getLocation();
 	touchLocation = this->convertToNodeSpace(touchLocation);
 
-
+	CCSprite* checkSpriteFood;//for checkfood
 	CCPoint playerPos = character->getPosition();
 
-	bool checkCrash = TRUE;
-	/********************************************************** To eunji *************
-	* check character is crash with wall
-	* 벽과 출돌했는지 확인하기
-	* 벽과 충돌한 경우 checkCrash = TRUE로,
-	* 충돌하지 않은 경우 checkCrash = FALSE로 해주세요!!
+	checkCrash = nothing; 
+	/********************************************************** To EVERYONE *************
+	* check character is crash with someting
+	* 충돌여부를 판단하는 공간입니다
+	* enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
+	* 즉, checkCrash가 0이면 아무것도 안부딫친거, 1이면 벽, 2이면 음식 3이면 아이템이랑 부딫친거임
 	*/
 
-	if(checkCrash)
-	{
-		// 캐릭터가 충돌한 경우 -> 일단은 방향을 바꾸든 채력을 깍든
-		// 어떻게든 하는걸로
-		// 일단은 걍 안가는 걸루~!
+	/*
+	* 벽과 충돌했는지 확인하는 공간입니다
+	* To Eunji
+	*/
+
+
+	/* End Eunji */
+
+
+	/* 
+	* 음식과 충돌했는지 확인하는 공간입니다
+	check collision food and character
+	*/
+	// code from here
+	if(!checkDup(playerPos))
+	{//using boundingbox to check collision
+		for(int i=0;i<foodSpriteArray->count();i++)
+		{
+			checkSpriteFood = (CCSprite*)foodSpriteArray->objectAtIndex(i);
+			CCRect foodbounding = checkSpriteFood->boundingBox();
+			CCRect charbounding = character->boundingBox();
+			if(foodbounding.intersectsRect(charbounding))
+			{
+				checkCrash = CrashWithFood;
+				break;
+			}
+		}
+
 	}
-	else if(!checkCrash)
+
+
+
+
+	/* End pineoc */
+
+
+	/*
+	* 아이템과 충돌했는지 확인하는 공간입니다
+	*/
+	// 여기에 코드작성
+	/* end blackbell */
+
+
+	if(checkCrash == nothing)
 	{
 		// 캐릭터가 충돌하지 않은경우~
 		// 마우스 클릭한 방향으로 움직임!
@@ -252,9 +337,24 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 			playerPos.x >= 0 )
 		{
 			// 캐릭터의 새로운 위치 지정
+			//this->checkPosition(playerPos);
 			character->setPosition( playerPos );
 		}
 
+	}
+	else if(checkCrash == CrashWithWall)
+	{
+		// 벽과 충돌한 경우 해야할 일
+		character->setPosition(playerPos);
+	}
+	else if(checkCrash == CrashWithFood)
+	{
+		// 음식과 충돌한 경우 해야할 일
+		delFood(checkSpriteFood);
+	}
+	else if(checkCrash == CrashWithItem)
+	{
+		// 아이템과 충돌한 경우 해야할 일
 	}
 }
 
@@ -306,12 +406,15 @@ void gameScene::createCharacter()
 //------------------------Pineoc's part---------------------------//
 void gameScene::createFood(CCPoint foodpoint,char* foodImageName)
 {//collision correct, duplication correct
-	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage(foodImageName);
 
+	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage(foodImageName);
 	CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
 	food->setPosition(foodpoint);
 	food->setAnchorPoint(ccp(0,0));
+	food->setTag(2);
+	foodSpriteArray->addObject(food);
 	this->addChild(food);
+
 }
 
 /*
@@ -319,17 +422,97 @@ check duplication function
 */
 bool gameScene::checkDup(CCPoint location)
 {// if dup, return false
-	int tileGid = backgroundLayer->tileGIDAt(location);
+	//it can be useful another object.
+	int tileGid = 1;//backgroundLayer->tileGIDAt(location);
+	//int foodarrCount = foodSpriteArray->count();
+	for(int i=0;i<foodSpriteArray->count();i++)
+	{//check the all food object
+		CCSprite* check = (CCSprite*)foodSpriteArray->objectAtIndex(i);
+		CCPoint check_p = check->getPosition();
+		if(location.equals(check_p))
+			return false;
+	}
 	if(tileGid == NULL)
-	{
 		return true;
-	}
 	else
-	{
 		return false;
-	}
-	
+	//return true;
+}
+void gameScene::delFood(CCObject* pSender)
+{
+	CCSprite* del = (CCSprite*)pSender;
+	this->removeChild(del);
 }
 
 
 //-----------------------pineoc End-------------------------------//
+
+//----------------------eunji----------------------------
+/*
+장애물 부딪혔는지 확인하는 함수
+*/
+void gameScene::checkPosition(CCPoint position)
+{
+	CCPoint tileCoord = this->tileCoorPosition(position);
+
+	int tileGid = this->wall->tileGIDAt(tileCoord);
+
+	if(tileGid)
+	{
+		CCDictionary *properties = tileMap->propertiesForGID(tileGid);
+
+		if(properties)
+		{
+			CCString *wall = (CCString*)properties->objectForKey("wall");
+
+			if(wall && (wall->compare("Yes") == 0 ))
+			{
+				checkCrash = CrashWithWall;
+				return;
+			}
+
+			else
+			{
+				checkCrash = nothing;
+			}
+		}
+	}
+}
+//---------------------eunji end -------------------------
+
+//--------------------jiyoon start -----------------------
+
+//pause Scene pop up
+void gameScene::doPop(CCObject* pSender)
+{
+	CCScene* pScene=PauseGameScene::scene();
+	this->addChild(pScene,2000,2000);
+
+}
+void gameScene::doNotification(CCObject *obj)
+{
+	//노티피케이션 받기
+	CCString *pParam=(CCString*)obj;
+	CCLog("notification %s", pParam->getCString());
+
+	if(pParam->intValue()==1)
+	{		
+		CCLog("noti 11");
+		CCDirector::sharedDirector()->resume();   //화면 재시작
+
+		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(PauseMenu, kCCMenuHandlerPriority,true);
+		//메뉴 버튼 활성
+	}
+	else
+	{	
+		CCArray* childs = this->getChildren();
+		CCLog("noti 00");
+		CCDirector::sharedDirector()->pause();   //화면 정지
+
+		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(PauseMenu);
+		//메뉴버튼 비활성
+	}
+
+}
+
+//--------------jiyoon end-----------------------------------------

@@ -1,13 +1,166 @@
-﻿빌드 시작: 2013-07-24 오후 6:30:59
-     1>2 노드의 "C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\cocos2dx\proj.win32\cocos2d.vcxproj" 프로젝트(Build 대상)입니다.
-     1>PreLinkEvent:
-         if not exist "C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\food_game\proj.win32\Debug.win32\" mkdir "C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\food_game\proj.win32\Debug.win32\"
-         xcopy /Y /Q "C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\cocos2dx\proj.win32\..\platform\third_party\win32\libraries\*.*" "C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\food_game\proj.win32\Debug.win32\"
+﻿빌드 시작: 2013-09-04 오후 11:53:29
+     1>2 노드의 "C:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\cocos2d.vcxproj" 프로젝트(Rebuild 대상)입니다.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\include" /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\.. /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\win32 /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\iconv /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\zlib /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\libpng /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\libjpeg /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\libtiff /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\libwebp /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\pthread /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\OGLES /I..\include /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\kazmath\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D COCOS2DXWIN32_EXPORTS /D GL_GLEXT_PROTOTYPES /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _USING_V110_SDK71_ /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\base_nodes\CCAtlasNode.cpp ..\base_nodes\CCNode.cpp ..\cocoa\CCAffineTransform.cpp ..\cocoa\CCArray.cpp ..\cocoa\CCAutoreleasePool.cpp ..\cocoa\CCDataVisitor.cpp ..\cocoa\CCDictionary.cpp ..\cocoa\CCGeometry.cpp ..\cocoa\CCNS.cpp ..\cocoa\CCObject.cpp ..\cocoa\CCSet.cpp ..\cocoa\CCString.cpp ..\cocoa\CCZone.cpp ..\draw_nodes\CCDrawingPrimitives.cpp ..\draw_nodes\CCDrawNode.cpp ..\effects\CCGrabber.cpp ..\effects\CCGrid.cpp ..\actions\CCAction.cpp ..\actions\CCActionCamera.cpp ..\actions\CCActionCatmullRom.cpp ..\actions\CCActionEase.cpp ..\actions\CCActionGrid.cpp ..\actions\CCActionGrid3D.cpp ..\actions\CCActionInstant.cpp ..\actions\CCActionInterval.cpp ..\actions\CCActionManager.cpp ..\actions\CCActionPageTurn3D.cpp ..\actions\CCActionProgressTimer.cpp ..\actions\CCActionTiledGrid.cpp ..\actions\CCActionTween.cpp ..\label_nodes\CCLabelAtlas.cpp ..\label_nodes\CCLabelBMFont.cpp ..\label_nodes\CCLabelTTF.cpp ..\layers_scenes_transitions_nodes\CCLayer.cpp ..\layers_scenes_transitions_nodes\CCScene.cpp ..\layers_scenes_transitions_nodes\CCTransition.cpp ..\layers_scenes_transitions_nodes\CCTransitionPageTurn.cpp ..\layers_scenes_transitions_nodes\CCTransitionProgress.cpp ..\menu_nodes\CCMenu.cpp ..\menu_nodes\CCMenuItem.cpp ..\misc_nodes\CCClippingNode.cpp ..\misc_nodes\CCMotionStreak.cpp ..\misc_nodes\CCProgressTimer.cpp ..\misc_nodes\CCRenderTexture.cpp ..\particle_nodes\CCParticleBatchNode.cpp ..\particle_nodes\CCParticleExamples.cpp ..\particle_nodes\CCParticleSystem.cpp ..\particle_nodes\CCParticleSystemQuad.cpp ..\platform\CCEGLViewProtocol.cpp ..\platform\CCFileUtils.cpp ..\platform\CCImageCommonWebp.cpp ..\platform\CCSAXParser.cpp ..\platform\CCThread.cpp ..\platform\platform.cpp ..\platform\win32\CCAccelerometer.cpp ..\platform\win32\CCApplication.cpp ..\platform\win32\CCCommon.cpp ..\platform\win32\CCDevice.cpp ..\platform\win32\CCEGLView.cpp ..\platform\win32\CCFileUtilsWin32.cpp ..\platform\win32\CCImage.cpp ..\platform\win32\CCStdC.cpp ..\shaders\CCGLProgram.cpp ..\shaders\ccGLStateCache.cpp ..\shaders\CCShaderCache.cpp ..\shaders\ccShaders.cpp ..\sprite_nodes\CCAnimation.cpp ..\sprite_nodes\CCAnimationCache.cpp ..\sprite_nodes\CCSprite.cpp ..\sprite_nodes\CCSpriteBatchNode.cpp ..\sprite_nodes\CCSpriteFrame.cpp ..\sprite_nodes\CCSpriteFrameCache.cpp ..\support\base64.cpp ..\support\CCNotificationCenter.cpp ..\support\CCPointExtension.cpp ..\support\CCProfiling.cpp ..\support\ccUTF8.cpp ..\support\ccUtils.cpp ..\support\CCVertex.cpp ..\support\component\CCComponent.cpp ..\support\component\CCComponentContainer.cpp ..\support\tinyxml2\tinyxml2.cpp ..\support\TransformUtils.cpp ..\support\data_support\ccCArray.cpp ..\support\image_support\TGAlib.cpp ..\support\user_default\CCUserDefault.cpp ..\support\zip_support\ioapi.cpp ..\support\zip_support\unzip.cpp ..\support\zip_support\ZipUtils.cpp ..\textures\CCTexture2D.cpp ..\textures\CCTextureAtlas.cpp ..\textures\CCTextureCache.cpp ..\textures\CCTextureETC.cpp ..\textures\CCTexturePVR.cpp ..\tileMap_parallax_nodes\CCParallaxNode.cpp ..\tileMap_parallax_nodes\CCTileMapAtlas.cpp ..\tileMap_parallax_nodes\CCTMXLayer.cpp ..\tileMap_parallax_nodes\CCTMXObjectGroup.cpp ..\tileMap_parallax_nodes\CCTMXTiledMap.cpp ..\tileMap_parallax_nodes\CCTMXXMLParser.cpp ..\touch_dispatcher\CCTouch.cpp ..\touch_dispatcher\CCTouchDispatcher.cpp ..\touch_dispatcher\CCTouchHandler.cpp ..\keypad_dispatcher\CCKeypadDelegate.cpp ..\keypad_dispatcher\CCKeypadDispatcher.cpp ..\text_input_node\CCIMEDispatcher.cpp ..\text_input_node\CCTextFieldTTF.cpp ..\script_support\CCScriptSupport.cpp ..\CCCamera.cpp ..\CCConfiguration.cpp ..\CCDirector.cpp ..\CCScheduler.cpp ..\cocos2d.cpp
+         cocos2d.cpp
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\platform\ccsaxparser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+         CCScheduler.cpp
+         CCDirector.cpp
+         CCConfiguration.cpp
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\platform\ccsaxparser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+         CCCamera.cpp
+         CCScriptSupport.cpp
+         CCTextFieldTTF.cpp
+         CCIMEDispatcher.cpp
+         CCKeypadDispatcher.cpp
+         CCKeypadDelegate.cpp
+         CCTouchHandler.cpp
+         CCTouchDispatcher.cpp
+         CCTouch.cpp
+         CCTMXXMLParser.cpp
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\tilemap_parallax_nodes\cctmxxmlparser.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\platform\ccsaxparser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+         CCTMXTiledMap.cpp
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\platform\ccsaxparser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+         CCTMXObjectGroup.cpp
+         CCTMXLayer.cpp
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\platform\ccsaxparser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+         CCTileMapAtlas.cpp
+         CCParallaxNode.cpp
+         CCTexturePVR.cpp
+         코드를 생성하고 있습니다...
+         컴파일하고 있습니다...
+         CCTextureETC.cpp
+         CCTextureCache.cpp
+         CCTextureAtlas.cpp
+         CCTexture2D.cpp
+         ZipUtils.cpp
+         unzip.cpp
+         ioapi.cpp
+         CCUserDefault.cpp
+         TGAlib.cpp
+         ccCArray.cpp
+         TransformUtils.cpp
+         tinyxml2.cpp
+         CCComponentContainer.cpp
+         CCComponent.cpp
+         CCVertex.cpp
+         ccUtils.cpp
+         ccUTF8.cpp
+         CCProfiling.cpp
+         CCPointExtension.cpp
+         CCNotificationCenter.cpp
+         코드를 생성하고 있습니다...
+         컴파일하고 있습니다...
+         base64.cpp
+         CCSpriteFrameCache.cpp
+         CCSpriteFrame.cpp
+         CCSpriteBatchNode.cpp
+         CCSprite.cpp
+         CCAnimationCache.cpp
+         CCAnimation.cpp
+         ccShaders.cpp
+         CCShaderCache.cpp
+         ccGLStateCache.cpp
+         CCGLProgram.cpp
+         CCStdC.cpp
+         CCImage.cpp
+         CCFileUtilsWin32.cpp
+         CCEGLView.cpp
+         CCDevice.cpp
+         CCCommon.cpp
+         CCApplication.cpp
+         CCAccelerometer.cpp
+         platform.cpp
+         코드를 생성하고 있습니다...
+         컴파일하고 있습니다...
+         CCThread.cpp
+         CCSAXParser.cpp
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\platform\ccsaxparser.cpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\platform\ccsaxparser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+         CCImageCommonWebp.cpp
+         CCFileUtils.cpp
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\platform\ccsaxparser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+         CCEGLViewProtocol.cpp
+         CCParticleSystemQuad.cpp
+         CCParticleSystem.cpp
+         CCParticleExamples.cpp
+         CCParticleBatchNode.cpp
+         CCRenderTexture.cpp
+         CCProgressTimer.cpp
+         CCMotionStreak.cpp
+         CCClippingNode.cpp
+         CCMenuItem.cpp
+         CCMenu.cpp
+         CCTransitionProgress.cpp
+         CCTransitionPageTurn.cpp
+         CCTransition.cpp
+         CCScene.cpp
+         CCLayer.cpp
+         코드를 생성하고 있습니다...
+         컴파일하고 있습니다...
+         CCLabelTTF.cpp
+         CCLabelBMFont.cpp
+         CCLabelAtlas.cpp
+         CCActionTween.cpp
+         CCActionTiledGrid.cpp
+         CCActionProgressTimer.cpp
+         CCActionPageTurn3D.cpp
+         CCActionManager.cpp
+         CCActionInterval.cpp
+         CCActionInstant.cpp
+         CCActionGrid3D.cpp
+         CCActionGrid.cpp
+         CCActionEase.cpp
+         CCActionCatmullRom.cpp
+         CCActionCamera.cpp
+         CCAction.cpp
+         CCGrid.cpp
+         CCGrabber.cpp
+         CCDrawNode.cpp
+         CCDrawingPrimitives.cpp
+         코드를 생성하고 있습니다...
+         컴파일하고 있습니다...
+         CCZone.cpp
+         CCString.cpp
+         CCSet.cpp
+         CCObject.cpp
+         CCNS.cpp
+         CCGeometry.cpp
+         CCDictionary.cpp
+         CCDataVisitor.cpp
+         CCAutoreleasePool.cpp
+         CCArray.cpp
+         CCAffineTransform.cpp
+         CCNode.cpp
+         CCAtlasNode.cpp
+         코드를 생성하고 있습니다...
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\include" /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\.. /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\win32 /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\iconv /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\zlib /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\libpng /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\libjpeg /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\libtiff /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\libwebp /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\pthread /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\OGLES /I..\include /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\kazmath\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D COCOS2DXWIN32_EXPORTS /D GL_GLEXT_PROTOTYPES /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _USING_V110_SDK71_ /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TC /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\ccFPSImages.c ..\kazmath\src\aabb.c ..\kazmath\src\mat3.c ..\kazmath\src\mat4.c ..\kazmath\src\neon_matrix_impl.c ..\kazmath\src\plane.c ..\kazmath\src\quaternion.c ..\kazmath\src\ray2.c ..\kazmath\src\utility.c ..\kazmath\src\vec2.c ..\kazmath\src\vec3.c ..\kazmath\src\vec4.c ..\kazmath\src\GL\mat4stack.c ..\kazmath\src\GL\matrix.c
+         matrix.c
+         mat4stack.c
+         vec4.c
+         vec3.c
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\kazmath\src\vec3.c : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+         vec2.c
+         utility.c
+         ray2.c
+         quaternion.c
+         plane.c
+     1>c:\users\pineoc\documents\github\hungrygame\cocos2dx\kazmath\src\plane.c : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+         neon_matrix_impl.c
+         mat4.c
+         mat3.c
+         aabb.c
+         ccFPSImages.c
+         코드를 생성하고 있습니다...
+       PreLinkEvent:
+         if not exist "C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\" mkdir "C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\"
+         xcopy /Y /Q "C:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\..\platform\third_party\win32\libraries\*.*" "C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\"
          
          :VCEnd
          15개 파일이 복사되었습니다.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\food_game\proj.win32\Debug.win32\libcocos2d.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\food_game\proj.win32\Debug.win32\\" opengl32.lib glew32.lib libzlib.lib libpng.lib libjpeg.lib libtiff.lib libwebp.lib libiconv.lib pthreadVCE2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\food_game\proj.win32\Debug.win32\libcocos2d.pdb" /SUBSYSTEM:WINDOWS,"5.01" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\food_game\proj.win32\Debug.win32\libcocos2d.lib" /MACHINE:X86 /SAFESEH /DLL Debug.win32\CCAtlasNode.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\libcocos2d.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\ opengl32.lib glew32.lib libzlib.lib libpng.lib libjpeg.lib libtiff.lib libwebp.lib libiconv.lib pthreadVCE2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\libcocos2d.pdb" /SUBSYSTEM:WINDOWS,"5.01" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\libcocos2d.lib" /MACHINE:X86 /SAFESEH /DLL Debug.win32\CCAtlasNode.obj
          Debug.win32\CCNode.obj
          Debug.win32\ccFPSImages.obj
          Debug.win32\CCAffineTransform.obj
@@ -135,11 +288,11 @@
          Debug.win32\CCScheduler.obj
          Debug.win32\cocos2d.obj
      1>CCAtlasNode.obj : warning LNK4075: '/EDITANDCONTINUE'이(가) '/OPT:LBR' 사양으로 인해 무시됩니다.
-            C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\food_game\proj.win32\Debug.win32\libcocos2d.lib 라이브러리 및 C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\food_game\proj.win32\Debug.win32\libcocos2d.exp 개체를 생성하고 있습니다.
+            C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\libcocos2d.lib 라이브러리 및 C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\libcocos2d.exp 개체를 생성하고 있습니다.
      1>LINK : warning LNK4098: 'LIBCMT' defaultlib가 다른 라이브러리와 충돌합니다. /NODEFAULTLIB:library를 사용하십시오.
-         cocos2d.vcxproj -> C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\projects\food_game\proj.win32\Debug.win32\libcocos2d.dll
-     1>"C:\Users\pineoc\SkyDrive\project\han_project\cocos2d-x-2.1.4\cocos2dx\proj.win32\cocos2d.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+         cocos2d.vcxproj -> C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\libcocos2d.dll
+     1>"C:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\proj.win32\cocos2d.vcxproj" 프로젝트를 빌드했습니다(Rebuild 대상).
 
 빌드했습니다.
 
-경과 시간: 00:00:07.63
+경과 시간: 00:02:40.53
