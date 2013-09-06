@@ -130,7 +130,7 @@ bool gameScene::init()
 		std::srand(NULL);
 		int food5X = tileCoorPosition(ccp(std::rand()%10,std::rand()%20)).x;
 		int food5Y = tileCoorPosition(ccp(std::rand()%10,std::rand()%20)).y;
-		if(checkDup(ccp(food5X,food5Y)))
+		if(checkDup((CCSprite*)foodSpriteArray->objectAtIndex(3)))
 			this->createFood(ccp(food5X,food5Y),"map/Big_welsh_onion.png");
 
 
@@ -276,9 +276,10 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	check collision food and character
 	*/
 	// code from here
-	if(!checkDup(playerPos))
-	{//using boundingbox to check collision
-		for(int i=0;i<foodSpriteArray->count();i++)
+	//if(!checkDup(playerPos))
+	//{//using boundingbox to check collision
+		int count = foodSpriteArray->capacity();
+		for(int i=0;i<count;i++)
 		{
 			checkSpriteFood = (CCSprite*)foodSpriteArray->objectAtIndex(i);
 			CCRect foodbounding = checkSpriteFood->boundingBox();
@@ -290,7 +291,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 			}
 		}
 
-	}
+//	}
 
 
 
@@ -420,17 +421,20 @@ void gameScene::createFood(CCPoint foodpoint,char* foodImageName)
 /*
 check duplication function
 */
-bool gameScene::checkDup(CCPoint location)
+bool gameScene::checkDup(CCSprite* checkfood)
 {// if dup, return false
 	//it can be useful another object.
 	int tileGid = 1;//backgroundLayer->tileGIDAt(location);
-	//int foodarrCount = foodSpriteArray->count();
-	for(int i=0;i<foodSpriteArray->count();i++)
+	int foodarrCount = foodSpriteArray->count();
+	CCRect checkfoodbounding =  checkfood->boundingBox();
+	for(int i=0;i<foodarrCount;i++)
 	{//check the all food object
 		CCSprite* check = (CCSprite*)foodSpriteArray->objectAtIndex(i);
-		CCPoint check_p = check->getPosition();
-		if(location.equals(check_p))
+		CCRect checkbounding = check->boundingBox();
+		if(checkfoodbounding.intersectsRect(checkbounding))
+		{
 			return false;
+		}
 	}
 	if(tileGid == NULL)
 		return true;

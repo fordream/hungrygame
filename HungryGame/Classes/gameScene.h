@@ -59,7 +59,7 @@ public:
 	//-------------------------------pineoc's start------------------//
 	void createFood(CCPoint,char*); //food create item, (point, imageName)
 	void linktochar_food();
-	bool checkDup(CCPoint); // check duplication about tile 
+	bool checkDup(CCSprite*); // check duplication about tile 
 	void delFood(CCObject*);
 	//CCPoint foodPosition; 
 	//CCSprite* food;
