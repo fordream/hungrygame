@@ -203,6 +203,7 @@
     <Image Include="main_btn_option.png" />
     <Image Include="main_btn_option_c.png" />
     <Image Include="map\meat.png" />
+    <Image Include="map\metaset.png" />
     <Image Include="p.jpg" />
     <Image Include="right.png" />
     <Image Include="right_click.png" />

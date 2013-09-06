@@ -67,6 +67,7 @@ bool gameScene::init()
 
 		//		CCTMXTiledMap *tileMap;
 		CCTMXLayer *backgroundLayer;
+		
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
@@ -80,8 +81,17 @@ bool gameScene::init()
 		// 맵 타일 불러오기
 
 		backgroundLayer = tileMap->layerNamed("wall");
+
+		//---------    eunji for wall    ---------------------
+
+		//metainfo에 준 타일레이어 이름은 Items이지만 벽표시 위한 빨간레이어임.
+		// 추후 실제 아이템을 포함 할 수도 있음.
+		metainfo = tileMap->layerNamed("Items");
+		metainfo->setVisible(false); // 빨간벽을 표시안함.
 		//		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
 		tileLayer->addChild(tileMap);
+
+		//--------- end eunji ---------------------------
 		
 		
 		/*
@@ -221,7 +231,57 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	* 벽과 충돌했는지 확인하는 공간입니다
 	* To Eunji
 	*/
-	// 여기에 코드작성
+	/* 
+	//이부분은 수정 필요함. 다운코드 수정해서 쓸라그랬는데 잘 안되네..
+	CCPoint diffForWall = ccpSub(touchLocation, playerPos);
+	CCPoint newTouchPos = touchLocation;
+
+	if (abs(diffForWall.x) > abs(diffForWall.y)) 
+	{
+		if (diffForWall.x > 0) 
+		{
+			newTouchPos.x += tileMap->getTileSize().width;
+		} 
+
+		else 
+		{
+			newTouchPos.x -= tileMap->getTileSize().width;
+		}
+	} 
+	
+	else 
+	{
+		if (diffForWall.y > 0) 
+		{
+			newTouchPos.y += tileMap->getTileSize().height;
+		} 
+
+		else 
+		{
+			newTouchPos.y -= tileMap->getTileSize().height;
+		}
+	}
+	*/
+	CCPoint tileCoord = this->tileCoorPosition(touchLocation);
+
+	int tileGidforWall = this->metainfo->tileGIDAt(tileCoord);
+
+	if(tileGidforWall)
+	{
+		CCDictionary *properties = tileMap->propertiesForGID(tileGidforWall);
+
+		if(properties)
+		{
+			CCString *wall = (CCString*)properties->objectForKey("Wall");
+
+			if(wall && (wall->compare("YES") == 0))
+			{
+				checkCrash = CrashWithWall;
+			}
+		}
+	}
+
+
 	/* End Eunji */
 
 
@@ -278,6 +338,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	else if(checkCrash == CrashWithWall)
 	{
 		// 벽과 충돌한 경우 해야할 일
+		character->setPosition(playerPos);
 	}
 	else if(checkCrash == CrashWithFood)
 	{
