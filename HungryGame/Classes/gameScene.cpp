@@ -50,7 +50,12 @@ bool gameScene::init()
 		//////////////////////////////////////////////////////////////////////////
 		// add your codes below...
 		//////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 		foodSpriteArray = new CCArray; //food sprite array dinamic cast
+=======
+		foodArray = new CCArray; // in food array dinamic cast
+
+>>>>>>> master
 
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
@@ -66,7 +71,11 @@ bool gameScene::init()
 		this->addChild(tileLayer);
 
 		//		CCTMXTiledMap *tileMap;
+<<<<<<< HEAD
 		//CCTMXLayer *backgroundLayer;
+=======
+		CCTMXLayer *backgroundLayer;
+>>>>>>> master
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
@@ -154,6 +163,7 @@ bool gameScene::init()
 
 		//----------------------------------------------------
 
+<<<<<<< HEAD
 		//--------------Pause Btn-jiyoon start----------------
 		//일시정지 버튼 추가
 		CCMenuItemImage *btnPause = CCMenuItemImage::create(
@@ -176,6 +186,9 @@ bool gameScene::init()
 		//-------------jiyoon End-------------------------------
 
 
+=======
+
+>>>>>>> master
 		bRet = true;
 	} while (0);
 
@@ -251,7 +264,11 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	CCPoint touchLocation = pTouch->getLocation();
 	touchLocation = this->convertToNodeSpace(touchLocation);
 
+<<<<<<< HEAD
 	CCSprite* checkSpriteFood;//for checkfood
+=======
+
+>>>>>>> master
 	CCPoint playerPos = character->getPosition();
 
 	checkCrash = nothing; 
@@ -269,6 +286,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 
 	/* End Eunji */
+<<<<<<< HEAD
 
 
 	/* 
@@ -297,13 +315,26 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 
 	/* End pineoc */
+=======
+
+
+	/* 
+	* 음식과 충돌했는지 확인하는 공간입니다
+	*/
+	// 여기에 코드작성
+	/* End blackbell */
+>>>>>>> master
 
 
 	/*
 	* 아이템과 충돌했는지 확인하는 공간입니다
 	*/
 	// 여기에 코드작성
+<<<<<<< HEAD
 	/* end blackbell */
+=======
+	/* end pineoc */
+>>>>>>> master
 
 
 	if(checkCrash == nothing)
@@ -351,7 +382,10 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	else if(checkCrash == CrashWithFood)
 	{
 		// 음식과 충돌한 경우 해야할 일
+<<<<<<< HEAD
 		delFood(checkSpriteFood);
+=======
+>>>>>>> master
 	}
 	else if(checkCrash == CrashWithItem)
 	{
@@ -519,4 +553,41 @@ void gameScene::doNotification(CCObject *obj)
 
 }
 
+<<<<<<< HEAD
 //--------------jiyoon end-----------------------------------------
+=======
+//-----------------------pineoc End-------------------------------//
+
+//----------------------eunji----------------------------
+/*
+장애물 부딪혔는지 확인하는 함수
+*/
+void gameScene::checkPosition(CCPoint position)
+{
+	CCPoint tileCoord = this->tileCoorPosition(position);
+
+	int tileGid = this->wall->tileGIDAt(tileCoord);
+
+	if(tileGid)
+	{
+		CCDictionary *properties = tileMap->propertiesForGID(tileGid);
+
+		if(properties)
+		{
+			CCString *wall = (CCString*)properties->objectForKey("wall");
+
+			if(wall && (wall->compare("Yes") == 0 ))
+			{
+				checkCrash = CrashWithWall;
+				return;
+			}
+
+			else
+			{
+				checkCrash = nothing;
+			}
+		}
+	}
+}
+//---------------------eunji end -------------------------
+>>>>>>> master
