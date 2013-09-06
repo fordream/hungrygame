@@ -50,12 +50,12 @@ bool gameScene::init()
 		//////////////////////////////////////////////////////////////////////////
 		// add your codes below...
 		//////////////////////////////////////////////////////////////////////////
-<<<<<<< HEAD
 		foodSpriteArray = new CCArray; //food sprite array dinamic cast
-=======
-		foodArray = new CCArray; // in food array dinamic cast
+		foodFollowArray = new CCArray;
+		onCheckFoodDisplay = new CCArray;
+		tomakeFood = new CCArray;
 
->>>>>>> master
+
 
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
@@ -71,11 +71,8 @@ bool gameScene::init()
 		this->addChild(tileLayer);
 
 		//		CCTMXTiledMap *tileMap;
-<<<<<<< HEAD
 		//CCTMXLayer *backgroundLayer;
-=======
-		CCTMXLayer *backgroundLayer;
->>>>>>> master
+
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
@@ -142,8 +139,10 @@ bool gameScene::init()
 		if(checkDup((CCSprite*)foodSpriteArray->objectAtIndex(3)))
 			this->createFood(ccp(food5X,food5Y),"map/Big_welsh_onion.png");
 
+		foodcount = foodSpriteArray->count();
 
-
+		this->schedule(schedule_selector(gameScene::updateFoodSprte));
+		//this->schedule(schedule_selector(gameScene::followCharacter));
 		//----------------------------------------------------------------------------------------
 
 
@@ -163,7 +162,7 @@ bool gameScene::init()
 
 		//----------------------------------------------------
 
-<<<<<<< HEAD
+
 		//--------------Pause Btn-jiyoon start----------------
 		//일시정지 버튼 추가
 		CCMenuItemImage *btnPause = CCMenuItemImage::create(
@@ -186,9 +185,6 @@ bool gameScene::init()
 		//-------------jiyoon End-------------------------------
 
 
-=======
-
->>>>>>> master
 		bRet = true;
 	} while (0);
 
@@ -247,6 +243,7 @@ void gameScene::onEnter()
 */
 bool gameScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event)
 {
+	beforeMoveCharPoint = character->getPosition();
 	return true;
 }
 
@@ -264,11 +261,8 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	CCPoint touchLocation = pTouch->getLocation();
 	touchLocation = this->convertToNodeSpace(touchLocation);
 
-<<<<<<< HEAD
 	CCSprite* checkSpriteFood;//for checkfood
-=======
 
->>>>>>> master
 	CCPoint playerPos = character->getPosition();
 
 	checkCrash = nothing; 
@@ -286,7 +280,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 
 	/* End Eunji */
-<<<<<<< HEAD
+
 
 
 	/* 
@@ -296,45 +290,39 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	// code from here
 	//if(!checkDup(playerPos))
 	//{//using boundingbox to check collision
-		int count = foodSpriteArray->capacity();
-		for(int i=0;i<count;i++)
-		{
-			checkSpriteFood = (CCSprite*)foodSpriteArray->objectAtIndex(i);
-			CCRect foodbounding = checkSpriteFood->boundingBox();
-			CCRect charbounding = character->boundingBox();
-			if(foodbounding.intersectsRect(charbounding))
-			{
-				checkCrash = CrashWithFood;
-				break;
-			}
-		}
+	/*	for(int i=0;i<foodcount;i++)
+	{
+	checkSpriteFood = (CCSprite*)foodSpriteArray->objectAtIndex(i);
+	CCRect foodbounding = checkSpriteFood->boundingBox();
+	CCRect charbounding = character->boundingBox();
+	if(foodbounding.intersectsRect(charbounding))
+	{
+	checkCrash = CrashWithFood;
+	break;
+	}
+	else
+	checkCrash = nothing;
+	}*/
 
-//	}
-
+	//	}
+	//updateFood()함수로 대체
 
 
 
 	/* End pineoc */
-=======
 
 
-	/* 
-	* 음식과 충돌했는지 확인하는 공간입니다
-	*/
-	// 여기에 코드작성
-	/* End blackbell */
->>>>>>> master
 
 
 	/*
 	* 아이템과 충돌했는지 확인하는 공간입니다
 	*/
 	// 여기에 코드작성
-<<<<<<< HEAD
+
 	/* end blackbell */
-=======
-	/* end pineoc */
->>>>>>> master
+
+
+
 
 
 	if(checkCrash == nothing)
@@ -382,10 +370,8 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	else if(checkCrash == CrashWithFood)
 	{
 		// 음식과 충돌한 경우 해야할 일
-<<<<<<< HEAD
 		delFood(checkSpriteFood);
-=======
->>>>>>> master
+
 	}
 	else if(checkCrash == CrashWithItem)
 	{
@@ -459,9 +445,9 @@ bool gameScene::checkDup(CCSprite* checkfood)
 {// if dup, return false
 	//it can be useful another object.
 	int tileGid = 1;//backgroundLayer->tileGIDAt(location);
-	int foodarrCount = foodSpriteArray->count();
+	//int foodarrCount = foodSpriteArray->count();
 	CCRect checkfoodbounding =  checkfood->boundingBox();
-	for(int i=0;i<foodarrCount;i++)
+	for(int i=0;i<foodcount;i++)
 	{//check the all food object
 		CCSprite* check = (CCSprite*)foodSpriteArray->objectAtIndex(i);
 		CCRect checkbounding = check->boundingBox();
@@ -480,6 +466,67 @@ void gameScene::delFood(CCObject* pSender)
 {
 	CCSprite* del = (CCSprite*)pSender;
 	this->removeChild(del);
+}
+
+/*
+음식 재료를 먹었을때 없어지게 함.
+*/
+void gameScene::updateFoodSprte(float dt)
+{
+	CCArray* foodToDelete = new CCArray;
+	CCObject* foodobject = NULL;
+	CCARRAY_FOREACH(foodSpriteArray,foodobject)
+	{
+		CCRect characterRect = CCRectMake(character->getPosition().x - (character->getContentSize().width/2),
+			character->getPosition().y -(character->getContentSize().height/2),
+			character->getContentSize().width,
+			character->getContentSize().height);
+		CCSprite* foodSprite = dynamic_cast<CCSprite*>(foodobject);
+		CCRect foodRect = CCRectMake(foodSprite->getPosition().x - (foodSprite->getContentSize().width/2),
+			foodSprite->getPosition().y -(foodSprite->getContentSize().height/2),
+			foodSprite->getContentSize().width,
+			foodSprite->getContentSize().height);
+		if(characterRect.intersectsRect(foodRect))
+		{
+			foodToDelete->addObject(foodSprite);
+			foodFollowArray->addObject(foodSprite);//add foods for following character
+			onCheckFoodDisplay->addObject(foodSprite);
+		}
+	}
+	CCARRAY_FOREACH(foodToDelete,foodobject)
+	{
+		CCSprite* delfood = dynamic_cast<CCSprite*>(foodobject);
+		foodFollowArray->addObject(delfood);
+		foodSpriteArray->removeObject(delfood);
+
+		this->removeChild(delfood);
+		//followCharacter();
+	}
+	foodToDelete->release();
+}
+void gameScene::followCharacter(float dt)
+{
+	CCSprite* tmp= NULL;
+	if(foodFollowArray->count()>1)
+	{
+		CCSprite* firstFoodSprite = ((CCSprite*)foodFollowArray->objectAtIndex(0));
+		firstFoodSprite->setPosition(beforeMoveCharPoint);
+		//CCPoint firstFood = firstFoodSprite->getPosition();
+		for(int i=1;i<foodFollowArray->count();i++)
+		{
+			tmp = ((CCSprite*)foodFollowArray->objectAtIndex(i));
+			tmp->setPosition(((CCSprite*)foodFollowArray->objectAtIndex(i-1))->getPosition());
+			if(foodFollowArray->objectAtIndex(i+1) !=NULL)
+				((CCSprite*)foodFollowArray->objectAtIndex(i+1))->setPosition(tmp->getPosition());
+		}
+	}
+	else
+	{
+		CCSprite* firstFoodSprite = ((CCSprite*)foodFollowArray->objectAtIndex(0));
+		firstFoodSprite->setPosition(beforeMoveCharPoint);
+
+	}
+
 }
 
 
@@ -552,42 +599,7 @@ void gameScene::doNotification(CCObject *obj)
 	}
 
 }
-
-<<<<<<< HEAD
 //--------------jiyoon end-----------------------------------------
-=======
-//-----------------------pineoc End-------------------------------//
 
-//----------------------eunji----------------------------
-/*
-장애물 부딪혔는지 확인하는 함수
-*/
-void gameScene::checkPosition(CCPoint position)
-{
-	CCPoint tileCoord = this->tileCoorPosition(position);
 
-	int tileGid = this->wall->tileGIDAt(tileCoord);
 
-	if(tileGid)
-	{
-		CCDictionary *properties = tileMap->propertiesForGID(tileGid);
-
-		if(properties)
-		{
-			CCString *wall = (CCString*)properties->objectForKey("wall");
-
-			if(wall && (wall->compare("Yes") == 0 ))
-			{
-				checkCrash = CrashWithWall;
-				return;
-			}
-
-			else
-			{
-				checkCrash = nothing;
-			}
-		}
-	}
-}
-//---------------------eunji end -------------------------
->>>>>>> master
