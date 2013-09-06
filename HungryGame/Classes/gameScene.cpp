@@ -12,7 +12,6 @@
 using namespace cocos2d;
 
 enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
-
 CCScene* gameScene::scene()
 {
 	CCScene * scene = NULL;
@@ -160,7 +159,6 @@ void gameScene::createObstacle()
 
 	obstacle = CCSprite::createWithTexture(obTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
 	obstacle->setPosition(obstaclePosition);
-	obstacle->setAnchorPoint(ccp(0,0)); //앵커포인트 설정.
 	this->addChild(obstacle);
 
 }
@@ -211,7 +209,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 	CCPoint playerPos = character->getPosition();
 
-	checkCrash = nothing; 
+	int checkCrash = nothing;
 	/********************************************************** To EVERYONE *************
 	* check character is crash with someting
 	* 충돌여부를 판단하는 공간입니다
@@ -223,8 +221,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	* 벽과 충돌했는지 확인하는 공간입니다
 	* To Eunji
 	*/
-
-
+	// 여기에 코드작성
 	/* End Eunji */
 
 
@@ -274,7 +271,6 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 			playerPos.x >= 0 )
 		{
 			// 캐릭터의 새로운 위치 지정
-			//this->checkPosition(playerPos);
 			character->setPosition( playerPos );
 		}
 
@@ -282,7 +278,6 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	else if(checkCrash == CrashWithWall)
 	{
 		// 벽과 충돌한 경우 해야할 일
-		character->setPosition(playerPos);
 	}
 	else if(checkCrash == CrashWithFood)
 	{
@@ -369,36 +364,3 @@ bool gameScene::checkDup(CCPoint location)
 
 
 //-----------------------pineoc End-------------------------------//
-
-//----------------------eunji----------------------------
-/*
-장애물 부딪혔는지 확인하는 함수
-*/
-void gameScene::checkPosition(CCPoint position)
-{
-	CCPoint tileCoord = this->tileCoorPosition(position);
-
-	int tileGid = this->wall->tileGIDAt(tileCoord);
-
-	if(tileGid)
-	{
-		CCDictionary *properties = tileMap->propertiesForGID(tileGid);
-
-		if(properties)
-		{
-			CCString *wall = (CCString*)properties->objectForKey("wall");
-
-			if(wall && (wall->compare("Yes") == 0 ))
-			{
-				checkCrash = CrashWithWall;
-				return;
-			}
-
-			else
-			{
-				checkCrash = nothing;
-			}
-		}
-	}
-}
-//---------------------eunji end -------------------------

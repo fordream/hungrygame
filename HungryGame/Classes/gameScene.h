@@ -14,9 +14,6 @@
 class gameScene : public cocos2d::CCLayer
 {
 public:
-
-	int checkCrash;
-
 	//gameScene();
 	//~gameScene();
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -33,17 +30,12 @@ public:
 	pineoc's function (general function)
 	display point -> tile point function
 	*/
-
-	//-----------------eunji-----------------------
-	void checkPosition(CCPoint); // 위치 확인 (충돌등)
 	CCPoint tileCoorPosition(CCPoint);
 	CCTMXLayer *backgroundLayer;
-	CCTMXLayer *wall;
 	void createObstacle(); // 장애물 생성 위함
 
 	CCPoint obstaclePosition;
 	CCSprite *obstacle;
-	//---------------------------eunji end----------------
 
 	// --------------------------------- Daun Start -------------------//
 
