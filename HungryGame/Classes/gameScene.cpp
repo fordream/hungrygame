@@ -231,37 +231,36 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	* 벽과 충돌했는지 확인하는 공간입니다
 	* To Eunji
 	*/
-	/* 
-	//이부분은 수정 필요함. 다운코드 수정해서 쓸라그랬는데 잘 안되네..
-	CCPoint diffForWall = ccpSub(touchLocation, playerPos);
-	CCPoint newTouchPos = touchLocation;
-
-	if (abs(diffForWall.x) > abs(diffForWall.y)) 
-	{
-		if (diffForWall.x > 0) 
-		{
-			newTouchPos.x += tileMap->getTileSize().width;
-		} 
-
-		else 
-		{
-			newTouchPos.x -= tileMap->getTileSize().width;
-		}
-	} 
 	
-	else 
-	{
-		if (diffForWall.y > 0) 
-		{
-			newTouchPos.y += tileMap->getTileSize().height;
-		} 
+	//이부분은 수정 필요함. 다운코드 수정해서 쓸라그랬는데 잘 안되네..
+	/*
+	CCPoint diffForWall = ccpSub(touchLocation, playerPos);
+	CCPoint newPlayerPos = playerPos;
 
-		else 
+	if(abs(diffForWall.x) > abs(diffForWall.y))
+	{
+		if(diffForWall.x > 0)
 		{
-			newTouchPos.y -= tileMap->getTileSize().height;
+			newPlayerPos.x += tileMap->getTileSize().width;
+		}
+		
+		else
+		{
+			newPlayerPos.x -= tileMap->getTileSize().width;
+		}
+
+		if(diffForWall.y > 0)
+		{
+			newPlayerPos.y += tileMap->getTileSize().height;
+		}
+		
+		else
+		{
+			newPlayerPos.y -= tileMap->getTileSize().height;
 		}
 	}
 	*/
+
 	CCPoint tileCoord = this->tileCoorPosition(touchLocation);
 
 	int tileGidforWall = this->metainfo->tileGIDAt(tileCoord);

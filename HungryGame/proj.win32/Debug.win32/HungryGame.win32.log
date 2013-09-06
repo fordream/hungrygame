@@ -1,10 +1,10 @@
-﻿Build started 2013-09-07 오전 12:42:03.
+﻿Build started 2013-09-07 오전 1:11:14.
      1>Project "C:\Users\eunji\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\include /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\kazmath\include /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\win32 /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32 /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32\OGLES /IC:\Users\eunji\Documents\GitHub\hungrygame\external /IC:\Users\eunji\Documents\GitHub\hungrygame\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\gameScene.cpp music.cpp
          gameScene.cpp
      1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(71): warning C4101: 'objectgroup' : unreferenced local variable
-     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(377): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(376): warning C4305: 'argument' : truncation from 'double' to 'float'
          Generating Code...
          Skipping... (no relevant changes detected)
          music.cpp
@@ -34,4 +34,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.35
+Time Elapsed 00:00:03.24
