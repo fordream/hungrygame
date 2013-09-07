@@ -243,7 +243,7 @@ void gameScene::onEnter()
 */
 bool gameScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event)
 {
-	beforeMoveCharPoint = character->getPosition();
+	beforeMoveCharPoint[0] = character->getPosition();
 	return true;
 }
 
@@ -306,7 +306,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 	//	}
 	//updateFood()함수로 대체
-
+	followCharacter(1.0);
 
 
 	/* End pineoc */
@@ -499,31 +499,22 @@ void gameScene::updateFoodSprte(float dt)
 		foodFollowArray->addObject(delfood);
 		foodSpriteArray->removeObject(delfood);
 
-		this->removeChild(delfood);
-		//followCharacter();
+		//this->removeChild(delfood);
+		this->followCharacter(1.0);
 	}
 	foodToDelete->release();
 }
 void gameScene::followCharacter(float dt)
 {
 	CCSprite* tmp= NULL;
-	if(foodFollowArray->count()>1)
+	CCObject* object = NULL;
+	CCARRAY_FOREACH(foodFollowArray,object)
 	{
-		CCSprite* firstFoodSprite = ((CCSprite*)foodFollowArray->objectAtIndex(0));
-		firstFoodSprite->setPosition(beforeMoveCharPoint);
-		//CCPoint firstFood = firstFoodSprite->getPosition();
-		for(int i=1;i<foodFollowArray->count();i++)
-		{
-			tmp = ((CCSprite*)foodFollowArray->objectAtIndex(i));
-			tmp->setPosition(((CCSprite*)foodFollowArray->objectAtIndex(i-1))->getPosition());
-			if(foodFollowArray->objectAtIndex(i+1) !=NULL)
-				((CCSprite*)foodFollowArray->objectAtIndex(i+1))->setPosition(tmp->getPosition());
-		}
-	}
-	else
-	{
-		CCSprite* firstFoodSprite = ((CCSprite*)foodFollowArray->objectAtIndex(0));
-		firstFoodSprite->setPosition(beforeMoveCharPoint);
+		CCSprite* followFood = dynamic_cast<CCSprite*>(object);
+		CCPoint followPoint = followFood->getPosition();
+		followFood->setPosition(beforeMoveCharPoint[0]);
+		//foodFollowArray->removeObject(followFood);
+
 
 	}
 

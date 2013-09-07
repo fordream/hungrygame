@@ -72,7 +72,7 @@ public:
 	CCArray* foodSpriteArray; // array for save the food sprite
 	CCArray* foodFollowArray; // array for follow character
 	int foodcount; // for food count
-	CCPoint beforeMoveCharPoint;
+	CCPoint beforeMoveCharPoint[10];
 
 	//CCTMXLayer* foodLayer; // for food object layer
 	//-----------------------------------------------------------------//
