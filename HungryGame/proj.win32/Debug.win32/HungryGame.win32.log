@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 2013-09-07 오후 10:04:31.
      1>Project "C:\Users\jiyun\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -13,6 +14,22 @@
          Generating Code...
        Link:
          C:\Program Files (x86)\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\ libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.lib" /MACHINE:X86 Debug.win32\AppDelegate.obj
+=======
+﻿빌드 시작: 2013-09-07 오후 10:49:54
+     1>2 노드의 "C:\Users\pineoc\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트(Build 대상)입니다.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\include /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\kazmath\include /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\platform\win32 /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32 /IC:\Users\pineoc\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32\OGLES /IC:\Users\pineoc\Documents\GitHub\hungrygame\external /IC:\Users\pineoc\Documents\GitHub\hungrygame\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\gameScene.cpp music.cpp
+         gameScene.cpp
+     1>c:\users\pineoc\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(73): warning C4101: 'objectgroup' :참조되지 않은 지역 변수입니다.
+     1>c:\users\pineoc\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(476): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+     1>c:\users\pineoc\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(584): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+         코드를 생성하고 있습니다...
+     1>c:\users\pineoc\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(443): warning C4700: 초기화되지 않은 'checkSpriteFood' 지역 변수를 사용했습니다.
+         건너뛰고 있습니다... (관련된 변경 내용 없음)
+         music.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\ libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.lib" /MACHINE:X86 Debug.win32\AppDelegate.obj
+>>>>>>> commit!!!!!!!!!!!
          Debug.win32\BuildingScene.obj
          Debug.win32\character.obj
          Debug.win32\character_main.obj
@@ -32,9 +49,18 @@
          Debug.win32\main.obj
          Debug.win32\music.obj
          Debug.win32\PauseGameScene.obj
+<<<<<<< HEAD
          HungryGame.win32.vcxproj -> C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
      1>Done Building Project "C:\Users\jiyun\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" (Build target(s)).
+=======
+         HungryGame.win32.vcxproj -> C:\Users\pineoc\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
+     1>"C:\Users\pineoc\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+>>>>>>> commit!!!!!!!!!!!
 
-Build succeeded.
+빌드했습니다.
 
+<<<<<<< HEAD
 Time Elapsed 00:00:11.88
+=======
+경과 시간: 00:00:03.77
+>>>>>>> commit!!!!!!!!!!!
