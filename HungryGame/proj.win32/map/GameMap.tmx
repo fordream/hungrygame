@@ -55,4 +55,7 @@
    eJxjYCAMYshUE4OECZlDiprBCmKwYBgAAFpVBQk=
   </data>
  </layer>
+ <objectgroup name="items" width="9" height="10">
+  <object name="item1" x="142" y="142" width="48" height="44"/>
+ </objectgroup>
 </map>

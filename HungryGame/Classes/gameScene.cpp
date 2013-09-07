@@ -179,8 +179,8 @@ bool gameScene::init()
 		//----------------------------------------------------
 
 
-		//--------------Pause Btn-jiyoon start----------------
-		//일시정지 버튼 추가
+		//--------------jiyoon start----------------
+		//-------Pause btn-------------------
 		CCMenuItemImage *btnPause = CCMenuItemImage::create(
 			"img/game/game_btn_pause.png", "img/game/game_btn_pause.png", this, menu_selector(gameScene::doPop));
 		CC_BREAK_IF(! btnPause);
@@ -193,11 +193,24 @@ bool gameScene::init()
 
 		this->addChild(PauseMenu, 2);
 
-		//snotification 추가
+		//notification 추가
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
 			callfuncO_selector(gameScene::doNotification),
 			"notification", NULL);
 		//"notification"이라는 메시지가 오면 해당 함수를 실행한다.
+
+		//---------Items--------------
+
+		//Add item
+		CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
+		CCDictionary* item1 = items->objectNamed("item1");
+		//Set item's position
+		int temX = ((CCString*)item1->objectForKey("x"))->intValue();
+		int temY = ((CCString*)item1->objectForKey("y"))->intValue();
+
+		itemPosition = ccp(temX,temY);
+		this->createItem();
+
 		//-------------jiyoon End-------------------------------
 
 
@@ -639,4 +652,17 @@ void gameScene::doNotification(CCObject *obj)
 	}
 
 }
+
+
+//Create item
+void gameScene::createItem()
+{
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("dog.png");
+
+	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
+	item->setPosition(itemPosition);
+	item->setAnchorPoint(ccp(0,0));
+	this->addChild(item);
+}
+
 //--------------jiyoon end-----------------------------------------

@@ -77,6 +77,9 @@ public:
 	void doPop(CCObject* pSender);	//creat popup
 	void doNotification(CCObject *obj);
 	CCMenu* PauseMenu;// pause button menu
+
+	CCPoint itemPosition;
+	void createItem();
 	//------------------JIYOON END------------------------------------
 
 };
