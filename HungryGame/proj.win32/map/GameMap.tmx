@@ -6,15 +6,20 @@
  <tileset firstgid="91" name="carrot" tilewidth="48" tileheight="48">
   <image source="carrot.png" width="48" height="48"/>
  </tileset>
+ <tileset firstgid="92" name="MetaInfo" tilewidth="48" tileheight="48">
+  <image source="metaset.png" width="48" height="48"/>
+  <tile id="0">
+   <properties>
+    <property name="Wall" value="YES"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="background" width="9" height="10">
   <data encoding="base64" compression="zlib">
    eJwNw4kyQgEAAMAnFAqlHDkKFYpCQkSOpBC5Qv3/h9id2bEgCEKOO+GkYSNOOe2MUWPOOue8cRMumDTloksuu2LaVddcd8OMWTfdctuceQvuuOueRUvue2DZioceeWzVE2ueeua5dS+8tOGV1za98dY77235YNtHO3Z98tkXe776Zt93P/z0y28H/vjrn0NH/gOsARAA
   </data>
  </layer>
  <layer name="wall" width="9" height="10">
-  <properties>
-   <property name="wall" value="YES"/>
-  </properties>
   <data encoding="base64" compression="zlib">
    eJxjYCAMoslUE42ECZlDiprBCqKxYBgAAFEFBPs=
   </data>
@@ -45,4 +50,9 @@
    <ellipse/>
   </object>
  </objectgroup>
+ <layer name="Items" width="9" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAMYshUE4OECZlDiprBCmKwYBgAAFpVBQk=
+  </data>
+ </layer>
 </map>

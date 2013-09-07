@@ -12,7 +12,6 @@
 using namespace cocos2d;
 
 enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
-
 CCScene* gameScene::scene()
 {
 	CCScene * scene = NULL;
@@ -71,8 +70,13 @@ bool gameScene::init()
 		this->addChild(tileLayer);
 
 		//		CCTMXTiledMap *tileMap;
+<<<<<<< HEAD
 		//CCTMXLayer *backgroundLayer;
 
+=======
+		CCTMXLayer *backgroundLayer;
+		
+>>>>>>> master
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
@@ -86,10 +90,23 @@ bool gameScene::init()
 		// 맵 타일 불러오기
 
 		backgroundLayer = tileMap->layerNamed("wall");
+
+		//---------    eunji for wall    ---------------------
+
+		//metainfo에 준 타일레이어 이름은 Items이지만 벽표시 위한 빨간레이어임.
+		// 추후 실제 아이템을 포함 할 수도 있음.
+		metainfo = tileMap->layerNamed("Items");
+		metainfo->setVisible(false); // 빨간벽을 표시안함.
 		//		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
 		tileLayer->addChild(tileMap);
 
+<<<<<<< HEAD
 
+=======
+		//--------- end eunji ---------------------------
+		
+		
+>>>>>>> master
 		/*
 		* make character
 		* Daun..
@@ -212,7 +229,6 @@ void gameScene::createObstacle()
 
 	obstacle = CCSprite::createWithTexture(obTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
 	obstacle->setPosition(obstaclePosition);
-	obstacle->setAnchorPoint(ccp(0,0)); //앵커포인트 설정.
 	this->addChild(obstacle);
 
 }
@@ -265,7 +281,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 	CCPoint playerPos = character->getPosition();
 
-	checkCrash = nothing; 
+	int checkCrash = nothing;
 	/********************************************************** To EVERYONE *************
 	* check character is crash with someting
 	* 충돌여부를 판단하는 공간입니다
@@ -277,6 +293,54 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	* 벽과 충돌했는지 확인하는 공간입니다
 	* To Eunji
 	*/
+	
+	//이부분은 수정 필요함. 다운코드 수정해서 쓸라그랬는데 잘 안되네..
+	/*
+	CCPoint diffForWall = ccpSub(touchLocation, playerPos);
+	CCPoint newPlayerPos = playerPos;
+
+	if(abs(diffForWall.x) > abs(diffForWall.y))
+	{
+		if(diffForWall.x > 0)
+		{
+			newPlayerPos.x += tileMap->getTileSize().width;
+		}
+		
+		else
+		{
+			newPlayerPos.x -= tileMap->getTileSize().width;
+		}
+
+		if(diffForWall.y > 0)
+		{
+			newPlayerPos.y += tileMap->getTileSize().height;
+		}
+		
+		else
+		{
+			newPlayerPos.y -= tileMap->getTileSize().height;
+		}
+	}
+	*/
+
+	CCPoint tileCoord = this->tileCoorPosition(touchLocation);
+
+	int tileGidforWall = this->metainfo->tileGIDAt(tileCoord);
+
+	if(tileGidforWall)
+	{
+		CCDictionary *properties = tileMap->propertiesForGID(tileGidforWall);
+
+		if(properties)
+		{
+			CCString *wall = (CCString*)properties->objectForKey("Wall");
+
+			if(wall && (wall->compare("YES") == 0))
+			{
+				checkCrash = CrashWithWall;
+			}
+		}
+	}
 
 
 	/* End Eunji */
@@ -357,7 +421,6 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 			playerPos.x >= 0 )
 		{
 			// 캐릭터의 새로운 위치 지정
-			//this->checkPosition(playerPos);
 			character->setPosition( playerPos );
 		}
 
@@ -521,6 +584,7 @@ void gameScene::followCharacter(float dt)
 }
 
 
+<<<<<<< HEAD
 //-----------------------pineoc End-------------------------------//
 
 //----------------------eunji----------------------------
@@ -594,3 +658,6 @@ void gameScene::doNotification(CCObject *obj)
 
 
 
+=======
+//-----------------------pineoc End-------------------------------//
+>>>>>>> master

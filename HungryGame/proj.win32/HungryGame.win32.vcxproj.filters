@@ -283,6 +283,9 @@
     <Image Include="map\meat.png">
       <Filter>resource</Filter>
     </Image>
+    <Image Include="map\metaset.png">
+      <Filter>resource</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="background.mp3">
