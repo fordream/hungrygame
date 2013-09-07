@@ -33,11 +33,12 @@ public:
 	CCPoint tileCoorPosition(CCPoint);
 	CCTMXLayer *backgroundLayer;
 	void createObstacle(); // 장애물 생성 위함
+	void checkPosition(CCPoint);
 	CCTMXLayer *metainfo; //은지만듬
 
 	CCPoint obstaclePosition;
 	CCSprite *obstacle;
-
+	CCTMXLayer *wall;
 	// --------------------------------- Daun Start -------------------//
 
 	CCTMXTiledMap *tileMap; // tileMap name to select stage
@@ -46,7 +47,7 @@ public:
 	CCSprite        *character;
 	bool ccTouchBegan(CCTouch *, CCEvent* );
 	void onEnter();
-
+	int checkCrash;
 	// ------------------------------Daun End ----------------------//
 
 	//-------------------------------pineoc's start------------------//

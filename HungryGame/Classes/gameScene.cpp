@@ -70,13 +70,6 @@ bool gameScene::init()
 		this->addChild(tileLayer);
 
 		//		CCTMXTiledMap *tileMap;
-<<<<<<< HEAD
-		//CCTMXLayer *backgroundLayer;
-
-=======
-		CCTMXLayer *backgroundLayer;
-		
->>>>>>> master
 		CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
@@ -100,13 +93,8 @@ bool gameScene::init()
 		//		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
 		tileLayer->addChild(tileMap);
 
-<<<<<<< HEAD
-
-=======
 		//--------- end eunji ---------------------------
 		
-		
->>>>>>> master
 		/*
 		* make character
 		* Daun..
@@ -584,7 +572,6 @@ void gameScene::followCharacter(float dt)
 }
 
 
-<<<<<<< HEAD
 //-----------------------pineoc End-------------------------------//
 
 //----------------------eunji----------------------------
@@ -655,9 +642,3 @@ void gameScene::doNotification(CCObject *obj)
 
 }
 //--------------jiyoon end-----------------------------------------
-
-
-
-=======
-//-----------------------pineoc End-------------------------------//
->>>>>>> master
