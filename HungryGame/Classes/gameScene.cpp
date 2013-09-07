@@ -100,6 +100,17 @@ bool gameScene::init()
 		* Daun..
 		*/
 		createCharacter();
+
+
+
+		/*********************************
+		* 터치 이벤트를 받도록 함
+		* Set touch able
+		*********************************/
+		pDirector = CCDirector::sharedDirector();
+		pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+
+
 		//------------------------- Daun End -------------------------------//
 
 
@@ -235,8 +246,6 @@ void gameScene::onEnter()
 {
 	CCLayer::onEnter();
 
-	CCDirector* pDirector = CCDirector::sharedDirector();
-	pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 }
 
 /*
@@ -311,7 +320,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	}
 	*/
 
-	CCPoint tileCoord = this->tileCoorPosition(touchLocation);
+	CCPoint tileCoord = this->tileCoorPosition(playerPos);
 
 	int tileGidforWall = this->metainfo->tileGIDAt(tileCoord);
 
@@ -441,8 +450,8 @@ void gameScene::createCharacter()
 	// 속성값 읽어오기 (characterPosition)
 	CCDictionary *spawnPoint = object->objectNamed("character");
 
-	int x = ((CCString*)spawnPoint->objectForKey("x"))->intValue();
-	int y = ((CCString*)spawnPoint->objectForKey("y"))->intValue();
+	int x = ((CCString*)spawnPoint->objectForKey("x"))->intValue() + 1;
+	int y = ((CCString*)spawnPoint->objectForKey("y"))->intValue() + 1;
 
 	CCPoint characterPosition = ccp(x,y);
 
@@ -612,6 +621,15 @@ void gameScene::checkPosition(CCPoint position)
 //pause Scene pop up
 void gameScene::doPop(CCObject* pSender)
 {
+
+	/*********************************
+	* 터치를 되지 않도록 함
+	* Set touch enable
+	* Daun
+	*********************************/	
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	/***********  Daun End ********/
+
 	CCScene* pScene=PauseGameScene::scene();
 	this->addChild(pScene,2000,2000);
 
@@ -629,13 +647,21 @@ void gameScene::doNotification(CCObject *obj)
 
 		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(PauseMenu, kCCMenuHandlerPriority,true);
 		//메뉴 버튼 활성
+
+
+		/********************************
+		* Set Touch able
+		* Daun..
+		*********************************/
+		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+		/****** Daun End ********************/
+
 	}
 	else
 	{	
 		CCArray* childs = this->getChildren();
 		CCLog("noti 00");
 		CCDirector::sharedDirector()->pause();   //화면 정지
-
 		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(PauseMenu);
 		//메뉴버튼 비활성
 	}

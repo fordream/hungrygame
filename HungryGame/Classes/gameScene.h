@@ -48,6 +48,8 @@ public:
 	bool ccTouchBegan(CCTouch *, CCEvent* );
 	void onEnter();
 	int checkCrash;
+
+	CCDirector* pDirector;
 	// ------------------------------Daun End ----------------------//
 
 	//-------------------------------pineoc's start------------------//
