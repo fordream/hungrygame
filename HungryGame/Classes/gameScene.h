@@ -33,8 +33,8 @@ public:
 	CCPoint tileCoorPosition(CCPoint);
 	CCTMXLayer *backgroundLayer;
 	void createObstacle(); // 장애물 생성 위함
-	void checkPosition(CCPoint);
 	CCTMXLayer *metainfo; //은지만듬
+	CCPoint originPos;
 
 	CCPoint obstaclePosition;
 	CCSprite *obstacle;

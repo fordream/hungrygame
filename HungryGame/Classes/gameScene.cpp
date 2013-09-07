@@ -228,6 +228,7 @@ void gameScene::createObstacle()
 
 	obstacle = CCSprite::createWithTexture(obTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
 	obstacle->setPosition(obstaclePosition);
+	obstacle->setAnchorPoint(ccp(0,0));
 	this->addChild(obstacle);
 
 }
@@ -388,6 +389,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 	if(checkCrash == nothing)
 	{
+		originPos = character->getPosition();
 		// 캐릭터가 충돌하지 않은경우~
 		// 마우스 클릭한 방향으로 움직임!
 		CCPoint diff = ccpSub(touchLocation, playerPos);
@@ -425,7 +427,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	else if(checkCrash == CrashWithWall)
 	{
 		// 벽과 충돌한 경우 해야할 일
-		character->setPosition(playerPos);
+		character->setPosition(originPos);
 	}
 	else if(checkCrash == CrashWithFood)
 	{
@@ -583,38 +585,8 @@ void gameScene::followCharacter(float dt)
 
 //-----------------------pineoc End-------------------------------//
 
-//----------------------eunji----------------------------
-/*
-장애물 부딪혔는지 확인하는 함수
-*/
-void gameScene::checkPosition(CCPoint position)
-{
-	CCPoint tileCoord = this->tileCoorPosition(position);
 
-	int tileGid = this->wall->tileGIDAt(tileCoord);
 
-	if(tileGid)
-	{
-		CCDictionary *properties = tileMap->propertiesForGID(tileGid);
-
-		if(properties)
-		{
-			CCString *wall = (CCString*)properties->objectForKey("wall");
-
-			if(wall && (wall->compare("Yes") == 0 ))
-			{
-				checkCrash = CrashWithWall;
-				return;
-			}
-
-			else
-			{
-				checkCrash = nothing;
-			}
-		}
-	}
-}
-//---------------------eunji end -------------------------
 
 //--------------------jiyoon start -----------------------
 
