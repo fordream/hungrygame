@@ -200,16 +200,71 @@ bool gameScene::init()
 		//"notification"이라는 메시지가 오면 해당 함수를 실행한다.
 
 		//---------Items--------------
+		
+		//decide kind of item.
+		srand(time(0));	//random
+		int kindOfItem = rand()%4 + 1;	//range : 1~4
 
-		//Add item
-		CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
-		CCDictionary* item1 = items->objectNamed("item1");
-		//Set item's position
-		int temX = ((CCString*)item1->objectForKey("x"))->intValue();
-		int temY = ((CCString*)item1->objectForKey("y"))->intValue();
 
-		itemPosition = ccp(temX,temY);
-		this->createItem();
+		//select item decided before
+		if (kindOfItem == 1)
+		{
+			//Add item1
+			CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
+			CCDictionary* item1 = items->objectNamed("item1");
+
+			//Set item's position
+			int temX = ((CCString*)item1->objectForKey("x"))->intValue();
+			int temY = ((CCString*)item1->objectForKey("y"))->intValue();
+
+			itemPosition = ccp(temX,temY);
+			this->createItem1();
+
+		}
+		else if (kindOfItem == 2)
+		{
+			//Add item2
+			CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
+			CCDictionary* item2 = items->objectNamed("item2");
+
+			//Set item's position
+			int temX = ((CCString*)item2->objectForKey("x"))->intValue();
+			int temY = ((CCString*)item2->objectForKey("y"))->intValue();
+
+			itemPosition = ccp(temX,temY);
+			this->createItem2();
+
+		}
+		else if (kindOfItem == 3)
+		{
+			//Add item3
+			CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
+			CCDictionary* item3 = items->objectNamed("item3");
+
+			//Set item's position
+			int temX = ((CCString*)item3->objectForKey("x"))->intValue();
+			int temY = ((CCString*)item3->objectForKey("y"))->intValue();
+
+			itemPosition = ccp(temX,temY);
+			this->createItem3();
+
+		}
+		else if (kindOfItem == 4)
+		{
+			//Add item4
+			CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
+			CCDictionary* item4 = items->objectNamed("item4");
+
+			//Set item's position
+			int temX = ((CCString*)item4->objectForKey("x"))->intValue();
+			int temY = ((CCString*)item4->objectForKey("y"))->intValue();
+
+			itemPosition = ccp(temX,temY);
+			this->createItem4();
+
+		}
+
+
 
 		//-------------jiyoon End-------------------------------
 
@@ -665,8 +720,42 @@ void gameScene::doNotification(CCObject *obj)
 }
 
 
-//Create item
-void gameScene::createItem()
+//Create item 4 kinds
+//Item1 - 
+void gameScene::createItem1()
+{
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("down.png");
+
+	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
+	item->setPosition(itemPosition);
+	item->setAnchorPoint(ccp(0,0));
+	this->addChild(item);
+}
+
+//Item2 -
+void gameScene::createItem2()
+{
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("left.png");
+
+	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
+	item->setPosition(itemPosition);
+	item->setAnchorPoint(ccp(0,0));
+	this->addChild(item);
+}
+
+//Item3 -
+void gameScene::createItem3()
+{
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("right.png");
+
+	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
+	item->setPosition(itemPosition);
+	item->setAnchorPoint(ccp(0,0));
+	this->addChild(item);
+}
+
+//Item4
+void gameScene::createItem4()
 {
 	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("dog.png");
 
@@ -675,5 +764,4 @@ void gameScene::createItem()
 	item->setAnchorPoint(ccp(0,0));
 	this->addChild(item);
 }
-
 //--------------jiyoon end-----------------------------------------

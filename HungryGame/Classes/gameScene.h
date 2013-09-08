@@ -80,7 +80,10 @@ public:
 	CCMenu* PauseMenu;// pause button menu
 
 	CCPoint itemPosition;
-	void createItem();
+	void createItem1();
+	void createItem2();
+	void createItem3();
+	void createItem4();
 	//------------------JIYOON END------------------------------------
 
 };

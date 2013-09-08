@@ -1,13 +1,17 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿Build started 2013-09-07 오후 10:04:31.
+=======
+﻿Build started 2013-09-08 오후 2:08:23.
+>>>>>>> create random item (4 kinds)
      1>Project "C:\Users\jiyun\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\VC\bin\CL.exe /c /I. /I..\Classes /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx\include /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx\kazmath\include /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx\platform\win32 /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32 /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32\OGLES /IC:\Users\jiyun\Documents\GitHub\hungrygame\external /IC:\Users\jiyun\Documents\GitHub\hungrygame\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\gameEndScene.cpp ..\Classes\gameScene.cpp ..\Classes\stageSelectScene.cpp
          gameScene.cpp
      1>c:\users\jiyun\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(73): warning C4101: 'objectgroup' : unreferenced local variable
-     1>c:\users\jiyun\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(481): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\jiyun\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(537): warning C4305: 'argument' : truncation from 'double' to 'float'
          Generating Code...
-     1>c:\users\jiyun\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(448): warning C4700: uninitialized local variable 'checkSpriteFood' used
+     1>c:\users\jiyun\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(504): warning C4700: uninitialized local variable 'checkSpriteFood' used
          Compiling...
          stageSelectScene.cpp
          gameEndScene.cpp
@@ -50,6 +54,10 @@
          Debug.win32\music.obj
          Debug.win32\PauseGameScene.obj
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+     1>Debug.win32\music.obj : warning LNK4042: object specified more than once; extras ignored
+>>>>>>> create random item (4 kinds)
          HungryGame.win32.vcxproj -> C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
      1>Done Building Project "C:\Users\jiyun\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" (Build target(s)).
 =======
@@ -60,7 +68,11 @@
 빌드했습니다.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Time Elapsed 00:00:11.88
 =======
 경과 시간: 00:00:03.77
 >>>>>>> commit!!!!!!!!!!!
+=======
+Time Elapsed 00:00:17.55
+>>>>>>> create random item (4 kinds)
