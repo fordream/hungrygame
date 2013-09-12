@@ -9,9 +9,17 @@
 #include "mainScene.h"
 #include "gameScene.h"
 #include "PauseGameScene.h"
+#include "gameResultScene.h"
 using namespace cocos2d;
 
 enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
+gameScene::~gameScene()
+{
+	delete foodSpriteArray;
+	delete foodFollowArray;
+	delete onCheckFoodDisplay;
+	delete tomakeFood;
+}
 CCScene* gameScene::scene()
 {
 	CCScene * scene = NULL;
@@ -49,7 +57,7 @@ bool gameScene::init()
 		//////////////////////////////////////////////////////////////////////////
 		// add your codes below...
 		//////////////////////////////////////////////////////////////////////////
-		foodSpriteArray = new CCArray; //food sprite array dinamic cast
+		foodSpriteArray = new CCArray; //food sprite array dynamic cast
 		foodFollowArray = new CCArray;
 		onCheckFoodDisplay = new CCArray;
 		tomakeFood = new CCArray;
@@ -70,7 +78,7 @@ bool gameScene::init()
 		this->addChild(tileLayer);
 
 		//		CCTMXTiledMap *tileMap;
-		CCTMXObjectGroup *objectgroup;
+		//CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
 
@@ -124,12 +132,20 @@ bool gameScene::init()
 		/*
 		pineoc's food testing part --------------------------------------------------------------
 		*/
-
+		//foods
 		foods = tileMap->objectGroupNamed("foods");
 		CCDictionary *food1point = foods->objectNamed("food1");
 		CCDictionary *food2point = foods->objectNamed("food2");
 		CCDictionary *food3point = foods->objectNamed("food3");
 		CCDictionary *food4point = foods->objectNamed("food4");
+		//
+		//counter
+		CCTMXObjectGroup *counterGroup = tileMap->objectGroupNamed("endPoint");
+		CCDictionary *_counterPoint = counterGroup->objectNamed("counter");
+		int counterX = ((CCString*)_counterPoint->objectForKey("x"))->intValue();
+		int counterY = ((CCString*)_counterPoint->objectForKey("y"))->intValue();
+		counterPoint = ccp(counterX,counterY);
+		this->createCounter();
 
 		//
 
@@ -158,6 +174,7 @@ bool gameScene::init()
 		foodcount = foodSpriteArray->count();
 
 		this->schedule(schedule_selector(gameScene::updateFoodSprte));
+		this->schedule(schedule_selector(gameScene::check_counter));
 		//this->schedule(schedule_selector(gameScene::followCharacter));
 		//----------------------------------------------------------------------------------------
 
@@ -351,8 +368,6 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	CCPoint touchLocation = pTouch->getLocation();
 	touchLocation = this->convertToNodeSpace(touchLocation);
 
-	CCSprite* checkSpriteFood;//for checkfood
-
 	CCPoint playerPos = character->getPosition();
 
 	int checkCrash = nothing;
@@ -508,7 +523,6 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	else if(checkCrash == CrashWithFood)
 	{
 		// 음식과 충돌한 경우 해야할 일
-		delFood(checkSpriteFood);
 
 	}
 	else if(checkCrash == CrashWithItem)
@@ -600,11 +614,6 @@ bool gameScene::checkDup(CCSprite* checkfood)
 		return false;
 	//return true;
 }
-void gameScene::delFood(CCObject* pSender)
-{
-	CCSprite* del = (CCSprite*)pSender;
-	this->removeChild(del);
-}
 
 /*
 음식 재료를 먹었을때 없어지게 함.
@@ -654,10 +663,40 @@ void gameScene::followCharacter(float dt)
 		CCSprite* foodf = dynamic_cast<CCSprite*>(foodFollowArray->objectAtIndex(i));
 		foodf->setPosition(tmp1);
 		tmp2=beforeMoveCharPoint[i];
-		tmp1=tmp2;
-		
+		tmp1=tmp2;	
 	}
-
+}
+void gameScene::check_counter(float dt)
+{// check counter if crash with character and counter
+	CCRect characterRect = CCRectMake(character->getPosition().x - (character->getContentSize().width/2),
+		character->getPosition().y -(character->getContentSize().height/2),
+		character->getContentSize().width,
+		character->getContentSize().height);
+	CCRect counterRect = CCRectMake(counter->getPosition().x - (counter->getContentSize().width/2),
+		counter->getPosition().y -(counter->getContentSize().height/2),
+		counter->getContentSize().width,
+		counter->getContentSize().height);
+	if(characterRect.intersectsRect(counterRect))
+	{// call gameResultScene
+		this->go_endResultScene();
+	}
+}
+void gameScene::createCounter()
+{
+	CCTexture2D *counterTexture = CCTextureCache::sharedTextureCache()->addImage("map/counter.jpg");
+	CCSprite* _counter = CCSprite::createWithTexture(counterTexture,CCRectMake(0, 0, 48, 48));
+	_counter->setPosition(counterPoint);
+	_counter->setAnchorPoint(ccp(0,0));
+	counter = _counter;
+	this->addChild(counter);
+}
+void gameScene::go_endResultScene()
+{
+	CCScene *pScene = CCScene::create();
+	gameResultScene *layer = new gameResultScene(result,stageidx);
+	layer->autorelease();
+	pScene->addChild(layer);
+	CCDirector::sharedDirector()->replaceScene(pScene);
 
 }
 

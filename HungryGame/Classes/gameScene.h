@@ -15,7 +15,7 @@ class gameScene : public cocos2d::CCLayer
 {
 public:
 	//gameScene();
-	//~gameScene();
+	~gameScene();
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();  
 
@@ -54,12 +54,12 @@ public:
 
 	//-------------------------------pineoc's start------------------//
 	void createFood(CCPoint,char*); //food create item, (point, imageName)
-	void linktochar_food();
 	bool checkDup(CCSprite*); // check duplication about tile 
-	void delFood(CCObject*);
 	void updateFoodSprte(float dt);
 	void followCharacter(float);
-
+	void check_counter(float);
+	void createCounter();
+	void go_endResultScene();
 	CCTMXObjectGroup *foods; // group for foods object
 	CCArray* tomakeFood; // 만들어야하는 음식재료 목록, array that have to make food ingrediant list
 	CCArray* onCheckFoodDisplay; // 위에 음식을 먹었는지 안먹었는지 체크할 배열,
@@ -70,8 +70,11 @@ public:
 	int foodcount; // for food count
 	int foodFollowCnt;
 	CCPoint beforeMoveCharPoint[10];
+	CCSprite* counter;
+	CCPoint counterPoint;
 
-	//CCTMXLayer* foodLayer; // for food object layer
+	int result;
+	int stageidx;
 	//-----------------------------------------------------------------//
 
 	//--------------------JIYOON-------------------------------------

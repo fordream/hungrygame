@@ -11,13 +11,13 @@ gameResultScene::gameResultScene(int _result,int _stageidx)
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
-	CCSprite* background = CCSprite::create("gameResultScene_bg.png");
+	CCSprite* background = CCSprite::create("img\\endResult\\end_bg.png");
 	background->setPosition(ccp(size.width/2,size.height/2));
 	this->addChild(background,0);
 
-	CCSprite *success = CCSprite::create("result_image.png");//image for cook dish
-	success->setPosition(ccp(size.width/2, size.height/0.8));
-	this->addChild(success,2);
+	//CCSprite *result = CCSprite::create("img\\endResult\\result_image.png");//image for cook dish
+	//result->setPosition(ccp(size.width/2, size.height/0.8));
+	//this->addChild(result,2);
 
 	//-------------------------------
 	// put the image food ingrediant
