@@ -83,10 +83,14 @@ public:
 	CCMenu* PauseMenu;// pause button menu
 
 	CCPoint itemPosition;
+	CCSprite * item1,*item2, *item3, *item4;
 	void createItem1();
 	void createItem2();
 	void createItem3();
 	void createItem4();
+
+
+	void check_item(float dt);	//check collision between item and character
 	//------------------JIYOON END------------------------------------
 
 };

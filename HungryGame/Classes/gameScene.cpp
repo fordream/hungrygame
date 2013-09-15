@@ -102,7 +102,7 @@ bool gameScene::init()
 		tileLayer->addChild(tileMap);
 
 		//--------- end eunji ---------------------------
-		
+
 		/*
 		* make character
 		* Daun..
@@ -217,17 +217,18 @@ bool gameScene::init()
 		//"notification"이라는 메시지가 오면 해당 함수를 실행한다.
 
 		//---------Items--------------
-		
+
 		//decide kind of item.
 		srand(time(0));	//random
 		int kindOfItem = rand()%4 + 1;	//range : 1~4
+		item1 =NULL, item2 = NULL, item3 =NULL, item4=NULL;
+		CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
 
 
 		//select item decided before
 		if (kindOfItem == 1)
 		{
 			//Add item1
-			CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
 			CCDictionary* item1 = items->objectNamed("item1");
 
 			//Set item's position
@@ -241,7 +242,6 @@ bool gameScene::init()
 		else if (kindOfItem == 2)
 		{
 			//Add item2
-			CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
 			CCDictionary* item2 = items->objectNamed("item2");
 
 			//Set item's position
@@ -255,7 +255,6 @@ bool gameScene::init()
 		else if (kindOfItem == 3)
 		{
 			//Add item3
-			CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
 			CCDictionary* item3 = items->objectNamed("item3");
 
 			//Set item's position
@@ -269,7 +268,6 @@ bool gameScene::init()
 		else if (kindOfItem == 4)
 		{
 			//Add item4
-			CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
 			CCDictionary* item4 = items->objectNamed("item4");
 
 			//Set item's position
@@ -281,7 +279,7 @@ bool gameScene::init()
 
 		}
 
-
+		this->schedule(schedule_selector(gameScene::check_item));
 
 		//-------------jiyoon End-------------------------------
 
@@ -382,7 +380,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	* 벽과 충돌했는지 확인하는 공간입니다
 	* To Eunji
 	*/
-	
+
 	//이부분은 수정 필요함. 다운코드 수정해서 쓸라그랬는데 잘 안되네..
 	/*
 	CCPoint diffForWall = ccpSub(touchLocation, playerPos);
@@ -390,25 +388,25 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 	if(abs(diffForWall.x) > abs(diffForWall.y))
 	{
-		if(diffForWall.x > 0)
-		{
-			newPlayerPos.x += tileMap->getTileSize().width;
-		}
-		
-		else
-		{
-			newPlayerPos.x -= tileMap->getTileSize().width;
-		}
+	if(diffForWall.x > 0)
+	{
+	newPlayerPos.x += tileMap->getTileSize().width;
+	}
 
-		if(diffForWall.y > 0)
-		{
-			newPlayerPos.y += tileMap->getTileSize().height;
-		}
-		
-		else
-		{
-			newPlayerPos.y -= tileMap->getTileSize().height;
-		}
+	else
+	{
+	newPlayerPos.x -= tileMap->getTileSize().width;
+	}
+
+	if(diffForWall.y > 0)
+	{
+	newPlayerPos.y += tileMap->getTileSize().height;
+	}
+
+	else
+	{
+	newPlayerPos.y -= tileMap->getTileSize().height;
+	}
 	}
 	*/
 
@@ -657,7 +655,7 @@ void gameScene::followCharacter(float dt)
 	CCObject* object = NULL;
 	CCPoint tmp1=beforeMoveCharPoint[0];
 	CCPoint tmp2;
-	
+
 	for(int i=1;i<foodFollowArray->count();i++)
 	{
 		CCSprite* foodf = dynamic_cast<CCSprite*>(foodFollowArray->objectAtIndex(i));
@@ -681,6 +679,8 @@ void gameScene::check_counter(float dt)
 		this->go_endResultScene();
 	}
 }
+
+
 void gameScene::createCounter()
 {
 	CCTexture2D *counterTexture = CCTextureCache::sharedTextureCache()->addImage("map/counter.jpg");
@@ -768,7 +768,8 @@ void gameScene::createItem1()
 	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
 	item->setPosition(itemPosition);
 	item->setAnchorPoint(ccp(0,0));
-	this->addChild(item);
+	item1 = item;
+	this->addChild(item1);
 }
 
 //Item2 -
@@ -779,7 +780,8 @@ void gameScene::createItem2()
 	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
 	item->setPosition(itemPosition);
 	item->setAnchorPoint(ccp(0,0));
-	this->addChild(item);
+	item2 = item;
+	this->addChild(item2);
 }
 
 //Item3 -
@@ -790,7 +792,8 @@ void gameScene::createItem3()
 	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
 	item->setPosition(itemPosition);
 	item->setAnchorPoint(ccp(0,0));
-	this->addChild(item);
+	item3 = item;
+	this->addChild(item3);
 }
 
 //Item4
@@ -801,6 +804,69 @@ void gameScene::createItem4()
 	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
 	item->setPosition(itemPosition);
 	item->setAnchorPoint(ccp(0,0));
-	this->addChild(item);
+	item4 = item;
+	this->addChild(item4);
+}
+
+void gameScene::check_item(float dt)
+{
+	//check collision - item, character
+	CCRect characterRect = CCRectMake(character->getPosition().x - (character->getContentSize().width/2),
+		character->getPosition().y - (character->getContentSize().height/2),
+		character->getContentSize().width, character->getContentSize().height);
+	
+	CCRect item1Rect;
+	CCRect item2Rect;
+	CCRect item3Rect;
+	CCRect item4Rect;
+	if(item1 !=NULL)
+	{
+		item1Rect = CCRectMake(item1->getPosition().x - (item1->getContentSize().width/2),
+			item1->getPosition().y - (item1->getContentSize().height/2),
+			item1->getContentSize().width, item1->getContentSize().height);
+	}
+	if(item2 !=NULL)
+	{
+		item2Rect = CCRectMake(item2->getPosition().x - (item2->getContentSize().width/2),
+			item2->getPosition().y - (item2->getContentSize().height/2),
+			item2->getContentSize().width, item2->getContentSize().height);
+	}
+	if(item3 !=NULL)
+	{
+		item3Rect = CCRectMake(item3->getPosition().x - (item3->getContentSize().width/2),
+			item3->getPosition().y - (item3->getContentSize().height/2),
+			item3->getContentSize().width, item3->getContentSize().height);
+	}
+	if(item4 !=NULL)
+	{
+		item4Rect = CCRectMake(item4->getPosition().x - (item4->getContentSize().width/2),
+			item4->getPosition().y - (item4->getContentSize().height/2),
+			item4->getContentSize().width, item4->getContentSize().height);
+	}
+
+	if(characterRect.intersectsRect(item1Rect))
+	{
+		//slow down effect
+		this->removeChild(item1);
+		item1=NULL;
+	}
+	if(characterRect.intersectsRect(item2Rect))
+	{
+		//superpower effect
+		this->removeChild(item2);
+		item2=NULL;
+	}
+	if(characterRect.intersectsRect(item3Rect))
+	{
+		//energy up effect
+		this->removeChild(item3);
+		item3=NULL;
+	}
+	if(characterRect.intersectsRect(item4Rect))
+	{
+		//?? effect
+		this->removeChild(item4);
+		item4=NULL;
+	}
 }
 //--------------jiyoon end-----------------------------------------
