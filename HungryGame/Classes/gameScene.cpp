@@ -13,6 +13,7 @@
 using namespace cocos2d;
 
 enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
+enum DIRCTION { UP, DOWN, LEFT, RIGHT};
 gameScene::~gameScene()
 {
 	delete foodSpriteArray;
@@ -109,7 +110,7 @@ bool gameScene::init()
 		*/
 		createCharacter();
 
-
+		moveDirection = UP;
 
 		/*********************************
 		* 터치 이벤트를 받도록 함
@@ -118,7 +119,7 @@ bool gameScene::init()
 		pDirector = CCDirector::sharedDirector();
 		pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 
-
+		this->schedule(schedule_selector(gameScene::moveCharacter));
 		//------------------------- Daun End -------------------------------//
 
 
@@ -331,40 +332,15 @@ void gameScene::onEnter()
 	CCLayer::onEnter();
 
 }
-
 /*
-* bool gameScene::ccTouchBegan(CCTouch *, CCEvent *)
-* when touch start, this function work
-* 화면에 손가락이 닿을때
-* Daun..
+*	캐릭터 이동시키는 함수
+*
 */
-bool gameScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event)
+void gameScene::moveCharacter(float dt)
 {
-	beforeMoveCharPoint[0] = character->getPosition();
-	foodFollowCnt=1;
-	CCObject* ob = NULL;
-	CCARRAY_FOREACH(foodFollowArray,ob)
-	{
-		CCSprite* foodFollow = dynamic_cast<CCSprite*>(ob);
-		beforeMoveCharPoint[foodFollowCnt] = foodFollow->getPosition();
-		foodFollowCnt++;
-	}
-	return true;
-}
-
-/*
-* void gameScene::ccTouchEnded(CCTouch *, CCEvent *)
-* When touch end, this function work
-* now character is moved to way w
-* 화면에서 손가락이 떼어질때
-* 현재에는 캐릭터를 중심으로 화면의 어느 부분이 터치되었느냐에 따라
-* 캐릭터가 이동합니다.
-* Daun..
-*/
-void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
-{
-	CCPoint touchLocation = pTouch->getLocation();
-	touchLocation = this->convertToNodeSpace(touchLocation);
+	// HAVETODO
+	// 캐릭터 이동시킴!!
+	
 
 	CCPoint playerPos = character->getPosition();
 
@@ -478,39 +454,26 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 	if(checkCrash == nothing)
 	{
-		originPos = character->getPosition();
-		// 캐릭터가 충돌하지 않은경우~
-		// 마우스 클릭한 방향으로 움직임!
-		CCPoint diff = ccpSub(touchLocation, playerPos);
-
-		if (abs(diff.x) > abs(diff.y)) {
-			if (diff.x > 0) {
-				playerPos.x += tileMap->getTileSize().width;
-
-				// 캐릭터의 방향을 바꾸어준다.
-				character->setFlipX(true);
-			} else {
-				playerPos.x -= tileMap->getTileSize().width;
-
-				// 캐릭터의 방향을 바꾸어준다.
-				character->setFlipX(false);
-			}
-		} else {
-			if (diff.y > 0) {
-				playerPos.y += tileMap->getTileSize().height;
-			} else {
-				playerPos.y -= tileMap->getTileSize().height;
-			}
-		}
-
-		if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
-			playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
-			playerPos.y >= 0 &&
-			playerPos.x >= 0 )
+		if(moveDirection == UP)
 		{
-			// 캐릭터의 새로운 위치 지정
-			character->setPosition( playerPos );
+			playerPos.y += tileMap->getTileSize().height;
 		}
+		else if (moveDirection == DOWN)
+		{
+			playerPos.y -= tileMap->getTileSize().height;
+		}
+		else if (moveDirection == LEFT)
+		{
+			playerPos.x -= tileMap->getTileSize().width;
+		}
+		else if (moveDirection == RIGHT)
+		{
+			playerPos.x += tileMap->getTileSize().width;
+		}
+		else
+		{
+		}
+		
 
 	}
 	else if(checkCrash == CrashWithWall)
@@ -527,6 +490,81 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	{
 		// 아이템과 충돌한 경우 해야할 일
 	}
+
+	if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
+			playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
+			playerPos.y >= 0 &&
+			playerPos.x >= 0 )
+		{
+			// 캐릭터의 새로운 위치 지정
+			character->setPosition( playerPos );
+		}
+	Sleep(1000);
+
+}
+/*
+* bool gameScene::ccTouchBegan(CCTouch *, CCEvent *)
+* when touch start, this function work
+* 화면에 손가락이 닿을때
+* Daun..
+*/
+bool gameScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event)
+{
+	beforeMoveCharPoint[0] = character->getPosition();
+	foodFollowCnt=1;
+	CCObject* ob = NULL;
+	CCARRAY_FOREACH(foodFollowArray,ob)
+	{
+		CCSprite* foodFollow = dynamic_cast<CCSprite*>(ob);
+		beforeMoveCharPoint[foodFollowCnt] = foodFollow->getPosition();
+		foodFollowCnt++;
+	}
+	return true;
+}
+
+/*
+* void gameScene::ccTouchEnded(CCTouch *, CCEvent *)
+* When touch end, this function work
+* now character is moved to way w
+* 화면에서 손가락이 떼어질때
+* 현재에는 캐릭터를 중심으로 화면의 어느 부분이 터치되었느냐에 따라
+* 캐릭터가 이동합니다.
+* Daun..
+*/
+void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
+{
+	CCPoint playerPos = character->getPosition();
+	CCPoint touchLocation = pTouch->getLocation();
+	touchLocation = this->convertToNodeSpace(touchLocation);
+
+	originPos = character->getPosition();
+		// 캐릭터가 충돌하지 않은경우~
+		// 마우스 클릭한 방향으로 움직임!
+		CCPoint diff = ccpSub(touchLocation, playerPos);
+
+		if (abs(diff.x) > abs(diff.y)) {
+			if (diff.x > 0) {
+				
+				moveDirection = RIGHT;
+				// 캐릭터의 방향을 바꾸어준다.
+				character->setFlipX(true);
+			} else {
+				
+				moveDirection = LEFT;
+				// 캐릭터의 방향을 바꾸어준다.
+				character->setFlipX(false);
+			}
+		} else {
+			if (diff.y > 0) {
+				
+				moveDirection = UP;
+			} else {
+				
+				moveDirection = DOWN;
+			}
+		}
+
+		
 }
 
 void gameScene::createCharacter()

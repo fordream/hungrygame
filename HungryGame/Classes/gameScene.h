@@ -48,8 +48,9 @@ public:
 	bool ccTouchBegan(CCTouch *, CCEvent* );
 	void onEnter();
 	int checkCrash;
-
+	void moveCharacter(float);
 	CCDirector* pDirector;
+	int moveDirection;
 	// ------------------------------Daun End ----------------------//
 
 	//-------------------------------pineoc's start------------------//

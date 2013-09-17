@@ -1,37 +1,4 @@
-﻿Build started 2013-09-15 오후 5:42:18.
-     1>Project "C:\Users\jiyun\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\VC\bin\CL.exe /c /I. /I..\Classes /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx\include /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx\kazmath\include /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx\platform\win32 /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32 /IC:\Users\jiyun\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32\OGLES /IC:\Users\jiyun\Documents\GitHub\hungrygame\external /IC:\Users\jiyun\Documents\GitHub\hungrygame\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\gameScene.cpp music.cpp
-         gameScene.cpp
-     1>c:\users\jiyun\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(556): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jiyun\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(659): warning C4018: '<' : signed/unsigned mismatch
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         music.cpp
-       Link:
-         C:\Program Files (x86)\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\ libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.lib" /MACHINE:X86 Debug.win32\AppDelegate.obj
-         Debug.win32\BuildingScene.obj
-         Debug.win32\character.obj
-         Debug.win32\character_main.obj
-         Debug.win32\food.obj
-         Debug.win32\gameEndScene.obj
-         Debug.win32\gameResultScene.obj
-         Debug.win32\gameScene.obj
-         Debug.win32\HelloWorldScene.obj
-         Debug.win32\HelpScene.obj
-         Debug.win32\Item.obj
-         Debug.win32\mainScene.obj
-         Debug.win32\music.obj
-         Debug.win32\optionScene.obj
-         Debug.win32\stageSelectScene.obj
-         Debug.win32\MakerInfoScene.obj
-         Debug.win32\Obstacle.obj
-         Debug.win32\main.obj
-         Debug.win32\music.obj
-         Debug.win32\PauseGameScene.obj
-         HungryGame.win32.vcxproj -> C:\Users\jiyun\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
-     1>Done Building Project "C:\Users\jiyun\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:04.57
+﻿  gameScene.cpp
+d:\haniumproject\hungrygame\hungrygame\classes\gamescene.cpp(594): warning C4305: 'argument' : truncation from 'double' to 'float'
+d:\haniumproject\hungrygame\hungrygame\classes\gamescene.cpp(697): warning C4018: '<' : signed/unsigned mismatch
+  HungryGame.win32.vcxproj -> D:\haniumProject\hungrygame\Debug.win32\HungryGame.win32.exe
