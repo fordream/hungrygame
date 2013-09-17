@@ -39,6 +39,16 @@ public:
 	CCPoint obstaclePosition;
 	CCSprite *obstacle;
 	CCTMXLayer *wall;
+
+	//------------------------eunji gauge----------------------------//
+
+	CCSprite *gaugeBar;
+	CCSprite *gaugeHeart;
+
+	int character_XP;
+
+	//------------------------eunji end------------------------------//
+
 	// --------------------------------- Daun Start -------------------//
 
 	CCTMXTiledMap *tileMap; // tileMap name to select stage

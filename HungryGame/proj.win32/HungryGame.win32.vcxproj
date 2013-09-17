@@ -180,6 +180,8 @@
     <Image Include="dog.png" />
     <Image Include="down.png" />
     <Image Include="down_click.png" />
+    <Image Include="game_heart.png" />
+    <Image Include="game_status_bar.png" />
     <Image Include="HelloWorld.png" />
     <Image Include="helpScene_bg.png" />
     <Image Include="left.png" />

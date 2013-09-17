@@ -286,6 +286,12 @@
     <Image Include="map\metaset.png">
       <Filter>resource</Filter>
     </Image>
+    <Image Include="game_status_bar.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="game_heart.png">
+      <Filter>resource</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="background.mp3">

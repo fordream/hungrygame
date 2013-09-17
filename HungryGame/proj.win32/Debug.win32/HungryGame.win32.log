@@ -1,4 +1,9 @@
-﻿  gameScene.cpp
-d:\haniumproject\hungrygame\hungrygame\classes\gamescene.cpp(594): warning C4305: 'argument' : truncation from 'double' to 'float'
-d:\haniumproject\hungrygame\hungrygame\classes\gamescene.cpp(697): warning C4018: '<' : signed/unsigned mismatch
-  HungryGame.win32.vcxproj -> D:\haniumProject\hungrygame\Debug.win32\HungryGame.win32.exe
+﻿Build started 2013-09-17 오후 11:32:46.
+     1>Project "C:\Users\eunji\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         HungryGame.win32.vcxproj -> C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
+     1>Done Building Project "C:\Users\eunji\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.17

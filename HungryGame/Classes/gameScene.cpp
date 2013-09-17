@@ -196,6 +196,23 @@ bool gameScene::init()
 
 		//----------------------------------------------------
 
+		//----------------eunji add gauge --------------------//
+
+		character_XP = 100;
+
+		gaugeBar = CCSprite::create("game_status_bar.png");
+		gaugeBar->setPosition(ccp(size.width/2, size.height*0.7));
+
+		tileMap->addChild(gaugeBar,2);
+
+		gaugeHeart = CCSprite::create("game_heart.png");
+		gaugeHeart->setPosition(ccp(size.width - 20, size.height*0.7));
+
+		tileMap->addChild(gaugeHeart,3);
+
+
+		//----------------eunji end --------------------------//
+
 
 		//--------------jiyoon start----------------
 		//-------Pause btn-------------------
@@ -478,8 +495,26 @@ void gameScene::moveCharacter(float dt)
 	}
 	else if(checkCrash == CrashWithWall)
 	{
+		CCSize size = CCDirector::sharedDirector()->getWinSize();
+
 		// 벽과 충돌한 경우 해야할 일
 		character->setPosition(originPos);
+
+		character_XP -= 10;
+
+		int gaugeSize_part = 441/10; // 게이지바 사이즈의 10퍼센트 길이
+		int gaugeNum = (gaugeSize_part * ((100 - character_XP) / 10));
+
+		if( character_XP > 0 )
+		{
+			gaugeHeart->setPositionX(size.width - (20 + gaugeNum)); // 10퍼센트씩 하트를 옮김.
+		}
+
+		else
+		{
+			//게임을 끝낸다
+			gaugeHeart->setPositionX(20);
+		}
 	}
 	else if(checkCrash == CrashWithFood)
 	{
