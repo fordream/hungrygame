@@ -176,6 +176,7 @@ bool gameScene::init()
 
 		this->schedule(schedule_selector(gameScene::updateFoodSprte));
 		this->schedule(schedule_selector(gameScene::check_counter));
+		this->schedule(schedule_selector(gameScene::followCharacter));
 		//this->schedule(schedule_selector(gameScene::followCharacter));
 		//----------------------------------------------------------------------------------------
 
@@ -431,26 +432,15 @@ void gameScene::moveCharacter(float dt)
 	* 음식과 충돌했는지 확인하는 공간입니다
 	check collision food and character
 	*/
-	// code from here
-	//if(!checkDup(playerPos))
-	//{//using boundingbox to check collision
-	/*	for(int i=0;i<foodcount;i++)
+	beforeMoveCharPoint[0] = character->getPosition();
+	foodFollowCnt=1;
+	CCObject* ob = NULL;
+	CCARRAY_FOREACH(foodFollowArray,ob)
 	{
-	checkSpriteFood = (CCSprite*)foodSpriteArray->objectAtIndex(i);
-	CCRect foodbounding = checkSpriteFood->boundingBox();
-	CCRect charbounding = character->boundingBox();
-	if(foodbounding.intersectsRect(charbounding))
-	{
-	checkCrash = CrashWithFood;
-	break;
+		CCSprite* foodFollow = dynamic_cast<CCSprite*>(ob);
+		beforeMoveCharPoint[foodFollowCnt] = foodFollow->getPosition();
+		foodFollowCnt++;
 	}
-	else
-	checkCrash = nothing;
-	}*/
-
-	//	}
-	//updateFood()함수로 대체
-	followCharacter(1.0);
 
 
 	/* End pineoc */
@@ -545,15 +535,7 @@ void gameScene::moveCharacter(float dt)
 */
 bool gameScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event)
 {
-	beforeMoveCharPoint[0] = character->getPosition();
-	foodFollowCnt=1;
-	CCObject* ob = NULL;
-	CCARRAY_FOREACH(foodFollowArray,ob)
-	{
-		CCSprite* foodFollow = dynamic_cast<CCSprite*>(ob);
-		beforeMoveCharPoint[foodFollowCnt] = foodFollow->getPosition();
-		foodFollowCnt++;
-	}
+
 	return true;
 }
 
