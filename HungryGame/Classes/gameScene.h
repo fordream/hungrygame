@@ -71,6 +71,7 @@ public:
 	void check_counter(float);
 	void createCounter();
 	void go_endResultScene();
+	void createFoodShelf();
 	CCTMXObjectGroup *foods; // group for foods object
 	CCArray* tomakeFood; // 만들어야하는 음식재료 목록, array that have to make food ingrediant list
 	CCArray* onCheckFoodDisplay; // 위에 음식을 먹었는지 안먹었는지 체크할 배열,

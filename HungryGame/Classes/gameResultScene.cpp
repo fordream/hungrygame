@@ -19,6 +19,15 @@ gameResultScene::gameResultScene(int _result,int _stageidx)
 	//result->setPosition(ccp(size.width/2, size.height/0.8));
 	//this->addChild(result,2);
 
+	CCMenuItemImage *btnEnd = CCMenuItemImage::create(
+		"img/endResult/main_btn_endgame.png", "img/endResult/main_btn_endgame_n.png", this, menu_selector(gameResultScene::menu_goEndScene));
+
+	btnEnd->setPosition(ccp(size.width*0.8, size.height*0.1));
+
+	CCMenu* endMenu = CCMenu::create(btnEnd, NULL);
+	endMenu->setPosition(CCPointZero);
+
+	this->addChild(endMenu, 2);
 	//-------------------------------
 	// put the image food ingrediant
 	//-------------------------------

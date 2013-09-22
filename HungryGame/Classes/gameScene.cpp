@@ -67,6 +67,9 @@ bool gameScene::init()
 
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
+		CCSprite* bg = CCSprite::create("img\\game\\game_bg.png");
+		bg->setPosition(ccp(size.width/2,size.height/2));
+		this->addChild(bg,0);
 
 
 		//------------------------- Daun Start -------------------------------//
@@ -78,14 +81,12 @@ bool gameScene::init()
 		CCLayer *tileLayer = CCLayer::create();
 		this->addChild(tileLayer);
 
-		//		CCTMXTiledMap *tileMap;
-		//CCTMXObjectGroup *objectgroup;
 
 		// 맵 파일 불러오기
 
 		tileMap = CCTMXTiledMap::create("map/GameMap.tmx");
 
-		//	tileMap->setPosition(size.width * 0.05, size.height * 0.35);
+		//tileMap->setPosition(size.width * 0.05, size.height * 0.06);
 		// -> 위에 줄이 맵 위치 이동시키는거임! 일단은 0,0으로 두는게 좋겠다!
 		//	this->addChild(tileMap,1,2);
 
@@ -134,6 +135,9 @@ bool gameScene::init()
 		pineoc's food testing part --------------------------------------------------------------
 		*/
 		//foods
+		this->createFoodShelf();
+
+
 		foods = tileMap->objectGroupNamed("foods");
 		CCDictionary *food1point = foods->objectNamed("food1");
 		CCDictionary *food2point = foods->objectNamed("food2");
@@ -202,12 +206,12 @@ bool gameScene::init()
 		character_XP = 100;
 
 		gaugeBar = CCSprite::create("game_status_bar.png");
-		gaugeBar->setPosition(ccp(size.width/2, size.height*0.7));
+		gaugeBar->setPosition(ccp(size.width/2, size.height*0.75));
 
 		tileMap->addChild(gaugeBar,2);
 
 		gaugeHeart = CCSprite::create("game_heart.png");
-		gaugeHeart->setPosition(ccp(size.width - 20, size.height*0.7));
+		gaugeHeart->setPosition(ccp(size.width - 20, size.height*0.75));
 
 		tileMap->addChild(gaugeHeart,3);
 
@@ -221,7 +225,7 @@ bool gameScene::init()
 			"img/game/game_btn_pause.png", "img/game/game_btn_pause.png", this, menu_selector(gameScene::doPop));
 		CC_BREAK_IF(! btnPause);
 
-		btnPause->setPosition(ccp(size.width*0.5, size.height*0.9));
+		btnPause->setPosition(ccp(size.width*0.8, size.height*0.9));
 
 		PauseMenu = CCMenu::create(btnPause, NULL);
 		PauseMenu->setPosition(CCPointZero);
@@ -504,6 +508,7 @@ void gameScene::moveCharacter(float dt)
 		{
 			//게임을 끝낸다
 			gaugeHeart->setPositionX(20);
+			this->go_endResultScene();
 		}
 	}
 	else if(checkCrash == CrashWithFood)
@@ -632,7 +637,7 @@ void gameScene::createCharacter()
 //------------------------Pineoc's part---------------------------//
 void gameScene::createFood(CCPoint foodpoint,char* foodImageName)
 {//collision correct, duplication correct
-
+	//후에 인자값을 CCArray로 받아서 음식재료를 다 뿌리는것으로 만듬.
 	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage(foodImageName);
 	CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
 	food->setPosition(foodpoint);
@@ -734,8 +739,22 @@ void gameScene::check_counter(float dt)
 		this->go_endResultScene();
 	}
 }
+//make Sprite to eat food.
+void gameScene::createFoodShelf()
+{
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	//for(){}
+	
+	CCSprite* foodShelf1 = CCSprite::create("map/carrot.png");
+	CCSprite* foodShelf2 = CCSprite::create("map/meat.png");
+	foodShelf1->setPosition(ccp(size.width*0.12+10,size.height*0.74));
+	foodShelf2->setPosition(ccp(size.width*0.24+10,size.height*0.74));//0.1+0.11( or 0.12)
+	this->addChild(foodShelf1);
+	this->addChild(foodShelf2);
+}
 
 
+//make counter
 void gameScene::createCounter()
 {
 	CCTexture2D *counterTexture = CCTextureCache::sharedTextureCache()->addImage("map/counter.jpg");
@@ -745,6 +764,8 @@ void gameScene::createCounter()
 	counter = _counter;
 	this->addChild(counter);
 }
+
+//collision with character, go to gameResultScene
 void gameScene::go_endResultScene()
 {
 	CCScene *pScene = CCScene::create();
