@@ -196,6 +196,11 @@ bool gameScene::init()
 		obstaclePosition = ccp(obX, obY);
 		this->createObstacle();
 
+		countNum = 0;
+		checkObDirection = false; //false : 오른쪽 true : 왼쪽
+
+		this->schedule(schedule_selector(gameScene::moveObstacle), 2.0f); // 움직이는 장애물 구현
+
 
 
 
@@ -946,3 +951,27 @@ void gameScene::check_item(float dt)
 	}
 }
 //--------------jiyoon end-----------------------------------------
+
+//------------- eunji move obstacle -------------------------//
+
+void gameScene::moveObstacle(float dt)
+{/*
+	countNum++;
+	if(countNum > 60)
+	{
+		countNum = 1; */
+		checkObDirection = !(checkObDirection);
+	//}
+
+	if(checkObDirection == true)
+	{
+		obstacle->setPositionX(obstacle->getPositionX() + 80);
+	}
+
+	else if(checkObDirection == false)
+	{
+		obstacle->setPositionX(obstacle->getPositionX() - 80);
+	}
+}
+
+//------------- eunji end ---------------------------------//

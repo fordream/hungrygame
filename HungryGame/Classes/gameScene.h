@@ -49,6 +49,14 @@ public:
 
 	//------------------------eunji end------------------------------//
 
+	//----------------------- eunji moving obstacle ----------------//
+
+	void moveObstacle(float); // 장애물 움직임 구현
+	int countNum; // 프레임 수.
+	bool checkObDirection;
+
+	//----------------------- eunji end ----------------------------//
+
 	// --------------------------------- Daun Start -------------------//
 
 	CCTMXTiledMap *tileMap; // tileMap name to select stage
