@@ -226,10 +226,24 @@ bool gameScene::init()
 
 		//--------------jiyoon start----------------
 		//-------Pause btn-------------------
+		// ------ Daun Start for pause----------
+		btnPause = CCSprite::create("img/game/game_btn_pause.png");
+		btnPause->setAnchorPoint(ccp(0,0));
+
+	
+		pauseBtnPosition = ccp(size.width*0.8, size.height*0.9);
+		btnPause->setPosition(pauseBtnPosition);
+		this->addChild(btnPause);
+
+		
+		// ------Daun end -------
+
+
+		/*
+
 		CCMenuItemImage *btnPause = CCMenuItemImage::create(
 			"img/game/game_btn_pause.png", "img/game/game_btn_pause.png", this, menu_selector(gameScene::doPop));
 		CC_BREAK_IF(! btnPause);
-
 		btnPause->setPosition(ccp(size.width*0.8, size.height*0.9));
 
 		PauseMenu = CCMenu::create(btnPause, NULL);
@@ -237,7 +251,7 @@ bool gameScene::init()
 		CC_BREAK_IF(! PauseMenu);
 
 		this->addChild(PauseMenu, 2);
-
+		*/
 		//notification 추가
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
 			callfuncO_selector(gameScene::doNotification),
@@ -382,35 +396,6 @@ void gameScene::moveCharacter(float dt)
 	/*
 	* 벽과 충돌했는지 확인하는 공간입니다
 	* To Eunji
-	*/
-
-	//이부분은 수정 필요함. 다운코드 수정해서 쓸라그랬는데 잘 안되네..
-	/*
-	CCPoint diffForWall = ccpSub(touchLocation, playerPos);
-	CCPoint newPlayerPos = playerPos;
-
-	if(abs(diffForWall.x) > abs(diffForWall.y))
-	{
-	if(diffForWall.x > 0)
-	{
-	newPlayerPos.x += tileMap->getTileSize().width;
-	}
-
-	else
-	{
-	newPlayerPos.x -= tileMap->getTileSize().width;
-	}
-
-	if(diffForWall.y > 0)
-	{
-	newPlayerPos.y += tileMap->getTileSize().height;
-	}
-
-	else
-	{
-	newPlayerPos.y -= tileMap->getTileSize().height;
-	}
-	}
 	*/
 
 	CCPoint tileCoord = this->tileCoorPosition(playerPos);
@@ -563,6 +548,32 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	CCPoint playerPos = character->getPosition();
 	CCPoint touchLocation = pTouch->getLocation();
 	touchLocation = this->convertToNodeSpace(touchLocation);
+
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	// ------- 여기서 일시정지 버튼 누른건지 확인함
+	CCPoint pauseDiff = ccpSub(touchLocation,pauseBtnPosition);
+	float pauseBtnWidth = size.width * 0.1;
+	float pauseBtnHeight = size.height * 0.1;
+
+	if((abs(pauseDiff.x) <= pauseBtnWidth) && (abs(pauseDiff.y) <= pauseBtnHeight))
+	{
+		// 여기서 일시정지 버튼 효과!!
+		/*********************************
+	* 터치를 되지 않도록 함
+	* Set touch enable
+	* Daun
+	*********************************/	
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	/***********  Daun End ********/
+
+	CCScene* pScene=PauseGameScene::scene();
+	this->addChild(pScene,2000,2000);
+	}
+//NOW!!
+	
+
+
+
 
 	originPos = character->getPosition();
 		// 캐릭터가 충돌하지 않은경우~
@@ -816,7 +827,7 @@ void gameScene::doNotification(CCObject *obj)
 		CCLog("noti 11");
 		CCDirector::sharedDirector()->resume();   //화면 재시작
 
-		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(PauseMenu, kCCMenuHandlerPriority,true);
+//		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(PauseMenu, kCCMenuHandlerPriority,true);
 		//메뉴 버튼 활성
 
 

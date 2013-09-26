@@ -69,6 +69,8 @@ public:
 	void moveCharacter(float);
 	CCDirector* pDirector;
 	int moveDirection;
+	CCPoint pauseBtnPosition;
+	CCSprite *btnPause;
 	// ------------------------------Daun End ----------------------//
 
 	//-------------------------------pineoc's start------------------//
