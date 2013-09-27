@@ -621,11 +621,7 @@ void gameScene::createCharacter()
 
 	CCPoint characterPosition = ccp(x,y);
 
-
-
-
 	// make charcter show in map
-
 	CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage("img/character/character.png");
 
 	CCAnimation *animation = CCAnimation::create();
@@ -640,8 +636,8 @@ void gameScene::createCharacter()
 	//character->setFlipX(true); // X축 기준으로 반전
 	//character->setFlipY(true);	// Y축 기준으로 반전
 
-	CCAnimate *animate = CCAnimate::create(animation);
-	CCAction *rep = CCRepeatForever::create(animate);
+	animate = CCAnimate::create(animation);
+	rep = CCRepeatForever::create(animate);
 	character->runAction(rep);
 
 	this->addChild(character,60);
@@ -938,19 +934,27 @@ void gameScene::check_item(float dt)
 
 	if(characterRect.intersectsRect(item1Rect))
 	{
-		//slow down effect
+		//item effect - gauge up 10%
+		character_XP -= 10;
+
+		CCActionInterval* gaugeUp = CCMoveBy::create(1,ccp(44.1,0));
+		//move by current position. +44.1(10% of the bar)
+		gaugeHeart->runAction(gaugeUp);
 		this->removeChild(item1);
 		item1=NULL;
 	}
 	if(characterRect.intersectsRect(item2Rect))
 	{
-		//superpower effect
+		//slow down effect
+		/*CCSpeed *slowSpeed = CCSpeed::create((CCActionInterval*)(rep->copy()->autorelease()),5.0);
+		character->runAction(slowSpeed);*/
 		this->removeChild(item2);
 		item2=NULL;
 	}
 	if(characterRect.intersectsRect(item3Rect))
 	{
-		//energy up effect
+		//pause obstacle effect
+		//CCFiniteTimeAction *delObstacle = CCSequence::create(,CCDelayTime::create(5),,NULL);
 		this->removeChild(item3);
 		item3=NULL;
 	}

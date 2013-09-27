@@ -71,6 +71,11 @@ public:
 	int moveDirection;
 	CCPoint pauseBtnPosition;
 	CCSprite *btnPause;
+
+	//add jiyoon
+	CCAnimate *animate;
+	CCAction *rep;
+
 	// ------------------------------Daun End ----------------------//
 
 	//-------------------------------pineoc's start------------------//
