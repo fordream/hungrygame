@@ -11,7 +11,7 @@ USING_NS_CC;
 class gameEndScene : public CCLayerColor
 {
 public:
-	gameEndScene(int,int);
+	gameEndScene(std::string,int);
 	//~gameEndScene(void);
 
 	virtual bool init();
@@ -24,6 +24,6 @@ public:
 	void menu_nextStage(CCObject*);//go to next stage
 	void check_point_star(CCObject*);//check the point to make star
 
-	int result; // game result, success or fail, success = 1, fail = 0
+	std::string result; // game result, success or fail, success = 1, fail = 0
 	int stageidx;// stage index
 };

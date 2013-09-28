@@ -4,13 +4,13 @@ USING_NS_CC;
 class gameResultScene : public CCLayerColor
 {
 public:
-	gameResultScene(int,int);
+	gameResultScene(std::string,int);
 
 	virtual bool init();
 
 	void menu_goEndScene(CCObject*);
 
-	int result;
+	std::string result;
 	int stageidx;
 };
 
