@@ -8,7 +8,7 @@ get result for success Scene or fail Scene
 #include "gameScene.h"
 #include "stageSelectScene.h"
 
-gameEndScene::gameEndScene(string _result,int _stageidx)
+gameEndScene::gameEndScene(int _result,int _stageidx)
 {
 	if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
 		return ;

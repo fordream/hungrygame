@@ -1,7 +1,7 @@
 #include "gameResultScene.h"
 #include "gameEndScene.h"
 
-gameResultScene::gameResultScene(std::string _result,int _stageidx)
+gameResultScene::gameResultScene(int _result,int _stageidx)
 {
 	if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
 		return ;
