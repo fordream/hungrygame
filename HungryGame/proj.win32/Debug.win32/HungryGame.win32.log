@@ -1,12 +1,12 @@
-﻿Build started 2013-09-29 오후 7:21:44.
+﻿Build started 2013-09-29 오후 8:06:40.
      1>Project "C:\Users\eunji\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\include /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\kazmath\include /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\win32 /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32 /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32\OGLES /IC:\Users\eunji\Documents\GitHub\hungrygame\external /IC:\Users\eunji\Documents\GitHub\hungrygame\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\gameScene.cpp music.cpp
          gameScene.cpp
      1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(97): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(658): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(783): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(845): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(680): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(805): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(867): warning C4018: '<' : signed/unsigned mismatch
          Generating Code...
          Skipping... (no relevant changes detected)
          music.cpp
@@ -31,10 +31,9 @@
          Debug.win32\main.obj
          Debug.win32\music.obj
          Debug.win32\PauseGameScene.obj
-     1>Debug.win32\music.obj : warning LNK4042: object specified more than once; extras ignored
          HungryGame.win32.vcxproj -> C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
      1>Done Building Project "C:\Users\eunji\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.39
+Time Elapsed 00:00:03.31

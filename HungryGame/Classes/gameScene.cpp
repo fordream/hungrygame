@@ -514,6 +514,28 @@ void gameScene::moveCharacter(float dt)
 		// 벽과 충돌한 경우 해야할 일
 		//character->setPosition(playerPos);
 
+		switch (moveDirection)
+		{
+		case UP:
+			character->setPositionY(playerPos.y - 40);
+			break;
+		
+		case DOWN:
+			character->setPositionY(playerPos.y + 40);
+			break;
+		
+		case RIGHT:
+			character->setPositionX(playerPos.x - 40);
+			break;
+		
+		case LEFT:
+			character->setPositionX(playerPos.x + 40);
+			break;
+		
+		default:
+			break;
+		}
+
 		character_XP -= 10;
 
 		int gaugeSize_part = 441/10; // 게이지바 사이즈의 10퍼센트 길이
