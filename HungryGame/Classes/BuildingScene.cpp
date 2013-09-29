@@ -82,8 +82,8 @@ bool Building::init()
 
 		//두번째 건물버튼
         CCMenuItemImage *pBuilding_2 = CCMenuItemImage::create(
-            "buildingSelect_btn_b1.png",
-            "buildingSelect_btn_b1_n.png",
+            "buildingSelect_btn_b2.png",
+            "buildingSelect_btn_b2_n.png",
             this,
 			menu_selector(Building::menuBuild2Callback));
         CC_BREAK_IF(! pBuilding_2);
@@ -102,8 +102,8 @@ bool Building::init()
 
 		//세번째 건물버튼
         CCMenuItemImage *pBuilding_3 = CCMenuItemImage::create(
-            "buildingSelect_btn_b1.png",
-            "buildingSelect_btn_b1_n.png",
+            "buildingSelect_btn_b3.png",
+            "buildingSelect_btn_b3_n.png",
             this,
 			menu_selector(Building::menuBuild3Callback));
         CC_BREAK_IF(! pBuilding_3);
@@ -122,8 +122,8 @@ bool Building::init()
 
 		//네번째 건물버튼
         CCMenuItemImage *pBuilding_4 = CCMenuItemImage::create(
-            "buildingSelect_btn_b1.png",
-            "buildingSelect_btn_b1_n.png",
+            "buildingSelect_btn_b4.png",
+            "buildingSelect_btn_b4_n.png",
             this,
 			menu_selector(Building::menuBuild4Callback));
         CC_BREAK_IF(! pBuilding_4);

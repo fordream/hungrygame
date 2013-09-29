@@ -1,6 +1,2 @@
-﻿  gameScene.cpp
-d:\haniumproject\hungrygame\hungrygame\classes\gamescene.cpp(96): warning C4305: 'argument' : truncation from 'double' to 'float'
-d:\haniumproject\hungrygame\hungrygame\classes\gamescene.cpp(667): warning C4305: 'argument' : truncation from 'double' to 'float'
-d:\haniumproject\hungrygame\hungrygame\classes\gamescene.cpp(792): warning C4018: '<' : signed/unsigned mismatch
-d:\haniumproject\hungrygame\hungrygame\classes\gamescene.cpp(854): warning C4018: '<' : signed/unsigned mismatch
+﻿  BuildingScene.cpp
   HungryGame.win32.vcxproj -> D:\haniumProject\hungrygame\Debug.win32\HungryGame.win32.exe
