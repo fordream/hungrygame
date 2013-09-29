@@ -484,6 +484,12 @@ void gameScene::moveCharacter(float dt)
 	* By Daun 위치 변경 (위에서 아래로 바꿈)
 	*/
 
+		if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
+			playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
+			playerPos.y >= 0 &&
+			playerPos.x >= 0 )
+		{
+			// 캐릭터가 이동할 위치가 맵 안인경우 벽에 충돌햇는지를 검사합니다 By Daun
 	CCPoint tileCoord = this->tileCoorPosition(playerPos);
 
 	int tileGidforWall = this->metainfo->tileGIDAt(tileCoord);
@@ -503,6 +509,12 @@ void gameScene::moveCharacter(float dt)
 			}
 		}
 	}
+		}
+		else
+		{
+			// 캐릭터가 이동할 위치가 맵 밖이므로 벽에 충돌한 것과 마찬가지입니다.
+			checkCrash = CrashWithWall;
+		}
 
 
 	/* End Eunji */
