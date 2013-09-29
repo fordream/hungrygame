@@ -391,7 +391,7 @@ void gameScene::moveCharacter(float dt)
 
 
 	CCPoint playerPos = character->getPosition();
-
+	CCPoint originalplayerPos = character->getPosition();
 	int checkCrash = nothing;
 	/********************************************************** To EVERYONE *************
 	* check character is crash with someting
@@ -417,33 +417,7 @@ void gameScene::moveCharacter(float dt)
 	*/
 
 
-	/*
-	* 벽과 충돌했는지 확인하는 공간입니다
-	* To Eunji
-	*/
-
-	CCPoint tileCoord = this->tileCoorPosition(playerPos);
-
-	int tileGidforWall = this->metainfo->tileGIDAt(tileCoord);
-
-	if(tileGidforWall)
-	{
-		CCDictionary *properties = tileMap->propertiesForGID(tileGidforWall);
-
-		if(properties)
-		{
-			CCString *wall = (CCString*)properties->objectForKey("Wall");
-
-			if(wall && (wall->compare("YES") == 0))
-			{
-				character->setPosition(playerPos);
-				checkCrash = CrashWithWall;
-			}
-		}
-	}
-
-
-	/* End Eunji */
+	
 
 
 
@@ -502,7 +476,38 @@ void gameScene::moveCharacter(float dt)
 
 
 	}
-	else if(checkCrash == CrashWithWall)
+
+	/*
+	* 벽과 충돌했는지 확인하는 공간입니다
+	* To Eunji
+
+	* By Daun 위치 변경 (위에서 아래로 바꿈)
+	*/
+
+	CCPoint tileCoord = this->tileCoorPosition(playerPos);
+
+	int tileGidforWall = this->metainfo->tileGIDAt(tileCoord);
+
+	if(tileGidforWall)
+	{
+		CCDictionary *properties = tileMap->propertiesForGID(tileGidforWall);
+
+		if(properties)
+		{
+			CCString *wall = (CCString*)properties->objectForKey("Wall");
+
+			if(wall && (wall->compare("YES") == 0))
+			{
+				character->setPosition(playerPos);
+				checkCrash = CrashWithWall;
+			}
+		}
+	}
+
+
+	/* End Eunji */
+
+	if(checkCrash == CrashWithWall)
 	{
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
@@ -512,29 +517,7 @@ void gameScene::moveCharacter(float dt)
 
 		// 벽과 충돌한 경우 해야할 일
 		//character->setPosition(playerPos);
-
-		switch (moveDirection)
-		{
-		case UP:
-			character->setPositionY(playerPos.y - 40);
-			break;
-		
-		case DOWN:
-			character->setPositionY(playerPos.y + 40);
-			break;
-		
-		case RIGHT:
-			character->setPositionX(playerPos.x - 40);
-			break;
-		
-		case LEFT:
-			character->setPositionX(playerPos.x + 40);
-			break;
-		
-		default:
-			break;
-		}
-
+		character->setPosition(originalplayerPos);  // By Daun.. 충돌인 경우 원래 위치로 계쏙 유지
 		character_XP -= 10;
 
 		int gaugeSize_part = 441/10; // 게이지바 사이즈의 10퍼센트 길이
@@ -552,23 +535,16 @@ void gameScene::moveCharacter(float dt)
 			this->go_endResultScene();
 		}
 	}
-	else if(checkCrash == CrashWithFood)
+	else
 	{
-		// 음식과 충돌한 경우 해야할 일
-
-	}
-	else if(checkCrash == CrashWithItem)
-	{
-		// 아이템과 충돌한 경우 해야할 일
-	}
-
-	if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
-		playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
-		playerPos.y >= 0 &&
-		playerPos.x >= 0 )
-	{
-		// 캐릭터의 새로운 위치 지정
-		character->setPosition( playerPos );
+		if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
+			playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
+			playerPos.y >= 0 &&
+			playerPos.x >= 0 )
+		{
+			// 캐릭터의 새로운 위치 지정
+			character->setPosition( playerPos );
+		}
 	}
 	Sleep(movingSpeed);
 

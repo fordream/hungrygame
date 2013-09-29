@@ -72,7 +72,8 @@ public:
 	int checkCrash;
 	void moveCharacter(float);
 	CCDirector* pDirector;
-	int moveDirection;
+	int moveDirection;						// 캐릭터가 현재 이동하고 있는 방향을 저장함
+	int beforeMoveDirection;					// 이건 다음이 벽에 충돌인경우 현재 방향을 저장함
 	CCPoint pauseBtnPosition;
 	CCSprite *btnPause;
 
