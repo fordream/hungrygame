@@ -37,7 +37,7 @@ gameResultScene::gameResultScene(std::string _result,int _stageidx)
 	foodArrayForSprite[3]="map/4.png";
 
 	this->make_foodSprite();
-
+	this->check_food();
 
 }
 
@@ -49,7 +49,7 @@ bool gameResultScene::init()
 
 void gameResultScene::check_food()
 {
-
+	resultOfStage=1;
 }
 
 void gameResultScene::make_foodSprite()

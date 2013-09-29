@@ -20,7 +20,6 @@ gameScene::~gameScene()
 {
 	delete foodSpriteArray;
 	delete foodFollowArray;
-	delete onCheckFoodDisplay;
 	delete tomakeFood;
 }
 CCScene* gameScene::scene()
