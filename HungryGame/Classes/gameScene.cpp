@@ -14,6 +14,8 @@ using namespace cocos2d;
 
 enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
 enum DIRCTION { UP, DOWN, LEFT, RIGHT};
+#define MOVEX 23.2
+#define MOVEY 46.5
 gameScene::~gameScene()
 {
 	delete foodSpriteArray;
@@ -60,9 +62,8 @@ bool gameScene::init()
 		//////////////////////////////////////////////////////////////////////////
 		foodSpriteArray = new CCArray; //food sprite array dynamic cast
 		foodFollowArray = new CCArray;
-		onCheckFoodDisplay = new CCArray;
-		tomakeFood = new CCArray;
-
+		tomakeFood = new CCArray;// to make food sprite
+		result=" ";
 
 
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -86,7 +87,7 @@ bool gameScene::init()
 
 		tileMap = CCTMXTiledMap::create("map/GameMap.tmx");
 
-		//tileMap->setPosition(size.width * 0.05, size.height * 0.06);
+		tileMap->setPosition(MOVEX , MOVEY);
 		// -> 위에 줄이 맵 위치 이동시키는거임! 일단은 0,0으로 두는게 좋겠다!
 		//	this->addChild(tileMap,1,2);
 
@@ -149,32 +150,31 @@ bool gameScene::init()
 		CCDictionary *_counterPoint = counterGroup->objectNamed("counter");
 		int counterX = ((CCString*)_counterPoint->objectForKey("x"))->intValue();
 		int counterY = ((CCString*)_counterPoint->objectForKey("y"))->intValue();
-		counterPoint = ccp(counterX,counterY);
+		counterPoint = ccp(counterX+MOVEX,counterY+MOVEY);
 		this->createCounter();
 
 		//
 
 		int food1X = ((CCString*)food1point->objectForKey("x"))->intValue();
 		int food1Y = ((CCString*)food1point->objectForKey("y"))->intValue();
-		this->createFood(ccp(food1X,food1Y),"map/p.jpg");
+		this->createFood(ccp(food1X+MOVEX,food1Y+MOVEY),"map/1.jpg");
 
 		int food2X = ((CCString*)food2point->objectForKey("x"))->intValue();
 		int food2Y = ((CCString*)food2point->objectForKey("y"))->intValue();
-		this->createFood(ccp(food2X,food2Y),"map/green_pepper.png");
+		this->createFood(ccp(food2X+MOVEX,food2Y+MOVEY),"map/2.png");
 
 		int food3X = ((CCString*)food3point->objectForKey("x"))->intValue();
 		int food3Y = ((CCString*)food3point->objectForKey("y"))->intValue();
-		this->createFood(ccp(food3X,food3Y),"map/bamboo_shoot.png");
+		this->createFood(ccp(food3X+MOVEX,food3Y+MOVEY),"map/3.png");
 
 		int food4X = ((CCString*)food4point->objectForKey("x"))->intValue();
 		int food4Y = ((CCString*)food4point->objectForKey("y"))->intValue();
-		this->createFood(ccp(food4X,food4Y),"map/crab_stick.png");
+		this->createFood(ccp(food4X+MOVEX,food4Y+MOVEY),"map/4.png");
 
-		std::srand(NULL);
-		int food5X = tileCoorPosition(ccp(std::rand()%10,std::rand()%20)).x;
-		int food5Y = tileCoorPosition(ccp(std::rand()%10,std::rand()%20)).y;
-		if(checkDup((CCSprite*)foodSpriteArray->objectAtIndex(3)))
-			this->createFood(ccp(food5X,food5Y),"map/Big_welsh_onion.png");
+		int food5X = tileCoorPosition(ccp(std::rand()%10+1,std::rand()%20+1)).x;
+		int food5Y = tileCoorPosition(ccp(std::rand()%10+1,std::rand()%20+1)).y;
+		//if(checkDup((CCSprite*)foodSpriteArray->objectAtIndex(3)))
+			this->createFood(ccp(food5X+MOVEX,food5Y+MOVEY),"map/Big_welsh_onion.png");
 
 		foodcount = foodSpriteArray->count();
 
@@ -193,7 +193,7 @@ bool gameScene::init()
 		int obX = ((CCString*)obstaclePoint->objectForKey("x"))->intValue();
 		int obY = ((CCString*)obstaclePoint->objectForKey("y"))->intValue();
 
-		obstaclePosition = ccp(obX, obY);
+		obstaclePosition = ccp(obX+MOVEX, obY+MOVEY);
 		this->createObstacle();
 
 		countNum = 0;
@@ -230,19 +230,19 @@ bool gameScene::init()
 		btnPause = CCSprite::create("img/game/game_btn_pause.png");
 		btnPause->setAnchorPoint(ccp(0,0));
 
-	
+
 		pauseBtnPosition = ccp(size.width*0.8, size.height*0.9);
 		btnPause->setPosition(pauseBtnPosition);
 		this->addChild(btnPause);
 
-		
+
 		// ------Daun end -------
 
 
 		/*
 
 		CCMenuItemImage *btnPause = CCMenuItemImage::create(
-			"img/game/game_btn_pause.png", "img/game/game_btn_pause.png", this, menu_selector(gameScene::doPop));
+		"img/game/game_btn_pause.png", "img/game/game_btn_pause.png", this, menu_selector(gameScene::doPop));
 		CC_BREAK_IF(! btnPause);
 		btnPause->setPosition(ccp(size.width*0.8, size.height*0.9));
 
@@ -277,7 +277,7 @@ bool gameScene::init()
 			int temX = ((CCString*)item1->objectForKey("x"))->intValue();
 			int temY = ((CCString*)item1->objectForKey("y"))->intValue();
 
-			itemPosition = ccp(temX,temY);
+			itemPosition = ccp(temX+MOVEX,temY+MOVEY);
 			this->createItem1();
 
 		}
@@ -290,7 +290,7 @@ bool gameScene::init()
 			int temX = ((CCString*)item2->objectForKey("x"))->intValue();
 			int temY = ((CCString*)item2->objectForKey("y"))->intValue();
 
-			itemPosition = ccp(temX,temY);
+			itemPosition = ccp(temX+MOVEX,temY+MOVEY);
 			this->createItem2();
 
 		}
@@ -303,7 +303,7 @@ bool gameScene::init()
 			int temX = ((CCString*)item3->objectForKey("x"))->intValue();
 			int temY = ((CCString*)item3->objectForKey("y"))->intValue();
 
-			itemPosition = ccp(temX,temY);
+			itemPosition = ccp(temX+MOVEX,temY+MOVEY);
 			this->createItem3();
 
 		}
@@ -316,7 +316,7 @@ bool gameScene::init()
 			int temX = ((CCString*)item4->objectForKey("x"))->intValue();
 			int temY = ((CCString*)item4->objectForKey("y"))->intValue();
 
-			itemPosition = ccp(temX,temY);
+			itemPosition = ccp(temX+MOVEX,temY+MOVEY);
 			this->createItem4();
 
 		}
@@ -381,7 +381,7 @@ void gameScene::moveCharacter(float dt)
 {
 	// HAVETODO
 	// 캐릭터 이동시킴!!
-	
+
 
 	CCPoint playerPos = character->getPosition();
 
@@ -474,7 +474,7 @@ void gameScene::moveCharacter(float dt)
 		else
 		{
 		}
-		
+
 
 	}
 	else if(checkCrash == CrashWithWall)
@@ -512,13 +512,13 @@ void gameScene::moveCharacter(float dt)
 	}
 
 	if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
-			playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
-			playerPos.y >= 0 &&
-			playerPos.x >= 0 )
-		{
-			// 캐릭터의 새로운 위치 지정
-			character->setPosition( playerPos );
-		}
+		playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
+		playerPos.y >= 0 &&
+		playerPos.x >= 0 )
+	{
+		// 캐릭터의 새로운 위치 지정
+		character->setPosition( playerPos );
+	}
 	Sleep(1000);
 
 }
@@ -559,50 +559,50 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	{
 		// 여기서 일시정지 버튼 효과!!
 		/*********************************
-	* 터치를 되지 않도록 함
-	* Set touch enable
-	* Daun
-	*********************************/	
-	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-	/***********  Daun End ********/
+		* 터치를 되지 않도록 함
+		* Set touch enable
+		* Daun
+		*********************************/	
+		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+		/***********  Daun End ********/
 
-	CCScene* pScene=PauseGameScene::scene();
-	this->addChild(pScene,2000,2000);
+		CCScene* pScene=PauseGameScene::scene();
+		this->addChild(pScene,2000,2000);
 	}
-//NOW!!
-	
+	//NOW!!
+
 
 
 
 
 	originPos = character->getPosition();
-		// 캐릭터가 충돌하지 않은경우~
-		// 마우스 클릭한 방향으로 움직임!
-		CCPoint diff = ccpSub(touchLocation, playerPos);
+	// 캐릭터가 충돌하지 않은경우~
+	// 마우스 클릭한 방향으로 움직임!
+	CCPoint diff = ccpSub(touchLocation, playerPos);
 
-		if (abs(diff.x) > abs(diff.y)) {
-			if (diff.x > 0) {
-				
-				moveDirection = RIGHT;
-				// 캐릭터의 방향을 바꾸어준다.
-				character->setFlipX(true);
-			} else {
-				
-				moveDirection = LEFT;
-				// 캐릭터의 방향을 바꾸어준다.
-				character->setFlipX(false);
-			}
+	if (abs(diff.x) > abs(diff.y)) {
+		if (diff.x > 0) {
+
+			moveDirection = RIGHT;
+			// 캐릭터의 방향을 바꾸어준다.
+			character->setFlipX(true);
 		} else {
-			if (diff.y > 0) {
-				
-				moveDirection = UP;
-			} else {
-				
-				moveDirection = DOWN;
-			}
-		}
 
-		
+			moveDirection = LEFT;
+			// 캐릭터의 방향을 바꾸어준다.
+			character->setFlipX(false);
+		}
+	} else {
+		if (diff.y > 0) {
+
+			moveDirection = UP;
+		} else {
+
+			moveDirection = DOWN;
+		}
+	}
+
+
 }
 
 void gameScene::createCharacter()
@@ -619,7 +619,7 @@ void gameScene::createCharacter()
 	int x = ((CCString*)spawnPoint->objectForKey("x"))->intValue() + 1;
 	int y = ((CCString*)spawnPoint->objectForKey("y"))->intValue() + 1;
 
-	CCPoint characterPosition = ccp(x,y);
+	CCPoint characterPosition = ccp(x+MOVEX,y+MOVEY);
 
 	// make charcter show in map
 	CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage("img/character/character.png");
@@ -650,11 +650,17 @@ void gameScene::createCharacter()
 void gameScene::createFood(CCPoint foodpoint,char* foodImageName)
 {//collision correct, duplication correct
 	//후에 인자값을 CCArray로 받아서 음식재료를 다 뿌리는것으로 만듬.
+	//char* inputdata = NULL;
+	//CCString *a=NULL;
 	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage(foodImageName);
 	CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
 	food->setPosition(foodpoint);
 	food->setAnchorPoint(ccp(0,0));
 	food->setTag(2);
+	//a->create(imageNameProc(foodImageName));
+	//strcpy(inputdata,imageNameProc(foodImageName).c_str());// to set userdata.
+	//inputdata = imageNameProc(foodImageName).c_str());
+	//food->setUserData(a);
 	foodSpriteArray->addObject(food);
 	this->addChild(food);
 
@@ -707,7 +713,6 @@ void gameScene::updateFoodSprte(float dt)
 		{
 			foodToDelete->addObject(foodSprite);
 			foodFollowArray->addObject(foodSprite);//add foods for following character
-			onCheckFoodDisplay->addObject(foodSprite);
 		}
 	}
 	CCARRAY_FOREACH(foodToDelete,foodobject)
@@ -718,6 +723,23 @@ void gameScene::updateFoodSprte(float dt)
 
 		//this->removeChild(delfood);
 		this->followCharacter(1.0);
+	}
+	CCARRAY_FOREACH(foodFollowArray,foodobject)
+	{
+		CCRect characterRect = CCRectMake(character->getPosition().x - (character->getContentSize().width/2),
+			character->getPosition().y -(character->getContentSize().height/2),
+			character->getContentSize().width,
+			character->getContentSize().height);
+		CCSprite* foodSprite = dynamic_cast<CCSprite*>(foodobject);
+		CCRect foodRect = CCRectMake(foodSprite->getPosition().x - (foodSprite->getContentSize().width/2),
+			foodSprite->getPosition().y -(foodSprite->getContentSize().height/2),
+			foodSprite->getContentSize().width,
+			foodSprite->getContentSize().height);
+		if(characterRect.intersectsRect(foodRect))
+		{
+			//gaugeHeart->setPositionX(size.width - (20 + gaugeNum)); // 10퍼센트씩 하트를 옮김.
+		}
+
 	}
 	foodToDelete->release();
 }
@@ -756,7 +778,7 @@ void gameScene::createFoodShelf()
 {
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	//for(){}
-	
+
 	CCSprite* foodShelf1 = CCSprite::create("map/carrot.png");
 	CCSprite* foodShelf2 = CCSprite::create("map/meat.png");
 	foodShelf1->setPosition(ccp(size.width*0.12+10,size.height*0.74));
@@ -788,6 +810,21 @@ void gameScene::go_endResultScene()
 
 }
 
+void gameScene::checkFoodToEnd()
+{//string result = ?
+	for(int i=0;i<foodFollowArray->count();i++)
+	{
+		CCSprite* a = ((CCSprite*)foodFollowArray->objectAtIndex(i));
+		string b = ((char*)a->getUserData());
+		result.append(" "+b);
+	}
+}
+string gameScene::imageNameProc(char* input)
+{
+	string return_s = input;
+	return_s = return_s.substr(4,return_s.find("."));
+	return return_s;
+}
 
 //-----------------------pineoc End-------------------------------//
 
@@ -823,7 +860,7 @@ void gameScene::doNotification(CCObject *obj)
 		CCLog("noti 11");
 		CCDirector::sharedDirector()->resume();   //화면 재시작
 
-//		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(PauseMenu, kCCMenuHandlerPriority,true);
+		//		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(PauseMenu, kCCMenuHandlerPriority,true);
 		//메뉴 버튼 활성
 
 
@@ -902,7 +939,7 @@ void gameScene::check_item(float dt)
 	CCRect characterRect = CCRectMake(character->getPosition().x - (character->getContentSize().width/2),
 		character->getPosition().y - (character->getContentSize().height/2),
 		character->getContentSize().width, character->getContentSize().height);
-	
+
 	CCRect item1Rect;
 	CCRect item2Rect;
 	CCRect item3Rect;
@@ -971,11 +1008,11 @@ void gameScene::check_item(float dt)
 
 void gameScene::moveObstacle(float dt)
 {/*
-	countNum++;
-	if(countNum > 60)
-	{
-		countNum = 1; */
-		checkObDirection = !(checkObDirection);
+ countNum++;
+ if(countNum > 60)
+ {
+ countNum = 1; */
+	checkObDirection = !(checkObDirection);
 	//}
 
 	if(checkObDirection == true)
