@@ -54,6 +54,10 @@ public:
 	void moveObstacle(float); // 장애물 움직임 구현
 	int countNum; // 프레임 수.
 	bool checkObDirection;
+	void doActionMovingObstacleRight(CCObject* pSender);
+	void doActionMovingObstacleLeft(CCObject* pSender);
+	void doActionMovingObstacleReverse(CCObject* pSender);
+	int obX, obY;
 
 	//----------------------- eunji end ----------------------------//
 

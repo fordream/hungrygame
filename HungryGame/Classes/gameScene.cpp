@@ -197,8 +197,8 @@ bool gameScene::init()
 		CCTMXObjectGroup *obstacle = tileMap->objectGroupNamed("obstacle");
 		CCDictionary *obstaclePoint = obstacle->objectNamed("obstaclePoint");
 
-		int obX = ((CCString*)obstaclePoint->objectForKey("x"))->intValue();
-		int obY = ((CCString*)obstaclePoint->objectForKey("y"))->intValue();
+		obX = ((CCString*)obstaclePoint->objectForKey("x"))->intValue();
+		obY = ((CCString*)obstaclePoint->objectForKey("y"))->intValue();
 
 		obstaclePosition = ccp(obX+MOVEX, obY+MOVEY);
 		this->createObstacle();
@@ -206,9 +206,10 @@ bool gameScene::init()
 		countNum = 0;
 		checkObDirection = false; //false : 오른쪽 true : 왼쪽
 
-		this->schedule(schedule_selector(gameScene::moveObstacle), 2.0f); // 움직이는 장애물 구현
+		//this->schedule(schedule_selector(gameScene::moveObstacle), 2.0f); // 움직이는 장애물 구현
 
-
+		this->doActionMovingObstacleRight(obstacle);
+		//this->doActionMovingObstacleReverse(obstacle);
 
 
 		//----------------------------------------------------
@@ -400,6 +401,23 @@ void gameScene::moveCharacter(float dt)
 	* 즉, checkCrash가 0이면 아무것도 안부딫친거, 1이면 벽, 2이면 음식 3이면 아이템이랑 부딫친거임
 	*/
 
+
+	/*
+	 장애물과 충돌했는지 확인
+	 to eunji
+	 */
+	
+	if((obX == playerPos.x) && (obY == playerPos.y))
+	{
+		checkCrash = CrashWithWall; // 일단 벽에 부딪힌 것과 동일하게 함.
+	}
+
+
+	/*
+	eunji end
+	*/
+
+
 	/*
 	* 벽과 충돌했는지 확인하는 공간입니다
 	* To Eunji
@@ -419,6 +437,7 @@ void gameScene::moveCharacter(float dt)
 
 			if(wall && (wall->compare("YES") == 0))
 			{
+				character->setPosition(playerPos);
 				checkCrash = CrashWithWall;
 			}
 		}
@@ -488,8 +507,12 @@ void gameScene::moveCharacter(float dt)
 	{
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
+		//CCPoint rOriginPos;
+		//rOriginPos.x = originPos.x - 80;
+		//rOriginPos.y = originPos.y - 80;
+
 		// 벽과 충돌한 경우 해야할 일
-		character->setPosition(originPos);
+		//character->setPosition(playerPos);
 
 		character_XP -= 10;
 
@@ -1033,4 +1056,26 @@ void gameScene::moveObstacle(float dt)
 	}
 }
 
+void gameScene::doActionMovingObstacleRight(CCObject* pSender)
+{
+	CCActionInterval* moveRight = CCMoveBy::create(2, ccp(200, 0));
+
+	obstacle->runAction(moveRight);
+
+}
+
+void gameScene::doActionMovingObstacleLeft(CCObject* pSender)
+{
+    CCActionInterval* moveLeft = CCMoveBy::create(2, ccp(-80, 0));
+
+	obstacle->runAction(moveLeft);
+}
+
+void gameScene::doActionMovingObstacleReverse(CCObject* pSender)
+{
+    CCActionInterval* moveRight = CCMoveBy::create(2, ccp(80, 0));
+	CCActionInterval* moveReverse = moveRight->reverse();
+
+	obstacle->runAction(moveReverse);
+}
 //------------- eunji end ---------------------------------//
