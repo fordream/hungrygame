@@ -79,6 +79,13 @@ bool gameScene::init()
 		* Joung Daun
 		* http://blog.naver.com/PostView.nhn?blogId=skmzzang7979&logNo=70142661460
 		*/
+
+
+		// 캐릭터 이동속도
+		movingSpeed = 800;
+
+
+
 		CCLayer *tileLayer = CCLayer::create();
 		this->addChild(tileLayer);
 
@@ -519,7 +526,7 @@ void gameScene::moveCharacter(float dt)
 		// 캐릭터의 새로운 위치 지정
 		character->setPosition( playerPos );
 	}
-	Sleep(1000);
+	Sleep(movingSpeed);
 
 }
 /*

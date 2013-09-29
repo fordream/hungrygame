@@ -72,6 +72,8 @@ public:
 	CCPoint pauseBtnPosition;
 	CCSprite *btnPause;
 
+	int movingSpeed;
+
 	//add jiyoon
 	CCAnimate *animate;
 	CCAction *rep;
