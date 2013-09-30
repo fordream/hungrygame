@@ -121,46 +121,33 @@
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\BuildingScene.h" />
-    <ClInclude Include="..\Classes\character.h" />
-    <ClInclude Include="..\Classes\characterMain.h" />
-    <ClInclude Include="..\Classes\food.h" />
     <ClInclude Include="..\Classes\gameEndScene.h" />
     <ClInclude Include="..\Classes\gameResultScene.h" />
     <ClInclude Include="..\Classes\gameScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\HelpScene.h" />
-    <ClInclude Include="..\Classes\Item.h" />
     <ClInclude Include="..\Classes\mainScene.h" />
-    <ClInclude Include="..\Classes\music.h" />
-    <ClInclude Include="..\Classes\Obstacle.h" />
     <ClInclude Include="..\Classes\optionScene.h" />
     <ClInclude Include="..\Classes\stageSelectScene.h" />
     <ClInclude Include="..\Classes\MakerInfoScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="music.h" />
     <ClInclude Include="PauseGameScene.h" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\BuildingScene.cpp" />
-    <ClCompile Include="..\Classes\character.cpp" />
-    <ClCompile Include="..\Classes\character_main.cpp" />
-    <ClCompile Include="..\Classes\food.cpp" />
     <ClCompile Include="..\Classes\gameEndScene.cpp" />
     <ClCompile Include="..\Classes\gameResultScene.cpp" />
     <ClCompile Include="..\Classes\gameScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\HelpScene.cpp" />
-    <ClCompile Include="..\Classes\Item.cpp" />
     <ClCompile Include="..\Classes\mainScene.cpp" />
     <ClCompile Include="..\Classes\music.cpp" />
     <ClCompile Include="..\Classes\optionScene.cpp" />
     <ClCompile Include="..\Classes\stageSelectScene.cpp" />
     <ClCompile Include="..\Classes\MakerInfoScene.cpp" />
-    <ClCompile Include="..\Classes\Obstacle.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="music.cpp" />
     <ClCompile Include="PauseGameScene.cpp" />
   </ItemGroup>
   <ItemGroup>

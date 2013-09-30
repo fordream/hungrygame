@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="main.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -25,21 +22,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\characterMain.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\character.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\food.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Obstacle.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Item.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="music.h">
@@ -55,9 +37,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\gameScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\music.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\stageSelectScene.h">
@@ -87,24 +66,6 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\food.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\character.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\character_main.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Obstacle.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Item.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="music.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\mainScene.cpp">

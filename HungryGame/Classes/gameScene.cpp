@@ -143,16 +143,13 @@ bool gameScene::init()
 		*/
 		//foods
 		this->createFoodShelf();
-
-
 		this->createFood();
-
 		foodcount = foodSpriteArray->count();
 
 		this->schedule(schedule_selector(gameScene::updateFoodSprte));
 		this->schedule(schedule_selector(gameScene::check_counter));
 		this->schedule(schedule_selector(gameScene::followCharacter));
-		//this->schedule(schedule_selector(gameScene::followCharacter));
+		this->schedule(schedule_selector(gameScene::checkFollowFoodCollision));
 		//----------------------------------------------------------------------------------------
 
 
@@ -367,10 +364,10 @@ void gameScene::moveCharacter(float dt)
 
 
 	/*
-	 장애물과 충돌했는지 확인
-	 to eunji
-	 */
-	
+	장애물과 충돌했는지 확인
+	to eunji
+	*/
+
 	if((obX == playerPos.x) && (obY == playerPos.y))
 	{
 		checkCrash = CrashWithWall; // 일단 벽에 부딪힌 것과 동일하게 함.
@@ -382,7 +379,7 @@ void gameScene::moveCharacter(float dt)
 	*/
 
 
-	
+
 
 
 
@@ -449,37 +446,37 @@ void gameScene::moveCharacter(float dt)
 	* By Daun 위치 변경 (위에서 아래로 바꿈)
 	*/
 
-		if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
-			playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
-			playerPos.y >= 0 &&
-			playerPos.x >= 0 )
-		{
-			// 캐릭터가 이동할 위치가 맵 안인경우 벽에 충돌햇는지를 검사합니다 By Daun
-	CCPoint tileCoord = this->tileCoorPosition(playerPos);
-
-	int tileGidforWall = this->metainfo->tileGIDAt(tileCoord);
-
-	if(tileGidforWall)
+	if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
+		playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
+		playerPos.y >= 0 &&
+		playerPos.x >= 0 )
 	{
-		CCDictionary *properties = tileMap->propertiesForGID(tileGidforWall);
+		// 캐릭터가 이동할 위치가 맵 안인경우 벽에 충돌햇는지를 검사합니다 By Daun
+		CCPoint tileCoord = this->tileCoorPosition(playerPos);
 
-		if(properties)
+		int tileGidforWall = this->metainfo->tileGIDAt(tileCoord);
+
+		if(tileGidforWall)
 		{
-			CCString *wall = (CCString*)properties->objectForKey("Wall");
+			CCDictionary *properties = tileMap->propertiesForGID(tileGidforWall);
 
-			if(wall && (wall->compare("YES") == 0))
+			if(properties)
 			{
-				character->setPosition(playerPos);
-				checkCrash = CrashWithWall;
+				CCString *wall = (CCString*)properties->objectForKey("Wall");
+
+				if(wall && (wall->compare("YES") == 0))
+				{
+					character->setPosition(playerPos);
+					checkCrash = CrashWithWall;
+				}
 			}
 		}
 	}
-		}
-		else
-		{
-			// 캐릭터가 이동할 위치가 맵 밖이므로 벽에 충돌한 것과 마찬가지입니다.
-			checkCrash = CrashWithWall;
-		}
+	else
+	{
+		// 캐릭터가 이동할 위치가 맵 밖이므로 벽에 충돌한 것과 마찬가지입니다.
+		checkCrash = CrashWithWall;
+	}
 
 
 	/* End Eunji */
@@ -658,47 +655,33 @@ void gameScene::createFood()
 	//CCString *a=NULL;
 	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage("img/fish_cutlet_list.png");
 
+	foods = tileMap->objectGroupNamed("foods");
+	CCDictionary *food1point = foods->objectNamed("food1");
+	CCDictionary *food2point = foods->objectNamed("food2");
+
+	// 여기 고쳤음!!!
+	//
+	//counter
+	CCTMXObjectGroup *counterGroup = tileMap->objectGroupNamed("endPoint");
+	CCDictionary *_counterPoint = counterGroup->objectNamed("counter");
+	int counterX = ((CCString*)_counterPoint->objectForKey("x"))->intValue();
+	int counterY = ((CCString*)_counterPoint->objectForKey("y"))->intValue();
+	counterPoint = ccp(counterX+MOVEX,counterY+MOVEY);
+	this->createCounter();
+	CCPoint foodpoint[2];
+	//
+
+	int food1X = ((CCString*)food1point->objectForKey("x"))->intValue();
+	int food1Y = ((CCString*)food1point->objectForKey("y"))->intValue();
+	foodpoint[0] = ccp(food1X+MOVEX,food1Y+MOVEY);
+
+	int food2X = ((CCString*)food2point->objectForKey("x"))->intValue();
+	int food2Y = ((CCString*)food2point->objectForKey("y"))->intValue();
+	foodpoint[1] = ccp(food2X+MOVEX,food2Y+MOVEY);
 
 
 
-//CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
-//	food->setPosition(foodpoint);
-//	food->setAnchorPoint(ccp(0,0));
-//	food->setTag(2);
-	//a->create(imageNameProc(foodImageName));
-	//strcpy(inputdata,imageNameProc(foodImageName).c_str());// to set userdata.
-	//inputdata = imageNameProc(foodImageName).c_str());
-	//food->setUserData(a);
-//	foodSpriteArray->addObject(food);
-//	this->addChild(food);
-//
-		foods = tileMap->objectGroupNamed("foods");
-		CCDictionary *food1point = foods->objectNamed("food1");
-		CCDictionary *food2point = foods->objectNamed("food2");
-	
-		// 여기 고쳤음!!!
-		//
-		//counter
-		CCTMXObjectGroup *counterGroup = tileMap->objectGroupNamed("endPoint");
-		CCDictionary *_counterPoint = counterGroup->objectNamed("counter");
-		int counterX = ((CCString*)_counterPoint->objectForKey("x"))->intValue();
-		int counterY = ((CCString*)_counterPoint->objectForKey("y"))->intValue();
-		counterPoint = ccp(counterX+MOVEX,counterY+MOVEY);
-		this->createCounter();
-		CCPoint foodpoint[2];
-		//
 
-		int food1X = ((CCString*)food1point->objectForKey("x"))->intValue();
-		int food1Y = ((CCString*)food1point->objectForKey("y"))->intValue();
-		foodpoint[0] = ccp(food1X+MOVEX,food1Y+MOVEY);
-
-		int food2X = ((CCString*)food2point->objectForKey("x"))->intValue();
-		int food2Y = ((CCString*)food2point->objectForKey("y"))->intValue();
-		foodpoint[1] = ccp(food2X+MOVEX,food2Y+MOVEY);
-
-
-
-	
 	int FOOD_CNT = 2;
 	for(int i = 0 ; i < FOOD_CNT; i++)
 	{
@@ -746,6 +729,7 @@ void gameScene::updateFoodSprte(float dt)
 {
 	CCArray* foodToDelete = new CCArray;
 	CCObject* foodobject = NULL;
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	CCARRAY_FOREACH(foodSpriteArray,foodobject)
 	{
 		CCRect characterRect = CCRectMake(character->getPosition().x - (character->getContentSize().width/2),
@@ -753,15 +737,15 @@ void gameScene::updateFoodSprte(float dt)
 			character->getContentSize().width,
 			character->getContentSize().height);
 		CCSprite* foodSprite = dynamic_cast<CCSprite*>(foodobject);
-		CCRect foodRect = CCRectMake(foodSprite->getPosition().x - (foodSprite->getContentSize().width/2),
-			foodSprite->getPosition().y -(foodSprite->getContentSize().height/2),
-			foodSprite->getContentSize().width,
-			foodSprite->getContentSize().height);
+		CCRect foodRect = CCRectMake(foodSprite->getPosition().x - (foodSprite->getContentSize().width/2*foodSprite->getScale()),
+			foodSprite->getPosition().y -(foodSprite->getContentSize().height/2*foodSprite->getScale()),
+			foodSprite->getContentSize().width*foodSprite->getScale(),
+			foodSprite->getContentSize().height*foodSprite->getScale());
 		if(characterRect.intersectsRect(foodRect))
 		{
 			foodToDelete->addObject(foodSprite);
 			foodFollowArray->addObject(foodSprite);//add foods for following character
-			
+
 		}
 	}
 	CCARRAY_FOREACH(foodToDelete,foodobject)
@@ -771,8 +755,16 @@ void gameScene::updateFoodSprte(float dt)
 		foodSpriteArray->removeObject(delfood);
 
 		//this->removeChild(delfood);
-		this->followCharacter(1.0);
+		//this->followCharacter(1.0);
 	}
+	
+	foodToDelete->release();
+}
+
+void gameScene::checkFollowFoodCollision(float dt)
+{
+	CCObject* foodobject = NULL;
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	CCARRAY_FOREACH(foodFollowArray,foodobject)
 	{
 		CCRect characterRect = CCRectMake(character->getPosition().x - (character->getContentSize().width/2),
@@ -780,17 +772,25 @@ void gameScene::updateFoodSprte(float dt)
 			character->getContentSize().width,
 			character->getContentSize().height);
 		CCSprite* foodSprite = dynamic_cast<CCSprite*>(foodobject);
-		CCRect foodRect = CCRectMake(foodSprite->getPosition().x - (foodSprite->getContentSize().width/2),
-			foodSprite->getPosition().y -(foodSprite->getContentSize().height/2),
-			foodSprite->getContentSize().width,
-			foodSprite->getContentSize().height);
+		CCRect foodRect = CCRectMake(foodSprite->getPosition().x - (foodSprite->getContentSize().width/2*foodSprite->getScale()),
+			foodSprite->getPosition().y -(foodSprite->getContentSize().height/2*foodSprite->getScale()),
+			foodSprite->getContentSize().width*foodSprite->getScale()-10,
+			foodSprite->getContentSize().height*foodSprite->getScale()-10);
 		if(characterRect.intersectsRect(foodRect))
 		{
 			//gaugeHeart->setPositionX(size.width - (20 + gaugeNum)); // 10퍼센트씩 하트를 옮김.
+			character_XP -= 10;
+
+			int gaugeSize_part = 441/10; // 게이지바 사이즈의 10퍼센트 길이
+			int gaugeNum = (gaugeSize_part * ((100 - character_XP) / 10));
+
+			if( character_XP > 0 )
+			{
+				gaugeHeart->setPositionX(size.width - (20 + gaugeNum)); // 10퍼센트씩 하트를 옮김.
+			}
 		}
 
 	}
-	foodToDelete->release();
 }
 void gameScene::followCharacter(float dt)
 {
@@ -851,6 +851,7 @@ void gameScene::createCounter()
 //collision with character, go to gameResultScene
 void gameScene::go_endResultScene()
 {
+	this->checkFoodToEnd();
 	CCScene *pScene = CCScene::create();
 	gameResultScene *layer = new gameResultScene(result,stageidx);
 	layer->autorelease();
@@ -861,18 +862,15 @@ void gameScene::go_endResultScene()
 
 void gameScene::checkFoodToEnd()
 {//string result = ?
-	for(int i=0;i<foodFollowArray->count();i++)
+	char c[10]=" ";
+	int count = foodFollowArray->count();
+	for(int i=0;i<count;i++)
 	{
 		CCSprite* a = ((CCSprite*)foodFollowArray->objectAtIndex(i));
-		string b = ((char*)a->getUserData());
-		result.append(" "+b);
+		int b = a->getTag();
+		_itoa(b,c,10);
+		result.append(" "+(string)c);
 	}
-}
-string gameScene::imageNameProc(char* input)
-{
-	string return_s = input;
-	return_s = return_s.substr(4,return_s.find("."));
-	return return_s;
 }
 
 //-----------------------pineoc End-------------------------------//
@@ -1085,14 +1083,14 @@ void gameScene::doActionMovingObstacleRight(CCObject* pSender)
 
 void gameScene::doActionMovingObstacleLeft(CCObject* pSender)
 {
-    CCActionInterval* moveLeft = CCMoveBy::create(2, ccp(-80, 0));
+	CCActionInterval* moveLeft = CCMoveBy::create(2, ccp(-80, 0));
 
 	obstacle->runAction(moveLeft);
 }
 
 void gameScene::doActionMovingObstacleReverse(CCObject* pSender)
 {
-    CCActionInterval* moveRight = CCMoveBy::create(2, ccp(80, 0));
+	CCActionInterval* moveRight = CCMoveBy::create(2, ccp(80, 0));
 	CCActionInterval* moveReverse = moveRight->reverse();
 
 	obstacle->runAction(moveReverse);
