@@ -86,7 +86,7 @@ public:
 	// ------------------------------Daun End ----------------------//
 
 	//-------------------------------pineoc's start------------------//
-	void createFood(CCPoint,char*); //food create item, (point, imageName)
+	void createFood(); //food create item, (point, imageName)
 	bool checkDup(CCSprite*); // check duplication about tile 
 	void updateFoodSprte(float dt);
 	void followCharacter(float);

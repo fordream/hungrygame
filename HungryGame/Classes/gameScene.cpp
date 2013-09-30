@@ -81,7 +81,7 @@ bool gameScene::init()
 
 
 		// 캐릭터 이동속도
-		movingSpeed = 800;
+		movingSpeed = 400;
 
 
 
@@ -118,7 +118,7 @@ bool gameScene::init()
 		*/
 		createCharacter();
 
-		moveDirection = UP;
+		moveDirection = DOWN;
 
 		/*********************************
 		* 터치 이벤트를 받도록 함
@@ -145,42 +145,7 @@ bool gameScene::init()
 		this->createFoodShelf();
 
 
-		foods = tileMap->objectGroupNamed("foods");
-		CCDictionary *food1point = foods->objectNamed("food1");
-		CCDictionary *food2point = foods->objectNamed("food2");
-		CCDictionary *food3point = foods->objectNamed("food3");
-		CCDictionary *food4point = foods->objectNamed("food4");
-		//
-		//counter
-		CCTMXObjectGroup *counterGroup = tileMap->objectGroupNamed("endPoint");
-		CCDictionary *_counterPoint = counterGroup->objectNamed("counter");
-		int counterX = ((CCString*)_counterPoint->objectForKey("x"))->intValue();
-		int counterY = ((CCString*)_counterPoint->objectForKey("y"))->intValue();
-		counterPoint = ccp(counterX+MOVEX,counterY+MOVEY);
-		this->createCounter();
-
-		//
-
-		int food1X = ((CCString*)food1point->objectForKey("x"))->intValue();
-		int food1Y = ((CCString*)food1point->objectForKey("y"))->intValue();
-		this->createFood(ccp(food1X+MOVEX,food1Y+MOVEY),"map/1.jpg");
-
-		int food2X = ((CCString*)food2point->objectForKey("x"))->intValue();
-		int food2Y = ((CCString*)food2point->objectForKey("y"))->intValue();
-		this->createFood(ccp(food2X+MOVEX,food2Y+MOVEY),"map/2.png");
-
-		int food3X = ((CCString*)food3point->objectForKey("x"))->intValue();
-		int food3Y = ((CCString*)food3point->objectForKey("y"))->intValue();
-		this->createFood(ccp(food3X+MOVEX,food3Y+MOVEY),"map/3.png");
-
-		int food4X = ((CCString*)food4point->objectForKey("x"))->intValue();
-		int food4Y = ((CCString*)food4point->objectForKey("y"))->intValue();
-		this->createFood(ccp(food4X+MOVEX,food4Y+MOVEY),"map/4.png");
-
-		int food5X = tileCoorPosition(ccp(std::rand()%10+1,std::rand()%20+1)).x;
-		int food5Y = tileCoorPosition(ccp(std::rand()%10+1,std::rand()%20+1)).y;
-		//if(checkDup((CCSprite*)foodSpriteArray->objectAtIndex(3)))
-			this->createFood(ccp(food5X+MOVEX,food5Y+MOVEY),"map/Big_welsh_onion.png");
+		this->createFood();
 
 		foodcount = foodSpriteArray->count();
 
@@ -686,22 +651,66 @@ void gameScene::createCharacter()
 // -----------------------Daun End -------------------------------//
 
 //------------------------Pineoc's part---------------------------//
-void gameScene::createFood(CCPoint foodpoint,char* foodImageName)
+void gameScene::createFood()
 {//collision correct, duplication correct
 	//후에 인자값을 CCArray로 받아서 음식재료를 다 뿌리는것으로 만듬.
 	//char* inputdata = NULL;
 	//CCString *a=NULL;
-	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage(foodImageName);
-	CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
-	food->setPosition(foodpoint);
-	food->setAnchorPoint(ccp(0,0));
-	food->setTag(2);
+	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage("img/fish_cutlet_list.png");
+
+
+
+
+//CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
+//	food->setPosition(foodpoint);
+//	food->setAnchorPoint(ccp(0,0));
+//	food->setTag(2);
 	//a->create(imageNameProc(foodImageName));
 	//strcpy(inputdata,imageNameProc(foodImageName).c_str());// to set userdata.
 	//inputdata = imageNameProc(foodImageName).c_str());
 	//food->setUserData(a);
-	foodSpriteArray->addObject(food);
-	this->addChild(food);
+//	foodSpriteArray->addObject(food);
+//	this->addChild(food);
+//
+		foods = tileMap->objectGroupNamed("foods");
+		CCDictionary *food1point = foods->objectNamed("food1");
+		CCDictionary *food2point = foods->objectNamed("food2");
+	
+		// 여기 고쳤음!!!
+		//
+		//counter
+		CCTMXObjectGroup *counterGroup = tileMap->objectGroupNamed("endPoint");
+		CCDictionary *_counterPoint = counterGroup->objectNamed("counter");
+		int counterX = ((CCString*)_counterPoint->objectForKey("x"))->intValue();
+		int counterY = ((CCString*)_counterPoint->objectForKey("y"))->intValue();
+		counterPoint = ccp(counterX+MOVEX,counterY+MOVEY);
+		this->createCounter();
+		CCPoint foodpoint[2];
+		//
+
+		int food1X = ((CCString*)food1point->objectForKey("x"))->intValue();
+		int food1Y = ((CCString*)food1point->objectForKey("y"))->intValue();
+		foodpoint[0] = ccp(food1X+MOVEX,food1Y+MOVEY);
+
+		int food2X = ((CCString*)food2point->objectForKey("x"))->intValue();
+		int food2Y = ((CCString*)food2point->objectForKey("y"))->intValue();
+		foodpoint[1] = ccp(food2X+MOVEX,food2Y+MOVEY);
+
+
+
+	
+	int FOOD_CNT = 2;
+	for(int i = 0 ; i < FOOD_CNT; i++)
+	{
+		CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(100*i,100*i, 100, 100));
+		food->setPosition(foodpoint[i]);
+		food->setScale(0.48);
+		food->setTag(i);
+		food->setAnchorPoint(ccp(0,0));
+		foodSpriteArray->addObject(food);
+		this->addChild(food);
+	}
+
 
 }
 
@@ -752,6 +761,7 @@ void gameScene::updateFoodSprte(float dt)
 		{
 			foodToDelete->addObject(foodSprite);
 			foodFollowArray->addObject(foodSprite);//add foods for following character
+			
 		}
 	}
 	CCARRAY_FOREACH(foodToDelete,foodobject)
