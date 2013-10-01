@@ -919,6 +919,13 @@ void gameScene::doNotification(CCObject *obj)
 		/****** Daun End ********************/
 
 	}
+	else if(pParam->intValue()==2)
+	{
+		CCDirector::sharedDirector()->resume();
+		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+		CCScene *pScene = Main::scene();
+		CCDirector::sharedDirector()->replaceScene(pScene);
+	}
 	else
 	{	
 		CCArray* childs = this->getChildren();

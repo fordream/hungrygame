@@ -70,9 +70,12 @@ bool PauseGameScene::init()
 void PauseGameScene::goMain( CCObject* pSender )
 {
 	//처음 메인화면으로
-	CCScene *pScene = Main::scene();
+	/*CCScene *pScene = Main::scene();
 
-	CCDirector::sharedDirector()->pushScene(pScene);
+	CCDirector::sharedDirector()->pushScene(pScene);*/
+	CCString* popParam=CCString::create("2");
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("notification", popParam);         //노티피케이션 보내기
+	this->removeFromParentAndCleanup(true);
 }
 
 void PauseGameScene::goHelp( CCObject* pSender )
