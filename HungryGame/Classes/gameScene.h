@@ -31,103 +31,115 @@ public:
 	display point -> tile point function
 	*/
 	CCPoint tileCoorPosition(CCPoint);
-	CCTMXLayer *backgroundLayer;
 	void createObstacle(); // 장애물 생성 위함
-	CCTMXLayer *metainfo; //은지만듬
-	CCPoint originPos;
 
-	CCPoint obstaclePosition;
-	CCSprite *obstacle;
-	CCTMXLayer *wall;
+	CCTMXLayer *					backgroundLayer;
+	CCTMXLayer *					metainfo; //은지만듬
+	CCPoint							originPos;
 
-	//------------------------eunji gauge----------------------------//
+	CCPoint							obstaclePosition;
+	CCSprite *						obstacle;
+	CCTMXLayer *					wall;
 
-	CCSprite *gaugeBar;
-	CCSprite *gaugeHeart;
 
-	int character_XP;
 
-	//------------------------eunji end------------------------------//
+	/* gauge										: eunji */
+	CCSprite *						gaugeBar;
+	CCSprite *						gaugeHeart;
+	int								character_XP;
 
-	//----------------------- eunji moving obstacle ----------------//
-
-	void moveObstacle(float); // 장애물 움직임 구현
-	int countNum; // 프레임 수.
+	/* ,moving obstacle								: eunji */
+	int								countNum;							// 프레임 수.
+	int								obX, obY;
 	bool checkObDirection;
 	void doActionMovingObstacleRight(CCObject* pSender);
 	void doActionMovingObstacleLeft(CCObject* pSender);
+	void moveObstacle(float);										// 장애물 움직임 구현
 	void doActionMovingObstacleReverse(CCObject* pSender);
-	int obX, obY;
 
-	//----------------------- eunji end ----------------------------//
 
-	// --------------------------------- Daun Start -------------------//
 
+
+
+	/* tiled map									: Daun */
 	CCTMXTiledMap *tileMap; // tileMap name to select stage
+
+	/* character									: Daun */
+	int								movingSpeed;						// 캐릭터의 이동 속도
+	int								moveDirection;						// 캐릭터가 현재 이동하고 있는 방향을 저장함
+	int								beforeMoveDirection;				// 이건 다음이 벽에 충돌인경우 현재 방향을 저장함
+	CCSprite*						character;
+	void moveCharacter(float);
 	void createCharacter();
+
+	/* touch										: Daun */
 	void ccTouchEnded(CCTouch *, CCEvent* );
-	CCSprite        *character;
 	bool ccTouchBegan(CCTouch *, CCEvent* );
 	void onEnter();
-	int checkCrash;
-	void moveCharacter(float);
-	CCDirector* pDirector;
-	int moveDirection;						// 캐릭터가 현재 이동하고 있는 방향을 저장함
-	int beforeMoveDirection;					// 이건 다음이 벽에 충돌인경우 현재 방향을 저장함
-	CCPoint pauseBtnPosition;
-	CCSprite *btnPause;
 
-	int movingSpeed;
+	/* pause										: Daun */
+	CCPoint							pauseBtnPosition;					// 일시정지 버튼의 위치
+	CCSprite *						btnPause;							// 일시정지 이미지
 
-	//add jiyoon
-	CCAnimate *animate;
-	CCAction *rep;
+	/* etc											: Daun */
+	int								checkCrash;							// 캐릭터의 충돌 여부 판단
+	CCDirector*						pDirector;
 
-	// ------------------------------Daun End ----------------------//
 
-	//-------------------------------pineoc's start------------------//
-	void createFood(); //food create item, (point, imageName)
-	bool checkDup(CCSprite*); // check duplication about tile 
+
+
+	/*												: pineoc */
+	CCTMXObjectGroup *				foods;							// group for foods object
+	CCArray*						tomakeFood;						// 만들어야하는 음식재료 목록, array that have to make food ingrediant list
+	CCArray*						onCheckFoodDisplay;				// 위에 음식을 먹었는지 안먹었는지 체크할 배열,	
+	void createFood();												//food create item, (point, imageName)
+	bool checkDup(CCSprite*);										// check duplication about tile 
 	void updateFoodSprte(float dt);
 	void followCharacter(float);
 	void check_counter(float);
 	void createCounter();
 	void go_endResultScene();
 	void createFoodShelf();
-	void checkFoodToEnd(); // check food for ending
+	void checkFoodToEnd();											// check food for ending
 	void checkFollowFoodCollision(float);
-	CCTMXObjectGroup *foods; // group for foods object
-	CCArray* tomakeFood; // 만들어야하는 음식재료 목록, array that have to make food ingrediant list
-	CCArray* onCheckFoodDisplay; // 위에 음식을 먹었는지 안먹었는지 체크할 배열,
-	// array for check when character eat the food ingrediant
 	
-	CCArray* foodSpriteArray; // array for save the food sprite
-	CCArray* foodFollowArray; // array for follow character
-	int foodcount; // for food count
-	int foodFollowCnt;
-	CCPoint beforeMoveCharPoint[10];
-	CCSprite* counter;
-	CCPoint counterPoint;
+	// array for check when character eat the food ingrediant
+	CCArray*						foodSpriteArray;				// array for save the food sprite
+	CCArray*						foodFollowArray;				// array for follow character
+	int								foodcount;						// for food count
+	int								foodFollowCnt;
+	CCPoint							beforeMoveCharPoint[10];
+	CCSprite*						counter;
+	CCPoint							counterPoint;
 
-	std::string result;
-	int stageidx;
-	//-----------------------------------------------------------------//
+	std::string						result;
+	int								stageidx;
 
-	//--------------------JIYOON-------------------------------------
-	void doPop(CCObject* pSender);	//creat popup
+
+
+
+
+	/*												: jiyoon*/
+	CCMenu*							PauseMenu;						// pause button menu
+	CCPoint							itemPosition;
+	CCSprite*						item1,
+			*						item2, 
+			*						item3, 
+			*						item4;
+	CCAnimate*						animate;
+	CCAction *						rep;
+	
+	void doPop(CCObject* pSender);									//creat popup
 	void doNotification(CCObject *obj);
-	CCMenu* PauseMenu;// pause button menu
-
-	CCPoint itemPosition;
-	CCSprite * item1,*item2, *item3, *item4;
+	
 	void createItem1();
 	void createItem2();
 	void createItem3();
 	void createItem4();
+	
+	void check_item(float dt);										//check collision between item and character
 
 
-	void check_item(float dt);	//check collision between item and character
-	//------------------JIYOON END------------------------------------
 
 };
 

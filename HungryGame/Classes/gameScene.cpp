@@ -1,4 +1,4 @@
-/*
+/**
 * 2013 08 18
 * Joung Daun
 * GameScene
@@ -16,12 +16,31 @@ enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
 enum DIRCTION { UP, DOWN, LEFT, RIGHT};
 #define MOVEX 23.2
 #define MOVEY 46.5
+
+/*
+* ** DESTRUCTURE
+* ~gameScene()									destructure about gameScene class
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
 gameScene::~gameScene()
 {
 	delete foodSpriteArray;
 	delete foodFollowArray;
 	delete tomakeFood;
 }
+/*
+* ** FUNCTION
+* CCScene* scene()								make scene.
+* Input											nothing
+* Output										scene
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun
+*/
 CCScene* gameScene::scene()
 {
 	CCScene * scene = NULL;
@@ -44,6 +63,15 @@ CCScene* gameScene::scene()
 }
 
 // on "init" you need to initialize your instance
+/*
+* ** FUNCTION
+* bool init()									when scene made, this function is first called.
+* Input											nothing
+* Output										True
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun , eunji, jiyoon, pineoc
+*/
 bool gameScene::init()
 {
 
@@ -67,41 +95,21 @@ bool gameScene::init()
 
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
+		/* Set background img		: Daun */
 		CCSprite* bg = CCSprite::create("img\\game\\game_bg.png");
 		bg->setPosition(ccp(size.width/2,size.height/2));
 		this->addChild(bg,0);
+		
 
 
-		//------------------------- Daun Start -------------------------------//
-		/*
-		* make background scene
-		* Joung Daun
-		* http://blog.naver.com/PostView.nhn?blogId=skmzzang7979&logNo=70142661460
-		*/
-
-
-		// 캐릭터 이동속도
-		movingSpeed = 400;
-
-
-
+		/* Set Tiled Map			: Daun, eunji*/
 		CCLayer *tileLayer = CCLayer::create();
 		this->addChild(tileLayer);
 
-
-		// 맵 파일 불러오기
-
 		tileMap = CCTMXTiledMap::create("map/GameMap.tmx");
-
 		tileMap->setPosition(MOVEX , MOVEY);
-		// -> 위에 줄이 맵 위치 이동시키는거임! 일단은 0,0으로 두는게 좋겠다!
-		//	this->addChild(tileMap,1,2);
-
-		// 맵 타일 불러오기
 
 		backgroundLayer = tileMap->layerNamed("wall");
-
-		//---------    eunji for wall    ---------------------
 
 		//metainfo에 준 타일레이어 이름은 Items이지만 벽표시 위한 빨간레이어임.
 		// 추후 실제 아이템을 포함 할 수도 있음.
@@ -110,38 +118,26 @@ bool gameScene::init()
 		//		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
 		tileLayer->addChild(tileMap);
 
-		//--------- end eunji ---------------------------
 
-		/*
-		* make character
-		* Daun..
-		*/
+
+		/* Make Character			: Daun */
 		createCharacter();
 
-		moveDirection = DOWN;
+		movingSpeed = 400;														// set initial character moving speed
+		moveDirection = DOWN;													// set default character moving direction
+		
+		this->schedule(schedule_selector(gameScene::moveCharacter));
 
-		/*********************************
-		* 터치 이벤트를 받도록 함
-		* Set touch able
-		*********************************/
+		
+		
+		/* set touch enable			: Daun*/
 		pDirector = CCDirector::sharedDirector();
 		pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 
-		this->schedule(schedule_selector(gameScene::moveCharacter));
-		//------------------------- Daun End -------------------------------//
 
 
-
-
-		/* pineoc's comments
-		links : http://www.raywenderlich.com/40544/cocos2d-x-tile-map-tutorial-part-2
-		*/
-		CCSize s = tileMap->getContentSize();
-
-		/*
-		pineoc's food testing part --------------------------------------------------------------
-		*/
-		//foods
+		/* make food				: Pineoc */
+		/* links : http://www.raywenderlich.com/40544/cocos2d-x-tile-map-tutorial-part-2 */
 		this->createFoodShelf();
 		this->createFood();
 		foodcount = foodSpriteArray->count();
@@ -150,11 +146,9 @@ bool gameScene::init()
 		this->schedule(schedule_selector(gameScene::check_counter));
 		this->schedule(schedule_selector(gameScene::followCharacter));
 		this->schedule(schedule_selector(gameScene::checkFollowFoodCollision));
-		//----------------------------------------------------------------------------------------
 
 
-		//-------------- obstacle (eunji) --------------------
-
+		/* make obstacle			: eunji */
 		CCTMXObjectGroup *obstacle = tileMap->objectGroupNamed("obstacle");
 		CCDictionary *obstaclePoint = obstacle->objectNamed("obstaclePoint");
 
@@ -169,13 +163,9 @@ bool gameScene::init()
 
 		this->schedule(schedule_selector(gameScene::moveObstacle), 2.0f); // 움직이는 장애물 구현
 
-		//this->doActionMovingObstacleRight(obstacle);
 
 
-		//----------------------------------------------------
-
-		//----------------eunji add gauge --------------------//
-
+		/* make gauge				: eunji */
 		character_XP = 100;
 
 		gaugeBar = CCSprite::create("game_status_bar.png");
@@ -189,45 +179,29 @@ bool gameScene::init()
 		tileMap->addChild(gaugeHeart,3);
 
 
-		//----------------eunji end --------------------------//
 
 
-		//--------------jiyoon start----------------
-		//-------Pause btn-------------------
-		// ------ Daun Start for pause----------
+		/* make pause btn			: jiyoon, daun */
 		btnPause = CCSprite::create("img/game/game_btn_pause.png");
 		btnPause->setAnchorPoint(ccp(0,0));
-
 
 		pauseBtnPosition = ccp(size.width*0.8, size.height*0.9);
 		btnPause->setPosition(pauseBtnPosition);
 		this->addChild(btnPause);
 
 
-		// ------Daun end -------
 
 
-		/*
-
-		CCMenuItemImage *btnPause = CCMenuItemImage::create(
-		"img/game/game_btn_pause.png", "img/game/game_btn_pause.png", this, menu_selector(gameScene::doPop));
-		CC_BREAK_IF(! btnPause);
-		btnPause->setPosition(ccp(size.width*0.8, size.height*0.9));
-
-		PauseMenu = CCMenu::create(btnPause, NULL);
-		PauseMenu->setPosition(CCPointZero);
-		CC_BREAK_IF(! PauseMenu);
-
-		this->addChild(PauseMenu, 2);
-		*/
-		//notification 추가
+		/* Add notification			: jiyoon */
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
 			callfuncO_selector(gameScene::doNotification),
 			"notification", NULL);
 		//"notification"이라는 메시지가 오면 해당 함수를 실행한다.
 
-		//---------Items--------------
 
+
+
+		/* Add Items				: jiyoon */
 		//decide kind of item.
 		srand(time(0));	//random
 		int kindOfItem = rand()%4 + 1;	//range : 1~4
@@ -291,7 +265,6 @@ bool gameScene::init()
 
 		this->schedule(schedule_selector(gameScene::check_item));
 
-		//-------------jiyoon End-------------------------------
 
 
 		bRet = true;
@@ -299,7 +272,15 @@ bool gameScene::init()
 
 	return bRet;
 }
-
+/*
+* ** FUNCTION
+* CCPoint tileCoorPosition(CCPoint)				??????????????
+* Input											position 
+* Output										???????
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											eunji
+*/
 CCPoint gameScene::tileCoorPosition(CCPoint position)
 {//general function, for point -> tile point
 
@@ -313,10 +294,17 @@ CCPoint gameScene::tileCoorPosition(CCPoint position)
 
 	return ccp(x,y);
 }
-
+/*
+* ** FUNCTION
+* void createObstacle()							create Obstacle
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											eunji
+*/
 void gameScene::createObstacle()
-{// 장애물 생성 위함
-
+{
 	CCTexture2D *obTexture = CCTextureCache::sharedTextureCache()->addImage("map/meat.png");
 
 	obstacle = CCSprite::createWithTexture(obTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
@@ -327,68 +315,49 @@ void gameScene::createObstacle()
 }
 
 
-
-//------------------------ Daun Start ----------------------------//
 /*
-* void gameScene::onEnter()
-* this function work to use touch.
-* 터치를 입력받을 것을 지시하는 함수
-* 이게 있어야 터치를 받음
-* Daun..
+* ** FUNCTION
+* void onEnter()								called when enter this scene.
+*												if this function not exist, touch event can not accepted.
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun
 */
 void gameScene::onEnter()
 {
 	CCLayer::onEnter();
 
 }
+
 /*
-*	캐릭터 이동시키는 함수
-*
+* ** FUNCTION
+* void moveCharacter(float)						make schedule function about moving character to it's own direction.
+* Input											float dt for schedule.
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun, eunji, pineoc
 */
 void gameScene::moveCharacter(float dt)
 {
-	// HAVETODO
-	// 캐릭터 이동시킴!!
-
-
 	CCPoint playerPos = character->getPosition();
 	CCPoint originalplayerPos = character->getPosition();
 	int checkCrash = nothing;
-	/********************************************************** To EVERYONE *************
-	* check character is crash with someting
-	* 충돌여부를 판단하는 공간입니다
-	* enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
-	* 즉, checkCrash가 0이면 아무것도 안부딫친거, 1이면 벽, 2이면 음식 3이면 아이템이랑 부딫친거임
-	*/
-
-
-	/*
-	장애물과 충돌했는지 확인
-	to eunji
-	*/
-
-	if(
-	character->getPosition().y <= obstacle->getPosition().y + 20 &&
-	character->getPosition().y >= obstacle->getPosition().y - 20 &&
-	character->getPosition().x <= obstacle->getPosition().x + 20 &&
-	character->getPosition().x >= obstacle->getPosition().x - 20)
-	{
-		checkCrash = CrashWithWall;
-	}
-
-	/*
-	eunji end
-	*/
 
 
 
+	/* check character crash with outline of map				: daun */
+	if (character->getPosition().y <= obstacle->getPosition().y + 20
+				&& character->getPosition().y >= obstacle->getPosition().y - 20
+				&& character->getPosition().x <= obstacle->getPosition().x + 20
+				&& character->getPosition().x >= obstacle->getPosition().x - 20)
+	{ checkCrash = CrashWithWall; }
 
-
-
-	/* 
-	* 음식과 충돌했는지 확인하는 공간입니다
-	check collision food and character
-	*/
+	
+	
+	/*  check collision food and character						: Pineoc*/
 	beforeMoveCharPoint[0] = character->getPosition();
 	foodFollowCnt=1;
 	CCObject* ob = NULL;
@@ -400,58 +369,23 @@ void gameScene::moveCharacter(float dt)
 	}
 
 
-	/* End pineoc */
-
-
-
-
-	/*
-	* 아이템과 충돌했는지 확인하는 공간입니다
-	*/
-	// 여기에 코드작성
-
-	/* end blackbell */
-
-
-
 
 
 	if(checkCrash == nothing)
 	{
-		if(moveDirection == UP)
-		{
-			playerPos.y += tileMap->getTileSize().height;
-		}
-		else if (moveDirection == DOWN)
-		{
-			playerPos.y -= tileMap->getTileSize().height;
-		}
-		else if (moveDirection == LEFT)
-		{
-			playerPos.x -= tileMap->getTileSize().width;
-		}
-		else if (moveDirection == RIGHT)
-		{
-			playerPos.x += tileMap->getTileSize().width;
-		}
-		else
-		{
-		}
-
-
+		if      (moveDirection == UP)	 {	playerPos.y += tileMap->getTileSize().height;	}
+		else if (moveDirection == DOWN)  {	playerPos.y -= tileMap->getTileSize().height;	}
+		else if (moveDirection == LEFT)	 {	playerPos.x -= tileMap->getTileSize().width;	}
+		else if (moveDirection == RIGHT) {	playerPos.x += tileMap->getTileSize().width;	}
+		else{}
 	}
 
-	/*
-	* 벽과 충돌했는지 확인하는 공간입니다
-	* To Eunji
+	/* check if character crash with wall						: eunji, Daun */
 
-	* By Daun 위치 변경 (위에서 아래로 바꿈)
-	*/
-
-	if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
-		playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
-		playerPos.y >= 0 &&
-		playerPos.x >= 0 )
+	if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width)
+			&& playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height)
+			&& playerPos.y >= 0
+			&& playerPos.x >= 0 )
 	{
 		// 캐릭터가 이동할 위치가 맵 안인경우 벽에 충돌햇는지를 검사합니다 By Daun
 		CCPoint tileCoord = this->tileCoorPosition(playerPos);
@@ -480,28 +414,21 @@ void gameScene::moveCharacter(float dt)
 		checkCrash = CrashWithWall;
 	}
 
-
-	/* End Eunji */
-
+	/* when character crash with wall							: eunji, Daun */
 	if(checkCrash == CrashWithWall)
 	{
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
-		//CCPoint rOriginPos;
-		//rOriginPos.x = originPos.x - 80;
-		//rOriginPos.y = originPos.y - 80;
-
 		// 벽과 충돌한 경우 해야할 일
-		//character->setPosition(playerPos);
-		character->setPosition(originalplayerPos);  // By Daun.. 충돌인 경우 원래 위치로 계쏙 유지
+		character->setPosition(originalplayerPos);							// By Daun.. 충돌인 경우 원래 위치로 계쏙 유지
 		character_XP -= 10;
 
-		int gaugeSize_part = 441/10; // 게이지바 사이즈의 10퍼센트 길이
+		int gaugeSize_part = 441/10;										// 게이지바 사이즈의 10퍼센트 길이
 		int gaugeNum = (gaugeSize_part * ((100 - character_XP) / 10));
 
 		if( character_XP > 0 )
 		{
-			gaugeHeart->setPositionX(size.width - (20 + gaugeNum)); // 10퍼센트씩 하트를 옮김.
+			gaugeHeart->setPositionX(size.width - (20 + gaugeNum));			 // 10퍼센트씩 하트를 옮김.
 		}
 
 		else
@@ -513,38 +440,40 @@ void gameScene::moveCharacter(float dt)
 	}
 	else
 	{
-		if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width) &&
-			playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height) &&
-			playerPos.y >= 0 &&
-			playerPos.x >= 0 )
+		if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width)
+			 && playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height)
+			 && playerPos.y >= 0
+			 && playerPos.x >= 0 )
 		{
-			// 캐릭터의 새로운 위치 지정
-			character->setPosition( playerPos );
+			character->setPosition( playerPos );							// 캐릭터의 새로운 위치 지정
 		}
 	}
+
+
 	Sleep(movingSpeed);
 
 }
+
 /*
-* bool gameScene::ccTouchBegan(CCTouch *, CCEvent *)
-* when touch start, this function work
-* 화면에 손가락이 닿을때
-* Daun..
+* ** FUNCTION
+* bool ccTouchBegan(CCTouch*, CCEvent*)			when touch is began
+* Input											touch position , event
+* Output										true
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun
 */
-bool gameScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event)
-{
+bool gameScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event) {	return true; }
 
-	return true;
-}
 
 /*
-* void gameScene::ccTouchEnded(CCTouch *, CCEvent *)
-* When touch end, this function work
-* now character is moved to way w
-* 화면에서 손가락이 떼어질때
-* 현재에는 캐릭터를 중심으로 화면의 어느 부분이 터치되었느냐에 따라
-* 캐릭터가 이동합니다.
-* Daun..
+* ** FUNCTION
+* void ccTouchEnded(CCTouch *, CCEvent* )		when touch action is ended this function called.
+* Input											touch position, event
+* Output										true
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun ,jiyoon
 */
 void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 {
@@ -553,70 +482,52 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	touchLocation = this->convertToNodeSpace(touchLocation);
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
-	// ------- 여기서 일시정지 버튼 누른건지 확인함
+	
+	/* check pause btn is pressed or not	: daun */
 	CCPoint pauseDiff = ccpSub(touchLocation,pauseBtnPosition);
 	float pauseBtnWidth = size.width * 0.1;
 	float pauseBtnHeight = size.height * 0.1;
 
 	if((abs(pauseDiff.x) <= pauseBtnWidth) && (abs(pauseDiff.y) <= pauseBtnHeight))
 	{
-		// 여기서 일시정지 버튼 효과!!
-		/*********************************
-		* 터치를 되지 않도록 함
-		* Set touch enable
-		* Daun
-		*********************************/	
-		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-		/***********  Daun End ********/
-
+		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);				// set touch enable
 		CCScene* pScene=PauseGameScene::scene();
 		this->addChild(pScene,2000,2000);
 	}
-	//NOW!!
-
-
-
-
 
 	originPos = character->getPosition();
-	// 캐릭터가 충돌하지 않은경우~
-	// 마우스 클릭한 방향으로 움직임!
+	
+	/*  set moveDirection					: daun */
+	// 캐릭터를 기준으로 어느 위치를 클릭했는지에 따라 캐릭터가 이동할 방향 결정
 	CCPoint diff = ccpSub(touchLocation, playerPos);
 
-	if (abs(diff.x) > abs(diff.y)) {
-		if (diff.x > 0) {
-
-			moveDirection = RIGHT;
-			// 캐릭터의 방향을 바꾸어준다.
-			character->setFlipX(true);
-		} else {
-
-			moveDirection = LEFT;
-			// 캐릭터의 방향을 바꾸어준다.
-			character->setFlipX(false);
-		}
-	} else {
-		if (diff.y > 0) {
-
-			moveDirection = UP;
-		} else {
-
-			moveDirection = DOWN;
-		}
+	if (abs(diff.x) > abs(diff.y))
+	{
+		if (diff.x > 0) {	moveDirection = RIGHT;	character->setFlipX(true);} 
+		else			{	moveDirection = LEFT;	character->setFlipX(false); }
+	} 
+	else 
+	{
+		if (diff.y > 0) {	moveDirection = UP;	 } 
+		else			{	moveDirection = DOWN;}
 	}
-
-
 }
-
+/*
+* ** FUNCTION
+* void createCharacter()						make character on map
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun
+*/
 void gameScene::createCharacter()
 {
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 
-	// 타일맵에서 Object라고 지정한 오브젝트 객체들 가져오기
 	CCTMXObjectGroup *object = tileMap->objectGroupNamed("object");
-	// 속성값 읽어오기 (characterPosition)
 	CCDictionary *spawnPoint = object->objectNamed("character");
 
 	int x = ((CCString*)spawnPoint->objectForKey("x"))->intValue() + 1;
@@ -647,9 +558,15 @@ void gameScene::createCharacter()
 }
 
 
-// -----------------------Daun End -------------------------------//
-
-//------------------------Pineoc's part---------------------------//
+/*
+* ** FUNCTION
+* void createFood()								create food
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
 void gameScene::createFood()
 {//collision correct, duplication correct
 	//후에 인자값을 CCArray로 받아서 음식재료를 다 뿌리는것으로 만듬.
@@ -699,8 +616,15 @@ void gameScene::createFood()
 
 }
 
+
 /*
-check duplication function
+* ** FUNCTION
+* bool checkDup(CCSprite*)						check duplication function
+* Input											Food we need to check duplication		???
+* Output										scene
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
 */
 bool gameScene::checkDup(CCSprite* checkfood)
 {// if dup, return false
@@ -724,8 +648,15 @@ bool gameScene::checkDup(CCSprite* checkfood)
 	//return true;
 }
 
+
 /*
-음식 재료를 먹었을때 없어지게 함.
+* ** FUNCTION
+* void updateFoodSprte(float)					when character eat food, make food dissappear.
+* Input											float for schedule.
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
 */
 void gameScene::updateFoodSprte(float dt)
 {
@@ -762,7 +693,15 @@ void gameScene::updateFoodSprte(float dt)
 	
 	foodToDelete->release();
 }
-
+/*
+* ** FUNCTION
+* void checkFollowFoodCollision(float)			check if charcter crash with food
+* Input											float for schedule
+* Output										scene
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
 void gameScene::checkFollowFoodCollision(float dt)
 {
 	CCObject* foodobject = NULL;
@@ -780,20 +719,29 @@ void gameScene::checkFollowFoodCollision(float dt)
 			foodSprite->getContentSize().height*foodSprite->getScale()-10);
 		if(characterRect.intersectsRect(foodRect))
 		{
-			//gaugeHeart->setPositionX(size.width - (20 + gaugeNum)); // 10퍼센트씩 하트를 옮김.
+			//gaugeHeart->setPositionX(size.width - (20 + gaugeNum));						// 10퍼센트씩 하트를 옮김.
 			character_XP -= 10;
 
-			int gaugeSize_part = 441/10; // 게이지바 사이즈의 10퍼센트 길이
+			int gaugeSize_part = 441/10;													// 게이지바 사이즈의 10퍼센트 길이
 			int gaugeNum = (gaugeSize_part * ((100 - character_XP) / 10));
 
 			if( character_XP > 0 )
 			{
-				gaugeHeart->setPositionX(size.width - (20 + gaugeNum)); // 10퍼센트씩 하트를 옮김.
+				gaugeHeart->setPositionX(size.width - (20 + gaugeNum));						// 10퍼센트씩 하트를 옮김.
 			}
 		}
 
 	}
 }
+/*
+* ** FUNCTION
+* void followCharacter(float dt)				make food follow the character.
+* Input											float for schedule
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
 void gameScene::followCharacter(float dt)
 {
 	CCSprite* tmpSprite= NULL;
@@ -809,6 +757,15 @@ void gameScene::followCharacter(float dt)
 		tmp1=tmp2;	
 	}
 }
+/*
+* ** FUNCTION
+* void check_counter(float dt)					check if character come to counter
+* Input											float for schedule
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
 void gameScene::check_counter(float dt)
 {// check counter if crash with character and counter
 	CCRect characterRect = CCRectMake(character->getPosition().x - (character->getContentSize().width/2),
@@ -824,7 +781,16 @@ void gameScene::check_counter(float dt)
 		this->go_endResultScene();
 	}
 }
-//make Sprite to eat food.
+
+/*
+* ** FUNCTION
+* void createFoodShelf()						make Sprite to eat food.
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
 void gameScene::createFoodShelf()
 {
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -839,7 +805,16 @@ void gameScene::createFoodShelf()
 }
 
 
-//make counter
+
+/*
+* ** FUNCTION
+* void createCounter()							make counter
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
 void gameScene::createCounter()
 {
 	CCTexture2D *counterTexture = CCTextureCache::sharedTextureCache()->addImage("map/counter.jpg");
@@ -850,7 +825,15 @@ void gameScene::createCounter()
 	this->addChild(counter);
 }
 
-//collision with character, go to gameResultScene
+/*
+* ** FUNCTION
+* void go_endResultScene()						collision with character, go to gameResultScene
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
 void gameScene::go_endResultScene()
 {
 	this->checkFoodToEnd();
@@ -861,7 +844,15 @@ void gameScene::go_endResultScene()
 	CCDirector::sharedDirector()->replaceScene(pScene);
 
 }
-
+/*
+* ** FUNCTION
+* void checkFoodToEnd()							make string about what character eat.
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
 void gameScene::checkFoodToEnd()
 {//string result = ?
 	char c[10]=" ";
@@ -875,29 +866,34 @@ void gameScene::checkFoodToEnd()
 	}
 }
 
-//-----------------------pineoc End-------------------------------//
 
 
-
-
-//--------------------jiyoon start -----------------------
-
-//pause Scene pop up
+/*
+* ** FUNCTION
+* void doPop(CCObject*)							pop the pause scene
+* Input											????
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											jiyoon
+*/
 void gameScene::doPop(CCObject* pSender)
 {
-
-	/*********************************
-	* 터치를 되지 않도록 함
-	* Set touch enable
-	* Daun
-	*********************************/	
-	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-	/***********  Daun End ********/
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);		//set touch enable
 
 	CCScene* pScene=PauseGameScene::scene();
 	this->addChild(pScene,2000,2000);
 
 }
+/*
+* ** FUNCTION
+* void doNotification(CCObject *)				get notification		????
+* Input											???
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											jiyoon
+*/
 void gameScene::doNotification(CCObject *obj)
 {
 	//노티피케이션 받기
@@ -907,19 +903,8 @@ void gameScene::doNotification(CCObject *obj)
 	if(pParam->intValue()==1)
 	{		
 		CCLog("noti 11");
-		CCDirector::sharedDirector()->resume();   //화면 재시작
-
-		//		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(PauseMenu, kCCMenuHandlerPriority,true);
-		//메뉴 버튼 활성
-
-
-		/********************************
-		* Set Touch able
-		* Daun..
-		*********************************/
-		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
-		/****** Daun End ********************/
-
+		CCDirector::sharedDirector()->resume();														//화면 재시작
+		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);		// set touch able
 	}
 	else if(pParam->intValue()==2)
 	{
@@ -932,16 +917,23 @@ void gameScene::doNotification(CCObject *obj)
 	{	
 		CCArray* childs = this->getChildren();
 		CCLog("noti 00");
-		CCDirector::sharedDirector()->pause();   //화면 정지
-		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(PauseMenu);
-		//메뉴버튼 비활성
+		CCDirector::sharedDirector()->pause();													//화면 정지
+		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(PauseMenu);			//메뉴버튼 비활성
 	}
 
 }
 
 
-//Create item 4 kinds
-//Item1 - 
+
+/*
+* ** FUNCTION
+* void createItem1()							create item 1
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											jiyoon
+*/
 void gameScene::createItem1()
 {
 	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("down.png");
@@ -953,7 +945,15 @@ void gameScene::createItem1()
 	this->addChild(item1);
 }
 
-//Item2 -
+/*
+* ** FUNCTION
+* void createItem2()							create item 2
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											jiyoon
+*/
 void gameScene::createItem2()
 {
 	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("left.png");
@@ -965,7 +965,15 @@ void gameScene::createItem2()
 	this->addChild(item2);
 }
 
-//Item3 -
+/*
+* ** FUNCTION
+* void createItem3()							create item 3
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											jiyoon
+*/
 void gameScene::createItem3()
 {
 	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("right.png");
@@ -977,7 +985,15 @@ void gameScene::createItem3()
 	this->addChild(item3);
 }
 
-//Item4
+/*
+* ** FUNCTION
+* void createItem4()							create item 4
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											jiyoon
+*/
 void gameScene::createItem4()
 {
 	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("dog.png");
@@ -988,7 +1004,15 @@ void gameScene::createItem4()
 	item4 = item;
 	this->addChild(item4);
 }
-
+/*
+* ** FUNCTION
+* void check_item(float dt)						check if character eat item or not.
+* Input											float for schedule
+* Output										scene
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											jiyoon
+*/
 void gameScene::check_item(float dt)
 {
 	//check collision - item, character
@@ -1061,7 +1085,15 @@ void gameScene::check_item(float dt)
 //--------------jiyoon end-----------------------------------------
 
 //------------- eunji move obstacle -------------------------//
-
+/*
+* ** FUNCTION
+* void moveObstacle(float dt)					make moving obstacle move
+* Input											float for schedule
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											eunji
+*/
 void gameScene::moveObstacle(float dt)
 {
 	checkObDirection = !(checkObDirection);
@@ -1069,17 +1101,18 @@ void gameScene::moveObstacle(float dt)
 	CCActionInterval* moveRight = CCMoveBy::create(2, ccp(80, 0));
 	CCActionInterval* moveLeft = CCMoveBy::create(2, ccp(-80, 0));
 
-	if(checkObDirection == true)
-	{
-		obstacle->runAction(moveRight);
-	}
-
-	else if(checkObDirection == false)
-	{
-		obstacle->runAction(moveLeft);
-	}
+	if     (checkObDirection == true)  {	obstacle->runAction(moveRight);}
+	else if(checkObDirection == false) {	obstacle->runAction(moveLeft); }
 }
-
+/*
+* ** FUNCTION
+* void doActionMovingObstacleRight(CCObject*)	Make moving obstacle go to right side
+* Input											???
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											eunji
+*/
 void gameScene::doActionMovingObstacleRight(CCObject* pSender)
 {
 	CCActionInterval* moveRight = CCMoveBy::create(2, ccp(200, 0));
@@ -1087,14 +1120,30 @@ void gameScene::doActionMovingObstacleRight(CCObject* pSender)
 	obstacle->runAction(moveRight);
 
 }
-
+/*
+* ** FUNCTION
+* void doActionMovingObstacleLeft(CCObject*)	Make moving obstacle go to left side
+* Input											???
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											eunji
+*/
 void gameScene::doActionMovingObstacleLeft(CCObject* pSender)
 {
 	CCActionInterval* moveLeft = CCMoveBy::create(2, ccp(-80, 0));
 
 	obstacle->runAction(moveLeft);
 }
-
+/*
+* ** FUNCTION
+* void doActionMovingObstaclReverse(CCObject*)	Make moving obstacle do action reversely
+* Input											???
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											eunji
+*/
 void gameScene::doActionMovingObstacleReverse(CCObject* pSender)
 {
 	CCActionInterval* moveRight = CCMoveBy::create(2, ccp(80, 0));
@@ -1102,4 +1151,4 @@ void gameScene::doActionMovingObstacleReverse(CCObject* pSender)
 
 	obstacle->runAction(moveReverse);
 }
-//------------- eunji end ---------------------------------//
+
