@@ -1,14 +1,14 @@
-﻿빌드 시작: 2013-10-01 오후 11:57:03
-     1>2 노드의 "C:\Users\Administrator\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트(Build 대상)입니다.
+﻿Build started 2013-10-02 오후 6:57:27.
+     1>Project "C:\Users\eunji\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IC:\Users\Administrator\Documents\GitHub\hungrygame\cocos2dx /IC:\Users\Administrator\Documents\GitHub\hungrygame\cocos2dx\include /IC:\Users\Administrator\Documents\GitHub\hungrygame\cocos2dx\kazmath\include /IC:\Users\Administrator\Documents\GitHub\hungrygame\cocos2dx\platform\win32 /IC:\Users\Administrator\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32 /IC:\Users\Administrator\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32\OGLES /IC:\Users\Administrator\Documents\GitHub\hungrygame\external /IC:\Users\Administrator\Documents\GitHub\hungrygame\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\gameScene.cpp
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\include /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\kazmath\include /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\win32 /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32 /IC:\Users\eunji\Documents\GitHub\hungrygame\cocos2dx\platform\third_party\win32\OGLES /IC:\Users\eunji\Documents\GitHub\hungrygame\external /IC:\Users\eunji\Documents\GitHub\hungrygame\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /wd4819 /analyze- /errorReport:prompt ..\Classes\gameScene.cpp
          gameScene.cpp
-     1>c:\users\administrator\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(96): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
-     1>c:\users\administrator\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(629): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
-     1>c:\users\administrator\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(690): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
-     1>c:\users\administrator\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(802): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(96): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(631): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(692): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\eunji\documents\github\hungrygame\hungrygame\classes\gamescene.cpp(804): warning C4018: '<' : signed/unsigned mismatch
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrator\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\Administrator\Documents\GitHub\hungrygame\Debug.win32\ libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Administrator\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrator\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.lib" /MACHINE:X86 Debug.win32\AppDelegate.obj
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\ libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.lib" /MACHINE:X86 Debug.win32\AppDelegate.obj
          Debug.win32\BuildingScene.obj
          Debug.win32\gameEndScene.obj
          Debug.win32\gameResultScene.obj
@@ -22,9 +22,9 @@
          Debug.win32\MakerInfoScene.obj
          Debug.win32\main.obj
          Debug.win32\PauseGameScene.obj
-         HungryGame.win32.vcxproj -> C:\Users\Administrator\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
-     1>"C:\Users\Administrator\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+         HungryGame.win32.vcxproj -> C:\Users\eunji\Documents\GitHub\hungrygame\Debug.win32\HungryGame.win32.exe
+     1>Done Building Project "C:\Users\eunji\Documents\GitHub\hungrygame\HungryGame\proj.win32\HungryGame.win32.vcxproj" (Build target(s)).
 
-빌드했습니다.
+Build succeeded.
 
-경과 시간: 00:00:03.10
+Time Elapsed 00:00:04.86

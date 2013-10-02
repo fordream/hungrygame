@@ -167,10 +167,9 @@ bool gameScene::init()
 		countNum = 0;
 		checkObDirection = false; //false : 오른쪽 true : 왼쪽
 
-		//this->schedule(schedule_selector(gameScene::moveObstacle), 2.0f); // 움직이는 장애물 구현
+		this->schedule(schedule_selector(gameScene::moveObstacle), 2.0f); // 움직이는 장애물 구현
 
-		this->doActionMovingObstacleRight(obstacle);
-		//this->doActionMovingObstacleReverse(obstacle);
+		//this->doActionMovingObstacleRight(obstacle);
 
 
 		//----------------------------------------------------
@@ -368,11 +367,14 @@ void gameScene::moveCharacter(float dt)
 	to eunji
 	*/
 
-	if((obX == playerPos.x) && (obY == playerPos.y))
+	if(
+	character->getPosition().y <= obstacle->getPosition().y + 40 &&
+	character->getPosition().y <= obstacle->getPosition().y + 40 &&
+	character->getPosition().x <= obstacle->getPosition().x + 40 &&
+	character->getPosition().x <= obstacle->getPosition().x + 40)
 	{
-		checkCrash = CrashWithWall; // 일단 벽에 부딪힌 것과 동일하게 함.
+		checkCrash = CrashWithWall;
 	}
-
 
 	/*
 	eunji end
@@ -1061,22 +1063,20 @@ void gameScene::check_item(float dt)
 //------------- eunji move obstacle -------------------------//
 
 void gameScene::moveObstacle(float dt)
-{/*
- countNum++;
- if(countNum > 60)
- {
- countNum = 1; */
+{
 	checkObDirection = !(checkObDirection);
-	//}
+
+	CCActionInterval* moveRight = CCMoveBy::create(2, ccp(80, 0));
+	CCActionInterval* moveLeft = CCMoveBy::create(2, ccp(-80, 0));
 
 	if(checkObDirection == true)
 	{
-		obstacle->setPositionX(obstacle->getPositionX() + 80);
+		obstacle->runAction(moveRight);
 	}
 
 	else if(checkObDirection == false)
 	{
-		obstacle->setPositionX(obstacle->getPositionX() - 80);
+		obstacle->runAction(moveLeft);
 	}
 }
 
