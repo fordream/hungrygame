@@ -368,10 +368,10 @@ void gameScene::moveCharacter(float dt)
 	*/
 
 	if(
-	character->getPosition().y <= obstacle->getPosition().y + 40 &&
-	character->getPosition().y <= obstacle->getPosition().y + 40 &&
-	character->getPosition().x <= obstacle->getPosition().x + 40 &&
-	character->getPosition().x <= obstacle->getPosition().x + 40)
+	character->getPosition().y <= obstacle->getPosition().y + 20 &&
+	character->getPosition().y >= obstacle->getPosition().y - 20 &&
+	character->getPosition().x <= obstacle->getPosition().x + 20 &&
+	character->getPosition().x >= obstacle->getPosition().x - 20)
 	{
 		checkCrash = CrashWithWall;
 	}
