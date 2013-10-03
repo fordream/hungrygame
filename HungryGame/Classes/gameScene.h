@@ -139,7 +139,7 @@ public:
 	
 	void check_item(float dt);										//check collision between item and character
 
-
+	
 
 };
 

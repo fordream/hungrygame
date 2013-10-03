@@ -204,7 +204,7 @@ bool gameScene::init()
 		/* Add Items				: jiyoon */
 		//decide kind of item.
 		srand(time(0));	//random
-		int kindOfItem = rand()%4 + 1;	//range : 1~4
+		int kindOfItem = 2;//rand()%4 + 1;	//range : 1~4
 		item1 =NULL, item2 = NULL, item3 =NULL, item4=NULL;
 		CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
 
@@ -1052,7 +1052,7 @@ void gameScene::check_item(float dt)
 	if(characterRect.intersectsRect(item1Rect))
 	{
 		//item effect - gauge up 10%
-		character_XP -= 10;
+		character_XP += 10;
 
 		CCActionInterval* gaugeUp = CCMoveBy::create(1,ccp(44.1,0));
 		//move by current position. +44.1(10% of the bar)
@@ -1063,8 +1063,7 @@ void gameScene::check_item(float dt)
 	if(characterRect.intersectsRect(item2Rect))
 	{
 		//slow down effect
-		/*CCSpeed *slowSpeed = CCSpeed::create((CCActionInterval*)(rep->copy()->autorelease()),5.0);
-		character->runAction(slowSpeed);*/
+		movingSpeed = 800;
 		this->removeChild(item2);
 		item2=NULL;
 	}
