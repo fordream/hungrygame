@@ -204,7 +204,7 @@ bool gameScene::init()
 		/* Add Items				: jiyoon */
 		//decide kind of item.
 		srand(time(0));	//random
-		int kindOfItem = 2;//rand()%4 + 1;	//range : 1~4
+		int kindOfItem = 3;//rand()%4 + 1;	//range : 1~4
 		item1 =NULL, item2 = NULL, item3 =NULL, item4=NULL;
 		CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
 
@@ -1090,7 +1090,7 @@ void gameScene::check_item(float dt)
 	if(characterRect.intersectsRect(item3Rect))
 	{
 		//pause obstacle effect
-		//CCFiniteTimeAction *delObstacle = CCSequence::create(,CCDelayTime::create(5),,NULL);
+		isPause = true;
 		this->removeChild(item3);
 		item3=NULL;
 	}
@@ -1101,6 +1101,60 @@ void gameScene::check_item(float dt)
 		item4=NULL;
 	}
 }
+
+/*
+* ** FUNCTION
+* void stopObstacle
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 04
+* Latest										2013. 10. 04
+* Made											jiyun
+*/
+void gameScene::stopObstacle()
+{
+	CCDirector::sharedDirector()->getScheduler()->pauseTarget(this);
+	countFiveSec();
+}
+
+/*
+* ** FUNCTION
+* void countFiveSec
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 04
+* Latest										2013. 10. 04
+* Made											jiyun
+*/
+void gameScene::countFiveSec()
+{
+	int count = 1;	//sec
+
+	if(count==5)
+	{ isPause = false; }
+	else
+	{
+		for(int i=0; i<5; i++)
+		{
+			CCLog("tick");
+			count++;
+		}
+	}
+}
+
+/*
+* ** FUNCTION
+* void resumObstacle
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 04
+* Latest										2013. 10. 04
+* Made											jiyun
+*/
+void gameScene::resumeObstacle()
+{
+	CCDirector::sharedDirector()->getScheduler()->resumeTarget(this);
+}
 //--------------jiyoon end-----------------------------------------
 
 //------------- eunji move obstacle -------------------------//
@@ -1109,12 +1163,16 @@ void gameScene::check_item(float dt)
 * void moveObstacle(float dt)					make moving obstacle move
 * Input											float for schedule
 * Output										nothing
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
+* Date											2013. 10. 04
+* Latest										2013. 10. 04
 * Made											eunji
+* Add											jiyun
+
 */
 void gameScene::moveObstacle(float dt)
 {
+	if(isPause == false)
+	{
 	checkObDirection = !(checkObDirection);
 
 	CCActionInterval* moveRight = CCMoveBy::create(2, ccp(80, 0));
@@ -1122,6 +1180,12 @@ void gameScene::moveObstacle(float dt)
 
 	if     (checkObDirection == true)  {	obstacle->runAction(moveRight);}
 	else if(checkObDirection == false) {	obstacle->runAction(moveLeft); }
+	}
+
+	else
+	{
+		stopObstacle();
+	}
 }
 /*
 * ** FUNCTION

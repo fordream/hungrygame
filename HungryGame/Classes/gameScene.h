@@ -140,8 +140,11 @@ public:
 	
 	void check_item(float dt);										//check collision between item and character
 
-	
+	bool isPause;													//status of movingObstacle
 
+	void stopObstacle();											//pauseObstacle
+	void countFiveSec();											//conunt 5sec for obstacle resume
+	void resumeObstacle();											//resume Obstacle
 };
 
 #endif  // __GAME_SCENE_H__
