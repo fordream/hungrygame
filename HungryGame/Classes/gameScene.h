@@ -102,6 +102,7 @@ public:
 	void createFoodShelf();
 	void checkFoodToEnd();											// check food for ending
 	void checkFollowFoodCollision(float);
+	void goMainScene();
 	
 	// array for check when character eat the food ingrediant
 	CCArray*						foodSpriteArray;				// array for save the food sprite

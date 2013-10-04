@@ -678,17 +678,14 @@ void gameScene::updateFoodSprte(float dt)
 		{
 			foodToDelete->addObject(foodSprite);
 			foodFollowArray->addObject(foodSprite);//add foods for following character
-
+			foodSpriteArray->removeObject(foodobject);
 		}
 	}
 	CCARRAY_FOREACH(foodToDelete,foodobject)
 	{
 		CCSprite* delfood = dynamic_cast<CCSprite*>(foodobject);
 		foodFollowArray->addObject(delfood);
-		foodSpriteArray->removeObject(delfood);
-
-		//this->removeChild(delfood);
-		//this->followCharacter(1.0);
+		//foodSpriteArray->removeObject(delfood);
 	}
 	
 	foodToDelete->release();
@@ -715,8 +712,8 @@ void gameScene::checkFollowFoodCollision(float dt)
 		CCSprite* foodSprite = dynamic_cast<CCSprite*>(foodobject);
 		CCRect foodRect = CCRectMake(foodSprite->getPosition().x - (foodSprite->getContentSize().width/2*foodSprite->getScale()),
 			foodSprite->getPosition().y -(foodSprite->getContentSize().height/2*foodSprite->getScale()),
-			foodSprite->getContentSize().width*foodSprite->getScale()-10,
-			foodSprite->getContentSize().height*foodSprite->getScale()-10);
+			foodSprite->getContentSize().width*foodSprite->getScale()-20,
+			foodSprite->getContentSize().height*foodSprite->getScale()-20);
 		if(characterRect.intersectsRect(foodRect))
 		{
 			//gaugeHeart->setPositionX(size.width - (20 + gaugeNum));						// 10퍼센트씩 하트를 옮김.
@@ -728,6 +725,12 @@ void gameScene::checkFollowFoodCollision(float dt)
 			if( character_XP > 0 )
 			{
 				gaugeHeart->setPositionX(size.width - (20 + gaugeNum));						// 10퍼센트씩 하트를 옮김.
+			}
+			else
+			{
+				//게임을 끝낸다
+				gaugeHeart->setPositionX(20);
+				this->go_endResultScene();
 			}
 		}
 
@@ -866,6 +869,22 @@ void gameScene::checkFoodToEnd()
 	}
 }
 
+/*
+* ** FUNCTION
+* void goMainScene()							go to MainScene
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 04
+* Latest										2013. 10. 04
+* Made											Pineoc
+*/
+void gameScene::goMainScene()
+{
+	CCLayer::onExit();
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
+	CCScene *pScene = Main::scene();
+	CCDirector::sharedDirector()->replaceScene(pScene);
+}
 
 
 /*
@@ -910,8 +929,9 @@ void gameScene::doNotification(CCObject *obj)
 	{
 		CCDirector::sharedDirector()->resume();
 		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
-		CCScene *pScene = Main::scene();
-		CCDirector::sharedDirector()->replaceScene(pScene);
+		this->goMainScene();
+
+		
 	}
 	else
 	{	
