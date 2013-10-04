@@ -143,7 +143,6 @@ public:
 	bool isPause;													//status of movingObstacle
 
 	void stopObstacle();											//pauseObstacle
-	void countFiveSec();											//conunt 5sec for obstacle resume
 	void resumeObstacle();											//resume Obstacle
 };
 

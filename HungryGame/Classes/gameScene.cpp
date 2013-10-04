@@ -149,6 +149,7 @@ bool gameScene::init()
 
 
 		/* make obstacle			: eunji */
+		isPause = false;
 		CCTMXObjectGroup *obstacle = tileMap->objectGroupNamed("obstacle");
 		CCDictionary *obstaclePoint = obstacle->objectNamed("obstaclePoint");
 
@@ -1113,34 +1114,11 @@ void gameScene::check_item(float dt)
 */
 void gameScene::stopObstacle()
 {
-	CCDirector::sharedDirector()->getScheduler()->pauseTarget(this);
-	countFiveSec();
+	CCDirector::sharedDirector()->getScheduler()->pauseTarget(obstacle);
+	resumeObstacle();
 }
 
-/*
-* ** FUNCTION
-* void countFiveSec
-* Input											nothing
-* Output										nothing
-* Date											2013. 10. 04
-* Latest										2013. 10. 04
-* Made											jiyun
-*/
-void gameScene::countFiveSec()
-{
-	int count = 1;	//sec
 
-	if(count==5)
-	{ isPause = false; }
-	else
-	{
-		for(int i=0; i<5; i++)
-		{
-			CCLog("tick");
-			count++;
-		}
-	}
-}
 
 /*
 * ** FUNCTION
@@ -1153,8 +1131,10 @@ void gameScene::countFiveSec()
 */
 void gameScene::resumeObstacle()
 {
-	CCDirector::sharedDirector()->getScheduler()->resumeTarget(this);
+	isPause = false;
+	CCDirector::sharedDirector()->getScheduler()->resumeTarget(obstacle);
 }
+
 //--------------jiyoon end-----------------------------------------
 
 //------------- eunji move obstacle -------------------------//
@@ -1171,7 +1151,7 @@ void gameScene::resumeObstacle()
 */
 void gameScene::moveObstacle(float dt)
 {
-	if(isPause == false)
+	if(!isPause)
 	{
 	checkObDirection = !(checkObDirection);
 
