@@ -57,6 +57,9 @@ public:
 	void moveObstacle(float);										// 장애물 움직임 구현
 	void doActionMovingObstacleReverse(CCObject* pSender);
 
+	void decreaseGaugeBar(int num);
+	void gameScene::increaseGaugeBar(int num);
+
 
 
 

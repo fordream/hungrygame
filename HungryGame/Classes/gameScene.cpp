@@ -427,17 +427,8 @@ void gameScene::moveCharacter(float dt)
 		int gaugeSize_part = 441/10;										// 게이지바 사이즈의 10퍼센트 길이
 		int gaugeNum = (gaugeSize_part * ((100 - character_XP) / 10));
 
-		if( character_XP > 0 )
-		{
-			gaugeHeart->setPositionX(size.width - (20 + gaugeNum));			 // 10퍼센트씩 하트를 옮김.
-		}
+		decreaseGaugeBar(gaugeNum);
 
-		else
-		{
-			//게임을 끝낸다
-			gaugeHeart->setPositionX(20);
-			this->go_endResultScene();
-		}
 	}
 	else
 	{
@@ -1176,6 +1167,7 @@ void gameScene::moveObstacle(float dt)
 * Latest										2013. 10. 03
 * Made											eunji
 */
+
 void gameScene::doActionMovingObstacleRight(CCObject* pSender)
 {
 	CCActionInterval* moveRight = CCMoveBy::create(2, ccp(200, 0));
@@ -1213,5 +1205,61 @@ void gameScene::doActionMovingObstacleReverse(CCObject* pSender)
 	CCActionInterval* moveReverse = moveRight->reverse();
 
 	obstacle->runAction(moveReverse);
+}
+
+/*
+* ** FUNCTION
+* void doActionMovingObstaclReverse(CCObject*)	Dcrease Gauge bar 
+* Input											int num
+* Output										nothing
+* Date											2013. 10. 05
+* Latest										2013. 10. 05
+* Made											eunji
+*/
+
+void gameScene::decreaseGaugeBar(int num)
+{
+	//x = 20 은 초기상태(에너지가 0인 상태)
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+
+	if( character_XP > 0 )
+		{
+			gaugeHeart->setPositionX(size.width - (20 + num));		// num 값 만큼 감소시킴.	
+		}
+
+	else
+	{
+		//게임을 끝낸다
+		gaugeHeart->setPositionX(20);
+		this->go_endResultScene();
+	}
+}
+
+/*
+* ** FUNCTION
+* void doActionMovingObstaclReverse(CCObject*)	Increase Gauge bar 
+* Input											int num
+* Output										nothing
+* Date											2013. 10. 05
+* Latest										2013. 10. 05
+* Made											eunji
+*/
+
+void gameScene::increaseGaugeBar(int num)
+{
+	//x = 20 은 초기상태(에너지가 0인 상태)
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+
+	if( character_XP < (460 - num) )
+		{
+			gaugeHeart->setPositionX(size.width - (20 - num));		// num 값 만큼 증가시킴.	
+		}
+
+	else
+	{
+		//게임을 끝낸다
+		gaugeHeart->setPositionX(460);
+		this->go_endResultScene();
+	}
 }
 
