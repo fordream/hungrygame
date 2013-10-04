@@ -677,15 +677,15 @@ void gameScene::updateFoodSprte(float dt)
 		if(characterRect.intersectsRect(foodRect))
 		{
 			foodToDelete->addObject(foodSprite);
-			foodFollowArray->addObject(foodSprite);//add foods for following character
-			foodSpriteArray->removeObject(foodobject);
+			//foodFollowArray->addObject(foodSprite);//add foods for following character
+			//foodSpriteArray->removeObject(foodobject);
 		}
 	}
 	CCARRAY_FOREACH(foodToDelete,foodobject)
 	{
 		CCSprite* delfood = dynamic_cast<CCSprite*>(foodobject);
 		foodFollowArray->addObject(delfood);
-		//foodSpriteArray->removeObject(delfood);
+		foodSpriteArray->removeObject(delfood);
 	}
 	
 	foodToDelete->release();
@@ -752,9 +752,9 @@ void gameScene::followCharacter(float dt)
 	CCPoint tmp1=beforeMoveCharPoint[0];
 	CCPoint tmp2;
 
-	for(int i=1;i<foodFollowArray->count();i++)
+	for(int i=1;i<foodFollowArray->count()+1;i++)
 	{
-		CCSprite* foodf = dynamic_cast<CCSprite*>(foodFollowArray->objectAtIndex(i));
+		CCSprite* foodf = dynamic_cast<CCSprite*>(foodFollowArray->objectAtIndex(i-1));
 		foodf->setPosition(tmp1);
 		tmp2=beforeMoveCharPoint[i];
 		tmp1=tmp2;	
