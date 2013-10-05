@@ -144,14 +144,18 @@ void OptionScene::OnOffMenu(CCObject* pSender)
 	switch(pGet->getTag())
 	{
 	case bgOn:
+		userData::sharedInstance()->setBGM(true);
 		m.bgStart("temp");
 		break;
 	case bgOff:
+		userData::sharedInstance()->setBGM(false);
 		m.bgStop();
 		break;
 	case effectOn:
+		userData::sharedInstance()->setEFFECT(true);
 		break;
 	case effectOff:
+		userData::sharedInstance()->setEFFECT(false);
 		break;
 	}
 

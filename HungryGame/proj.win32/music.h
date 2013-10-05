@@ -15,6 +15,8 @@
 
 #include "SimpleAudioEngine.h"
 
+
+
 using namespace cocos2d;
 
 class music : public cocos2d::CCLayer
@@ -25,7 +27,7 @@ public:
 	music(int, int);
 
 
-	void bgStart(string);
+	void bgStart(char*);
 	void bgStop();
 	void bgPause();
 	void bgRestart();

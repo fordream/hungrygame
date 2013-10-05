@@ -25,11 +25,12 @@ public:
 	music(int, int);
 
 
-	void bgStart(string);
+	void bgStart(char *);
 	void bgStop();
 	void bgPause();
 	void bgRestart();
 
+	void effectStart(char *);
 
 
 

@@ -6,6 +6,10 @@
 #include "MakerInfoScene.h"
 #include "optionScene.h"
 
+
+
+
+
 using namespace cocos2d;
 
 CCScene* Main::scene()
@@ -49,7 +53,7 @@ bool Main::init()
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 		music mu;
-		mu.bgStart("test");
+		mu.bgStart("background.mp3");
         // 1. Add a menu item with "X" image, which is clicked to quit the program.
 
 		// 메인화면 배경 이미지 생성
@@ -178,11 +182,15 @@ bool Main::init()
 void Main::menuCloseCallback(CCObject* pSender)
 {
     // "close" menu item clicked
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
     CCDirector::sharedDirector()->end();
 }
 
 void Main::menuOptionCallback(CCObject* pSender)
 {
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = OptionScene::scene();
 
 	CCDirector::sharedDirector()->replaceScene(pScene);
@@ -190,6 +198,8 @@ void Main::menuOptionCallback(CCObject* pSender)
 
 void Main::menuHelpCallback(CCObject* pSender)
 {// pineoc's help 구현. HelpScene클래스 사용.
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = HelpScene::scene();
 
 	CCDirector::sharedDirector()->pushScene(pScene);
@@ -206,6 +216,8 @@ void Main::menuHelpCallback(CCObject* pSender)
 
 void Main::menuStartCallback(CCObject* pSender)
 {
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = Building::scene();
 
 	CCDirector::sharedDirector()->replaceScene(pScene);
@@ -213,6 +225,8 @@ void Main::menuStartCallback(CCObject* pSender)
 
 void Main::menuDevCallback(CCObject* pSender)
 {
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = MakerInfoScene::scene();
 
 	CCDirector::sharedDirector()->pushScene(pScene);

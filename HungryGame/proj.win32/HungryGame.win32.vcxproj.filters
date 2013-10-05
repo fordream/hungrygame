@@ -24,9 +24,6 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="music.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\mainScene.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -55,6 +52,12 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\optionScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="userData.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\music.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -99,6 +102,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\optionScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="userData.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

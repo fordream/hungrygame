@@ -169,6 +169,8 @@ bool Building::init()
 // 첫번째 빌딩
 void Building::menuBuild1Callback(CCObject* pSender)
 {
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelect::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
@@ -176,6 +178,8 @@ void Building::menuBuild1Callback(CCObject* pSender)
 //두번째 빌딩
 void Building::menuBuild2Callback(CCObject* pSender)
 {
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelect::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
@@ -183,6 +187,8 @@ void Building::menuBuild2Callback(CCObject* pSender)
 //세번째 빌딩
 void Building::menuBuild3Callback(CCObject* pSender)
 {
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelect::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
@@ -190,6 +196,8 @@ void Building::menuBuild3Callback(CCObject* pSender)
 //네번째 빌딩
 void Building::menuBuild4Callback(CCObject* pSender)
 {
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelect::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
@@ -197,6 +205,8 @@ void Building::menuBuild4Callback(CCObject* pSender)
 //되돌아가기
 void Building::menuGoBackCallback(CCObject* pSender)
 {
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = Main::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }

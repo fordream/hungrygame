@@ -10,6 +10,7 @@
 #include "cocos2d.h"
 #include "mainScene.h"
 #include "music.h"
+#include "userData.h"
 
 
 class OptionScene : public CCLayerColor

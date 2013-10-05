@@ -9,7 +9,7 @@
 */
 
 #include "music.h"
-
+#include "userData.h"
 /*
 	constructor
 
@@ -35,10 +35,11 @@ music::music(int BG, int EFFECT)
 /*
 	start background music
 */
-void music::bgStart(string musicName)
+void music::bgStart(char *musicName)
 {
+	if(userData::sharedInstance()->getBGM())
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
-			"background.mp3",	// 재생할 사운드 파일 이름
+			musicName,	// 재생할 사운드 파일 이름
 			true);			// 반복재생여부
 }
 
@@ -65,6 +66,19 @@ void music::bgRestart()
 {
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
+
+
+// effect sound start
+void music::effectStart(char *effectName)
+{
+	if(userData::sharedInstance()->getEFFECT())
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(
+			effectName,	
+			false);	
+
+	// true로 설정하면 반복함
+}
+
 
 
 

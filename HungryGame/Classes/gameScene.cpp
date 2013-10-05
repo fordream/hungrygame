@@ -93,6 +93,9 @@ bool gameScene::init()
 		result=" ";
 
 
+		music m;
+		m.effectStart("sound\\effect_supermarket.mp3");
+
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 		/* Set background img		: Daun */
@@ -418,6 +421,9 @@ void gameScene::moveCharacter(float dt)
 	/* when character crash with wall							: eunji, Daun */
 	if(checkCrash == CrashWithWall)
 	{
+		music m;
+	m.effectStart("sound\\effect_crash_wall.mp3");
+
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 		// 벽과 충돌한 경우 해야할 일
@@ -482,6 +488,8 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 	if((abs(pauseDiff.x) <= pauseBtnWidth) && (abs(pauseDiff.y) <= pauseBtnHeight))
 	{
+		music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);				// set touch enable
 		CCScene* pScene=PauseGameScene::scene();
 		this->addChild(pScene,2000,2000);

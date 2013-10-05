@@ -176,7 +176,8 @@ bool stageSelect::init()
 
 void stageSelect::stageMenu(CCObject* pSender)
 {
-
+	music m;
+	m.effectStart("sound\\effect_btn_click.mp3");
 	/***
 	 여기에 게임 화면으로 전환하는거 들어감!!
 	****/
