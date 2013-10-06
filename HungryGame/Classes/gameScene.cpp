@@ -827,6 +827,8 @@ void gameScene::createCounter()
 */
 void gameScene::go_endResultScene()
 {
+	CCLayer::onExit();
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
 	this->checkFoodToEnd();
 	CCScene *pScene = CCScene::create();
 	gameResultScene *layer = new gameResultScene(result,stageidx);
