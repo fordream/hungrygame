@@ -349,7 +349,9 @@ void gameScene::moveCharacter(float dt)
 	CCPoint playerPos = character->getPosition();
 	CCPoint originalplayerPos = character->getPosition();
 	int checkCrash = nothing;
-	
+
+
+
 	/*  check collision food and character						: Pineoc*/
 	beforeMoveCharPoint[0] = character->getPosition();
 	foodFollowCnt=1;
@@ -361,58 +363,7 @@ void gameScene::moveCharacter(float dt)
 		foodFollowCnt++;
 	}
 
-		/* check character crash with outline of map				: daun */
-
-	switch (moveDirection)
-	{
-	case UP:
 	
-	if ((character->getPosition().y + tileMap->getTileSize().height) <= obstacle->getPosition().y + 20
-				&& (character->getPosition().y + tileMap->getTileSize().height) >= obstacle->getPosition().y - 20
-				&& character->getPosition().x <= obstacle->getPosition().x + 20
-				&& character->getPosition().x >= obstacle->getPosition().x - 20)
-	{ 
-		character->setPosition(playerPos);
-		checkCrash = CrashWithWall; 
-	}
-
-	case DOWN:
-	
-	if ((character->getPosition().y - tileMap->getTileSize().height) <= obstacle->getPosition().y + 20
-				&& (character->getPosition().y - tileMap->getTileSize().height) >= obstacle->getPosition().y - 20
-				&& character->getPosition().x <= obstacle->getPosition().x + 20
-				&& character->getPosition().x >= obstacle->getPosition().x - 20)
-	{ 
-		character->setPosition(playerPos);
-		checkCrash = CrashWithWall; 
-	}
-
-	case RIGHT:
-
-	if (character->getPosition().y <= obstacle->getPosition().y + 20
-				&& character->getPosition().y >= obstacle->getPosition().y - 20
-				&& (character->getPosition().x + tileMap->getTileSize().width) <= obstacle->getPosition().x + 20
-				&& (character->getPosition().x + tileMap->getTileSize().width) >= obstacle->getPosition().x - 20)
-	{ 
-		character->setPosition(playerPos);
-		checkCrash = CrashWithWall; 
-	}
-
-	case LEFT:
-
-	if (character->getPosition().y <= obstacle->getPosition().y + 20
-				&& character->getPosition().y >= obstacle->getPosition().y - 20
-				&& (character->getPosition().x - tileMap->getTileSize().width) <= obstacle->getPosition().x + 20
-				&& (character->getPosition().x - tileMap->getTileSize().width) >= obstacle->getPosition().x - 20)
-	{ 
-		character->setPosition(playerPos);
-		checkCrash = CrashWithWall; 
-	}
-
-	default:
-		break;
-	}
-
 
 	if(checkCrash == nothing)
 	{
@@ -447,6 +398,7 @@ void gameScene::moveCharacter(float dt)
 				{
 					character->setPosition(playerPos);
 					checkCrash = CrashWithWall;
+					moveDirection = (moveDirection + 2 ) % 4;
 				}
 			}
 		}
@@ -455,6 +407,7 @@ void gameScene::moveCharacter(float dt)
 	{
 		// 캐릭터가 이동할 위치가 맵 밖이므로 벽에 충돌한 것과 마찬가지입니다.
 		checkCrash = CrashWithWall;
+		moveDirection = (moveDirection + 2 ) % 4;
 	}
 
 	
@@ -544,13 +497,13 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 
 	if (abs(diff.x) > abs(diff.y))
 	{
-		if (diff.x > 0) {	moveDirection = RIGHT;	character->setFlipX(true);} 
-		else			{	moveDirection = LEFT;	character->setFlipX(false); }
+		if (diff.x > 0) {	if(moveDirection != LEFT) {moveDirection = RIGHT;	character->setFlipX(true);} } 
+		else			{	if(moveDirection != RIGHT) {moveDirection = LEFT;	character->setFlipX(false);} }
 	} 
 	else 
 	{
-		if (diff.y > 0) {	moveDirection = UP;	 } 
-		else			{	moveDirection = DOWN;}
+		if (diff.y > 0) {	if(moveDirection != DOWN) moveDirection = UP;	 } 
+		else			{	if(moveDirection != UP) moveDirection = DOWN;}
 	}
 }
 /*
