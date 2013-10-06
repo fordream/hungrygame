@@ -349,17 +349,6 @@ void gameScene::moveCharacter(float dt)
 	CCPoint playerPos = character->getPosition();
 	CCPoint originalplayerPos = character->getPosition();
 	int checkCrash = nothing;
-
-
-
-	/* check character crash with outline of map				: daun */
-	if (character->getPosition().y <= obstacle->getPosition().y + 20
-				&& character->getPosition().y >= obstacle->getPosition().y - 20
-				&& character->getPosition().x <= obstacle->getPosition().x + 20
-				&& character->getPosition().x >= obstacle->getPosition().x - 20)
-	{ checkCrash = CrashWithWall; }
-
-	
 	
 	/*  check collision food and character						: Pineoc*/
 	beforeMoveCharPoint[0] = character->getPosition();
@@ -372,7 +361,57 @@ void gameScene::moveCharacter(float dt)
 		foodFollowCnt++;
 	}
 
+		/* check character crash with outline of map				: daun */
 
+	switch (moveDirection)
+	{
+	case UP:
+	
+	if ((character->getPosition().y + tileMap->getTileSize().height) <= obstacle->getPosition().y + 20
+				&& (character->getPosition().y + tileMap->getTileSize().height) >= obstacle->getPosition().y - 20
+				&& character->getPosition().x <= obstacle->getPosition().x + 20
+				&& character->getPosition().x >= obstacle->getPosition().x - 20)
+	{ 
+		character->setPosition(playerPos);
+		checkCrash = CrashWithWall; 
+	}
+
+	case DOWN:
+	
+	if ((character->getPosition().y - tileMap->getTileSize().height) <= obstacle->getPosition().y + 20
+				&& (character->getPosition().y - tileMap->getTileSize().height) >= obstacle->getPosition().y - 20
+				&& character->getPosition().x <= obstacle->getPosition().x + 20
+				&& character->getPosition().x >= obstacle->getPosition().x - 20)
+	{ 
+		character->setPosition(playerPos);
+		checkCrash = CrashWithWall; 
+	}
+
+	case RIGHT:
+
+	if (character->getPosition().y <= obstacle->getPosition().y + 20
+				&& character->getPosition().y >= obstacle->getPosition().y - 20
+				&& (character->getPosition().x + tileMap->getTileSize().width) <= obstacle->getPosition().x + 20
+				&& (character->getPosition().x + tileMap->getTileSize().width) >= obstacle->getPosition().x - 20)
+	{ 
+		character->setPosition(playerPos);
+		checkCrash = CrashWithWall; 
+	}
+
+	case LEFT:
+
+	if (character->getPosition().y <= obstacle->getPosition().y + 20
+				&& character->getPosition().y >= obstacle->getPosition().y - 20
+				&& (character->getPosition().x - tileMap->getTileSize().width) <= obstacle->getPosition().x + 20
+				&& (character->getPosition().x - tileMap->getTileSize().width) >= obstacle->getPosition().x - 20)
+	{ 
+		character->setPosition(playerPos);
+		checkCrash = CrashWithWall; 
+	}
+
+	default:
+		break;
+	}
 
 
 	if(checkCrash == nothing)
@@ -417,6 +456,8 @@ void gameScene::moveCharacter(float dt)
 		// 캐릭터가 이동할 위치가 맵 밖이므로 벽에 충돌한 것과 마찬가지입니다.
 		checkCrash = CrashWithWall;
 	}
+
+	
 
 	/* when character crash with wall							: eunji, Daun */
 	if(checkCrash == CrashWithWall)
