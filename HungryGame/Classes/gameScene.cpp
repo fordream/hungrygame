@@ -607,7 +607,7 @@ void gameScene::createFood()
 		CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(100*i,100*i, 100, 100));
 		food->setPosition(foodpoint[i]);
 		food->setScale(0.48);
-		food->setTag(i);
+		food->setTag(i+1);
 		food->setAnchorPoint(ccp(0,0));
 		foodSpriteArray->addObject(food);
 		this->addChild(food);
@@ -714,24 +714,12 @@ void gameScene::checkFollowFoodCollision(float dt)
 			foodSprite->getPosition().y -(foodSprite->getContentSize().height/2*foodSprite->getScale()),
 			foodSprite->getContentSize().width*foodSprite->getScale()-20,
 			foodSprite->getContentSize().height*foodSprite->getScale()-20);
-		if(characterRect.intersectsRect(foodRect))
+		if(characterRect.intersectsRect(foodRect) 
+			&& foodFollowArray->objectAtIndex(0)!=foodobject 
+			&& foodFollowArray->objectAtIndex(1)!=foodobject
+			&& foodFollowArray->objectAtIndex(2)!=foodobject)
 		{
-			//gaugeHeart->setPositionX(size.width - (20 + gaugeNum));						// 10퍼센트씩 하트를 옮김.
-			character_XP -= 10;
-
-			int gaugeSize_part = 441/10;													// 게이지바 사이즈의 10퍼센트 길이
-			int gaugeNum = (gaugeSize_part * ((100 - character_XP) / 10));
-
-			if( character_XP > 0 )
-			{
-				gaugeHeart->setPositionX(size.width - (20 + gaugeNum));						// 10퍼센트씩 하트를 옮김.
-			}
-			else
-			{
-				//게임을 끝낸다
-				gaugeHeart->setPositionX(20);
-				this->go_endResultScene();
-			}
+			this->decreaseGaugeBar(10);
 		}
 
 	}
@@ -858,14 +846,14 @@ void gameScene::go_endResultScene()
 */
 void gameScene::checkFoodToEnd()
 {//string result = ?
-	char c[10]=" ";
+	char c[10]="";
 	int count = foodFollowArray->count();
 	for(int i=0;i<count;i++)
 	{
 		CCSprite* a = ((CCSprite*)foodFollowArray->objectAtIndex(i));
 		int b = a->getTag();
 		_itoa(b,c,10);
-		result.append(" "+(string)c);
+		result.append((string)c+" ");
 	}
 }
 
