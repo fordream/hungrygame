@@ -15,15 +15,26 @@ gameEndScene::gameEndScene(int _result,int _stageidx)
 	result = _result;
 	stageidx = _stageidx;
 
+	stageidx = 11; // 임시로 지정한 숫자. 추후삭제.
+
+
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 	CCSprite* background = CCSprite::create("img/end/endChk_bg.png");
 	background->setPosition(ccp(size.width/2,size.height/2));
 	this->addChild(background,0);
 
-	CCSprite* foodImage = CCSprite::create("img/end/fish_cultlet.png");
+	makedFoodInit();
+
+	CCSprite* foodImage = CCSprite::create(makedFoodArrayForSprite[stageidx]); //by eunji
 	foodImage->setPosition(ccp(size.width/2,size.height/2));
 	this->addChild(foodImage,1);
+
+	/*
+	CCSprite* foodImage = CCSprite::create("img/end/fish_cultlet.png"); //by pineoc
+	foodImage->setPosition(ccp(size.width/2,size.height/2));
+	this->addChild(foodImage,1);
+	*/
 
 	/*
 	use result, make menu button 
@@ -121,4 +132,16 @@ void gameEndScene::menu_backtoStageScene(CCObject* pSender)
 	CCScene *pScene = stageSelect::scene();
 
 	CCDirector::sharedDirector()->replaceScene(pScene);
+}
+
+void gameEndScene::makedFoodInit()
+{
+	/* eunji */
+	for(int i=1; i<50; i++) 
+	{
+		char *fileName = new char [16];
+		sprintf(fileName, "img/food/%d.png", i);
+		makedFoodArrayForSprite[i] = fileName;
+	}
+	
 }
