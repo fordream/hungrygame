@@ -19,7 +19,7 @@ bool PauseGameScene::init()
 {
 	if( !CCLayerColor::initWithColor(ccc4(0,0,0,0)))
 	{ return false; }
-	
+	setStageIdx(11);
 	CCString* popParam=CCString::create("0");
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("notification", popParam);         //노티피케이션 보내기
 
@@ -90,6 +90,11 @@ void PauseGameScene::goHelp( CCObject* pSender )
 void PauseGameScene::newGame( CCObject* pSender )
 {
 	//게임화면 초기화
+	string a = to_string(pStageidx);
+	CCString* popParam=CCString::create(a);
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("notification", popParam);         //노티피케이션 보내기
+	this->removeFromParentAndCleanup(true);
+
 }
 
 void PauseGameScene::doClose(CCObject* pSender)
@@ -106,4 +111,9 @@ void PauseGameScene::menuPauseCallback (CCObject *pSender)
 	CCScene *pScene = PauseGameScene::scene();
 
 	CCDirector::sharedDirector()->pushScene(pScene);
+}
+
+void PauseGameScene::setStageIdx(int num)
+{
+	pStageidx = num;
 }

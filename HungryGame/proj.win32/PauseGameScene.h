@@ -24,12 +24,15 @@ public:
 	CCLayerColor* backLayer;
 	CCLayerColor* popUpLayer;
 
+	int pStageidx;// integer for regame 
+
 	//메뉴 4가지
 	void goMain( CCObject* pSender );	//메인으로
 	void newGame( CCObject* pSender );	//새게임
 	void goHelp ( CCObject* pSender );	//도움말
 	void doClose( CCObject* pSender );	//이어하기
-
+	
+	void setStageIdx(int num); // set stage index 
 	
 	void menuPauseCallback (CCObject* pSender);	//콜백
 };

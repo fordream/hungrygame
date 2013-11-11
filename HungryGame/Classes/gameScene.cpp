@@ -92,6 +92,13 @@ bool gameScene::init()
 		tomakeFood = new CCArray;// to make food sprite
 		result=" ";
 
+		//using stageidx for regame
+		int idx = stageidx;
+		PauseGameScene *a; 
+		a = new PauseGameScene;
+		a->setStageIdx(idx);
+		a->autorelease();
+
 
 		music m;
 		m.effectStart("sound\\effect_supermarket.mp3");
@@ -102,7 +109,7 @@ bool gameScene::init()
 		CCSprite* bg = CCSprite::create("img\\game\\game_bg.png");
 		bg->setPosition(ccp(size.width/2,size.height/2));
 		this->addChild(bg,0);
-		
+
 
 
 		/* Set Tiled Map			: Daun, eunji*/
@@ -128,11 +135,11 @@ bool gameScene::init()
 
 		movingSpeed = 400;														// set initial character moving speed
 		moveDirection = DOWN;													// set default character moving direction
-		
+
 		this->schedule(schedule_selector(gameScene::moveCharacter));
 
-		
-		
+
+
 		/* set touch enable			: Daun*/
 		pDirector = CCDirector::sharedDirector();
 		pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
@@ -363,7 +370,7 @@ void gameScene::moveCharacter(float dt)
 		foodFollowCnt++;
 	}
 
-	
+
 
 	if(checkCrash == nothing)
 	{
@@ -377,9 +384,9 @@ void gameScene::moveCharacter(float dt)
 	/* check if character crash with wall						: eunji, Daun */
 
 	if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width)
-			&& playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height)
-			&& playerPos.y >= 0
-			&& playerPos.x >= 0 )
+		&& playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height)
+		&& playerPos.y >= 0
+		&& playerPos.x >= 0 )
 	{
 		// 캐릭터가 이동할 위치가 맵 안인경우 벽에 충돌햇는지를 검사합니다 By Daun
 		CCPoint tileCoord = this->tileCoorPosition(playerPos);
@@ -410,13 +417,13 @@ void gameScene::moveCharacter(float dt)
 		moveDirection = (moveDirection + 2 ) % 4;
 	}
 
-	
+
 
 	/* when character crash with wall							: eunji, Daun */
 	if(checkCrash == CrashWithWall)
 	{
 		music m;
-	m.effectStart("sound\\effect_crash_wall.mp3");
+		m.effectStart("sound\\effect_crash_wall.mp3");
 
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
@@ -433,9 +440,9 @@ void gameScene::moveCharacter(float dt)
 	else
 	{
 		if (playerPos.x <= (tileMap->getMapSize().width * tileMap->getTileSize().width)
-			 && playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height)
-			 && playerPos.y >= 0
-			 && playerPos.x >= 0 )
+			&& playerPos.y <= (tileMap->getMapSize().height * tileMap->getTileSize().height)
+			&& playerPos.y >= 0
+			&& playerPos.x >= 0 )
 		{
 			character->setPosition( playerPos );							// 캐릭터의 새로운 위치 지정
 		}
@@ -474,7 +481,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	touchLocation = this->convertToNodeSpace(touchLocation);
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
-	
+
 	/* check pause btn is pressed or not	: daun */
 	CCPoint pauseDiff = ccpSub(touchLocation,pauseBtnPosition);
 	float pauseBtnWidth = size.width * 0.1;
@@ -483,14 +490,14 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	if((abs(pauseDiff.x) <= pauseBtnWidth) && (abs(pauseDiff.y) <= pauseBtnHeight))
 	{
 		music m;
-	m.effectStart("sound\\effect_btn_click.mp3");
+		m.effectStart("sound\\effect_btn_click.mp3");
 		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);				// set touch enable
 		CCScene* pScene=PauseGameScene::scene();
 		this->addChild(pScene,2000,2000);
 	}
 
 	originPos = character->getPosition();
-	
+
 	/*  set moveDirection					: daun */
 	// 캐릭터를 기준으로 어느 위치를 클릭했는지에 따라 캐릭터가 이동할 방향 결정
 	CCPoint diff = ccpSub(touchLocation, playerPos);
@@ -681,7 +688,7 @@ void gameScene::updateFoodSprte(float dt)
 		foodFollowArray->addObject(delfood);
 		foodSpriteArray->removeObject(delfood);
 	}
-	
+
 	foodToDelete->release();
 }
 /*
@@ -869,7 +876,13 @@ void gameScene::goMainScene()
 	CCScene *pScene = Main::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
-
+void gameScene::goRegame()
+{
+	CCLayer::onExit();
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
+	CCScene *pScene = gameScene::scene();
+	CCDirector::sharedDirector()->replaceScene(pScene);
+}
 
 /*
 * ** FUNCTION
@@ -902,25 +915,27 @@ void gameScene::doNotification(CCObject *obj)
 	//노티피케이션 받기
 	CCString *pParam=(CCString*)obj;
 	CCLog("notification %s", pParam->getCString());
-
-	if(pParam->intValue()==1)
-	{		
-		CCLog("noti 11");
+	int flag = pParam->intValue();
+	if(flag==1)
+	{
 		CCDirector::sharedDirector()->resume();														//화면 재시작
 		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);		// set touch able
 	}
-	else if(pParam->intValue()==2)
+	else if(flag==2)
 	{
 		CCDirector::sharedDirector()->resume();
 		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 		this->goMainScene();
-
-		
+	}
+	else if(flag >=10 && flag <=49)
+	{
+		CCDirector::sharedDirector()->resume();
+		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+		this->goRegame();
 	}
 	else
 	{	
 		CCArray* childs = this->getChildren();
-		CCLog("noti 00");
 		CCDirector::sharedDirector()->pause();													//화면 정지
 		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(PauseMenu);			//메뉴버튼 비활성
 	}
@@ -1136,13 +1151,13 @@ void gameScene::moveObstacle(float dt)
 {
 	if(!isPause)
 	{
-	checkObDirection = !(checkObDirection);
+		checkObDirection = !(checkObDirection);
 
-	CCActionInterval* moveRight = CCMoveBy::create(2, ccp(80, 0));
-	CCActionInterval* moveLeft = CCMoveBy::create(2, ccp(-80, 0));
+		CCActionInterval* moveRight = CCMoveBy::create(2, ccp(80, 0));
+		CCActionInterval* moveLeft = CCMoveBy::create(2, ccp(-80, 0));
 
-	if     (checkObDirection == true)  {	obstacle->runAction(moveRight);}
-	else if(checkObDirection == false) {	obstacle->runAction(moveLeft); }
+		if     (checkObDirection == true)  {	obstacle->runAction(moveRight);}
+		else if(checkObDirection == false) {	obstacle->runAction(moveLeft); }
 	}
 
 	else
@@ -1215,9 +1230,9 @@ void gameScene::decreaseGaugeBar(int num)
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 	if( character_XP > 0 )
-		{
-			gaugeHeart->setPositionX(size.width - (20 + num));		// num 값 만큼 감소시킴.	
-		}
+	{
+		gaugeHeart->setPositionX(size.width - (20 + num));		// num 값 만큼 감소시킴.	
+	}
 
 	else
 	{
@@ -1243,9 +1258,9 @@ void gameScene::increaseGaugeBar(int num)
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 	if( character_XP < (460 - num) )
-		{
-			gaugeHeart->setPositionX(size.width - (20 - num));		// num 값 만큼 증가시킴.	
-		}
+	{
+		gaugeHeart->setPositionX(size.width - (20 - num));		// num 값 만큼 증가시킴.	
+	}
 
 	else
 	{

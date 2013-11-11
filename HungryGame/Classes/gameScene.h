@@ -106,6 +106,7 @@ public:
 	void checkFoodToEnd();											// check food for ending
 	void checkFollowFoodCollision(float);
 	void goMainScene();
+	void goRegame();
 	
 	// array for check when character eat the food ingrediant
 	CCArray*						foodSpriteArray;				// array for save the food sprite
