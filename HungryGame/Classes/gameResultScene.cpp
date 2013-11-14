@@ -9,13 +9,10 @@ gameResultScene::gameResultScene(std::string _result,int _stageidx)
 	
 	result = _result;
 	stageidx = _stageidx;
-	for(int i=0;i<10;i++)
-		foodArrayForSprite[i]=" ";
+//	for(int i=0;i<10;i++)
+//		foodArrayForSprite[i]=" ";
 	//check for result
-	check_arr[0]=1;check_arr[1]=2;
-	check_arr[2]=1000;check_arr[3]=1000;
-	check_arr[4]=1000;check_arr[5]=1000;check_arr[6]=1000;check_arr[7]=1000;check_arr[8]=1000;check_arr[9]=1000;
-	foodArraySpritecolor = new CCArray();
+//	foodArraySpritecolor = new CCArray();
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 	CCSprite* background = CCSprite::create("img\\endResult\\end_bg.png");
@@ -31,16 +28,19 @@ gameResultScene::gameResultScene(std::string _result,int _stageidx)
 	endMenu->setPosition(CCPointZero);
 
 	this->addChild(endMenu, 2);
+
+	parser();
+
 	//-------------------------------
 	// put the image food ingrediant
 	//-------------------------------
-	foodArrayForSprite[0]="map/1.jpg";
-	foodArrayForSprite[1]="map/2.png";
-	foodArrayForSprite[2]="map/3.png";
-	foodArrayForSprite[3]="map/4.png";
+//	foodArrayForSprite[0]="map/1.jpg";
+//	foodArrayForSprite[1]="map/2.png";
+//	foodArrayForSprite[2]="map/3.png";
+//	foodArrayForSprite[3]="map/4.png";
 
 	this->make_foodSprite();
-	this->check_food();
+//	this->check_food();
 
 }
 
@@ -49,7 +49,7 @@ bool gameResultScene::init()
 {
 	return true;
 }
-
+/*
 void gameResultScene::check_food()
 {
 	int result_arr[10]={0,1000,1000,1000,1000,1000,1000,1000,1000,1000};
@@ -74,30 +74,82 @@ void gameResultScene::check_food()
 	else
 		resultOfStage=0;
 }
+*/
+
+/**
+전달받은 string parsing
+*/
+void gameResultScene::parser()
+{
+	for(int i = 0; i < 10; i++){
+		check_arr[i] = 0;
+	}
+	for(int i = 0; i < result.length(); i++){
+		if(!(i%2)) {
+			char* nowChar = &result.at(i);
+			int tmp = atoi(nowChar);
+			check_arr[tmp] = 1;
+		}
+	}
+}
 
 void gameResultScene::make_foodSprite()
 {//make food sprite using array foodArrayForSprite
-	double x=0.3;
+	int successCnt = 0;			//성공한 음식 갯수 저장하는곳
+	double x=0.2;
 	double y=0.65;// for sprite position
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-	for(int i=0;i<4;i++)
+	for(int i=0;i<10;i++)
 	{
-		if(i==2 || i==4 || i== 6)
+		
+		
+		if(i==2 || i==4 || i== 6 || i == 8)
 		{
-			x=0.3;
+			x=0.2;
 			y=y-0.15;
 		}
-		else if(i==1 || i==3 || i==5)
+		else if(i==1 || i==3 || i==5 || i==7 || i==9)
 		{	
-			x=0.7;
+			x=0.6;
 		}
-		CCSprite* foodsprite = CCSprite::create(foodArrayForSprite[i]);
+		
+
+
+		
+		/**
+		Daun
+		이미지 뿌리는 부분...
+		**/
+
+		CCPoint position = ccp(winSize.width*x,winSize.height*y);
+		CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage("img/food/foodTest.png");
+		CCSprite* foodsprite = CCSprite::createWithTexture(texture,CCRectMake(100*(i%5),100*(i/5),100,100));
+		
+		
+		
 		foodsprite->setAnchorPoint(ccp(0,0));
-		foodsprite->setPosition(ccp(winSize.width*x,winSize.height*y));
-		foodArraySpritecolor->addObject(foodsprite);
+		foodsprite->setPosition(position);
+//		foodArraySpritecolor->addObject(foodsprite);
 		//CCPoint fp = foodsprite->getPosition();
+
+
+		if(check_arr[i+1] == 1) {
+			//빨간 동그라미 그리기
+			CCSprite* check = CCSprite::create("img/endResult/end_redCircle.png");
+			check->setPosition(position);
+			this->addChild(check);
+			successCnt++;
+
+		}
+
+
 		this->addChild(foodsprite,1);
 	}
+
+	if(successCnt == successCnt) {
+			/*******************************여기 조건문 고쳐야함.. 스테이지에 몇개 음식인지를 받아와서 하는걸로..*******/
+			resultOfStage = 1;
+		} else resultOfStage = 0;
 }
 
 void gameResultScene::menu_goEndScene(CCObject* pSender)
@@ -108,6 +160,7 @@ void gameResultScene::menu_goEndScene(CCObject* pSender)
 	pScene->addChild(layer);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
+/*
 //for sorting
 void gameResultScene::selectionSort(int *list, int n)
 {
@@ -128,6 +181,8 @@ void gameResultScene::selectionSort(int *list, int n)
         list[i] = temp;
     }
 }
+*/
+/*
 //arr1 = have to eat, arr2 = eat
 bool gameResultScene::checkSame(int *arr1,int *arr2)
 {
@@ -151,3 +206,4 @@ bool gameResultScene::checkSame(int *arr1,int *arr2)
 	else
 		return false;
 }
+*/
