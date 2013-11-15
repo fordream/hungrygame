@@ -113,9 +113,9 @@ bool gameScene::init()
 
 		/* Set Tiled Map			: Daun, eunji*/
 		CCLayer *tileLayer = CCLayer::create();
+		this->addChild(tileLayer);
 
-
-		tileMap = CCTMXTiledMap::create("map/GameMap");
+		tileMap = CCTMXTiledMap::create("map/GameMap.tmx");
 		tileMap->setPosition(MOVEX , MOVEY);
 
 		backgroundLayer = tileMap->layerNamed("wall");
