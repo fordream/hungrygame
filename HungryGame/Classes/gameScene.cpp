@@ -113,8 +113,8 @@ bool gameScene::init()
 
 		/* Set Tiled Map			: Daun, eunji*/
 		CCLayer *tileLayer = CCLayer::create();
-		this->addChild(tileLayer);
-		
+
+
 		tileMap = CCTMXTiledMap::create("map/GameMap");
 		tileMap->setPosition(MOVEX , MOVEY);
 
