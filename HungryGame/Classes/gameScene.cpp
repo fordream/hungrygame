@@ -147,7 +147,6 @@ bool gameScene::init()
 
 
 		/* make food				: Pineoc */
-		/* links : http://www.raywenderlich.com/40544/cocos2d-x-tile-map-tutorial-part-2 */
 		this->createFoodShelf();
 		this->createFood();
 		foodcount = foodSpriteArray->count();
@@ -573,40 +572,34 @@ void gameScene::createFood()
 	//후에 인자값을 CCArray로 받아서 음식재료를 다 뿌리는것으로 만듬.
 	//char* inputdata = NULL;
 	//CCString *a=NULL;
-	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage("img/fish_cutlet_list.png");
+	const char* foodarr[10]={"food1","food2","food3","food4","food5","food6","food7","food8","food9","food10"};
+	//for sprite food
 
-	foods = tileMap->objectGroupNamed("foods");
-	CCDictionary *food1point = foods->objectNamed("food1");
-	CCDictionary *food2point = foods->objectNamed("food2");
+	
 
-	// 여기 고쳤음!!!
-	//
-	//counter
+	//create counter
 	CCTMXObjectGroup *counterGroup = tileMap->objectGroupNamed("endPoint");
 	CCDictionary *_counterPoint = counterGroup->objectNamed("counter");
 	int counterX = ((CCString*)_counterPoint->objectForKey("x"))->intValue();
 	int counterY = ((CCString*)_counterPoint->objectForKey("y"))->intValue();
 	counterPoint = ccp(counterX+MOVEX,counterY+MOVEY);
 	this->createCounter();
-	CCPoint foodpoint[2];
+	//create counter end
+
+	
 	//
+	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage("img/food/foodTest.png");
+	foods = tileMap->objectGroupNamed("foods");
 
-	int food1X = ((CCString*)food1point->objectForKey("x"))->intValue();
-	int food1Y = ((CCString*)food1point->objectForKey("y"))->intValue();
-	foodpoint[0] = ccp(food1X+MOVEX,food1Y+MOVEY);
-
-	int food2X = ((CCString*)food2point->objectForKey("x"))->intValue();
-	int food2Y = ((CCString*)food2point->objectForKey("y"))->intValue();
-	foodpoint[1] = ccp(food2X+MOVEX,food2Y+MOVEY);
-
-
-
-
-	int FOOD_CNT = 2;
+	int FOOD_CNT = 7;
 	for(int i = 0 ; i < FOOD_CNT; i++)
 	{
-		CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(100*i,100*i, 100, 100));
-		food->setPosition(foodpoint[i]);
+		CCDictionary *dfoodpoint = foods->objectNamed(foodarr[i]);
+		int foodX = ((CCString*)dfoodpoint->objectForKey("x"))->intValue();
+		int foodY = ((CCString*)dfoodpoint->objectForKey("y"))->intValue();
+		CCPoint foodpoint = ccp(foodX+MOVEX,foodY+MOVEY);
+		CCSprite* food = CCSprite::createWithTexture(foodTexture,CCRectMake(100*(i%5),100*(i/5),100,100));
+		food->setPosition(foodpoint);
 		food->setScale(0.48);
 		food->setTag(i+1);
 		food->setAnchorPoint(ccp(0,0));
@@ -784,16 +777,18 @@ void gameScene::check_counter(float dt)
 * Made											Pineoc
 */
 void gameScene::createFoodShelf()
-{
+{// have to : add food count
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
-	//for(){}
-
-	CCSprite* foodShelf1 = CCSprite::create("map/carrot.png");
-	CCSprite* foodShelf2 = CCSprite::create("map/meat.png");
-	foodShelf1->setPosition(ccp(size.width*0.12+10,size.height*0.74));
-	foodShelf2->setPosition(ccp(size.width*0.24+10,size.height*0.74));//0.1+0.11( or 0.12)
-	this->addChild(foodShelf1);
-	this->addChild(foodShelf2);
+	CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage("img/food/foodTest.png");
+	for(int i=0;i<7;i++)
+	{
+		CCSprite* foodsprite = CCSprite::createWithTexture(texture,CCRectMake(100*(i%5),100*(i/5),100,100));
+		CCPoint position = ccp((size.width*0.12*(i+1)),size.height*0.73);
+		foodsprite->setAnchorPoint(ccp(0,0));
+		foodsprite->setPosition(position);
+		foodsprite->setScale(0.5);
+		this->addChild(foodsprite);
+	}
 }
 
 

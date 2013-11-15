@@ -40,10 +40,12 @@
  </objectgroup>
  <objectgroup name="foods" width="9" height="10">
   <object name="food1" x="192" y="49" width="46" height="44"/>
-  <object name="food2" x="192" y="147" width="48" height="42"/>
-  <object name="food3" x="142" y="192" width="49" height="45"/>
-  <object name="food4" x="49" y="291" width="50" height="44"/>
-  <object name="food5" x="243" y="243" width="43" height="40"/>
+  <object name="food2" x="195" y="147" width="41" height="44"/>
+  <object name="food3" x="149" y="198" width="38" height="37"/>
+  <object name="food4" x="49" y="291" width="40" height="40"/>
+  <object name="food5" x="243" y="243" width="39" height="40"/>
+  <object name="food7" x="4" y="245" width="39" height="39"/>
+  <object name="food6" x="388" y="245" width="40" height="40"/>
  </objectgroup>
  <objectgroup name="object" width="9" height="10">
   <object name="character" x="144" y="288" width="48" height="48">
@@ -56,10 +58,10 @@
   </data>
  </layer>
  <objectgroup name="items" width="9" height="10">
-  <object name="item1" x="142" y="142" width="48" height="44"/>
+  <object name="item1" x="146" y="149" width="45" height="41"/>
   <object name="item2" x="290" y="287" width="44" height="45"/>
   <object name="item3" x="288" y="146" width="44" height="48"/>
-  <object name="item4" x="93" y="377" width="55" height="50"/>
+  <object name="item4" x="99" y="386" width="40" height="40"/>
  </objectgroup>
  <objectgroup name="endPoint" width="9" height="10">
   <object name="counter" x="384" y="3" width="46" height="43"/>
