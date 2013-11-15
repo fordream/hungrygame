@@ -124,7 +124,6 @@
     <ClInclude Include="..\Classes\gameEndScene.h" />
     <ClInclude Include="..\Classes\gameResultScene.h" />
     <ClInclude Include="..\Classes\gameScene.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\HelpScene.h" />
     <ClInclude Include="..\Classes\mainScene.h" />
     <ClInclude Include="..\Classes\music.h" />
@@ -141,7 +140,6 @@
     <ClCompile Include="..\Classes\gameEndScene.cpp" />
     <ClCompile Include="..\Classes\gameResultScene.cpp" />
     <ClCompile Include="..\Classes\gameScene.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\HelpScene.cpp" />
     <ClCompile Include="..\Classes\mainScene.cpp" />
     <ClCompile Include="..\Classes\music.cpp" />

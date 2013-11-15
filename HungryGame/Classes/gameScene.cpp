@@ -14,6 +14,7 @@ using namespace cocos2d;
 
 enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
 enum DIRCTION { UP, DOWN, LEFT, RIGHT};
+const char* tmxmap[40] = {"11.tmx"};
 #define MOVEX 23.2
 #define MOVEY 46.5
 
@@ -98,7 +99,7 @@ bool gameScene::init()
 		a = new PauseGameScene;
 		a->setStageIdx(idx);
 		a->autorelease();
-
+		//set idx end. 
 
 		music m;
 		m.effectStart("sound\\effect_supermarket.mp3");

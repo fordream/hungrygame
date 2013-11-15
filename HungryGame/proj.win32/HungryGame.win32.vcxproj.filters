@@ -21,9 +21,6 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\mainScene.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -66,9 +63,6 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\mainScene.cpp">
