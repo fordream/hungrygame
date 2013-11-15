@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="9" height="10" tilewidth="48" tileheight="48">
+ <tileset firstgid="1" name="background" tilewidth="48" tileheight="48">
+  <image source="background.png" width="436" height="484"/>
+ </tileset>
+ <tileset firstgid="91" name="carrot" tilewidth="48" tileheight="48">
+  <image source="carrot.png" width="48" height="48"/>
+ </tileset>
+ <tileset firstgid="92" name="MetaInfo" tilewidth="48" tileheight="48">
+  <image source="metaset.png" width="48" height="48"/>
+  <tile id="0">
+   <properties>
+    <property name="Wall" value="YES"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="background" width="9" height="10">
+  <data encoding="base64" compression="zlib">
+   eJwNw4kyQgEAAMAnFAqlHDkKFYpCQkSOpBC5Qv3/h9id2bEgCEKOO+GkYSNOOe2MUWPOOue8cRMumDTloksuu2LaVddcd8OMWTfdctuceQvuuOueRUvue2DZioceeWzVE2ueeua5dS+8tOGV1za98dY77235YNtHO3Z98tkXe776Zt93P/z0y28H/vjrn0NH/gOsARAA
+  </data>
+ </layer>
+ <layer name="wall" width="9" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAMoslUE42ECZlDiprBCqKxYBgAAFEFBPs=
+  </data>
+ </layer>
+ <objectgroup name="con_wall" width="9" height="10">
+  <object x="0" y="48">
+   <polyline points="0,0 48,0 48,192 0,192 0,0"/>
+  </object>
+  <object x="240" y="144">
+   <polyline points="0,0 96,0 96,96 144,96 144,-48 0,-48 0,0"/>
+  </object>
+  <object x="96" y="432">
+   <polyline points="0,0 240,0 240,48 0,48 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="obstacle" width="9" height="10">
+  <object name="obstaclePoint" x="96" y="48" width="48" height="48"/>
+ </objectgroup>
+ <objectgroup name="foods" width="9" height="10">
+  <object name="food1" x="192" y="49" width="46" height="44"/>
+  <object name="food2" x="195" y="147" width="41" height="44"/>
+  <object name="food3" x="149" y="198" width="38" height="37"/>
+  <object name="food4" x="49" y="291" width="40" height="40"/>
+  <object name="food5" x="243" y="243" width="39" height="40"/>
+  <object name="food7" x="4" y="245" width="39" height="39"/>
+  <object name="food6" x="388" y="245" width="40" height="40"/>
+ </objectgroup>
+ <objectgroup name="object" width="9" height="10">
+  <object name="character" x="144" y="288" width="48" height="48">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <layer name="Items" width="9" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAMYshUE4OECZlDiprBCmKwYBgAAFpVBQk=
+  </data>
+ </layer>
+ <objectgroup name="items" width="9" height="10">
+  <object name="item1" x="146" y="149" width="45" height="41"/>
+  <object name="item2" x="290" y="287" width="44" height="45"/>
+  <object name="item3" x="288" y="146" width="44" height="48"/>
+  <object name="item4" x="99" y="386" width="40" height="40"/>
+ </objectgroup>
+ <objectgroup name="endPoint" width="9" height="10">
+  <object name="counter" x="384" y="3" width="46" height="43"/>
+ </objectgroup>
+</map>

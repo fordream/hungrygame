@@ -4,7 +4,6 @@
 
 #include "BuildingScene.h"
 #include "music.h"
-#include "HelloWorldScene.h"
 #include "mainScene.h"
 #include "stageSelectScene.h"
 

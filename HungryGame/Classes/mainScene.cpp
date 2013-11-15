@@ -1,7 +1,6 @@
 #include "mainScene.h"
 #include "music.h"
 #include "HelpScene.h"
-#include "HelloWorldScene.h"
 #include "BuildingScene.h"
 #include "MakerInfoScene.h"
 #include "optionScene.h"
