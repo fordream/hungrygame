@@ -13,10 +13,6 @@ using namespace cocos2d;
 
 enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
 enum DIRCTION { UP, DOWN, LEFT, RIGHT};
-const char* tmxmap[4][10] = {("11.tmx","12.tmx","13.tmx","14.tmx","15.tmx","16.tmx","17.tmx","18.tmx","19.tmx","1_b.tmx"),//[0][0~9]
-						  ("21.tmx","22.tmx","23.tmx","24.tmx","25.tmx","26.tmx","27.tmx","28.tmx","29.tmx","2_b.tmx"), //[1][0~9]
-						  ("31.tmx","32.tmx","33.tmx","34.tmx","35.tmx","36.tmx","37.tmx","38.tmx","39.tmx","3_b.tmx"), //[2][0~9]
-						  ("41.tmx","42.tmx","43.tmx","44.tmx","45.tmx","46.tmx","47.tmx","48.tmx","49.tmx","4_b.tmx")};//[3][0~9]
 #define MOVEX 23.2
 #define MOVEY 46.5
 
@@ -96,7 +92,7 @@ bool gameScene::init()
 		result=" ";
 
 		//using stageidx for regame
-		int idx = stageidx;
+		int idx = gStageidx;
 		PauseGameScene *a; 
 		a = new PauseGameScene;
 		a->setStageIdx(idx);
@@ -594,10 +590,12 @@ void gameScene::createFood()
 	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage("img/food/foodTest.png");
 	foods = tileMap->objectGroupNamed("foods");
 
-	int FOOD_CNT = 7;
-	for(int i = 0 ; i < FOOD_CNT; i++)
+	for(int i = 0 ; i < 10; i++)
 	{
-		CCDictionary *dfoodpoint = foods->objectNamed(foodarr[i]);
+		CCDictionary *dfoodpoint ;
+		if(!(dfoodpoint= foods->objectNamed(foodarr[i])))
+			break;
+		//if does not have food, break
 		int foodX = ((CCString*)dfoodpoint->objectForKey("x"))->intValue();
 		int foodY = ((CCString*)dfoodpoint->objectForKey("y"))->intValue();
 		CCPoint foodpoint = ccp(foodX+MOVEX,foodY+MOVEY);
@@ -830,7 +828,7 @@ void gameScene::go_endResultScene()
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
 	this->checkFoodToEnd();
 	CCScene *pScene = CCScene::create();
-	gameResultScene *layer = new gameResultScene(result,stageidx);
+	gameResultScene *layer = new gameResultScene(result,gStageidx);
 	layer->autorelease();
 	pScene->addChild(layer);
 	CCDirector::sharedDirector()->replaceScene(pScene);

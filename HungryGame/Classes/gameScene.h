@@ -118,7 +118,7 @@ public:
 	CCPoint							counterPoint;
 
 	std::string						result;
-	int								stageidx;
+	int								gStageidx;
 
 
 
