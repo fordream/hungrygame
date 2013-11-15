@@ -5,7 +5,6 @@
 */
 #include "stageSelectScene.h"
 #include "music.h"
-#include "HelloWorldScene.h"
 #include "mainScene.h"
 #include "gameScene.h"
 #include "PauseGameScene.h"
@@ -14,7 +13,10 @@ using namespace cocos2d;
 
 enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
 enum DIRCTION { UP, DOWN, LEFT, RIGHT};
-const char* tmxmap[40] = {"11.tmx"};
+const char* tmxmap[4][10] = {("11.tmx","12.tmx","13.tmx","14.tmx","15.tmx","16.tmx","17.tmx","18.tmx","19.tmx","1_b.tmx"),//[0][0~9]
+						  ("21.tmx","22.tmx","23.tmx","24.tmx","25.tmx","26.tmx","27.tmx","28.tmx","29.tmx","2_b.tmx"), //[1][0~9]
+						  ("31.tmx","32.tmx","33.tmx","34.tmx","35.tmx","36.tmx","37.tmx","38.tmx","39.tmx","3_b.tmx"), //[2][0~9]
+						  ("41.tmx","42.tmx","43.tmx","44.tmx","45.tmx","46.tmx","47.tmx","48.tmx","49.tmx","4_b.tmx")};//[3][0~9]
 #define MOVEX 23.2
 #define MOVEY 46.5
 
@@ -116,8 +118,8 @@ bool gameScene::init()
 		/* Set Tiled Map			: Daun, eunji*/
 		CCLayer *tileLayer = CCLayer::create();
 		this->addChild(tileLayer);
-
-		tileMap = CCTMXTiledMap::create("map/GameMap.tmx");
+		
+		tileMap = CCTMXTiledMap::create("map/GameMap");
 		tileMap->setPosition(MOVEX , MOVEY);
 
 		backgroundLayer = tileMap->layerNamed("wall");
