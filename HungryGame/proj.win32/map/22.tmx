@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="7" height="9" tilewidth="60" tileheight="60">
+ <tileset firstgid="1" name="wall" tilewidth="60" tileheight="60">
+  <image source="wall.png" width="120" height="120"/>
+ </tileset>
+ <tileset firstgid="5" name="background1" tilewidth="60" tileheight="60">
+  <image source="background1.png" width="424" height="544"/>
+ </tileset>
+ <tileset firstgid="68" source="metaset1.tsx"/>
+ <layer name="background" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJwNw0VyAgEAALC94A6F4k6x4u72/z+RzCQUBEHYiFFjxk2YNGXajFlz5i34Y9GSv5atWLVm3YZNW7bt2LVn34F/Dh05duLUf2fOXbh05dqNW3fuPXj05NmLV2/effj05duPXympCN0=
+  </data>
+ </layer>
+ <layer name="wall" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAfMCJhdMCERx8hORYopjUAAAmQABI=
+  </data>
+ </layer>
+ <layer name="Items" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAfuCBhbHL49JFjJrUBADlrAiE=
+  </data>
+ </layer>
+ <objectgroup name="object" width="7" height="9">
+  <object name="character" x="362" y="242" width="57" height="57"/>
+ </objectgroup>
+ <objectgroup name="endPoint" width="7" height="9">
+  <object name="counter" x="2" y="185" width="55" height="53"/>
+ </objectgroup>
+ <objectgroup name="items" width="7" height="9">
+  <object name="item1" x="121" y="363" width="56" height="56"/>
+  <object name="item3" x="242" y="361" width="58" height="57"/>
+  <object name="item4" x="302" y="360" width="59" height="59"/>
+  <object name="item2" x="181" y="361" width="58" height="56"/>
+ </objectgroup>
+ <objectgroup name="foods" width="7" height="9">
+  <object name="food1" x="360" y="3" width="57" height="55"/>
+  <object name="food4" x="62" y="362" width="54" height="55"/>
+  <object name="food5" x="241" y="421" width="55" height="58"/>
+  <object name="food2" x="182" y="62" width="57" height="56"/>
+  <object name="food3" x="183" y="242" width="57" height="56"/>
+ </objectgroup>
+ <objectgroup name="obstacle" width="7" height="9"/>
+</map>

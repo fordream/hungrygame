@@ -115,7 +115,7 @@ bool gameScene::init()
 		CCLayer *tileLayer = CCLayer::create();
 		this->addChild(tileLayer);
 
-		tileMap = CCTMXTiledMap::create("map/GameMap.tmx");
+		tileMap = CCTMXTiledMap::create("map/23.tmx");
 		tileMap->setPosition(MOVEX , MOVEY);
 
 		backgroundLayer = tileMap->layerNamed("wall");
@@ -133,7 +133,7 @@ bool gameScene::init()
 		createCharacter();
 
 		movingSpeed = 400;														// set initial character moving speed
-		moveDirection = DOWN;													// set default character moving direction
+		moveDirection = UP;													// set default character moving direction
 
 		this->schedule(schedule_selector(gameScene::moveCharacter));
 
@@ -290,19 +290,15 @@ bool gameScene::init()
 * Latest										2013. 10. 03
 * Made											eunji
 */
+
+
 CCPoint gameScene::tileCoorPosition(CCPoint position)
-{//general function, for point -> tile point
-
-	int mapSize_h  = tileMap->getMapSize().height;
-	int tileSize_h = tileMap->getTileSize().height;
-	int tileSize_w = tileMap->getTileSize().width;   
-
-	//    CCLog("%d %d %d", mapSize_h,tileSize_h,tileSize_w);
-	int x = position.x /tileSize_w;
-	int y = (tileSize_h* mapSize_h -position.y) / tileSize_h;
-
-	return ccp(x,y);
+{
+    int x = position.x / tileMap->getTileSize().width;
+    int y = ((tileMap->getMapSize().height * tileMap->getTileSize().height) - position.y) / tileMap->getTileSize().height;
+    return ccp(x, y);
 }
+
 /*
 * ** FUNCTION
 * void createObstacle()							create Obstacle

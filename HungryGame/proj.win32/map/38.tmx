@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="7" height="9" tilewidth="60" tileheight="60">
+ <tileset firstgid="1" name="wall" tilewidth="60" tileheight="60">
+  <image source="wall.png" width="120" height="120"/>
+ </tileset>
+ <tileset firstgid="5" name="background1" tilewidth="60" tileheight="60">
+  <image source="background1.png" width="424" height="544"/>
+ </tileset>
+ <tileset firstgid="68" source="metaset1.tsx"/>
+ <layer name="background" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJwNw0VyAgEAALC94A6F4k6x4u72/z+RzCQUBEHYiFFjxk2YNGXajFlz5i34Y9GSv5atWLVm3YZNW7bt2LVn34F/Dh05duLUf2fOXbh05dqNW3fuPXj05NmLV2/effj05duPXympCN0=
+  </data>
+ </layer>
+ <layer name="wall" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYIAAZgbcAJccM4lqQIAJCVMLIJtHirkAEPAAHA==
+  </data>
+ </layer>
+ <layer name="Items" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYIAAFwbcAJecC4lqYHwXLOKUAGTzSDEXAJw7Au0=
+  </data>
+ </layer>
+ <objectgroup name="foods" width="7" height="9">
+  <object name="food1" x="62" y="63" width="54" height="53"/>
+  <object name="food2" x="184" y="5" width="54" height="53"/>
+  <object name="food3" x="304" y="61" width="54" height="53"/>
+  <object name="food4" x="364" y="184" width="54" height="53"/>
+  <object name="food5" x="183" y="242" width="54" height="53"/>
+  <object name="food6" x="2" y="303" width="54" height="53"/>
+  <object name="food7" x="2" y="484" width="54" height="53"/>
+  <object name="food8" x="243" y="483" width="54" height="53"/>
+  <object name="food9" x="361" y="363" width="54" height="53"/>
+ </objectgroup>
+ <objectgroup name="obstacle" width="7" height="9">
+  <object name="obstacle1" x="123" y="304" width="54" height="53"/>
+ </objectgroup>
+ <objectgroup name="object" width="7" height="9">
+  <object name="character" x="120" y="482" width="59" height="58">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="endPoint" width="7" height="9">
+  <object name="counter" x="2" y="4" width="54" height="53"/>
+ </objectgroup>
+ <objectgroup name="items" width="7" height="9">
+  <object name="item1" x="121" y="182" width="54" height="53"/>
+  <object name="item2" x="241" y="183" width="54" height="53"/>
+ </objectgroup>
+</map>

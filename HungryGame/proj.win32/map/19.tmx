@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="7" height="9" tilewidth="60" tileheight="60">
+ <tileset firstgid="1" name="background" tilewidth="60" tileheight="60">
+  <image source="background1.png" width="424" height="544"/>
+ </tileset>
+ <tileset firstgid="64" name="wall" tilewidth="60" tileheight="60">
+  <image source="wall.png" width="120" height="120"/>
+ </tileset>
+ <tileset firstgid="68" source="metaset1.tsx"/>
+ <layer name="background" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJwNwwVuAgEAALDDHQbDnWHD3e3/v6JNGgqCIGzEqDHjJkyaMm3GrDnzFvyxaMlfy1asWrNuw6Yt23bs2rPvwD+Hjhw7ceq/M+cuXLpy7catO/cePHry7MWrN+8+fPry7ccvq5oH4Q==
+  </data>
+ </layer>
+ <objectgroup name="foods" width="7" height="9">
+  <object name="food1" x="180" y="481" width="61" height="61"/>
+  <object name="food3" x="362" y="363" width="57" height="57"/>
+  <object name="food4" x="-1" y="0" width="61" height="61"/>
+  <object name="food2" x="184" y="302" width="57" height="57"/>
+  <object name="food5" x="239" y="119" width="63" height="63"/>
+ </objectgroup>
+ <objectgroup name="object" width="7" height="9">
+  <object name="character" x="363" y="-1" width="59" height="61"/>
+ </objectgroup>
+ <layer name="wall" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAPnLBgGHBGU4vOJ1YOGTiSIIfMd0bD+MyBAQAStgQk
+  </data>
+ </layer>
+ <layer name="Items" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAPXLBgZDl0tfjMIQaQYga6W3C5ExcAACEaBEE=
+  </data>
+ </layer>
+ <objectgroup name="endPoint" width="7" height="9">
+  <object name="counter" x="184" y="243" width="57" height="58"/>
+ </objectgroup>
+ <objectgroup name="con_wall" width="7" height="9">
+  <object x="60" y="179">
+   <polyline points="0,0 59,-1 61,-59 241,-59 241,61 299,61 300,-117 3,-117 0,0"/>
+  </object>
+  <object x="60" y="300">
+   <polyline points="0,0 61,0 60,117 240,120 240,59 299,60 299,180 0,179 0,0"/>
+  </object>
+ </objectgroup>
+</map>

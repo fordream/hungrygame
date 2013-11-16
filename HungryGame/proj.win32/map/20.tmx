@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="7" height="9" tilewidth="60" tileheight="60">
+ <tileset firstgid="1" name="wall" tilewidth="60" tileheight="60">
+  <image source="wall.png" width="120" height="120"/>
+ </tileset>
+ <tileset firstgid="5" name="background1" tilewidth="60" tileheight="60">
+  <image source="background1.png" width="424" height="544"/>
+ </tileset>
+ <tileset firstgid="68" source="metaset1.tsx"/>
+ <layer name="background" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJwNw0VyAgEAALC94A6F4k6x4u72/z+RzCQUBEHYiFFjxk2YNGXajFlz5i34Y9GSv5atWLVm3YZNW7bt2LVn34F/Dh05duLUf2fOXbh05dqNW3fuPXj05NmLV2/effj05duPXympCN0=
+  </data>
+ </layer>
+ <layer name="Items" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAMuCBhbHL49JFqD7lyuNwHABmLAqk=
+  </data>
+ </layer>
+ <layer name="wall" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAMMCNhbHL49JECmCiQY8KhBgAMiAAa
+  </data>
+ </layer>
+ <objectgroup name="items" width="7" height="9">
+  <object name="item1" x="300" y="420" width="59" height="58"/>
+  <object name="item2" x="179" y="482" width="59" height="55"/>
+  <object name="item3" x="60" y="121" width="58" height="58"/>
+  <object name="item4" x="303" y="61" width="54" height="53"/>
+ </objectgroup>
+ <objectgroup name="foods" width="7" height="9">
+  <object name="food1" x="61" y="421" width="58" height="58"/>
+  <object name="food2" x="179" y="179" width="60" height="57"/>
+ </objectgroup>
+ <objectgroup name="object" width="7" height="9">
+  <object name="character" x="301" y="299" width="57" height="60"/>
+ </objectgroup>
+ <objectgroup name="endPoint" width="7" height="9">
+  <object name="counter" x="121" y="61" width="58" height="56"/>
+ </objectgroup>
+ <objectgroup name="obstacle" width="7" height="9"/>
+</map>
