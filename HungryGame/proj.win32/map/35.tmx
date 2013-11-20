@@ -33,7 +33,7 @@
   <object name="food8" x="5" y="184" width="50" height="50"/>
  </objectgroup>
  <objectgroup name="obstacle" width="7" height="9">
-  <object name="obstacle1" x="123" y="184" width="50" height="50"/>
+  <object name="obstaclePoint" x="123" y="184" width="50" height="50"/>
  </objectgroup>
  <objectgroup name="object" width="7" height="9">
   <object name="character" x="364" y="6" width="50" height="50"/>
