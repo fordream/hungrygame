@@ -11,10 +11,10 @@
 
 #include "SimpleAudioEngine.h"
 
-class gameScene : public cocos2d::CCLayer
+class gameScene : public cocos2d::CCLayerColor
 {
 public:
-	//gameScene();
+	gameScene(int stageIDX);
 	~gameScene();
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();  
@@ -24,7 +24,7 @@ public:
     
    
     // implement the "static node()" method manually
-	CREATE_FUNC(gameScene);
+	//CREATE_FUNC(gameScene);
 
 	/*
 	pineoc's function (general function)

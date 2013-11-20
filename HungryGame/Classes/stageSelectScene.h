@@ -23,7 +23,8 @@ public:
    
 	void stageMenu(CCObject* pSender);
 	void menuGoBackCallback(CCObject* pSender);
-
+	void onExit();
+	void goStageScene();
 	void doMsgRecv(CCObject* obj);
 	int sStageNum; // for stage of each building
 

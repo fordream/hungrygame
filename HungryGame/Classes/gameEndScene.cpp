@@ -108,8 +108,10 @@ void gameEndScene::menu_retry(CCObject* pSender)
 {
 	
 	//여기서 스테이지의 idx가져와서 다시 replace 하는 방식으로 가야할듯.
-	CCScene *pScene = gameScene::scene();
-
+	CCScene *pScene = CCScene::create();
+	gameScene *layer = new gameScene(stageidx);
+	layer->autorelease();
+	pScene->addChild(layer);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 	
 	
@@ -118,8 +120,10 @@ void gameEndScene::menu_nextStage(CCObject* pSender)
 {
 	
 	//스테이지의 idx를 가져와서 idx+1 하여 다음 스테이지를 가져오게끔 해야할 듯.
-	CCScene *pScene = gameScene::scene();
-
+	CCScene *pScene = CCScene::create();
+	gameScene *layer = new gameScene(stageidx+1);
+	layer->autorelease();
+	pScene->addChild(layer);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 	
 }
