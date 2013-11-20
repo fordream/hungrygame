@@ -23,6 +23,8 @@ public:
 	void menuBuild4Callback(CCObject* pSender);
 	void menuGoBackCallback(CCObject* pSender);
 
+	int buildingNum;
+
     // implement the "static node()" method manually
 	CREATE_FUNC(Building);
 };

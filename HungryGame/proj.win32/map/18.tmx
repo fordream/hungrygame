@@ -13,35 +13,34 @@
   </data>
  </layer>
  <objectgroup name="foods" width="7" height="9">
-  <object name="food1" x="243" y="421" width="61" height="61"/>
-  <object name="food3" x="305" y="122" width="57" height="57"/>
-  <object name="food4" x="178" y="-1" width="61" height="61"/>
-  <object name="food2" x="1" y="241" width="57" height="57"/>
-  <object name="food5" x="361" y="241" width="57" height="57"/>
+  <object name="food1" x="180" y="481" width="61" height="61"/>
+  <object name="food3" x="362" y="363" width="57" height="57"/>
+  <object name="food4" x="-1" y="0" width="61" height="61"/>
+  <object name="food2" x="184" y="302" width="57" height="57"/>
+  <object name="food5" x="239" y="119" width="63" height="63"/>
  </objectgroup>
  <objectgroup name="object" width="7" height="9">
-  <object name="character" x="0" y="479" width="59" height="61"/>
+  <object name="character" x="363" y="-1" width="59" height="61"/>
  </objectgroup>
  <layer name="wall" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYMAPnHDQlAJnNJpS4IiDxgcACYcCEA==
+   eJxjYMAPnLBgGHBGU4vOJ1YOGTiSIIfMd0bD+MyBAQAStgQk
   </data>
  </layer>
  <layer name="Items" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYMAPXHDQlAJam0eMuQARCwIh
+   eJxjYMAPXLBgZDl0tfjMIQaQYga6W3C5ExcAACEaBEE=
   </data>
  </layer>
  <objectgroup name="endPoint" width="7" height="9">
-  <object name="counter" x="183" y="242" width="57" height="58"/>
+  <object name="counter" x="184" y="243" width="57" height="58"/>
  </objectgroup>
  <objectgroup name="con_wall" width="7" height="9">
-  <object x="61" y="60" width="57" height="57"/>
-  <object x="181" y="57" width="56" height="61"/>
-  <object x="300" y="59" width="59" height="61"/>
-  <object x="243" y="239" width="59" height="63"/>
-  <object x="120" y="239" width="61" height="63"/>
-  <object x="180" y="421" width="61" height="60"/>
-  <object x="300" y="420" width="61" height="61"/>
+  <object x="60" y="179">
+   <polyline points="0,0 59,-1 61,-59 241,-59 241,61 299,61 300,-117 3,-117 0,0"/>
+  </object>
+  <object x="60" y="300">
+   <polyline points="0,0 61,0 60,117 240,120 240,59 299,60 299,180 0,179 0,0"/>
+  </object>
  </objectgroup>
 </map>

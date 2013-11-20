@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="7" height="9" tilewidth="60" tileheight="60">
- <tileset firstgid="1" name="wall" tilewidth="60" tileheight="60">
-  <image source="wall.png" width="120" height="120"/>
- </tileset>
- <tileset firstgid="5" name="background1" tilewidth="60" tileheight="60">
+ <tileset firstgid="1" name="background1" tilewidth="60" tileheight="60">
   <image source="background1.png" width="424" height="544"/>
  </tileset>
- <tileset firstgid="68" source="metaset1.tsx"/>
+ <tileset firstgid="64" source="metaset1.tsx"/>
+ <tileset firstgid="65" name="wall" tilewidth="60" tileheight="60">
+  <image source="wall.png" width="120" height="120"/>
+ </tileset>
  <layer name="background" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJwNw0VyAgEAALC94A6F4k6x4u72/z+RzCQUBEHYiFFjxk2YNGXajFlz5i34Y9GSv5atWLVm3YZNW7bt2LVn34F/Dh05duLUf2fOXbh05dqNW3fuPXj05NmLV2/effj05duPXympCN0=
+   eJwNwwVuAgEAALDDHQbDnWHD3e3/v6JNGgqCIGzEqDHjJkyaMm3GrDnzFvyxaMlfy1asWrNuw6Yt23bs2rPvwD+Hjhw7ceq/M+cuXLpy7catO/cePHry7MWrN+8+fPry7ccvq5oH4Q==
   </data>
  </layer>
  <layer name="wall" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYCAfMCJhdMCERx8hORYopjUAAAmQABI=
+   eJxzYmBgcELCMOCIxHZmwA3wydESkOMmkLgLEgYAyS8DZQ==
   </data>
  </layer>
  <layer name="Items" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYCAfuCBhbHL49JFjJrUBADlrAiE=
+   eJxzYGBgcEDC2AAucUJytAT47MUl54CGAYELAwE=
   </data>
  </layer>
- <objectgroup name="object" width="7" height="9">
-  <object name="character" x="362" y="242" width="57" height="57"/>
- </objectgroup>
  <objectgroup name="endPoint" width="7" height="9">
-  <object name="counter" x="2" y="185" width="55" height="53"/>
+  <object name="counter" x="361" y="1" width="56" height="57"/>
  </objectgroup>
  <objectgroup name="items" width="7" height="9">
-  <object name="item1" x="121" y="363" width="56" height="56"/>
-  <object name="item3" x="242" y="361" width="58" height="57"/>
-  <object name="item4" x="302" y="360" width="59" height="59"/>
-  <object name="item2" x="181" y="361" width="58" height="56"/>
+  <object name="item1" x="300" y="122" width="58" height="56"/>
+  <object name="item3" x="4" y="244" width="55" height="56"/>
+  <object name="item4" x="63" y="424" width="56" height="53"/>
+  <object name="item2" x="182" y="242" width="55" height="53"/>
  </objectgroup>
  <objectgroup name="foods" width="7" height="9">
-  <object name="food1" x="360" y="3" width="57" height="55"/>
-  <object name="food4" x="62" y="362" width="54" height="55"/>
-  <object name="food5" x="241" y="421" width="55" height="58"/>
-  <object name="food2" x="182" y="62" width="57" height="56"/>
-  <object name="food3" x="183" y="242" width="57" height="56"/>
+  <object name="food1" x="241" y="61" width="57" height="57"/>
+  <object name="food2" x="243" y="305" width="54" height="52"/>
+  <object name="food3" x="59" y="122" width="57" height="56"/>
+  <object name="food4" x="122" y="422" width="55" height="53"/>
+  <object name="food5" x="64" y="303" width="54" height="52"/>
+ </objectgroup>
+ <objectgroup name="object" width="7" height="9">
+  <object name="character" x="360" y="243" width="58" height="54"/>
  </objectgroup>
  <objectgroup name="obstacle" width="7" height="9"/>
 </map>

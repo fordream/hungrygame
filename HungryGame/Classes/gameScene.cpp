@@ -91,13 +91,16 @@ bool gameScene::init()
 		tomakeFood = new CCArray;// to make food sprite
 		result=" ";
 
+
 		//using stageidx for regame
 		int idx = gStageidx;
-		PauseGameScene *a; 
-		a = new PauseGameScene;
-		a->setStageIdx(idx);
-		a->autorelease();
 		//set idx end. 
+
+		char map[16]="map/";
+		char buf[2];
+		_itoa(idx,buf,10);
+		strcat(map,buf);
+		strcat(map,".tmx");
 
 		music m;
 		m.effectStart("sound\\effect_supermarket.mp3");
@@ -115,7 +118,7 @@ bool gameScene::init()
 		CCLayer *tileLayer = CCLayer::create();
 		this->addChild(tileLayer);
 
-		tileMap = CCTMXTiledMap::create("map/23.tmx");
+		tileMap = CCTMXTiledMap::create(map);
 		tileMap->setPosition(MOVEX , MOVEY);
 
 		backgroundLayer = tileMap->layerNamed("wall");
@@ -209,7 +212,6 @@ bool gameScene::init()
 
 
 
-
 		/* Add Items				: jiyoon */
 		//decide kind of item.
 		srand(time(0));	//random
@@ -274,6 +276,9 @@ bool gameScene::init()
 
 		this->schedule(schedule_selector(gameScene::check_item));
 
+		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+			callfuncO_selector(gameScene::doMsgRecvStageNum),
+			"stageNoti", NULL);
 
 
 		bRet = true;
@@ -822,6 +827,7 @@ void gameScene::go_endResultScene()
 {
 	CCLayer::onExit();
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "stageNoti");
 	this->checkFoodToEnd();
 	CCScene *pScene = CCScene::create();
 	gameResultScene *layer = new gameResultScene(result,gStageidx);
@@ -865,6 +871,7 @@ void gameScene::goMainScene()
 {
 	CCLayer::onExit();
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "stageNoti");
 	CCScene *pScene = Main::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
@@ -872,8 +879,16 @@ void gameScene::goRegame()
 {
 	CCLayer::onExit();
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "stageNoti");
 	CCScene *pScene = gameScene::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
+}
+void gameScene::doMsgRecvStageNum(CCObject* obj)
+{
+	CCString *pParam=(CCString*)obj;
+	int flag = pParam->intValue();
+	if(flag>0)
+		gStageidx = flag;
 }
 
 /*
@@ -906,7 +921,6 @@ void gameScene::doNotification(CCObject *obj)
 {
 	//노티피케이션 받기
 	CCString *pParam=(CCString*)obj;
-	CCLog("notification %s", pParam->getCString());
 	int flag = pParam->intValue();
 	if(flag==1)
 	{
@@ -918,12 +932,6 @@ void gameScene::doNotification(CCObject *obj)
 		CCDirector::sharedDirector()->resume();
 		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 		this->goMainScene();
-	}
-	else if(flag >=10 && flag <=49)
-	{
-		CCDirector::sharedDirector()->resume();
-		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
-		this->goRegame();
 	}
 	else
 	{	

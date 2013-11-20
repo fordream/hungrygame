@@ -24,6 +24,8 @@ public:
 	void stageMenu(CCObject* pSender);
 	void menuGoBackCallback(CCObject* pSender);
 
+	void doMsgRecv(CCObject* obj);
+	int sStageNum; // for stage of each building
 
     // implement the "static node()" method manually
 	CREATE_FUNC(stageSelect);

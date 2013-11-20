@@ -13,30 +13,39 @@
   </data>
  </layer>
  <objectgroup name="foods" width="7" height="9">
-  <object name="food1" x="180" y="300" width="61" height="61"/>
-  <object name="food3" x="361" y="2" width="57" height="57"/>
-  <object name="food3" x="-1" y="0" width="61" height="61"/>
-  <object name="food2" x="181" y="182" width="57" height="57"/>
+  <object name="food1" x="181" y="240" width="61" height="61"/>
+  <object name="food3" x="242" y="481" width="57" height="57"/>
+  <object name="food4" x="-1" y="0" width="61" height="61"/>
+  <object name="food2" x="64" y="359" width="57" height="57"/>
  </objectgroup>
  <objectgroup name="object" width="7" height="9">
-  <object name="character" x="300" y="359" width="59" height="61"/>
+  <object name="character" x="361" y="-2" width="59" height="61"/>
  </objectgroup>
  <layer name="wall" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYCAMnJAwOnDEow+fnDMSxmcvKXKOSJgYAACtqwNZ
+   eJxjYCAMHNFoZOCEQ84RSc4ZiokBjkhmOSGZgW4fNvPwyWEDAA7eBB8=
   </data>
  </layer>
  <layer name="Items" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYCAMXJAwNjl8+sgxk1yziTETGQAAuwsDdQ==
+   eJxjYCAMXNBoYuRc0OSw6cVlFz595LgFFwAAIRoEQQ==
   </data>
  </layer>
  <objectgroup name="endPoint" width="7" height="9">
-  <object name="counter" x="3" y="479" width="57" height="58"/>
+  <object name="counter" x="301" y="122" width="57" height="58"/>
  </objectgroup>
  <objectgroup name="con_wall" width="7" height="9">
-  <object x="180" y="117">
-   <polyline points="0,0 120,1 120,-57 -60,-57 -60,183 60,183 61,299 -59,303 -59,361 121,364 120,123 1,123 -1,-1"/>
+  <object x="120" y="61">
+   <polyline points="0,0 61,0 61,180 -59,180 -59,120 0,121 0,0"/>
+  </object>
+  <object x="240" y="60">
+   <polyline points="0,0 61,0 61,121 120,120 120,182 1,181 0,-1"/>
+  </object>
+  <object x="360" y="301">
+   <polyline points="0,0 -120,0 -120,179 -59,179 -59,60 -1,60 -1,0"/>
+  </object>
+  <object x="60" y="300">
+   <polyline points="0,0 121,1 121,180 61,181 60,62 0,61 -1,1"/>
   </object>
  </objectgroup>
 </map>

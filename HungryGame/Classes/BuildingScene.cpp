@@ -48,6 +48,10 @@ bool Building::init()
 
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 
+		buildingNum = 0;
+
+		
+
 		//배경 이미지 생성
 		CCSprite* pBuildingBg = CCSprite::create("buildingSelect_bg.png");
         CC_BREAK_IF(! pBuildingBg);
@@ -169,8 +173,13 @@ bool Building::init()
 void Building::menuBuild1Callback(CCObject* pSender)
 {
 	music m;
+	char buf[4];
 	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelect::scene();
+	buildingNum = 10;
+	_itoa(buildingNum,buf,10);
+	CCString* popParam=CCString::create(buf);
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("BuildingNoti", popParam);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
@@ -178,8 +187,13 @@ void Building::menuBuild1Callback(CCObject* pSender)
 void Building::menuBuild2Callback(CCObject* pSender)
 {
 	music m;
+	char buf[4];
 	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelect::scene();
+	buildingNum = 20;
+	_itoa(buildingNum,buf,10);
+	CCString* popParam=CCString::create(buf);
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("BuildingNoti", popParam);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
@@ -187,8 +201,14 @@ void Building::menuBuild2Callback(CCObject* pSender)
 void Building::menuBuild3Callback(CCObject* pSender)
 {
 	music m;
+	char buf[4];
 	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelect::scene();
+	buildingNum = 30;
+	_itoa(buildingNum,buf,10);
+	CCString* popParam=CCString::create(buf);
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("BuildingNoti", popParam);
+
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
@@ -196,8 +216,13 @@ void Building::menuBuild3Callback(CCObject* pSender)
 void Building::menuBuild4Callback(CCObject* pSender)
 {
 	music m;
+	char buf[4];
 	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelect::scene();
+	buildingNum = 40;
+	_itoa(buildingNum,buf,10);
+	CCString* popParam=CCString::create(buf);
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("BuildingNoti", popParam);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
@@ -206,6 +231,7 @@ void Building::menuGoBackCallback(CCObject* pSender)
 {
 	music m;
 	m.effectStart("sound\\effect_btn_click.mp3");
+
 	CCScene *pScene = Main::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }

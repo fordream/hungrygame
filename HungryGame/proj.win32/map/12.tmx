@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="7" height="9" tilewidth="60" tileheight="60">
- <tileset firstgid="1" name="background" tilewidth="60" tileheight="60">
-  <image source="background1.png" width="424" height="544"/>
- </tileset>
- <tileset firstgid="64" name="wall" tilewidth="60" tileheight="60">
+ <tileset firstgid="1" name="wall" tilewidth="60" tileheight="60">
   <image source="wall.png" width="120" height="120"/>
  </tileset>
- <tileset firstgid="68" source="metaset1.tsx"/>
- <tileset firstgid="69" name="background1" tilewidth="60" tileheight="60">
+ <tileset firstgid="5" name="background1" tilewidth="60" tileheight="60">
   <image source="background1.png" width="424" height="544"/>
  </tileset>
+ <tileset firstgid="68" source="metaset1.tsx"/>
  <layer name="background" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJwNwwVuAgEAALD7HO4wGO4MG+5uH6dNGgqCIGzEqDHjJkyaMm3GrDnzFvyxaMlfy1asWrNuw6Yt23bs2rPvwD+Hjhw7ceq/M+cuXLpy7catO/cePHry7MWrN+8+fPry7ccvCiEYnQ==
+   eJwNw0VyAgEAALC94A6F4k6x4u72/z+RzCQUBEHYiFFjxk2YNGXajFlz5i34Y9GSv5atWLVm3YZNW7bt2LVn34F/Dh05duLUf2fOXbh05dqNW3fuPXj05NmLV2/effj05duPXympCN0=
   </data>
  </layer>
  <objectgroup name="foods" width="7" height="9">
-  <object name="food1" x="1" y="419" width="61" height="61"/>
-  <object name="food2" x="181" y="241" width="57" height="57"/>
-  <object name="food3" x="359" y="301" width="61" height="61"/>
-  <object name="food4" x="301" y="4" width="59" height="55"/>
-  <object name="food5" x="61" y="60" width="57" height="60"/>
+  <object name="food1" x="180" y="119" width="61" height="61"/>
+  <object name="food2" x="3" y="2" width="57" height="57"/>
+  <object name="food3" x="359" y="421" width="61" height="61"/>
  </objectgroup>
  <objectgroup name="object" width="7" height="9">
   <object name="character" x="181" y="480" width="59" height="61"/>
  </objectgroup>
+ <layer name="wall" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgYwIKECQFmAvJMZLoBAAh0ABI=
+  </data>
+ </layer>
+ <layer name="Items" width="7" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgY4IKEiVFLiTwuAACNPAFV
+  </data>
+ </layer>
+ <objectgroup name="items" width="7" height="9"/>
+ <objectgroup name="obstacle" width="7" height="9"/>
+ <objectgroup name="endPoint" width="7" height="9"/>
 </map>

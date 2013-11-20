@@ -50,7 +50,7 @@ bool stageSelect::init()
         //////////////////////////////////////////////////////////////////////////
 
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
-
+		sStageNum = 0;
 
 		//배경 이미지 생성
 		CCSprite* pStageBg = CCSprite::create("img\\stageSelect\\stage_bg.png");
@@ -62,7 +62,7 @@ bool stageSelect::init()
         // Add the sprite to HelloWorld layer as a child layer.
         this->addChild(pStageBg, 0);
 
-
+		//for stageNum of each building
 
 
 		// 버튼 생성
@@ -71,70 +71,70 @@ bool stageSelect::init()
 		CC_BREAK_IF(!s1);
 
 		s1->setPosition(ccp(size.width * 0.2, size.height * 0.8));
-		s1->setTag(1);
+		s1->setTag(0);
 		
 		CCMenuItemImage *s2 = CCMenuItemImage::create(
 			"img\\stageSelect\\stage_btn_2.png","img\\stageSelect\\stage_btn_2_n.png",this,menu_selector(stageSelect::stageMenu));
 		CC_BREAK_IF(!s2);
 
 		s2->setPosition(ccp(size.width * 0.5, size.height * 0.8));
-		s2->setTag(2);
+		s2->setTag(1);
 
 		CCMenuItemImage *s3 = CCMenuItemImage::create(
 			"img\\stageSelect\\stage_btn_3.png","img\\stageSelect\\stage_btn_3_n.png",this,menu_selector(stageSelect::stageMenu));
 		CC_BREAK_IF(!s3);
 
 		s3->setPosition(ccp(size.width * 0.8, size.height * 0.8));
-		s3->setTag(3);
+		s3->setTag(2);
 
 		CCMenuItemImage *s4 = CCMenuItemImage::create(
 			"img\\stageSelect\\stage_btn_4.png","img\\stageSelect\\stage_btn_4_n.png",this,menu_selector(stageSelect::stageMenu));
 		CC_BREAK_IF(!s4);
 
 		s4->setPosition(ccp(size.width * 0.2, size.height * 0.62));
-		s4->setTag(4);
+		s4->setTag(3);
 
 		CCMenuItemImage *s5 = CCMenuItemImage::create(
 			"img\\stageSelect\\stage_btn_5.png","img\\stageSelect\\stage_btn_5_n.png",this,menu_selector(stageSelect::stageMenu));
 		CC_BREAK_IF(!s5);
 
 		s5->setPosition(ccp(size.width * 0.5, size.height * 0.62));
-		s5->setTag(5);
+		s5->setTag(4);
 
 		CCMenuItemImage *s6 = CCMenuItemImage::create(
 			"img\\stageSelect\\stage_btn_6.png","img\\stageSelect\\stage_btn_6_n.png",this,menu_selector(stageSelect::stageMenu));
 		CC_BREAK_IF(!s6);
 
 		s6->setPosition(ccp(size.width * 0.8, size.height * 0.62));
-		s6->setTag(6);
+		s6->setTag(5);
 
 		CCMenuItemImage *s7 = CCMenuItemImage::create(
 			"img\\stageSelect\\stage_btn_7.png","img\\stageSelect\\stage_btn_7_n.png",this,menu_selector(stageSelect::stageMenu));
 		CC_BREAK_IF(!s7);
 
 		s7->setPosition(ccp(size.width * 0.2, size.height * 0.45));
-		s7->setTag(7);
+		s7->setTag(6);
 
 		CCMenuItemImage *s8 = CCMenuItemImage::create(
 			"img\\stageSelect\\stage_btn_8.png","img\\stageSelect\\stage_btn_8_n.png",this,menu_selector(stageSelect::stageMenu));
 		CC_BREAK_IF(!s8);
 
 		s8->setPosition(ccp(size.width * 0.5, size.height * 0.45));
-		s8->setTag(8);
+		s8->setTag(7);
 
 		CCMenuItemImage *s9 = CCMenuItemImage::create(
 			"img\\stageSelect\\stage_btn_9.png","img\\stageSelect\\stage_btn_9_n.png",this,menu_selector(stageSelect::stageMenu));
 		CC_BREAK_IF(!s9);
 
 		s9->setPosition(ccp(size.width * 0.8, size.height * 0.45));
-		s9->setTag(9);
+		s9->setTag(8);
 
 		CCMenuItemImage *s10 = CCMenuItemImage::create(
 			"img\\stageSelect\\stage_btn_bonus.png","img\\stageSelect\\stage_btn_bonus_n.png",this,menu_selector(stageSelect::stageMenu));
 		CC_BREAK_IF(!s10);
 
 		s10->setPosition(ccp(size.width * 0.5, size.height * 0.25));
-		s10->setTag(10);
+		s10->setTag(9);
 
 
 		CCMenu *stageMenu = CCMenu::create(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,NULL);
@@ -163,8 +163,9 @@ bool stageSelect::init()
         // Add the menu to HelloWorld layer as a child layer.
         this->addChild(pGoBackMenu, 1);
 
-
-
+		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+			callfuncO_selector(stageSelect::doMsgRecv),
+			"BuildingNoti", NULL);
 
         bRet = true;
     } while (0);
@@ -172,52 +173,39 @@ bool stageSelect::init()
     return bRet;
 }
 
-
 void stageSelect::stageMenu(CCObject* pSender)
 {
+	CCLayer::onExit();
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "BuildingNoti");
 	music m;
 	m.effectStart("sound\\effect_btn_click.mp3");
+	CCScene *pScene = gameScene::scene();
+	char buf[4];
 	/***
 	 여기에 게임 화면으로 전환하는거 들어감!!
 	****/
 	CCMenuItem *pGet = (CCMenuItem *)pSender;
-
-	CCScene *pScene = gameScene::scene();
+	sStageNum += pGet->getTag();
+	_itoa(sStageNum,buf,10);
+	CCString* popParam=CCString::create(buf);
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("stageNoti", popParam);
 	CCDirector::sharedDirector()->replaceScene(pScene);
-	/*
 
-	switch(pGet->getTag())
-	{
-	case 1:
-		
-//		break;
-	case 2:
-//		break;
-	case 3:
-//		break;
-	case 4:
-//		break;
-	case 5:
-//		break;
-	case 6:
-//		break;
-	case 7:
-//		break;
-	case 8:
-//		break;
-	case 9:
-//		break;
-	case 10:
-
-		break;
-	}
-	*/
 }
 
 //되돌아가기
 void stageSelect::menuGoBackCallback(CCObject* pSender)
 {
+	CCLayer::onExit();
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "BuildingNoti");
 	CCScene *pScene = Building::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
+void stageSelect::doMsgRecv(CCObject* obj)
+{
+	CCString* pParam = (CCString*)obj;
+	int flag = pParam->intValue();
+	if(flag>0)
+		sStageNum = flag;
+}

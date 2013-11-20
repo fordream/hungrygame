@@ -1,4 +1,5 @@
 #include "PauseGameScene.h"
+//#include "gameScene.h"
 #include "mainScene.h"
 #include "HelpScene.h"
 
@@ -19,7 +20,11 @@ bool PauseGameScene::init()
 {
 	if( !CCLayerColor::initWithColor(ccc4(0,0,0,0)))
 	{ return false; }
-	setStageIdx(11);
+	//gameScene* g;
+	//g = new gameScene;
+	//setStageIdx(g->gStageidx);
+	//g->autorelease();
+
 	CCString* popParam=CCString::create("0");
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("notification", popParam);         //노티피케이션 보내기
 
