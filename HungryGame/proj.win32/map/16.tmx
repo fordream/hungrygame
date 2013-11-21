@@ -34,15 +34,4 @@
  <objectgroup name="endPoint" width="7" height="9">
   <object name="counter" x="361" y="2" width="59" height="58"/>
  </objectgroup>
- <objectgroup name="con_wall" width="7" height="9">
-  <object x="60" y="2">
-   <polyline points="0,0 59,-1 59,418 -2,418 0,0"/>
-  </object>
-  <object x="179" y="118">
-   <polyline points="0,0 62,1 61,422 3,422 0,1"/>
-  </object>
-  <object x="299" y="0">
-   <polyline points="0,0 1,421 61,419 62,0 0,1"/>
-  </object>
- </objectgroup>
 </map>

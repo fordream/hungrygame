@@ -38,5 +38,4 @@
  <objectgroup name="endPoint" width="7" height="9">
   <object name="counter" x="121" y="61" width="58" height="56"/>
  </objectgroup>
- <objectgroup name="obstacle" width="7" height="9"/>
 </map>

@@ -30,7 +30,5 @@
    eJxjYBgY4IKEiVFLiTwuAACNPAFV
   </data>
  </layer>
- <objectgroup name="items" width="7" height="9"/>
- <objectgroup name="obstacle" width="7" height="9"/>
  <objectgroup name="endPoint" width="7" height="9"/>
 </map>

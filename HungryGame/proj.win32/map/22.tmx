@@ -41,5 +41,4 @@
  <objectgroup name="object" width="7" height="9">
   <object name="character" x="360" y="243" width="58" height="54"/>
  </objectgroup>
- <objectgroup name="obstacle" width="7" height="9"/>
 </map>

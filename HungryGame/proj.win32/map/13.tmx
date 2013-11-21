@@ -30,17 +30,6 @@
    eJxjYEAFLmgYG6BEjloAnz3EAgACSgLt
   </data>
  </layer>
- <objectgroup name="con_wall" width="7" height="9">
-  <object x="241" y="61">
-   <polyline points="0,0 117,0 120,177 177,180 180,-63 0,-61 -1,-5"/>
-  </object>
-  <object x="0" y="59">
-   <polyline points="0,0 61,3 61,180 1,180 1,-1"/>
-  </object>
-  <object x="241" y="360">
-   <polyline points="0,0 120,0 119,59 0,60 0,0"/>
-  </object>
- </objectgroup>
  <objectgroup name="endPoint" width="7" height="9">
   <object name="counter" x="181" y="239" width="58" height="60"/>
  </objectgroup>

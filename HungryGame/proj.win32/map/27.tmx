@@ -42,5 +42,4 @@
   <object name="food5" x="61" y="121" width="55" height="54"/>
   <object name="food6" x="366" y="423" width="50" height="51"/>
  </objectgroup>
- <objectgroup name="obstacle" width="7" height="9"/>
 </map>

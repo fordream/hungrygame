@@ -38,7 +38,4 @@
  <objectgroup name="endPoint" width="7" height="9">
   <object name="counter" x="3" y="2" width="54" height="55"/>
  </objectgroup>
- <objectgroup name="object" width="7" height="9">
-  <object name="character" x="182" y="241" width="56" height="57"/>
- </objectgroup>
 </map>

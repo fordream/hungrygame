@@ -42,5 +42,4 @@
   <object name="item3" x="304" y="364" width="51" height="54"/>
   <object name="item4" x="1" y="365" width="56" height="51"/>
  </objectgroup>
- <objectgroup name="obstacle" width="7" height="9"/>
 </map>
