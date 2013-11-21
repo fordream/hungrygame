@@ -16,15 +16,72 @@ enum DIRCTION { UP, DOWN, LEFT, RIGHT};
 #define MOVEX 23.2
 #define MOVEY 46.5
 
-
-gameScene::gameScene(int stageIDX)
+/*
+* ** DESTRUCTURE
+* ~gameScene()									destructure about gameScene class
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
+gameScene::~gameScene()
 {
-	//////////////////////////////////////////////////////////////////////////
+	delete foodSpriteArray;
+	delete foodFollowArray;
+	delete tomakeFood;
+}
+/*
+* ** FUNCTION
+* CCScene* scene()								make scene.
+* Input											nothing
+* Output										scene
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun
+*/
+CCScene* gameScene::scene()
+{
+	CCScene * scene = NULL;
+	do 
+	{
+		// 'scene' is an autorelease object
+		scene = CCScene::create();
+		CC_BREAK_IF(! scene);
+
+		// 'layer' is an autorelease object
+		gameScene *layer = gameScene::create();
+		CC_BREAK_IF(! layer);
+
+		// add layer as a child to scene
+		scene->addChild(layer);
+	} while (0);
+
+	// return the scene
+	return scene;
+}
+
+// on "init" you need to initialize your instance
+/*
+* ** FUNCTION
+* bool init()									when scene made, this function is first called.
+* Input											nothing
+* Output										True
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun , eunji, jiyoon, pineoc
+*/
+bool gameScene::init()
+{
+
+	bool bRet = false;
+	do 
+	{
+		//////////////////////////////////////////////////////////////////////////
 		// super init first
 		//////////////////////////////////////////////////////////////////////////
 
-		if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
-			return ;
+		CC_BREAK_IF(! CCLayer::init());
 
 		//////////////////////////////////////////////////////////////////////////
 		// add your codes below...
@@ -36,11 +93,12 @@ gameScene::gameScene(int stageIDX)
 
 
 		//using stageidx for regame
+		int idx = gStageidx;
 		//set idx end. 
-		gStageidx = stageIDX;
+
 		char map[16]="map/";
 		char buf[2];
-		_itoa(gStageidx,buf,10);
+		_itoa(idx,buf,10);
 		strcat(map,buf);
 		strcat(map,".tmx");
 
@@ -144,6 +202,8 @@ gameScene::gameScene(int stageIDX)
 		this->addChild(btnPause);
 
 
+
+
 		/* Add notification			: jiyoon */
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
 			callfuncO_selector(gameScene::doNotification),
@@ -216,66 +276,15 @@ gameScene::gameScene(int stageIDX)
 
 		this->schedule(schedule_selector(gameScene::check_item));
 
-}
+		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+			callfuncO_selector(gameScene::doMsgRecvStageNum),
+			"stageNoti", NULL);
 
-/*
-* ** DESTRUCTURE
-* ~gameScene()									destructure about gameScene class
-* Input											nothing
-* Output										nothing
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
-* Made											Pineoc
-*/
-gameScene::~gameScene()
-{
-	delete foodSpriteArray;
-	delete foodFollowArray;
-	delete tomakeFood;
-}
-/*
-* ** FUNCTION
-* CCScene* scene()								make scene.
-* Input											nothing
-* Output										scene
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
-* Made											Daun
-*/
-//CCScene* gameScene::scene()
-//{
-//	CCScene * scene = NULL;
-//	do 
-//	{
-//		// 'scene' is an autorelease object
-//		scene = CCScene::create();
-//		CC_BREAK_IF(! scene);
-//
-//		// 'layer' is an autorelease object
-//		gameScene *layer = gameScene::create();
-//		CC_BREAK_IF(! layer);
-//
-//		// add layer as a child to scene
-//		scene->addChild(layer);
-//	} while (0);
-//
-//	// return the scene
-//	return scene;
-//}
 
-// on "init" you need to initialize your instance
-/*
-* ** FUNCTION
-* bool init()									when scene made, this function is first called.
-* Input											nothing
-* Output										True
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
-* Made											Daun , eunji, jiyoon, pineoc
-*/
-bool gameScene::init()
-{
-	return true;
+		bRet = true;
+	} while (0);
+
+	return bRet;
 }
 /*
 * ** FUNCTION
@@ -290,9 +299,9 @@ bool gameScene::init()
 
 CCPoint gameScene::tileCoorPosition(CCPoint position)
 {
-	int x = position.x / tileMap->getTileSize().width;
-	int y = ((tileMap->getMapSize().height * tileMap->getTileSize().height) - position.y) / tileMap->getTileSize().height;
-	return ccp(x, y);
+    int x = position.x / tileMap->getTileSize().width;
+    int y = ((tileMap->getMapSize().height * tileMap->getTileSize().height) - position.y) / tileMap->getTileSize().height;
+    return ccp(x, y);
 }
 
 /*
@@ -566,7 +575,7 @@ void gameScene::createFood()
 	const char* foodarr[10]={"food1","food2","food3","food4","food5","food6","food7","food8","food9","food10"};
 	//for sprite food
 
-
+	
 
 	//create counter
 	CCTMXObjectGroup *counterGroup = tileMap->objectGroupNamed("endPoint");
@@ -577,7 +586,7 @@ void gameScene::createFood()
 	this->createCounter();
 	//create counter end
 
-
+	
 	//
 	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage("img/food/foodTest.png");
 	foods = tileMap->objectGroupNamed("foods");
@@ -818,6 +827,7 @@ void gameScene::go_endResultScene()
 {
 	CCLayer::onExit();
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "stageNoti");
 	this->checkFoodToEnd();
 	CCScene *pScene = CCScene::create();
 	gameResultScene *layer = new gameResultScene(result,gStageidx);
@@ -869,12 +879,18 @@ void gameScene::goRegame()
 {
 	CCLayer::onExit();
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
-	CCScene *pScene = CCScene::create();
-	gameScene *layer = new gameScene(gStageidx);
-	layer->autorelease();
-	pScene->addChild(layer);
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "stageNoti");
+	CCScene *pScene = gameScene::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
+void gameScene::doMsgRecvStageNum(CCObject* obj)
+{
+	CCString *pParam=(CCString*)obj;
+	int flag = pParam->intValue();
+	if(flag>0)
+		gStageidx = flag;
+}
+
 /*
 * ** FUNCTION
 * void doPop(CCObject*)							pop the pause scene
@@ -925,6 +941,8 @@ void gameScene::doNotification(CCObject *obj)
 	}
 
 }
+
+
 
 /*
 * ** FUNCTION

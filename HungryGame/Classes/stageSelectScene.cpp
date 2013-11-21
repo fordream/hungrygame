@@ -175,19 +175,29 @@ bool stageSelect::init()
 
 void stageSelect::stageMenu(CCObject* pSender)
 {
+	CCLayer::onExit();
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "BuildingNoti");
 	music m;
 	m.effectStart("sound\\effect_btn_click.mp3");
+	CCScene *pScene = gameScene::scene();
+	char buf[4];
 	/***
 	 여기에 게임 화면으로 전환하는거 들어감!!
 	****/
 	CCMenuItem *pGet = (CCMenuItem *)pSender;
 	sStageNum += pGet->getTag();
-	this->goStageScene();
+	_itoa(sStageNum,buf,10);
+	CCString* popParam=CCString::create(buf);
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("stageNoti", popParam);
+	CCDirector::sharedDirector()->replaceScene(pScene);
+
 }
 
 //되돌아가기
 void stageSelect::menuGoBackCallback(CCObject* pSender)
 {
+	CCLayer::onExit();
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "BuildingNoti");
 	CCScene *pScene = Building::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
@@ -198,17 +208,4 @@ void stageSelect::doMsgRecv(CCObject* obj)
 	int flag = pParam->intValue();
 	if(flag>0)
 		sStageNum = flag;
-}
-void stageSelect::onExit()
-{
-	CCLayer::onExit();
-	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "BuildingNoti");
-}
-void stageSelect::goStageScene()
-{
-	CCScene *pScene = CCScene::create();
-	gameScene *layer = new gameScene(sStageNum);
-	layer->autorelease();
-	pScene->addChild(layer);
-	CCDirector::sharedDirector()->replaceScene(pScene);
 }
