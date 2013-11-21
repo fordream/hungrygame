@@ -15,7 +15,7 @@ gameEndScene::gameEndScene(int _result,int _stageidx)
 	result = _result;
 	stageidx = _stageidx;
 
-	stageidx = 11; // 임시로 지정한 숫자. 추후삭제.
+	//stageidx = 11; // 임시로 지정한 숫자. 추후삭제.
 
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -29,12 +29,6 @@ gameEndScene::gameEndScene(int _result,int _stageidx)
 	CCSprite* foodImage = CCSprite::create(makedFoodArrayForSprite[stageidx]); //by eunji
 	foodImage->setPosition(ccp(size.width/2,size.height/2));
 	this->addChild(foodImage,1);
-
-	/*
-	CCSprite* foodImage = CCSprite::create("img/end/fish_cultlet.png"); //by pineoc
-	foodImage->setPosition(ccp(size.width/2,size.height/2));
-	this->addChild(foodImage,1);
-	*/
 
 	/*
 	use result, make menu button 
@@ -108,8 +102,10 @@ void gameEndScene::menu_retry(CCObject* pSender)
 {
 	
 	//여기서 스테이지의 idx가져와서 다시 replace 하는 방식으로 가야할듯.
-	CCScene *pScene = gameScene::scene();
-
+	CCScene *pScene = CCScene::create();
+	gameScene *layer = new gameScene(stageidx);
+	layer->autorelease();
+	pScene->addChild(layer);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 	
 	
@@ -118,8 +114,10 @@ void gameEndScene::menu_nextStage(CCObject* pSender)
 {
 	
 	//스테이지의 idx를 가져와서 idx+1 하여 다음 스테이지를 가져오게끔 해야할 듯.
-	CCScene *pScene = gameScene::scene();
-
+	CCScene *pScene = CCScene::create();
+	gameScene *layer = new gameScene(stageidx+1);
+	layer->autorelease();
+	pScene->addChild(layer);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 	
 }
@@ -137,7 +135,7 @@ void gameEndScene::menu_backtoStageScene(CCObject* pSender)
 void gameEndScene::makedFoodInit()
 {
 	/* eunji */
-	for(int i=1; i<50; i++) 
+	for(int i=10; i<50; i++) 
 	{
 		char *fileName = new char [16];
 		sprintf(fileName, "img/food/%d.png", i);

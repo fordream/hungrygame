@@ -16,72 +16,15 @@ enum DIRCTION { UP, DOWN, LEFT, RIGHT};
 #define MOVEX 23.2
 #define MOVEY 46.5
 
-/*
-* ** DESTRUCTURE
-* ~gameScene()									destructure about gameScene class
-* Input											nothing
-* Output										nothing
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
-* Made											Pineoc
-*/
-gameScene::~gameScene()
+
+gameScene::gameScene(int stageIDX)
 {
-	delete foodSpriteArray;
-	delete foodFollowArray;
-	delete tomakeFood;
-}
-/*
-* ** FUNCTION
-* CCScene* scene()								make scene.
-* Input											nothing
-* Output										scene
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
-* Made											Daun
-*/
-CCScene* gameScene::scene()
-{
-	CCScene * scene = NULL;
-	do 
-	{
-		// 'scene' is an autorelease object
-		scene = CCScene::create();
-		CC_BREAK_IF(! scene);
-
-		// 'layer' is an autorelease object
-		gameScene *layer = gameScene::create();
-		CC_BREAK_IF(! layer);
-
-		// add layer as a child to scene
-		scene->addChild(layer);
-	} while (0);
-
-	// return the scene
-	return scene;
-}
-
-// on "init" you need to initialize your instance
-/*
-* ** FUNCTION
-* bool init()									when scene made, this function is first called.
-* Input											nothing
-* Output										True
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
-* Made											Daun , eunji, jiyoon, pineoc
-*/
-bool gameScene::init()
-{
-
-	bool bRet = false;
-	do 
-	{
-		//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
 		// super init first
 		//////////////////////////////////////////////////////////////////////////
 
-		CC_BREAK_IF(! CCLayer::init());
+		if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
+			return ;
 
 		//////////////////////////////////////////////////////////////////////////
 		// add your codes below...
@@ -93,12 +36,11 @@ bool gameScene::init()
 
 
 		//using stageidx for regame
-		int idx = gStageidx;
 		//set idx end. 
-
+		gStageidx = stageIDX;
 		char map[16]="map/";
 		char buf[2];
-		_itoa(idx,buf,10);
+		_itoa(gStageidx,buf,10);
 		strcat(map,buf);
 		strcat(map,".tmx");
 
@@ -202,8 +144,6 @@ bool gameScene::init()
 		this->addChild(btnPause);
 
 
-
-
 		/* Add notification			: jiyoon */
 		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
 			callfuncO_selector(gameScene::doNotification),
@@ -276,15 +216,67 @@ bool gameScene::init()
 
 		this->schedule(schedule_selector(gameScene::check_item));
 
-		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
-			callfuncO_selector(gameScene::doMsgRecvStageNum),
-			"stageNoti", NULL);
+}
 
+/*
+* ** DESTRUCTURE
+* ~gameScene()									destructure about gameScene class
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
+gameScene::~gameScene()
+{
+	delete foodSpriteArray;
+	delete foodFollowArray;
+	delete tomakeFood;
+	this->onExit();
+}
+/*
+* ** FUNCTION
+* CCScene* scene()								make scene.
+* Input											nothing
+* Output										scene
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun
+*/
+//CCScene* gameScene::scene()
+//{
+//	CCScene * scene = NULL;
+//	do 
+//	{
+//		// 'scene' is an autorelease object
+//		scene = CCScene::create();
+//		CC_BREAK_IF(! scene);
+//
+//		// 'layer' is an autorelease object
+//		gameScene *layer = gameScene::create();
+//		CC_BREAK_IF(! layer);
+//
+//		// add layer as a child to scene
+//		scene->addChild(layer);
+//	} while (0);
+//
+//	// return the scene
+//	return scene;
+//}
 
-		bRet = true;
-	} while (0);
-
-	return bRet;
+// on "init" you need to initialize your instance
+/*
+* ** FUNCTION
+* bool init()									when scene made, this function is first called.
+* Input											nothing
+* Output										True
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun , eunji, jiyoon, pineoc
+*/
+bool gameScene::init()
+{
+	return true;
 }
 /*
 * ** FUNCTION
@@ -299,9 +291,9 @@ bool gameScene::init()
 
 CCPoint gameScene::tileCoorPosition(CCPoint position)
 {
-    int x = position.x / tileMap->getTileSize().width;
-    int y = ((tileMap->getMapSize().height * tileMap->getTileSize().height) - position.y) / tileMap->getTileSize().height;
-    return ccp(x, y);
+	int x = position.x / tileMap->getTileSize().width;
+	int y = ((tileMap->getMapSize().height * tileMap->getTileSize().height) - position.y) / tileMap->getTileSize().height;
+	return ccp(x, y);
 }
 
 /*
@@ -575,7 +567,7 @@ void gameScene::createFood()
 	const char* foodarr[10]={"food1","food2","food3","food4","food5","food6","food7","food8","food9","food10"};
 	//for sprite food
 
-	
+
 
 	//create counter
 	CCTMXObjectGroup *counterGroup = tileMap->objectGroupNamed("endPoint");
@@ -586,7 +578,7 @@ void gameScene::createFood()
 	this->createCounter();
 	//create counter end
 
-	
+
 	//
 	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage("img/food/foodTest.png");
 	foods = tileMap->objectGroupNamed("foods");
@@ -825,9 +817,7 @@ void gameScene::createCounter()
 */
 void gameScene::go_endResultScene()
 {
-	CCLayer::onExit();
-	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
-	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "stageNoti");
+	this->onExit();
 	this->checkFoodToEnd();
 	CCScene *pScene = CCScene::create();
 	gameResultScene *layer = new gameResultScene(result,gStageidx);
@@ -869,28 +859,19 @@ void gameScene::checkFoodToEnd()
 */
 void gameScene::goMainScene()
 {
-	CCLayer::onExit();
-	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
-	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "stageNoti");
+	this->onExit();
 	CCScene *pScene = Main::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
-void gameScene::goRegame()
+void gameScene::goRegame(int stage)
 {
-	CCLayer::onExit();
-	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
-	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "stageNoti");
-	CCScene *pScene = gameScene::scene();
+	this->onExit();
+	CCScene *pScene = CCScene::create();
+	gameScene *layer = new gameScene(stage);
+	layer->autorelease();
+	pScene->addChild(layer);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
-void gameScene::doMsgRecvStageNum(CCObject* obj)
-{
-	CCString *pParam=(CCString*)obj;
-	int flag = pParam->intValue();
-	if(flag>0)
-		gStageidx = flag;
-}
-
 /*
 * ** FUNCTION
 * void doPop(CCObject*)							pop the pause scene
@@ -933,6 +914,10 @@ void gameScene::doNotification(CCObject *obj)
 		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 		this->goMainScene();
 	}
+	else if(flag>=10 && flag<=48)
+	{
+		this->goRegame(flag);
+	}
 	else
 	{	
 		CCArray* childs = this->getChildren();
@@ -942,7 +927,11 @@ void gameScene::doNotification(CCObject *obj)
 
 }
 
-
+void gameScene::onExit()
+{
+	CCLayer::onExit();
+	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "notification");
+}
 
 /*
 * ** FUNCTION
@@ -955,9 +944,9 @@ void gameScene::doNotification(CCObject *obj)
 */
 void gameScene::createItem1()
 {
-	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("down.png");
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item1.jpg");
 
-	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
+	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 60, 60));
 	item->setPosition(itemPosition);
 	item->setAnchorPoint(ccp(0,0));
 	item1 = item;
@@ -975,9 +964,9 @@ void gameScene::createItem1()
 */
 void gameScene::createItem2()
 {
-	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("left.png");
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item2.jpg");
 
-	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
+	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 60, 60));
 	item->setPosition(itemPosition);
 	item->setAnchorPoint(ccp(0,0));
 	item2 = item;
@@ -995,9 +984,9 @@ void gameScene::createItem2()
 */
 void gameScene::createItem3()
 {
-	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("right.png");
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item3.jpg");
 
-	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
+	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 60, 60));
 	item->setPosition(itemPosition);
 	item->setAnchorPoint(ccp(0,0));
 	item3 = item;
@@ -1015,9 +1004,9 @@ void gameScene::createItem3()
 */
 void gameScene::createItem4()
 {
-	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("dog.png");
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item4.jpg");
 
-	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 48, 48));
+	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 60, 60));
 	item->setPosition(itemPosition);
 	item->setAnchorPoint(ccp(0,0));
 	item4 = item;
