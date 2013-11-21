@@ -128,10 +128,10 @@
     <ClInclude Include="..\Classes\mainScene.h" />
     <ClInclude Include="..\Classes\music.h" />
     <ClInclude Include="..\Classes\optionScene.h" />
+    <ClInclude Include="..\Classes\PauseGameScene.h" />
     <ClInclude Include="..\Classes\stageSelectScene.h" />
     <ClInclude Include="..\Classes\MakerInfoScene.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="PauseGameScene.h" />
     <ClInclude Include="userData.h" />
   </ItemGroup>
   <ItemGroup>
@@ -144,10 +144,10 @@
     <ClCompile Include="..\Classes\mainScene.cpp" />
     <ClCompile Include="..\Classes\music.cpp" />
     <ClCompile Include="..\Classes\optionScene.cpp" />
+    <ClCompile Include="..\Classes\PauseGameScene.cpp" />
     <ClCompile Include="..\Classes\stageSelectScene.cpp" />
     <ClCompile Include="..\Classes\MakerInfoScene.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PauseGameScene.cpp" />
     <ClCompile Include="userData.cpp" />
   </ItemGroup>
   <ItemGroup>
