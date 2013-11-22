@@ -9,7 +9,7 @@
  <tileset firstgid="68" source="metaset1.tsx"/>
  <layer name="background" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJwNw0VyAgEAALC94A6F4k6x4u72/z+RzCQUBEHYiFFjxk2YNGXajFlz5i34Y9GSv5atWLVm3YZNW7bt2LVn34F/Dh05duLUf2fOXbh05dqNW3fuPXj05NmLV2/effj05duPXympCN0=
+   eJwNw1VuQgEAALDHB+4MBgS3YcPd7f53ok0aDoIgYtSYcRMmTZk2Y9aceQv+WLTkr2UrVg1Zs27Dpi3bduzas+/AP4eOHDtx6r8z5y5cunLtxq079x48evLsxas37z58+vLtxy8ZQQjE
   </data>
  </layer>
  <layer name="wall" width="7" height="9">

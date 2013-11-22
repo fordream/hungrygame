@@ -38,4 +38,9 @@
  <objectgroup name="endPoint" width="7" height="9">
   <object name="counter" x="3" y="2" width="54" height="55"/>
  </objectgroup>
+ <objectgroup name="object" width="7" height="9">
+  <object name="character" x="367" y="483" width="50" height="51">
+   <ellipse/>
+  </object>
+ </objectgroup>
 </map>

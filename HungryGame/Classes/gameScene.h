@@ -94,7 +94,6 @@ public:
 
 	/*												: pineoc */
 	CCTMXObjectGroup *				foods;							// group for foods object
-	CCArray*						tomakeFood;						// 만들어야하는 음식재료 목록, array that have to make food ingrediant list
 	CCArray*						onCheckFoodDisplay;				// 위에 음식을 먹었는지 안먹었는지 체크할 배열,	
 	void createFood();												//food create item, (point, imageName)
 	bool checkDup(CCSprite*);										// check duplication about tile 
@@ -119,6 +118,7 @@ public:
 	CCSprite*						counter;
 	CCPoint							counterPoint;
 
+	char*							map;
 	std::string						result;
 	int								gStageidx;
 

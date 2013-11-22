@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="7" height="9" tilewidth="60" tileheight="60">
- <tileset firstgid="1" name="background" tilewidth="60" tileheight="60">
+ <tileset firstgid="1" name="background1" tilewidth="60" tileheight="60">
   <image source="background1.png" width="424" height="544"/>
  </tileset>
  <tileset firstgid="64" name="wall" tilewidth="60" tileheight="60">
@@ -12,18 +12,9 @@
    eJwNwwVuAgEAALDDHQbDnWHD3e3/v6JNGgqCIGzEqDHjJkyaMm3GrDnzFvyxaMlfy1asWrNuw6Yt23bs2rPvwD+Hjhw7ceq/M+cuXLpy7catO/cePHry7MWrN+8+fPry7ccvq5oH4Q==
   </data>
  </layer>
- <objectgroup name="foods" width="7" height="9">
-  <object name="food1" x="181" y="240" width="61" height="61"/>
-  <object name="food3" x="242" y="481" width="57" height="57"/>
-  <object name="food4" x="-1" y="0" width="61" height="61"/>
-  <object name="food2" x="64" y="359" width="57" height="57"/>
- </objectgroup>
- <objectgroup name="object" width="7" height="9">
-  <object name="character" x="361" y="-2" width="59" height="61"/>
- </objectgroup>
  <layer name="wall" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYCAMHNFoZOCEQ84RSc4ZiokBjkhmOSGZgW4fNvPwyWEDAA7eBB8=
+   eJxjYCAMnKC0IwE5BzRxZDlsenHZBdPnDMXY7EMXJySHDQAAO5IEYQ==
   </data>
  </layer>
  <layer name="Items" width="7" height="9">
@@ -31,7 +22,16 @@
    eJxjYCAMXNBoYuRc0OSw6cVlFz595LgFFwAAIRoEQQ==
   </data>
  </layer>
+ <objectgroup name="foods" width="7" height="9">
+  <object name="food1" x="186" y="244" width="47" height="49"/>
+  <object name="food3" x="245" y="492" width="42" height="43"/>
+  <object name="food4" x="6" y="7" width="50" height="47"/>
+  <object name="food2" x="65" y="366" width="45" height="49"/>
+ </objectgroup>
+ <objectgroup name="object" width="7" height="9">
+  <object name="character" x="365" y="6" width="48" height="49"/>
+ </objectgroup>
  <objectgroup name="endPoint" width="7" height="9">
-  <object name="counter" x="301" y="122" width="57" height="58"/>
+  <object name="counter" x="304" y="131" width="51" height="46"/>
  </objectgroup>
 </map>

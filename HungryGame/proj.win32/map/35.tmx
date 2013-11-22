@@ -45,5 +45,6 @@
   <object name="item1" x="302" y="487" width="50" height="50"/>
   <object name="item2" x="182" y="306" width="50" height="50"/>
   <object name="item3" x="3" y="485" width="50" height="50"/>
+  <object name="item4" x="185" y="425" width="50" height="50"/>
  </objectgroup>
 </map>

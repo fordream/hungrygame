@@ -26,7 +26,7 @@
   <object name="character" x="183" y="241" width="54" height="57"/>
  </objectgroup>
  <objectgroup name="endPoint" width="7" height="9">
-  <object name="calcul" x="3" y="484" width="54" height="52"/>
+  <object name="counter" x="3" y="484" width="54" height="52"/>
  </objectgroup>
  <objectgroup name="items" width="7" height="9">
   <object name="item1" x="184" y="0" width="52" height="55"/>

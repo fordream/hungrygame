@@ -20,150 +20,150 @@ enum DIRCTION { UP, DOWN, LEFT, RIGHT};
 gameScene::gameScene(int stageIDX)
 {
 	//////////////////////////////////////////////////////////////////////////
-		// super init first
-		//////////////////////////////////////////////////////////////////////////
+	// super init first
+	//////////////////////////////////////////////////////////////////////////
 
-		if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
-			return ;
+	if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
+		return ;
 
-		//////////////////////////////////////////////////////////////////////////
-		// add your codes below...
-		//////////////////////////////////////////////////////////////////////////
-		foodSpriteArray = new CCArray; //food sprite array dynamic cast
-		foodFollowArray = new CCArray;
-		tomakeFood = new CCArray;// to make food sprite
-		result=" ";
+	//////////////////////////////////////////////////////////////////////////
+	// add your codes below...
+	//////////////////////////////////////////////////////////////////////////
+	foodSpriteArray = new CCArray; //food sprite array dynamic cast
+	foodFollowArray = new CCArray;
+	result=" ";
 
 
-		//using stageidx for regame
-		//set idx end. 
-		gStageidx = stageIDX;
-		char map[16]="map/";
-		char buf[2];
-		_itoa(gStageidx,buf,10);
-		strcat(map,buf);
-		strcat(map,".tmx");
+	//using stageidx for regame
+	//set idx end. 
+	gStageidx = stageIDX;
+	map = new char[10]; 
+	sprintf(map, "map/%d.tmx", gStageidx);
 
-		music m;
-		m.effectStart("sound\\effect_supermarket.mp3");
+	music m;
+	m.effectStart("sound\\effect_supermarket.mp3");
 
-		CCSize size = CCDirector::sharedDirector()->getWinSize();
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
-		/* Set background img		: Daun */
-		CCSprite* bg = CCSprite::create("img\\game\\game_bg.png");
-		bg->setPosition(ccp(size.width/2,size.height/2));
-		this->addChild(bg,0);
+	/* Set background img		: Daun */
+	CCSprite* bg = CCSprite::create("img\\game\\game_bg.png");
+	bg->setPosition(ccp(size.width/2,size.height/2));
+	this->addChild(bg,0);
 
 
 
-		/* Set Tiled Map			: Daun, eunji*/
-		CCLayer *tileLayer = CCLayer::create();
-		this->addChild(tileLayer);
+	/* Set Tiled Map			: Daun, eunji*/
+	CCLayer *tileLayer = CCLayer::create();
+	this->addChild(tileLayer);
 
-		tileMap = CCTMXTiledMap::create(map);
-		tileMap->setPosition(MOVEX , MOVEY);
-
+	tileMap = CCTMXTiledMap::create(map);
+	tileMap->setPosition(MOVEX , MOVEY);
+	if(tileMap->layerNamed("wall"))
 		backgroundLayer = tileMap->layerNamed("wall");
 
-		//metainfo에 준 타일레이어 이름은 Items이지만 벽표시 위한 빨간레이어임.
-		// 추후 실제 아이템을 포함 할 수도 있음.
+	//metainfo에 준 타일레이어 이름은 Items이지만 벽표시 위한 빨간레이어임.
+	// 추후 실제 아이템을 포함 할 수도 있음.
+	if(tileMap->layerNamed("Items"))
+	{
 		metainfo = tileMap->layerNamed("Items");
 		metainfo->setVisible(false); // 빨간벽을 표시안함.
-		//		CCAssert(backgroundLayer != NULL, "backgroundLayer not found");
-		tileLayer->addChild(tileMap);
+	}
+	tileLayer->addChild(tileMap);
 
 
 
-		/* Make Character			: Daun */
-		createCharacter();
+	/* Make Character			: Daun */
+	createCharacter();
 
-		movingSpeed = 400;														// set initial character moving speed
-		moveDirection = UP;													// set default character moving direction
+	movingSpeed = 400;														// set initial character moving speed
+	moveDirection = UP;													// set default character moving direction
 
-		this->schedule(schedule_selector(gameScene::moveCharacter));
-
-
-
-		/* set touch enable			: Daun*/
-		pDirector = CCDirector::sharedDirector();
-		pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+	this->schedule(schedule_selector(gameScene::moveCharacter));
 
 
 
-		/* make food				: Pineoc */
-		this->createFoodShelf();
-		this->createFood();
-		foodcount = foodSpriteArray->count();
-
-		this->schedule(schedule_selector(gameScene::updateFoodSprte));
-		this->schedule(schedule_selector(gameScene::check_counter));
-		this->schedule(schedule_selector(gameScene::followCharacter));
-		this->schedule(schedule_selector(gameScene::checkFollowFoodCollision));
-
-
-		/* make obstacle			: eunji */
-		isPause = false;
-		
-		if(tileMap->objectGroupNamed("obstacle"))
-		{
-
-			CCTMXObjectGroup *obstacle = tileMap->objectGroupNamed("obstacle");
-			CCDictionary *obstaclePoint = obstacle->objectNamed("obstaclePoint");
-	
-			obX = ((CCString*)obstaclePoint->objectForKey("x"))->intValue();
-			obY = ((CCString*)obstaclePoint->objectForKey("y"))->intValue();
-
-			obstaclePosition = ccp(obX+MOVEX, obY+MOVEY);
-		
-
-			this->createObstacle();
-		
-			countNum = 0;
-			checkObDirection = false; //false : 오른쪽 true : 왼쪽
-	
-			this->schedule(schedule_selector(gameScene::moveObstacleHeight), 1.0f); // 움직이는 장애물 구현
-		}
+	/* set touch enable			: Daun*/
+	pDirector = CCDirector::sharedDirector();
+	pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 
 
 
-		/* make gauge				: eunji */
-		character_XP = 100;
+	/* make food				: Pineoc */
+	this->createFoodShelf();
+	this->createFood();
+	foodcount = foodSpriteArray->count();
 
-		gaugeBar = CCSprite::create("game_status_bar.png");
-		gaugeBar->setPosition(ccp(size.width/2, size.height*0.75));
-
-		tileMap->addChild(gaugeBar,2);
-
-		gaugeHeart = CCSprite::create("game_heart.png");
-		gaugeHeart->setPosition(ccp(size.width - 20, size.height*0.75));
-
-		tileMap->addChild(gaugeHeart,3);
+	this->schedule(schedule_selector(gameScene::updateFoodSprte));
+	this->schedule(schedule_selector(gameScene::check_counter));
+	this->schedule(schedule_selector(gameScene::followCharacter));
+	this->schedule(schedule_selector(gameScene::checkFollowFoodCollision));
 
 
+	/* make obstacle			: eunji */
+	isPause = false;
+
+	if(tileMap->objectGroupNamed("obstacle"))
+	{
+
+		CCTMXObjectGroup *obstacle = tileMap->objectGroupNamed("obstacle");
+		CCDictionary *obstaclePoint = obstacle->objectNamed("obstaclePoint");
+
+		obX = ((CCString*)obstaclePoint->objectForKey("x"))->intValue();
+		obY = ((CCString*)obstaclePoint->objectForKey("y"))->intValue();
+
+		obstaclePosition = ccp(obX+MOVEX, obY+MOVEY);
 
 
-		/* make pause btn			: jiyoon, daun */
-		btnPause = CCSprite::create("img/game/game_btn_pause.png");
-		btnPause->setAnchorPoint(ccp(0,0));
+		this->createObstacle();
 
-		pauseBtnPosition = ccp(size.width*0.8, size.height*0.9);
-		btnPause->setPosition(pauseBtnPosition);
-		this->addChild(btnPause);
+		countNum = 0;
+		checkObDirection = false; //false : 오른쪽 true : 왼쪽
 
-
-		/* Add notification			: jiyoon */
-		CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
-			callfuncO_selector(gameScene::doNotification),
-			"notification", NULL);
-		//"notification"이라는 메시지가 오면 해당 함수를 실행한다.
+		this->schedule(schedule_selector(gameScene::moveObstacleHeight), 1.0f); // 움직이는 장애물 구현
+	}
 
 
 
-		/* Add Items				: jiyoon */
-		//decide kind of item.
-		srand(time(0));	//random
-		int kindOfItem = 3;//rand()%4 + 1;	//range : 1~4
-		item1 =NULL, item2 = NULL, item3 =NULL, item4=NULL;
+	/* make gauge				: eunji */
+	character_XP = 100;
+
+	gaugeBar = CCSprite::create("game_status_bar.png");
+	gaugeBar->setPosition(ccp(size.width/2, size.height*0.75));
+
+	tileMap->addChild(gaugeBar,2);
+
+	gaugeHeart = CCSprite::create("game_heart.png");
+	gaugeHeart->setPosition(ccp(size.width - 20, size.height*0.75));
+
+	tileMap->addChild(gaugeHeart,3);
+
+
+
+
+	/* make pause btn			: jiyoon, daun */
+	btnPause = CCSprite::create("img/game/game_btn_pause.png");
+	btnPause->setAnchorPoint(ccp(0,0));
+
+	pauseBtnPosition = ccp(size.width*0.8, size.height*0.9);
+	btnPause->setPosition(pauseBtnPosition);
+	this->addChild(btnPause);
+
+
+	/* Add notification			: jiyoon */
+	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+		callfuncO_selector(gameScene::doNotification),
+		"notification", NULL);
+	//"notification"이라는 메시지가 오면 해당 함수를 실행한다.
+
+
+
+	/* Add Items				: jiyoon */
+	//decide kind of item.
+	srand(time(0));	//random
+	int kindOfItem = 3;//rand()%4 + 1;	//range : 1~4
+	item1 =NULL, item2 = NULL, item3 =NULL, item4=NULL;
+	if(tileMap->objectGroupNamed("items"))
+	{
 		CCTMXObjectGroup *items = tileMap->objectGroupNamed("items");
 
 
@@ -220,8 +220,8 @@ gameScene::gameScene(int stageIDX)
 			this->createItem4();
 
 		}
-
-		this->schedule(schedule_selector(gameScene::check_item));
+	}
+	this->schedule(schedule_selector(gameScene::check_item));
 
 }
 
@@ -238,7 +238,7 @@ gameScene::~gameScene()
 {
 	delete foodSpriteArray;
 	delete foodFollowArray;
-	delete tomakeFood;
+	delete map;
 	this->onExit();
 }
 /*
@@ -824,7 +824,6 @@ void gameScene::createCounter()
 */
 void gameScene::go_endResultScene()
 {
-	this->onExit();
 	this->checkFoodToEnd();
 	CCScene *pScene = CCScene::create();
 	gameResultScene *layer = new gameResultScene(result,gStageidx);

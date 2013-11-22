@@ -9,7 +9,7 @@
  </tileset>
  <layer name="background" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJwNw0VyAgEAALA94Q6F4k6x4u72/zeRzCQUBEHYiFFjxk2YNGXajFlz5i34Y9GSv5atWLVm3YZNW7bt2LVn34F/Dh05duLUf2fOXbh05dqNW3fuPXj05NmLV2/effj05duPX0kpCRw=
+   eJwNw1VuQgEAALDHDxqcwXBn2HB3u/+ZaJOGgyCIGDVm3IQhk6ZMmzFrzrwFfyxa8teyFavWrNuwacu2Hbv27Dvwz6Ejx06c+u/MuQuXrly7cevOvQePnjx78erNuw+fvnz78Qs/XQkR
   </data>
  </layer>
  <layer name="wall" width="7" height="9">
@@ -47,5 +47,6 @@
   <object name="item1" x="363" y="180" width="54" height="53"/>
   <object name="item2" x="242" y="362" width="54" height="53"/>
   <object name="item3" x="121" y="3" width="54" height="53"/>
+  <object name="item4" x="64" y="244" width="54" height="53"/>
  </objectgroup>
 </map>
