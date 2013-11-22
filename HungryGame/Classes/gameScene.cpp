@@ -1085,13 +1085,14 @@ void gameScene::check_item(float dt)
 	if(characterRect.intersectsRect(item3Rect))
 	{
 		//pause obstacle effect
-		isPause = true;
+		isPause = true;	//정지 활성화
+		count = 0;	//초세기 초기화
 		this->removeChild(item3);
 		item3=NULL;
 	}
 	if(characterRect.intersectsRect(item4Rect))
 	{
-		//?? effect
+		//superwoman effect
 		this->removeChild(item4);
 		item4=NULL;
 	}
@@ -1109,9 +1110,27 @@ void gameScene::check_item(float dt)
 void gameScene::stopObstacle()
 {
 	CCDirector::sharedDirector()->getScheduler()->pauseTarget(obstacle);
-	resumeObstacle();
+	this->schedule(schedule_selector(gameScene::countTime),1.0f);
 }
 
+/*
+* ** FUNCTION
+* void countTime
+* Input											nothing
+* Output										nothing
+* Date											2013. 11. 22
+* Latest										2013. 11. 22
+* Made											jiyun
+*/
+void gameScene::countTime(float d)
+{
+	if(count == 3)
+	{
+		resumeObstacle();
+	}
+	else
+	{	count++;	}
+}
 
 
 /*

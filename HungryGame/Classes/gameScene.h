@@ -62,7 +62,7 @@ public:
 	void gameScene::increaseGaugeBar(int num);
 
 
-
+	
 
 
 	/* tiled map									: Daun */
@@ -147,9 +147,10 @@ public:
 	void check_item(float dt);										//check collision between item and character
 
 	bool isPause;													//status of movingObstacle
-
+	int count;														//count setting
 	void stopObstacle();											//pauseObstacle
 	void resumeObstacle();											//resume Obstacle
+	void countTime(float d);
 };
 
 #endif  // __GAME_SCENE_H__
