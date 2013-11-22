@@ -14,35 +14,36 @@
  </layer>
  <layer name="wall" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5AAAA/AAB
+   eJxjYMANnJCwIwE1MOCMQ50zHjlkfS5IGJeZuOScGHADbHIAdw4Esg==
   </data>
  </layer>
  <layer name="Items" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5AAAA/AAB
+   eJxjYMANHJAwITXIfGLUYZPHZSe6PlxyxJiPDAAqGgRB
   </data>
  </layer>
  <objectgroup name="endPoint" width="7" height="9">
-  <object name="counter" x="178" y="62" width="60" height="57"/>
+  <object name="counter" x="187" y="66" width="45" height="44"/>
  </objectgroup>
  <objectgroup name="items" width="7" height="9">
-  <object name="item2" x="299" y="117" width="62" height="59"/>
-  <object name="item1" x="58" y="119" width="62" height="59"/>
-  <object name="item3" x="237" y="239" width="62" height="59"/>
-  <object name="item4" x="54" y="360" width="62" height="59"/>
- </objectgroup>
- <objectgroup name="object" width="7" height="9">
-  <object name="character" x="300" y="239" width="60" height="59"/>
+  <object name="item1" x="65" y="125" width="47" height="46"/>
+  <object name="item3" x="244" y="245" width="48" height="46"/>
+  <object name="item4" x="66" y="369" width="45" height="41"/>
+  <object name="item2" x="308" y="129" width="46" height="43"/>
  </objectgroup>
  <objectgroup name="foods" width="7" height="9">
-  <object name="food1" x="118" y="2" width="61" height="57"/>
-  <object name="food2" x="241" y="119" width="61" height="57"/>
-  <object name="food3" x="359" y="61" width="61" height="57"/>
-  <object name="food4" x="61" y="239" width="61" height="57"/>
-  <object name="food5" x="2" y="298" width="61" height="57"/>
-  <object name="food7" x="180" y="420" width="61" height="57"/>
-  <object name="food6" x="118" y="361" width="61" height="57"/>
-  <object name="food8" x="296" y="363" width="61" height="57"/>
+  <object name="food1" x="131" y="5" width="47" height="48"/>
+  <object name="food2" x="248" y="129" width="45" height="44"/>
+  <object name="food3" x="367" y="68" width="44" height="43"/>
+  <object name="food4" x="65" y="248" width="44" height="45"/>
+  <object name="food5" x="9" y="308" width="43" height="42"/>
+  <object name="food6" x="129" y="368" width="43" height="41"/>
+  <object name="food7" x="185" y="431" width="45" height="40"/>
  </objectgroup>
- <objectgroup name="obstacle" width="7" height="9"/>
+ <objectgroup name="object" width="7" height="9">
+  <object name="character" x="305" y="246" width="47" height="44"/>
+ </objectgroup>
+ <objectgroup name="obstacle" width="7" height="9">
+  <object name="food8" x="311" y="375" width="45" height="40"/>
+ </objectgroup>
 </map>

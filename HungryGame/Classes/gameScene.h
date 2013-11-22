@@ -54,7 +54,8 @@ public:
 	bool checkObDirection;
 	void doActionMovingObstacleRight(CCObject* pSender);
 	void doActionMovingObstacleLeft(CCObject* pSender);
-	void moveObstacle(float);										// 장애물 움직임 구현
+	void moveObstacleHeight(float);// 장애물 움직임 구현
+	void moveObstacleWidth(float);
 	void doActionMovingObstacleReverse(CCObject* pSender);
 
 	void decreaseGaugeBar(int num);

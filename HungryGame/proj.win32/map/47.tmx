@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="7" height="9" tilewidth="60" tileheight="60">
- <tileset firstgid="1" source="metaset1.tsx"/>
- <tileset firstgid="2" name="background1" tilewidth="60" tileheight="60">
+ <tileset firstgid="1" name="background1" tilewidth="60" tileheight="60">
   <image source="background1.png" width="424" height="544"/>
  </tileset>
+ <tileset firstgid="64" source="metaset1.tsx"/>
  <tileset firstgid="65" name="wall" tilewidth="60" tileheight="60">
   <image source="wall.png" width="120" height="120"/>
  </tileset>
  <layer name="background" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJwNwwVuAgEAALAL7jAY7gwb7m7/fxVt0lAQBGEjRo0ZN2HSlGkzZs2Zt+CPRUv+WrZi1Zp1GzZt2bZj1559B/45dOTYiVP/nTl34dKVazdu3bn34NGTZy9evXn34dOXbz9+AcsaCCA=
+   eJwNwwVuAgEAALDDHQbDnWHD3e3/v6JNGgqCIGzEqDHjJkyaMm3GrDnzFvyxaMlfy1asWrNuw6Yt23bs2rPvwD+Hjhw7ceq/M+cuXLpy7catO/cePHry7MWrN+8+fPry7ccvq5oH4Q==
   </data>
  </layer>
  <layer name="wall" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5AAAA/AAB
+   eJxjYMAPnJAwPjWE5FygGJ8+ZyhGthcdOBKQJwUAAA/SA+Q=
   </data>
  </layer>
  <layer name="Items" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5AAAA/AAB
+   eJxjYMAPHJAwPjWE5LCZgY2PTz0uteQCAOoLA4E=
   </data>
  </layer>
  <objectgroup name="endPoint" width="7" height="9">
-  <object name="counter" x="122" y="360" width="60" height="57"/>
+  <object name="counter" x="126" y="364" width="47" height="47"/>
  </objectgroup>
  <objectgroup name="items" width="7" height="9">
-  <object name="item2" x="298" y="60" width="62" height="59"/>
-  <object name="item1" x="-1" y="174" width="62" height="59"/>
-  <object name="item3" x="63" y="419" width="62" height="59"/>
-  <object name="item4" x="300" y="481" width="62" height="59"/>
- </objectgroup>
- <objectgroup name="object" width="7" height="9">
-  <object name="character" x="1" y="358" width="60" height="59"/>
+  <object name="item1" x="6" y="182" width="49" height="46"/>
+  <object name="item3" x="65" y="427" width="49" height="47"/>
+  <object name="item4" x="308" y="484" width="48" height="49"/>
+  <object name="item2" x="306" y="63" width="49" height="46"/>
  </objectgroup>
  <objectgroup name="foods" width="7" height="9">
-  <object name="food1" x="60" y="2" width="61" height="57"/>
-  <object name="food2" x="0" y="60" width="61" height="57"/>
-  <object name="food3" x="299" y="119" width="61" height="57"/>
-  <object name="food4" x="119" y="174" width="61" height="57"/>
-  <object name="food5" x="238" y="239" width="61" height="57"/>
-  <object name="food7" x="63" y="360" width="61" height="57"/>
-  <object name="food6" x="358" y="240" width="61" height="57"/>
-  <object name="food8" x="177" y="420" width="61" height="57"/>
-  <object name="food9" x="238" y="421" width="61" height="57"/>
+  <object name="food1" x="123" y="7" width="49" height="50"/>
+  <object name="food2" x="7" y="66" width="47" height="43"/>
+  <object name="food3" x="308" y="124" width="49" height="50"/>
+  <object name="food4" x="126" y="182" width="48" height="48"/>
+  <object name="food5" x="244" y="247" width="50" height="48"/>
+  <object name="food6" x="368" y="242" width="49" height="46"/>
+  <object name="food7" x="66" y="365" width="46" height="45"/>
+ </objectgroup>
+ <objectgroup name="object" width="7" height="9">
+  <object name="character" x="6" y="364" width="49" height="46"/>
+  <object name="food8" x="188" y="429" width="46" height="45"/>
+  <object name="food9" x="244" y="429" width="46" height="45"/>
  </objectgroup>
  <objectgroup name="obstacle" width="7" height="9"/>
 </map>

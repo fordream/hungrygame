@@ -103,19 +103,26 @@ gameScene::gameScene(int stageIDX)
 
 		/* make obstacle			: eunji */
 		isPause = false;
-		CCTMXObjectGroup *obstacle = tileMap->objectGroupNamed("obstacle");
-		CCDictionary *obstaclePoint = obstacle->objectNamed("obstaclePoint");
+		
+		if(tileMap->objectGroupNamed("obstacle"))
+		{
 
-		obX = ((CCString*)obstaclePoint->objectForKey("x"))->intValue();
-		obY = ((CCString*)obstaclePoint->objectForKey("y"))->intValue();
+			CCTMXObjectGroup *obstacle = tileMap->objectGroupNamed("obstacle");
+			CCDictionary *obstaclePoint = obstacle->objectNamed("obstaclePoint");
+	
+			obX = ((CCString*)obstaclePoint->objectForKey("x"))->intValue();
+			obY = ((CCString*)obstaclePoint->objectForKey("y"))->intValue();
 
-		obstaclePosition = ccp(obX+MOVEX, obY+MOVEY);
-		this->createObstacle();
+			obstaclePosition = ccp(obX+MOVEX, obY+MOVEY);
+		
 
-		countNum = 0;
-		checkObDirection = false; //false : 오른쪽 true : 왼쪽
-
-		this->schedule(schedule_selector(gameScene::moveObstacle), 2.0f); // 움직이는 장애물 구현
+			this->createObstacle();
+		
+			countNum = 0;
+			checkObDirection = false; //false : 오른쪽 true : 왼쪽
+	
+			this->schedule(schedule_selector(gameScene::moveObstacleHeight), 1.0f); // 움직이는 장애물 구현
+		}
 
 
 
@@ -309,7 +316,7 @@ void gameScene::createObstacle()
 {
 	CCTexture2D *obTexture = CCTextureCache::sharedTextureCache()->addImage("map/meat.png");
 
-	obstacle = CCSprite::createWithTexture(obTexture,CCRectMake(0, 0, 48, 48)); // 맵에 맞춰 숫자 바꿔야함
+	obstacle = CCSprite::createWithTexture(obTexture,CCRectMake(0, 0, 60, 60)); // 맵에 맞춰 숫자 바꿔야함
 	obstacle->setPosition(obstaclePosition);
 	obstacle->setAnchorPoint(ccp(0,0));
 	this->addChild(obstacle);
@@ -1136,14 +1143,33 @@ void gameScene::resumeObstacle()
 * Add											jiyun
 
 */
-void gameScene::moveObstacle(float dt)
+void gameScene::moveObstacleWidth(float dt)
 {
 	if(!isPause)
 	{
 		checkObDirection = !(checkObDirection);
 
-		CCActionInterval* moveRight = CCMoveBy::create(2, ccp(80, 0));
-		CCActionInterval* moveLeft = CCMoveBy::create(2, ccp(-80, 0));
+		CCActionInterval* moveRight = CCMoveBy::create(1, ccp(60, 0));
+		CCActionInterval* moveLeft = CCMoveBy::create(1, ccp(-60, 0));
+
+		if     (checkObDirection == true)  {	obstacle->runAction(moveRight);}
+		else if(checkObDirection == false) {	obstacle->runAction(moveLeft); }
+	}
+
+	else
+	{
+		stopObstacle();
+	}
+}
+
+void gameScene::moveObstacleHeight(float dt)
+{
+	if(!isPause)
+	{
+		checkObDirection = !(checkObDirection);
+
+		CCActionInterval* moveRight = CCMoveBy::create(1, ccp(0, 60));
+		CCActionInterval* moveLeft = CCMoveBy::create(1, ccp(0, -60));
 
 		if     (checkObDirection == true)  {	obstacle->runAction(moveRight);}
 		else if(checkObDirection == false) {	obstacle->runAction(moveLeft); }
