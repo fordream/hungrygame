@@ -22,9 +22,70 @@ gameScene::gameScene(int stageIDX)
 	//////////////////////////////////////////////////////////////////////////
 	// super init first
 	//////////////////////////////////////////////////////////////////////////
+	gStageidx = stageIDX;
+	this->init();
+}
 
+/*
+* ** DESTRUCTURE
+* ~gameScene()									destructure about gameScene class
+* Input											nothing
+* Output										nothing
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Pineoc
+*/
+gameScene::~gameScene()
+{
+	delete foodSpriteArray;
+	delete foodFollowArray;
+	delete map;
+	this->onExit();
+}
+/*
+* ** FUNCTION
+* CCScene* scene()								make scene.
+* Input											nothing
+* Output										scene
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun
+*/
+//CCScene* gameScene::scene()
+//{
+//	CCScene * scene = NULL;
+//	do 
+//	{
+//		// 'scene' is an autorelease object
+//		scene = CCScene::create();
+//		CC_BREAK_IF(! scene);
+//
+//		// 'layer' is an autorelease object
+//		gameScene *layer = gameScene::create();
+//		CC_BREAK_IF(! layer);
+//
+//		// add layer as a child to scene
+//		scene->addChild(layer);
+//	} while (0);
+//
+//	// return the scene
+//	return scene;
+//}
+
+// on "init" you need to initialize your instance
+/*
+* ** FUNCTION
+* bool init()									when scene made, this function is first called.
+* Input											nothing
+* Output										True
+* Date											2013. 10. 03
+* Latest										2013. 10. 03
+* Made											Daun , eunji, jiyoon, pineoc
+*/
+bool gameScene::init()
+{
 	if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
-		return ;
+		return -1;
 
 	//////////////////////////////////////////////////////////////////////////
 	// add your codes below...
@@ -36,7 +97,7 @@ gameScene::gameScene(int stageIDX)
 
 	//using stageidx for regame
 	//set idx end. 
-	gStageidx = stageIDX;
+	//gStageidx = stageIDX;
 	map = new char[10]; 
 	sprintf(map, "map/%d.tmx", gStageidx);
 
@@ -222,67 +283,6 @@ gameScene::gameScene(int stageIDX)
 		}
 	}
 	this->schedule(schedule_selector(gameScene::check_item));
-
-}
-
-/*
-* ** DESTRUCTURE
-* ~gameScene()									destructure about gameScene class
-* Input											nothing
-* Output										nothing
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
-* Made											Pineoc
-*/
-gameScene::~gameScene()
-{
-	delete foodSpriteArray;
-	delete foodFollowArray;
-	delete map;
-	this->onExit();
-}
-/*
-* ** FUNCTION
-* CCScene* scene()								make scene.
-* Input											nothing
-* Output										scene
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
-* Made											Daun
-*/
-//CCScene* gameScene::scene()
-//{
-//	CCScene * scene = NULL;
-//	do 
-//	{
-//		// 'scene' is an autorelease object
-//		scene = CCScene::create();
-//		CC_BREAK_IF(! scene);
-//
-//		// 'layer' is an autorelease object
-//		gameScene *layer = gameScene::create();
-//		CC_BREAK_IF(! layer);
-//
-//		// add layer as a child to scene
-//		scene->addChild(layer);
-//	} while (0);
-//
-//	// return the scene
-//	return scene;
-//}
-
-// on "init" you need to initialize your instance
-/*
-* ** FUNCTION
-* bool init()									when scene made, this function is first called.
-* Input											nothing
-* Output										True
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
-* Made											Daun , eunji, jiyoon, pineoc
-*/
-bool gameScene::init()
-{
 	return true;
 }
 /*
