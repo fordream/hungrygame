@@ -42,35 +42,6 @@ gameScene::~gameScene()
 	delete map;
 	this->onExit();
 }
-/*
-* ** FUNCTION
-* CCScene* scene()								make scene.
-* Input											nothing
-* Output										scene
-* Date											2013. 10. 03
-* Latest										2013. 10. 03
-* Made											Daun
-*/
-//CCScene* gameScene::scene()
-//{
-//	CCScene * scene = NULL;
-//	do 
-//	{
-//		// 'scene' is an autorelease object
-//		scene = CCScene::create();
-//		CC_BREAK_IF(! scene);
-//
-//		// 'layer' is an autorelease object
-//		gameScene *layer = gameScene::create();
-//		CC_BREAK_IF(! layer);
-//
-//		// add layer as a child to scene
-//		scene->addChild(layer);
-//	} while (0);
-//
-//	// return the scene
-//	return scene;
-//}
 
 // on "init" you need to initialize your instance
 /*
@@ -110,7 +81,9 @@ bool gameScene::init()
 	CCSprite* bg = CCSprite::create("img\\game\\game_bg.png");
 	bg->setPosition(ccp(size.width/2,size.height/2));
 	this->addChild(bg,0);
-
+	CCSprite* stageNSprite = CCSprite::create("img\\game\\game_stagenum.png");
+	stageNSprite->setPosition(ccp(size.width*0.3,size.height*0.93));
+	this->addChild(stageNSprite,0);
 
 
 	/* Set Tiled Map			: Daun, eunji*/
@@ -189,12 +162,12 @@ bool gameScene::init()
 	character_XP = 100;
 
 	gaugeBar = CCSprite::create("game_status_bar.png");
-	gaugeBar->setPosition(ccp(size.width/2, size.height*0.75));
+	gaugeBar->setPosition(ccp(size.width*0.45, size.height*0.79));
 
 	tileMap->addChild(gaugeBar,2);
 
 	gaugeHeart = CCSprite::create("game_heart.png");
-	gaugeHeart->setPosition(ccp(size.width - 20, size.height*0.75));
+	gaugeHeart->setPosition(ccp(size.width - 30, size.height*0.79));
 
 	tileMap->addChild(gaugeHeart,3);
 

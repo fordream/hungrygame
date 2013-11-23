@@ -4,15 +4,16 @@
 
 gameResultScene::gameResultScene(std::string _result,int _stageidx)
 {
-	if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
-		return ;
-	
 	result = _result;
 	stageidx = _stageidx;
-//	for(int i=0;i<10;i++)
-//		foodArrayForSprite[i]=" ";
-	//check for result
-//	foodArraySpritecolor = new CCArray();
+	this->init();
+}
+
+bool gameResultScene::init()
+{
+	if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
+		return false;
+	
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 	CCSprite* background = CCSprite::create("img\\endResult\\end_bg.png");
@@ -40,42 +41,8 @@ gameResultScene::gameResultScene(std::string _result,int _stageidx)
 //	foodArrayForSprite[3]="map/4.png";
 
 	this->make_foodSprite();
-//	this->check_food();
-
-}
-
-
-bool gameResultScene::init()
-{
 	return true;
 }
-/*
-void gameResultScene::check_food()
-{
-	int result_arr[10]={0,1000,1000,1000,1000,1000,1000,1000,1000,1000};
-	//char* c=""; 
-	//strcpy(c,result.c_str());
-	//parsing
-	std::string tokenkey = " ";
-	result.erase(0,result.find(tokenkey)+tokenkey.length());// delete first space
-	for(int i=0;i<10;i++)
-	{
-		size_t pos = result.find(tokenkey);
-		result_arr[i] = atoi(result.substr(0,pos).c_str());
-		result.erase(0,pos+tokenkey.length());
-		if(atoi(result.c_str())==0)
-			break;
-	}
-	selectionSort(result_arr,10);
-	bool result = checkSame(check_arr,result_arr);
-	
-	if(result)
-		resultOfStage=1;
-	else
-		resultOfStage=0;
-}
-*/
-
 /**
 전달받은 string parsing
 */

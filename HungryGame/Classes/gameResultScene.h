@@ -5,6 +5,7 @@ class gameResultScene : public CCLayerColor
 {
 public:
 	gameResultScene(std::string,int);
+	//~gameResultScene();
 
 	virtual bool init();
 
