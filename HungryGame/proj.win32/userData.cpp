@@ -15,7 +15,7 @@ userData::userData()
 	// 설정 xml파일에 해당 KEY가 존재하지 않으면, 두번째 인자값이 리턴됩니다.
 	BGMONOFF = pUserDefault->getBoolForKey(gOptionKey[BGMSOUND],true);
 	EFFECTONOFF = pUserDefault->getBoolForKey(gOptionKey[EFFECTSOUND],true);
-
+	curStage = pUserDefault->getIntegerForKey(gCurKey,10);
 
 	 /*
      * 다른 타입에 대해서 예시로 추가합니다.
@@ -36,16 +36,23 @@ void userData::setOption()
 
 	pUserDefault->setBoolForKey(gOptionKey[BGMSOUND],BGMONOFF);
 	pUserDefault->setBoolForKey(gOptionKey[EFFECTSOUND],EFFECTONOFF);
-
+	pUserDefault->setIntegerForKey(gCurKey,curStage);
 	// xml file에 저장
 	pUserDefault->flush();
 }
-
-
 
 void userData::setBGM(bool chk){this->BGMONOFF = chk; }
 void userData::setEFFECT(bool chk){ this->EFFECTONOFF = chk;}
 
 bool userData::getBGM() { return BGMONOFF; }
 bool userData::getEFFECT(){ return EFFECTONOFF; }
+
+void userData::setCurStage(int idx)
+{
+	this->curStage = idx;
+}
+int userData::getCurStage()
+{
+	return curStage;
+}
 

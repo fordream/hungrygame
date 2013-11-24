@@ -9,6 +9,7 @@
 #include "gameScene.h"
 #include "PauseGameScene.h"
 #include "gameResultScene.h"
+#include "userData.h"
 using namespace cocos2d;
 
 enum crashSomething { nothing, CrashWithWall, CrashWithFood, CrashWithItem};
@@ -56,7 +57,7 @@ gameScene::~gameScene()
 bool gameScene::init()
 {
 	if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
-		return -1;
+		return false;
 
 	//////////////////////////////////////////////////////////////////////////
 	// add your codes below...
@@ -462,9 +463,7 @@ void gameScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event)
 	{
 		music m;
 		m.effectStart("sound\\effect_btn_click.mp3");
-		CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);				// set touch enable
-		CCScene* pScene=PauseGameScene::scene();
-		this->addChild(pScene,2000,2000);
+		this->doPop( (CCObject*)gStageidx );
 	}
 
 	originPos = character->getPosition();
@@ -844,7 +843,6 @@ void gameScene::goMainScene()
 }
 void gameScene::goRegame(int stage)
 {
-	this->onExit();
 	CCScene *pScene = CCScene::create();
 	gameScene *layer = new gameScene(stage);
 	layer->autorelease();
@@ -863,7 +861,7 @@ void gameScene::goRegame(int stage)
 void gameScene::doPop(CCObject* pSender)
 {
 	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);		//set touch enable
-
+	CCUserDefault::sharedUserDefault()->setIntegerForKey("curStage",gStageidx);
 	CCScene* pScene=PauseGameScene::scene();
 	this->addChild(pScene,2000,2000);
 
@@ -895,6 +893,8 @@ void gameScene::doNotification(CCObject *obj)
 	}
 	else if(flag>=10 && flag<=48)
 	{
+		CCDirector::sharedDirector()->resume();
+		CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 		this->goRegame(flag);
 	}
 	else

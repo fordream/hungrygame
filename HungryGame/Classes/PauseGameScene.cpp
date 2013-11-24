@@ -1,5 +1,4 @@
 #include "PauseGameScene.h"
-//#include "gameScene.h"
 #include "mainScene.h"
 #include "HelpScene.h"
 
@@ -20,10 +19,8 @@ bool PauseGameScene::init()
 {
 	if( !CCLayerColor::initWithColor(ccc4(0,0,0,0)))
 	{ return false; }
-	//gameScene* g;
-	//g = new gameScene;
-	//setStageIdx(g->gStageidx);
-	//g->autorelease();
+	pStageidx=CCUserDefault::sharedUserDefault()->getIntegerForKey("curStage");
+
 
 	CCString* popParam=CCString::create("0");
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("notification", popParam);         //노티피케이션 보내기
@@ -109,13 +106,6 @@ void PauseGameScene::doClose(CCObject* pSender)
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("notification", popParam);         //노티피케이션 보내기
 	this->removeFromParentAndCleanup(true);		//팝업창 제거
 
-}
-
-void PauseGameScene::menuPauseCallback (CCObject *pSender)
-{
-	CCScene *pScene = PauseGameScene::scene();
-
-	CCDirector::sharedDirector()->pushScene(pScene);
 }
 
 void PauseGameScene::setStageIdx(int num)

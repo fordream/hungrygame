@@ -16,9 +16,7 @@ public:
 	virtual bool init();
 
 	static cocos2d::CCScene* scene();
-
 	CREATE_FUNC(PauseGameScene);
-
 	cocos2d::CCSize winSize;
 
 	CCLayerColor* backLayer;

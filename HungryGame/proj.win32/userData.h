@@ -33,6 +33,7 @@ static const char gOptionKey[OPTIONCNT][32]=
 	"BGMOption","EffectOption"
 };
 
+static const char* gCurKey=" ";
 
 
 
@@ -67,11 +68,15 @@ public:
 	bool getBGM();
 	bool getEFFECT();
 
+	void setCurStage(int);
+	int getCurStage();
+
 
 private:
 	static userData *_instance;
 	bool BGMONOFF;
 	bool EFFECTONOFF;
+	int curStage;
 };
 
 
