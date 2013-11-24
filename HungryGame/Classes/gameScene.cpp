@@ -65,7 +65,7 @@ bool gameScene::init()
 	foodSpriteArray = new CCArray; //food sprite array dynamic cast
 	foodFollowArray = new CCArray;
 	result=" ";
-
+	isSuper = false;													
 
 	//using stageidx for regame
 	//set idx end. 
@@ -195,7 +195,7 @@ bool gameScene::init()
 	/* Add Items				: jiyoon */
 	//decide kind of item.
 	srand(time(0));	//random
-	int kindOfItem = 3;//rand()%4 + 1;	//range : 1~4
+	int kindOfItem = 4;//rand()%4 + 1;	//range : 1~4
 	item1 =NULL, item2 = NULL, item3 =NULL, item4=NULL;
 	if(tileMap->objectGroupNamed("items"))
 	{
@@ -391,22 +391,25 @@ void gameScene::moveCharacter(float dt)
 
 
 
-	/* when character crash with wall							: eunji, Daun */
+	/* when character crash with wall							: eunji, Daun, jiyun */
 	if(checkCrash == CrashWithWall)
 	{
 		music m;
 		m.effectStart("sound\\effect_crash_wall.mp3");
 
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
+		if(isSuper==false)
+		{
+			// 벽과 충돌한 경우 해야할 일
+			character->setPosition(originalplayerPos);							// By Daun.. 충돌인 경우 원래 위치로 계쏙 유지
+			character_XP -= 10;
 
-		// 벽과 충돌한 경우 해야할 일
-		character->setPosition(originalplayerPos);							// By Daun.. 충돌인 경우 원래 위치로 계쏙 유지
-		character_XP -= 10;
+			int gaugeSize_part = 441/10;										// 게이지바 사이즈의 10퍼센트 길이
+			int gaugeNum = (gaugeSize_part * ((100 - character_XP) / 10));
 
-		int gaugeSize_part = 441/10;										// 게이지바 사이즈의 10퍼센트 길이
-		int gaugeNum = (gaugeSize_part * ((100 - character_XP) / 10));
 
-		decreaseGaugeBar(gaugeNum);
+			decreaseGaugeBar(gaugeNum);
+		}
 
 	}
 	else
@@ -1065,8 +1068,40 @@ void gameScene::check_item(float dt)
 	if(characterRect.intersectsRect(item4Rect))
 	{
 		//superwoman effect
+		isSuper = true;	//무적 활성화
+		count = 0;	//초세기 초기화
+		this->schedule(schedule_selector(gameScene::countTime),1.0f);	//초세기 시작
+		this->doParticle();
 		this->removeChild(item4);
 		item4=NULL;
+	}
+}
+
+/*
+* ** FUNCTION
+* void doParticle
+* Input											nothing
+* Output										nothing
+* Date											2013. 11. 24
+* Latest										2013. 11. 24
+* Made											jiyun
+*/
+void gameScene::doParticle()
+{
+	CCParticleSystem* super = CCParticleFire::create();	//explosion particle
+	super->retain();
+	super->setTexture(CCTextureCache::sharedTextureCache()->addImage("fire.png"));
+
+	if(super != NULL)
+	{
+		//get current position of heart
+		float X = gaugeHeart->getPositionX();
+		float Y = gaugeHeart->getPositionY();
+		
+		super->setScale(1.0);	//scale
+		super->setDuration(5.0);	//5sec
+		super->setPosition(X,Y);	//heart
+		this->addChild(super);
 	}
 }
 
@@ -1096,9 +1131,12 @@ void gameScene::stopObstacle()
 */
 void gameScene::countTime(float d)
 {
-	if(count == 3)
+	if(count == 5)
 	{
-		resumeObstacle();
+		if(isPause == true)
+		{	resumeObstacle();	}
+		if(isSuper == true)
+		{  isSuper = false;	}
 	}
 	else
 	{	count++;	}

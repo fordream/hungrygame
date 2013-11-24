@@ -147,10 +147,12 @@ public:
 	void check_item(float dt);										//check collision between item and character
 
 	bool isPause;													//status of movingObstacle
+	bool isSuper;													//status of character
 	int count;														//count setting
 	void stopObstacle();											//pauseObstacle
 	void resumeObstacle();											//resume Obstacle
-	void countTime(float d);
+	void countTime(float d);										//count 3sec
+	void doParticle();												//Particle - start SuperMode
 };
 
 #endif  // __GAME_SCENE_H__
