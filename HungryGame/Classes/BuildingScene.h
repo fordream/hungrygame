@@ -7,7 +7,7 @@
 
 #include "SimpleAudioEngine.h"
 
-class Building : public cocos2d::CCLayer
+class BuildingScene : public cocos2d::CCLayer
 {
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -26,7 +26,7 @@ public:
 	int buildingNum;
 
     // implement the "static node()" method manually
-	CREATE_FUNC(Building);
+	CREATE_FUNC(BuildingScene);
 };
 
 #endif  // __BUILDING_SCENE_H__

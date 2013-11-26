@@ -131,8 +131,8 @@
     <ClInclude Include="..\Classes\PauseGameScene.h" />
     <ClInclude Include="..\Classes\stageSelectScene.h" />
     <ClInclude Include="..\Classes\MakerInfoScene.h" />
+    <ClInclude Include="..\Classes\userData.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="userData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
@@ -147,8 +147,8 @@
     <ClCompile Include="..\Classes\PauseGameScene.cpp" />
     <ClCompile Include="..\Classes\stageSelectScene.cpp" />
     <ClCompile Include="..\Classes\MakerInfoScene.cpp" />
+    <ClCompile Include="..\Classes\userData.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="userData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\devinfoScene_bg.png" />

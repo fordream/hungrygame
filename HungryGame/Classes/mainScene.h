@@ -7,7 +7,7 @@
 
 #include "SimpleAudioEngine.h"
 
-class Main : public cocos2d::CCLayerColor
+class mainScene : public cocos2d::CCLayerColor
 {
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -24,7 +24,7 @@ public:
 	void menuDevCallback(CCObject* pSender);
 
     // implement the "static node()" method manually
-    CREATE_FUNC(Main);
+    CREATE_FUNC(mainScene);
 };
 
 #endif  // __MAIN_SCENE_H__

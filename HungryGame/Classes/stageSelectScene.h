@@ -11,7 +11,7 @@
 
 #include "SimpleAudioEngine.h"
 
-class stageSelect : public cocos2d::CCLayer
+class stageSelectScene : public cocos2d::CCLayer
 {
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -29,7 +29,7 @@ public:
 	int sStageNum; // for stage of each building
 
     // implement the "static node()" method manually
-	CREATE_FUNC(stageSelect);
+	CREATE_FUNC(stageSelectScene);
 };
 
 #endif  // __BUILDING_SCENE_H__

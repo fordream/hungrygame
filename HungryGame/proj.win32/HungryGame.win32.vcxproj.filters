@@ -48,13 +48,13 @@
     <ClInclude Include="..\Classes\optionScene.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="userData.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\music.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PauseGameScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\userData.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -95,10 +95,10 @@
     <ClCompile Include="..\Classes\optionScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="userData.cpp">
+    <ClCompile Include="..\Classes\PauseGameScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\PauseGameScene.cpp">
+    <ClCompile Include="..\Classes\userData.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -82,8 +82,10 @@ bool gameScene::init()
 	CCSprite* bg = CCSprite::create("img\\game\\game_bg.png");
 	bg->setPosition(ccp(size.width/2,size.height/2));
 	this->addChild(bg,0);
-	CCSprite* stageNSprite = CCSprite::create("img\\game\\game_stagenum.png");
-	stageNSprite->setPosition(ccp(size.width*0.3,size.height*0.93));
+	char stagenum[32];
+	sprintf(stagenum,"img\\game\\stageNum\\%d.png",gStageidx-9);
+	CCSprite* stageNSprite = CCSprite::create(stagenum);
+	stageNSprite->setPosition(ccp(size.width*0.32,size.height*0.93));
 	this->addChild(stageNSprite,0);
 
 
@@ -124,10 +126,10 @@ bool gameScene::init()
 
 
 	/* make food				: Pineoc */
-	this->createFoodShelf();
+	
 	this->createFood();
 	foodcount = foodSpriteArray->count();
-
+	this->createFoodShelf();
 	this->schedule(schedule_selector(gameScene::updateFoodSprte));
 	this->schedule(schedule_selector(gameScene::check_counter));
 	this->schedule(schedule_selector(gameScene::followCharacter));
@@ -755,7 +757,9 @@ void gameScene::check_counter(float dt)
 void gameScene::createFoodShelf()
 {// have to : add food count
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
-	CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage("img/food/foodTest.png");
+	char food_arr[20];
+	sprintf(food_arr,"/img/food/%d_f.png",gStageidx);
+	CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage(food_arr);
 	for(int i=0;i<7;i++)
 	{
 		CCSprite* foodsprite = CCSprite::createWithTexture(texture,CCRectMake(100*(i%5),100*(i/5),100,100));
@@ -780,8 +784,8 @@ void gameScene::createFoodShelf()
 */
 void gameScene::createCounter()
 {
-	CCTexture2D *counterTexture = CCTextureCache::sharedTextureCache()->addImage("map/counter.jpg");
-	CCSprite* _counter = CCSprite::createWithTexture(counterTexture,CCRectMake(0, 0, 48, 48));
+	CCTexture2D *counterTexture = CCTextureCache::sharedTextureCache()->addImage("map/counter.png");
+	CCSprite* _counter = CCSprite::createWithTexture(counterTexture,CCRectMake(0, 0,60,60));
 	_counter->setPosition(counterPoint);
 	_counter->setAnchorPoint(ccp(0,0));
 	counter = _counter;
@@ -801,7 +805,7 @@ void gameScene::go_endResultScene()
 {
 	this->checkFoodToEnd();
 	CCScene *pScene = CCScene::create();
-	gameResultScene *layer = new gameResultScene(result,gStageidx);
+	gameResultScene *layer = new gameResultScene(result,gStageidx,foodcount);
 	layer->autorelease();
 	pScene->addChild(layer);
 	CCDirector::sharedDirector()->replaceScene(pScene);
@@ -841,7 +845,7 @@ void gameScene::checkFoodToEnd()
 void gameScene::goMainScene()
 {
 	this->onExit();
-	CCScene *pScene = Main::scene();
+	CCScene *pScene = mainScene::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 void gameScene::goRegame(int stage)

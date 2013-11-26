@@ -131,7 +131,7 @@ bool OptionScene::init()
 
 void OptionScene::goBackMenu(CCObject* pSender)
 { // 도움말창을 닫음
-	CCScene *pScene = Main::scene();
+	CCScene *pScene = mainScene::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 	
 }

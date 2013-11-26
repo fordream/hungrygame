@@ -5,13 +5,9 @@
 #include "MakerInfoScene.h"
 #include "optionScene.h"
 
-
-
-
-
 using namespace cocos2d;
 
-CCScene* Main::scene()
+CCScene* mainScene::scene()
 {
     CCScene * scene = NULL;
     do 
@@ -21,7 +17,7 @@ CCScene* Main::scene()
         CC_BREAK_IF(! scene);
 
         // 'layer' is an autorelease object
-		Main *layer = Main::create();
+		mainScene *layer = mainScene::create();
         CC_BREAK_IF(! layer);
 
         // add layer as a child to scene
@@ -33,7 +29,7 @@ CCScene* Main::scene()
 }
 
 // on "init" you need to initialize your instance
-bool Main::init()
+bool mainScene::init()
 {
     bool bRet = false;
     do 
@@ -68,7 +64,7 @@ bool Main::init()
             "main_btn_endgame.png",
             "main_btn_endgame_n.png",
             this,
-			menu_selector(Main::menuCloseCallback));
+			menu_selector(mainScene::menuCloseCallback));
         CC_BREAK_IF(! pCloseItem);
 
         // Place the menu item bottom-right conner.
@@ -90,7 +86,7 @@ bool Main::init()
             "main_btn_info.png",
             "main_btn_info_n.png",
             this,
-			menu_selector(Main::menuDevCallback));
+			menu_selector(mainScene::menuDevCallback));
         CC_BREAK_IF(! pDevItem);
 
         // Place the menu item bottom-right conner.
@@ -112,7 +108,7 @@ bool Main::init()
             "main_btn_option.png",
             "main_btn_option_c.png",
             this,
-			menu_selector(Main::menuOptionCallback));
+			menu_selector(mainScene::menuOptionCallback));
         CC_BREAK_IF(! pOptionItem);
 
         // Place the menu item bottom-right conner.
@@ -134,7 +130,7 @@ bool Main::init()
             "main_btn_help.png",
             "main_btn_help_n.png",
             this,
-			menu_selector(Main::menuHelpCallback));
+			menu_selector(mainScene::menuHelpCallback));
         CC_BREAK_IF(! pHelpItem);
 
         // Place the menu item bottom-right conner.
@@ -157,7 +153,7 @@ bool Main::init()
             "main_btn_gamestart.png",
             "main_btn_gamestart_c.png",
             this,
-			menu_selector(Main::menuStartCallback));
+			menu_selector(mainScene::menuStartCallback));
         CC_BREAK_IF(! pStartItem);
 
         // Place the menu item bottom-right conner.
@@ -178,7 +174,7 @@ bool Main::init()
     return bRet;
 }
 
-void Main::menuCloseCallback(CCObject* pSender)
+void mainScene::menuCloseCallback(CCObject* pSender)
 {
     // "close" menu item clicked
 	music m;
@@ -186,7 +182,7 @@ void Main::menuCloseCallback(CCObject* pSender)
     CCDirector::sharedDirector()->end();
 }
 
-void Main::menuOptionCallback(CCObject* pSender)
+void mainScene::menuOptionCallback(CCObject* pSender)
 {
 	music m;
 	m.effectStart("sound\\effect_btn_click.mp3");
@@ -195,7 +191,7 @@ void Main::menuOptionCallback(CCObject* pSender)
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
-void Main::menuHelpCallback(CCObject* pSender)
+void mainScene::menuHelpCallback(CCObject* pSender)
 {// pineoc's help 구현. HelpScene클래스 사용.
 	music m;
 	m.effectStart("sound\\effect_btn_click.mp3");
@@ -213,16 +209,16 @@ void Main::menuHelpCallback(CCObject* pSender)
 	
 }
 
-void Main::menuStartCallback(CCObject* pSender)
+void mainScene::menuStartCallback(CCObject* pSender)
 {
 	music m;
 	m.effectStart("sound\\effect_btn_click.mp3");
-	CCScene *pScene = Building::scene();
+	CCScene *pScene = BuildingScene::scene();
 
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
-void Main::menuDevCallback(CCObject* pSender)
+void mainScene::menuDevCallback(CCObject* pSender)
 {
 	music m;
 	m.effectStart("sound\\effect_btn_click.mp3");

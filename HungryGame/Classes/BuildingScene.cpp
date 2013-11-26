@@ -9,7 +9,7 @@
 
 using namespace cocos2d;
 
-CCScene* Building::scene()
+CCScene* BuildingScene::scene()
 {
     CCScene * scene = NULL;
     do 
@@ -19,7 +19,7 @@ CCScene* Building::scene()
         CC_BREAK_IF(! scene);
 
         // 'layer' is an autorelease object
-		Building *layer = Building::create();
+		BuildingScene *layer = BuildingScene::create();
         CC_BREAK_IF(! layer);
 
         // add layer as a child to scene
@@ -31,7 +31,7 @@ CCScene* Building::scene()
 }
 
 // on "init" you need to initialize your instance
-bool Building::init()
+bool BuildingScene::init()
 {
     bool bRet = false;
     do 
@@ -68,7 +68,7 @@ bool Building::init()
             "buildingSelect_btn_b1.png",
             "buildingSelect_btn_b1_n.png",
             this,
-			menu_selector(Building::menuBuild1Callback));
+			menu_selector(BuildingScene::menuBuild1Callback));
         CC_BREAK_IF(! pBuilding_1);
 
         // Place the menu item bottom-right conner.
@@ -88,7 +88,7 @@ bool Building::init()
             "buildingSelect_btn_b2.png",
             "buildingSelect_btn_b2_n.png",
             this,
-			menu_selector(Building::menuBuild2Callback));
+			menu_selector(BuildingScene::menuBuild2Callback));
         CC_BREAK_IF(! pBuilding_2);
 
         // Place the menu item bottom-right conner.
@@ -108,7 +108,7 @@ bool Building::init()
             "buildingSelect_btn_b3.png",
             "buildingSelect_btn_b3_n.png",
             this,
-			menu_selector(Building::menuBuild3Callback));
+			menu_selector(BuildingScene::menuBuild3Callback));
         CC_BREAK_IF(! pBuilding_3);
 
         // Place the menu item bottom-right conner.
@@ -128,7 +128,7 @@ bool Building::init()
             "buildingSelect_btn_b4.png",
             "buildingSelect_btn_b4_n.png",
             this,
-			menu_selector(Building::menuBuild4Callback));
+			menu_selector(BuildingScene::menuBuild4Callback));
         CC_BREAK_IF(! pBuilding_4);
 
         // Place the menu item bottom-right conner.
@@ -148,7 +148,7 @@ bool Building::init()
             "btn_goBack.png",
             "btn_goBack_n.png",
             this,
-			menu_selector(Building::menuGoBackCallback));
+			menu_selector(BuildingScene::menuGoBackCallback));
         CC_BREAK_IF(! pGoBack);
 
         // Place the menu item bottom-right conner.
@@ -170,12 +170,12 @@ bool Building::init()
 }
 
 // 첫번째 빌딩
-void Building::menuBuild1Callback(CCObject* pSender)
+void BuildingScene::menuBuild1Callback(CCObject* pSender)
 {
 	music m;
 	char buf[4];
 	m.effectStart("sound\\effect_btn_click.mp3");
-	CCScene *pScene = stageSelect::scene();
+	CCScene *pScene = stageSelectScene::scene();
 	buildingNum = 10;
 	_itoa(buildingNum,buf,10);
 	CCString* popParam=CCString::create(buf);
@@ -184,12 +184,12 @@ void Building::menuBuild1Callback(CCObject* pSender)
 }
 
 //두번째 빌딩
-void Building::menuBuild2Callback(CCObject* pSender)
+void BuildingScene::menuBuild2Callback(CCObject* pSender)
 {
 	music m;
 	char buf[4];
 	m.effectStart("sound\\effect_btn_click.mp3");
-	CCScene *pScene = stageSelect::scene();
+	CCScene *pScene = stageSelectScene::scene();
 	buildingNum = 20;
 	_itoa(buildingNum,buf,10);
 	CCString* popParam=CCString::create(buf);
@@ -198,12 +198,12 @@ void Building::menuBuild2Callback(CCObject* pSender)
 }
 
 //세번째 빌딩
-void Building::menuBuild3Callback(CCObject* pSender)
+void BuildingScene::menuBuild3Callback(CCObject* pSender)
 {
 	music m;
 	char buf[4];
 	m.effectStart("sound\\effect_btn_click.mp3");
-	CCScene *pScene = stageSelect::scene();
+	CCScene *pScene = stageSelectScene::scene();
 	buildingNum = 30;
 	_itoa(buildingNum,buf,10);
 	CCString* popParam=CCString::create(buf);
@@ -213,12 +213,12 @@ void Building::menuBuild3Callback(CCObject* pSender)
 }
 
 //네번째 빌딩
-void Building::menuBuild4Callback(CCObject* pSender)
+void BuildingScene::menuBuild4Callback(CCObject* pSender)
 {
 	music m;
 	char buf[4];
 	m.effectStart("sound\\effect_btn_click.mp3");
-	CCScene *pScene = stageSelect::scene();
+	CCScene *pScene = stageSelectScene::scene();
 	buildingNum = 40;
 	_itoa(buildingNum,buf,10);
 	CCString* popParam=CCString::create(buf);
@@ -227,12 +227,12 @@ void Building::menuBuild4Callback(CCObject* pSender)
 }
 
 //되돌아가기
-void Building::menuGoBackCallback(CCObject* pSender)
+void BuildingScene::menuGoBackCallback(CCObject* pSender)
 {
 	music m;
 	m.effectStart("sound\\effect_btn_click.mp3");
 
-	CCScene *pScene = Main::scene();
+	CCScene *pScene = mainScene::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 

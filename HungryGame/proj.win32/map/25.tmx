@@ -36,10 +36,7 @@
  </objectgroup>
  <objectgroup name="foods" width="7" height="9">
   <object name="food1" x="123" y="122" width="53" height="54"/>
-  <object name="food6" x="242" y="366" width="56" height="54"/>
   <object name="food2" x="242" y="125" width="54" height="56"/>
   <object name="food3" x="5" y="245" width="50" height="52"/>
-  <object name="food4" x="362" y="244" width="53" height="56"/>
-  <object name="food5" x="122" y="364" width="52" height="54"/>
  </objectgroup>
 </map>

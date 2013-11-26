@@ -6,7 +6,8 @@ get result for success Scene or fail Scene
 
 #include "gameEndScene.h"
 #include "gameScene.h"
-#include "stageSelectScene.h"
+#include "BuildingScene.h"
+
 
 gameEndScene::gameEndScene(int _result,int _stageidx)
 {
@@ -20,13 +21,20 @@ gameEndScene::gameEndScene(int _result,int _stageidx)
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
+	char stagenum[32];
+	sprintf(stagenum,"img\\game\\stageNum\\%d.png",stageidx-9);
+	CCSprite* stageNSprite = CCSprite::create(stagenum);
+	stageNSprite->setPosition(ccp(size.width*0.32,size.height*0.93));
+	this->addChild(stageNSprite,0);
+
 	CCSprite* background = CCSprite::create("img/end/endChk_bg.png");
 	background->setPosition(ccp(size.width/2,size.height/2));
 	this->addChild(background,0);
 
-	makedFoodInit();
-
-	CCSprite* foodImage = CCSprite::create(makedFoodArrayForSprite[stageidx]); //by eunji
+	//makedFoodInit();
+	char food_arr[20];
+	sprintf(food_arr,"/img/food/%d.png",stageidx);
+	CCSprite* foodImage = CCSprite::create(food_arr); //by eunji
 	foodImage->setPosition(ccp(size.width/2,size.height/2));
 	this->addChild(foodImage,1);
 
@@ -53,13 +61,16 @@ gameEndScene::gameEndScene(int _result,int _stageidx)
 			menu_selector(gameEndScene::menu_nextStage));
 
 		//go to stageScene
-		/*CCMenuItemImage *pMenu_backtoStageScene = CCMenuItemImage::create(
-		"end_btn_backtoStageScene.png","end_btn_backtoStageScene_n.png",
+		CCMenuItemImage *pMenu_backtoStageScene = CCMenuItemImage::create(
+		"img/end/end_btn_StageScene.png","img/end/end_btn_StageScene_n.png",
 		this,
 		menu_selector(gameEndScene::menu_backtoStageScene));
-		*/
+		
 		// Create a menu with the "close" menu item, it's an auto release object.
-		CCMenu* pMenu_s = CCMenu::create(pMenu_retry,pMenu_nextStage, NULL);
+		CCMenu* pMenu_s = CCMenu::create(pMenu_retry,pMenu_nextStage,pMenu_backtoStageScene, NULL);
+		pMenu_retry->setScale(0.8);
+		pMenu_nextStage->setScale(0.8);
+
 		pMenu_s->alignItemsHorizontally();
 		pMenu_s->setPosition(ccp(size.width/2,size.height*0.2));
 
@@ -79,13 +90,13 @@ gameEndScene::gameEndScene(int _result,int _stageidx)
 			"img/end/endChk_btn_again.png","img/end/endChk_btn_again_n.png",
 			this,
 			menu_selector(gameEndScene::menu_retry));
-
-		//CCMenuItemImage *pMenu_backtoStageScene = CCMenuItemImage::create(
-		//	"end_btn_backtoStage.png","end_btn_backtoStage_n.png",
-		//	this,
-		//	menu_selector(gameEndScene::menu_backtoStageScene));
-
-		CCMenu* pMenu_f = CCMenu::create(pMenu_retry,NULL);
+		CCMenuItemImage *pMenu_backtoStageScene = CCMenuItemImage::create(
+			"img/end/end_btn_StageScene.png","img/end/end_btn_StageScene_n.png",
+			this,
+			menu_selector(gameEndScene::menu_backtoStageScene));
+		pMenu_retry->setScale(0.8);
+		pMenu_backtoStageScene->setScale(0.8);
+		CCMenu* pMenu_f = CCMenu::create(pMenu_retry,pMenu_backtoStageScene,NULL);
 		pMenu_f->alignItemsHorizontally();
 		pMenu_f->setPosition(ccp(size.width/2,size.height*0.2));
 
@@ -127,7 +138,7 @@ void gameEndScene::menu_backtoStageScene(CCObject* pSender)
 	스테이지 선택하는 Scene으로 넘어감.
 	back to selectstage Scene
 	*/
-	CCScene *pScene = stageSelect::scene();
+	CCScene *pScene = BuildingScene::scene();
 
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
