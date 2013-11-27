@@ -129,15 +129,7 @@ bool stageSelectScene::init()
 		s9->setPosition(ccp(size.width * 0.8, size.height * 0.45));
 		s9->setTag(8);
 
-		CCMenuItemImage *s10 = CCMenuItemImage::create(
-			"img\\stageSelect\\stage_btn_bonus.png","img\\stageSelect\\stage_btn_bonus_n.png",this,menu_selector(stageSelectScene::stageMenu));
-		CC_BREAK_IF(!s10);
-
-		s10->setPosition(ccp(size.width * 0.5, size.height * 0.25));
-		s10->setTag(9);
-
-
-		CCMenu *stageMenu = CCMenu::create(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,NULL);
+		CCMenu *stageMenu = CCMenu::create(s1,s2,s3,s4,s5,s6,s7,s8,s9,NULL);
 		stageMenu->setPosition(CCPointZero);
 		CC_BREAK_IF(!stageMenu);
 

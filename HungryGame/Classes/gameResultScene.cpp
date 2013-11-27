@@ -39,14 +39,6 @@ bool gameResultScene::init()
 
 	parser();
 
-	//-------------------------------
-	// put the image food ingrediant
-	//-------------------------------
-//	foodArrayForSprite[0]="map/1.jpg";
-//	foodArrayForSprite[1]="map/2.png";
-//	foodArrayForSprite[2]="map/3.png";
-//	foodArrayForSprite[3]="map/4.png";
-
 	this->make_foodSprite();
 	return true;
 }
@@ -125,50 +117,3 @@ void gameResultScene::menu_goEndScene(CCObject* pSender)
 	pScene->addChild(layer);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
-/*
-//for sorting
-void gameResultScene::selectionSort(int *list, int n)
-{
-    int i, j, indexMin, temp;
- 
-    for (i = 0; i < n - 1; i++)
-    {
-        indexMin = i;
-        for (j = i + 1; j < n; j++)
-        {
-            if (list[j] < list[indexMin])
-            {
-                indexMin = j;
-            }
-        }
-        temp = list[indexMin];
-        list[indexMin] = list[i];
-        list[i] = temp;
-    }
-}
-*/
-/*
-//arr1 = have to eat, arr2 = eat
-bool gameResultScene::checkSame(int *arr1,int *arr2)
-{
-	int count=0;
-	for(int i=0;arr1[i]!=1000;i++)
-	{
-		if(arr1[i]==arr2[i])
-		{
-			CCPoint tmp = ((CCSprite*)(foodArraySpritecolor->objectAtIndex(i)))->getPosition();
-			CCSprite* check = CCSprite::create("img/endResult/end_redCircle.png");
-			check->setPosition(tmp);
-			this->addChild(check);
-		}
-		else
-		{
-			count++;
-		}
-	}
-	if(count==0) // if all matching, Success
-		return true;
-	else
-		return false;
-}
-*/

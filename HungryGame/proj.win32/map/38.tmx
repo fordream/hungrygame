@@ -3,23 +3,23 @@
  <tileset firstgid="1" name="wall" tilewidth="60" tileheight="60">
   <image source="wall.png" width="120" height="120"/>
  </tileset>
- <tileset firstgid="5" source="metaset1.tsx"/>
- <tileset firstgid="6" name="background1" tilewidth="60" tileheight="60">
+ <tileset firstgid="5" name="background1" tilewidth="60" tileheight="60">
   <image source="background1.png" width="424" height="544"/>
  </tileset>
+ <tileset firstgid="68" source="metaset1.tsx"/>
  <layer name="background" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJwNw1VuQgEAALDHDxqcwXBn2HB3u/+ZaJOGgyCIGDVm3IQhk6ZMmzFrzrwFfyxa8teyFavWrNuwacu2Hbv27Dvwz6Ejx06c+u/MuQuXrly7cevOvQePnjx78erNuw+fvnz78Qs/XQkR
+   eJwNw0VyAgEAALC94A6F4k6x4u72/z+RzCQUBEHYiFFjxk2YNGXajFlz5i34Y9GSv5atWLVm3YZNW7bt2LVn34F/Dh05duLUf2fOXbh05dqNW3fuPXj05NmLV2/effj05duPXympCN0=
   </data>
  </layer>
  <layer name="wall" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYMAPWPDwWbBgUgATFjFmPHxCcuiYEAAAHZgAOg==
+   eJxjYMAPmPHwmbFgUgALEWJMJMixQMWY0ORwAQAZZAA0
   </data>
  </layer>
  <layer name="Items" width="7" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYMAPWPHwWbFgUgA29YTso6ZbACjAAFY=
+   eJxjYMAPXPDwXbBgUgA29YTso6ZbAB3qBIU=
   </data>
  </layer>
  <objectgroup name="foods" width="7" height="9">

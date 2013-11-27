@@ -16,9 +16,6 @@ gameEndScene::gameEndScene(int _result,int _stageidx)
 	result = _result;
 	stageidx = _stageidx;
 
-	//stageidx = 11; // 임시로 지정한 숫자. 추후삭제.
-
-
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
 	char stagenum[32];
@@ -31,7 +28,6 @@ gameEndScene::gameEndScene(int _result,int _stageidx)
 	background->setPosition(ccp(size.width/2,size.height/2));
 	this->addChild(background,0);
 
-	//makedFoodInit();
 	char food_arr[20];
 	sprintf(food_arr,"/img/food/%d.png",stageidx);
 	CCSprite* foodImage = CCSprite::create(food_arr); //by eunji
@@ -122,7 +118,10 @@ void gameEndScene::menu_nextStage(CCObject* pSender)
 	
 	//스테이지의 idx를 가져와서 idx+1 하여 다음 스테이지를 가져오게끔 해야할 듯.
 	CCScene *pScene = gameScene::scene();
-	CCUserDefault::sharedUserDefault()->setIntegerForKey("curStage",stageidx+1);
+	if(stageidx == 18 || stageidx==28 || stageidx==38)
+		CCUserDefault::sharedUserDefault()->setIntegerForKey("curStage",stageidx+2);
+	else
+		CCUserDefault::sharedUserDefault()->setIntegerForKey("curStage",stageidx+1);
 	CCDirector::sharedDirector()->replaceScene(pScene);
 	
 }
@@ -135,16 +134,4 @@ void gameEndScene::menu_backtoStageScene(CCObject* pSender)
 	CCScene *pScene = BuildingScene::scene();
 
 	CCDirector::sharedDirector()->replaceScene(pScene);
-}
-
-void gameEndScene::makedFoodInit()
-{
-	/* eunji */
-	for(int i=10; i<50; i++) 
-	{
-		char *fileName = new char [16];
-		sprintf(fileName, "img/food/%d.png", i);
-		makedFoodArrayForSprite[i] = fileName;
-	}
-	
 }

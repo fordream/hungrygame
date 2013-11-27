@@ -575,7 +575,9 @@ void gameScene::createFood()
 
 
 	//
-	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage("img/food/foodTest.png");
+	char food_arr[20];
+	sprintf(food_arr,"/img/food/%d_f.png",gStageidx);
+	CCTexture2D *foodTexture = CCTextureCache::sharedTextureCache()->addImage(food_arr);
 	foods = tileMap->objectGroupNamed("foods");
 
 	for(int i = 0 ; i < 10; i++)
