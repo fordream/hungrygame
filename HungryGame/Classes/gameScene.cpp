@@ -18,14 +18,14 @@ enum DIRCTION { UP, DOWN, LEFT, RIGHT};
 #define MOVEY 46.5
 
 
-gameScene::gameScene(int stageIDX)
-{
-	//////////////////////////////////////////////////////////////////////////
-	// super init first
-	//////////////////////////////////////////////////////////////////////////
-	gStageidx = stageIDX;
-	this->init();
-}
+//gameScene::gameScene(int stageIDX)
+//{
+//	//////////////////////////////////////////////////////////////////////////
+//	// super init first
+//	//////////////////////////////////////////////////////////////////////////
+//	gStageidx = stageIDX;
+//	init();
+//}
 
 /*
 * ** DESTRUCTURE
@@ -40,9 +40,20 @@ gameScene::~gameScene()
 {
 	delete foodSpriteArray;
 	delete foodFollowArray;
-	delete map;
 	this->onExit();
 }
+CCScene* gameScene::scene()
+{
+	CCScene* scene = CCScene::create();
+
+	gameScene *layer = gameScene::create();
+
+	scene->addChild(layer);
+
+	return scene;
+}
+
+
 
 // on "init" you need to initialize your instance
 /*
@@ -58,7 +69,7 @@ bool gameScene::init()
 {
 	if(!CCLayerColor::initWithColor(ccc4(255,255,255,255)))
 		return false;
-
+	gStageidx = CCUserDefault::sharedUserDefault()->getIntegerForKey("curStage");
 	//////////////////////////////////////////////////////////////////////////
 	// add your codes below...
 	//////////////////////////////////////////////////////////////////////////
@@ -70,7 +81,7 @@ bool gameScene::init()
 	//using stageidx for regame
 	//set idx end. 
 	//gStageidx = stageIDX;
-	map = new char[10]; 
+	char map[16];
 	sprintf(map, "map/%d.tmx", gStageidx);
 
 	music m;
@@ -850,10 +861,8 @@ void gameScene::goMainScene()
 }
 void gameScene::goRegame(int stage)
 {
-	CCScene *pScene = CCScene::create();
-	gameScene *layer = new gameScene(stage);
-	layer->autorelease();
-	pScene->addChild(layer);
+	CCScene *pScene = gameScene::scene();
+
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 /*

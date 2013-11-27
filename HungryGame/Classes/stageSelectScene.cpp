@@ -206,9 +206,7 @@ void stageSelectScene::onExit()
 }
 void stageSelectScene::goStageScene()
 {
-	CCScene *pScene = CCScene::create();
-	gameScene *layer = new gameScene(sStageNum);
-	layer->autorelease();
-	pScene->addChild(layer);
+	CCUserDefault::sharedUserDefault()->setIntegerForKey("curStage",sStageNum);
+	CCScene* pScene = gameScene::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
