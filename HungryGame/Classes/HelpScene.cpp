@@ -1,6 +1,6 @@
-//pineoc@naver.com
+ï»¿//pineoc@naver.com
 //HelpScene.cpp
-//µµ¿ò¸»Ã¢ ±¸Çö
+//ÂµÂµÂ¿Ã²Â¸Â»ÃƒÂ¢ Â±Â¸Ã‡Ã¶
 
 #include "HelpScene.h"
 
@@ -48,17 +48,33 @@ bool HelpScene::init()
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 		
 		/*
-		±âÁ¸ ¹è°æÈ­¸é ¼³Á¤
+		Â±Ã¢ÃÂ¸ Â¹Ã¨Â°Ã¦ÃˆÂ­Â¸Ã© Â¼Â³ÃÂ¤
 		*/
 		CCSprite* phelpMainScene = CCSprite::create("helpScene_bg.png");
         CC_BREAK_IF(! phelpMainScene);
-		phelpMainScene->setPosition(ccp(size.width/2,size.height/2));
-		this->addChild(phelpMainScene,0);
 
-		/*
-		Go to Scene before helpScene
-		µµ¿ò¸» È­¸é ÀüÀ¸·Î µ¹¾Æ°¡´Â ¹öÆ°
-		*/
+		phelpMainScene->setScale(0.4);
+		phelpMainScene->setPosition(ccp(size.width/2,size.height/2));
+
+		CCLayerColor *layer = CCLayerColor::create(ccc4(255, 255, 255, 255));
+		layer->setAnchorPoint(CCPointZero);
+		layer->setPosition(ccp(0, 0));
+		layer->setContentSize(CCSizeMake(480, 1600));
+
+		layer->addChild(phelpMainScene);
+
+		scrollView = CCScrollView::create();
+		scrollView->retain();
+		scrollView->setDirection(kCCScrollViewDirectionVertical);
+		scrollView->setViewSize(CCSizeMake(480, 1600));
+		scrollView->setContentSize(layer->getContentSize());
+		scrollView->setPosition(ccp(0,0));
+		scrollView->setContainer(layer);
+		scrollView->setDelegate(this);
+		scrollView->setContentOffset(ccp(0, -200), false);
+
+		this->addChild(scrollView);
+
 		CCMenuItemImage *pCloseHelpScene = CCMenuItemImage::create(
             "btn_goBack.png",
             "btn_goBack_n.png",
@@ -80,7 +96,31 @@ bool HelpScene::init()
 }
 
 void HelpScene::menu_closeHelpScene(CCObject* pSender)
-{ // µµ¿ò¸»Ã¢À» ´ÝÀ½
+{ // ÂµÂµÂ¿Ã²Â¸Â»ÃƒÂ¢Ã€Â» Â´ÃÃ€Â½
 	CCDirector::sharedDirector()->popScene();
-	//push, pop SceneÀ» ÀÌ¿ëÇØ¼­ µÇµ¹¾Æ°¡±â ±¸Çö.
+	//push, pop SceneÃ€Â» Ã€ÃŒÂ¿Ã«Ã‡Ã˜Â¼Â­ ÂµÃ‡ÂµÂ¹Â¾Ã†Â°Â¡Â±Ã¢ Â±Â¸Ã‡Ã¶.
+}
+
+void HelpScene::onEnter()
+{
+	CCLayer::onEnter();
+	CCDirector::sharedDirector() ->getTouchDispatcher()->addTargetedDelegate(this, 1, true);
+}
+void HelpScene::onExit()
+{
+	CCLayer::onExit();
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+}
+
+void HelpScene::scrollViewDidScroll(CCScrollView* view)
+{
+}
+
+void HelpScene::scrollViewDidZoom(CCScrollView* view)
+{
+}
+
+bool HelpScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+	return true;
 }

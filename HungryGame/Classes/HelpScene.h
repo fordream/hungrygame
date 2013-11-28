@@ -1,27 +1,38 @@
-//pineoc@naver.com
-//HelpScene.h
-//µµøÚ∏ª√¢ ±∏«ˆ
-
-#pragma once
+Ôªø#ifndef __HELP_SCENE_H__
+#define __HELP_SCENE_H__
 #include "cocos2d.h"
-USING_NS_CC;
+#include "cocos-ext.h"
 
-class HelpScene : public CCLayerColor
+using namespace cocos2d;
+using namespace cocos2d::extension;
+
+USING_NS_CC;
+USING_NS_CC_EXT;
+
+class HelpScene : public CCLayerColor, public CCScrollViewDelegate
 {
 public:
-	//Scene∞£ø° ∆ƒ∂ÛπÃ≈Õ∏¶ ≥—±‚±‚ ¿ß«ÿº≠.
-	//HelpScene(std::string);
 	
-	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();  
 
     // there's no 'id' in cpp, so we recommand to return the exactly class pointer
     static cocos2d::CCScene* scene();
 
-	void menu_closeHelpScene(CCObject*); // µµøÚ∏ª√¢¿ª ¥›¿Ω
+	void menu_closeHelpScene(CCObject*); // ¬µ¬µ¬ø√≤¬∏¬ª√É¬¢√Ä¬ª ¬¥√ù√Ä¬Ω
 
 	CREATE_FUNC(HelpScene);
 
 	std::string helpType;
+
+public:
+	virtual void onEnter();
+	virtual void onExit();
+
+	void scrollViewDidScroll(CCScrollView* view);
+	void scrollViewDidZoom(CCScrollView* view);
+	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+
+	CCScrollView *scrollView;
 };
 
+#endif //__HELP_SCENE2_H__
