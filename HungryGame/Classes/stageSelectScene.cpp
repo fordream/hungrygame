@@ -50,7 +50,13 @@ bool stageSelectScene::init()
         //////////////////////////////////////////////////////////////////////////
 
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
-		sStageNum = 0;
+		//sStageNum = 0;
+
+		if(!CCUserDefault::sharedUserDefault()->getIntegerForKey("lastStage"))
+		{
+			CCUserDefault::sharedUserDefault()->setIntegerForKey("lastStage",10);
+			CCUserDefault::sharedUserDefault()->flush();
+		}
 
 		//배경 이미지 생성
 		CCSprite* pStageBg = CCSprite::create("img\\stageSelect\\stage_bg.png");
@@ -172,9 +178,13 @@ void stageSelectScene::stageMenu(CCObject* pSender)
 	/***
 	 여기에 게임 화면으로 전환하는거 들어감!!
 	****/
+	int check, stg;
+	int dechk;
 	CCMenuItem *pGet = (CCMenuItem *)pSender;
-	sStageNum += pGet->getTag();
-	this->goStageScene();
+	sStageNum = buildingNum + dechk;
+	check = CCUserDefault::sharedUserDefault()->getIntegerForKey("lastStage");
+	if( check >= sStageNum )
+		this->goStageScene();
 }
 
 //되돌아가기
@@ -189,7 +199,7 @@ void stageSelectScene::doMsgRecv(CCObject* obj)
 	CCString* pParam = (CCString*)obj;
 	int flag = pParam->intValue();
 	if(flag>0)
-		sStageNum = flag;
+		buildingNum = flag;
 }
 void stageSelectScene::onExit()
 {
@@ -199,6 +209,7 @@ void stageSelectScene::onExit()
 void stageSelectScene::goStageScene()
 {
 	CCUserDefault::sharedUserDefault()->setIntegerForKey("curStage",sStageNum);
+	CCUserDefault::sharedUserDefault()->flush();
 	CCScene* pScene = gameScene::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }

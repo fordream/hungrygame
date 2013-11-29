@@ -101,7 +101,7 @@ public:
 	void followCharacter(float);
 	void check_counter(float);
 	void createCounter();
-	void go_endResultScene();
+	void go_endResultScene(int);
 	void createFoodShelf();
 	void checkFoodToEnd();											// check food for ending
 	void checkFollowFoodCollision(float);

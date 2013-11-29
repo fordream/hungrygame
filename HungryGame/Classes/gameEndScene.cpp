@@ -69,7 +69,7 @@ gameEndScene::gameEndScene(int _result,int _stageidx)
 
 		pMenu_s->alignItemsHorizontally();
 		pMenu_s->setPosition(ccp(size.width/2,size.height*0.2));
-
+		this->lastStageSet();
 		//// Add the menu to HelloWorld layer as a child layer.
 		this->addChild(pMenu_s, 2);
 
@@ -117,11 +117,13 @@ void gameEndScene::menu_nextStage(CCObject* pSender)
 {
 	
 	//스테이지의 idx를 가져와서 idx+1 하여 다음 스테이지를 가져오게끔 해야할 듯.
-	CCScene *pScene = gameScene::scene();
+	
 	if(stageidx == 18 || stageidx==28 || stageidx==38)
 		CCUserDefault::sharedUserDefault()->setIntegerForKey("curStage",stageidx+2);
 	else
 		CCUserDefault::sharedUserDefault()->setIntegerForKey("curStage",stageidx+1);
+	CCUserDefault::sharedUserDefault()->flush();
+	CCScene *pScene = gameScene::scene();
 	CCDirector::sharedDirector()->replaceScene(pScene);
 	
 }
@@ -134,4 +136,9 @@ void gameEndScene::menu_backtoStageScene(CCObject* pSender)
 	CCScene *pScene = BuildingScene::scene();
 
 	CCDirector::sharedDirector()->replaceScene(pScene);
+}
+void gameEndScene::lastStageSet()
+{
+	CCUserDefault::sharedUserDefault()->setIntegerForKey("lastStage",stageidx+1);
+	CCUserDefault::sharedUserDefault()->flush();
 }

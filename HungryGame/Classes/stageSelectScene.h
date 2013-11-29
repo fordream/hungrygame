@@ -27,7 +27,7 @@ public:
 	void goStageScene();
 	void doMsgRecv(CCObject* obj);
 	int sStageNum; // for stage of each building
-
+	int buildingNum;
     // implement the "static node()" method manually
 	CREATE_FUNC(stageSelectScene);
 };

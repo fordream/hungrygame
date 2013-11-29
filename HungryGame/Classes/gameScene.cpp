@@ -76,7 +76,8 @@ bool gameScene::init()
 	foodSpriteArray = new CCArray; //food sprite array dynamic cast
 	foodFollowArray = new CCArray;
 	result=" ";
-	isSuper = false;													
+	isSuper = false;
+	
 
 	//using stageidx for regame
 	//set idx end. 
@@ -754,7 +755,7 @@ void gameScene::check_counter(float dt)
 		counter->getContentSize().height);
 	if(characterRect.intersectsRect(counterRect))
 	{// call gameResultScene
-		this->go_endResultScene();
+		this->go_endResultScene(1);
 	}
 }
 
@@ -814,9 +815,12 @@ void gameScene::createCounter()
 * Latest										2013. 10. 03
 * Made											Pineoc
 */
-void gameScene::go_endResultScene()
+void gameScene::go_endResultScene(int chk)
 {
-	this->checkFoodToEnd();
+	if(chk==1)
+		this->checkFoodToEnd();
+	else
+		result=" ";
 	CCScene *pScene = CCScene::create();
 	gameResultScene *layer = new gameResultScene(result,gStageidx,foodcount);
 	layer->autorelease();
@@ -1297,7 +1301,7 @@ void gameScene::decreaseGaugeBar(int num)
 	{
 		//게임을 끝낸다
 		gaugeHeart->setPositionX(20);
-		this->go_endResultScene();
+		this->go_endResultScene(0);
 	}
 }
 
@@ -1325,7 +1329,7 @@ void gameScene::increaseGaugeBar(int num)
 	{
 		//게임을 끝낸다
 		gaugeHeart->setPositionX(460);
-		this->go_endResultScene();
+		this->go_endResultScene(0);
 	}
 }
 

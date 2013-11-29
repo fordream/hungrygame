@@ -35,4 +35,4 @@ public:
 	CCScrollView *scrollView;
 };
 
-#endif //__HELP_SCENE2_H__
+#endif //__HELP_SCENE_H__
