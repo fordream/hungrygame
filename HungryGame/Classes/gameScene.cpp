@@ -941,7 +941,7 @@ void gameScene::onExit()
 */
 void gameScene::createItem1()
 {
-	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item1.jpg");
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item1.png");
 
 	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 60, 60));
 	item->setPosition(itemPosition);
@@ -961,7 +961,7 @@ void gameScene::createItem1()
 */
 void gameScene::createItem2()
 {
-	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item2.jpg");
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item2.png");
 
 	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 60, 60));
 	item->setPosition(itemPosition);
@@ -981,7 +981,7 @@ void gameScene::createItem2()
 */
 void gameScene::createItem3()
 {
-	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item3.jpg");
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item3.png");
 
 	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 60, 60));
 	item->setPosition(itemPosition);
@@ -1001,7 +1001,7 @@ void gameScene::createItem3()
 */
 void gameScene::createItem4()
 {
-	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item4.jpg");
+	CCTexture2D *itemTexture = CCTextureCache::sharedTextureCache()->addImage("item4.png");
 
 	CCSprite* item = CCSprite::createWithTexture(itemTexture,CCRectMake(0, 0, 60, 60));
 	item->setPosition(itemPosition);
