@@ -50,11 +50,17 @@ bool HelpScene::init()
 		/*
 		±âÁ¸ ¹è°æÈ­¸é ¼³Á¤
 		*/
-		CCSprite* phelpMainScene = CCSprite::create("helpScene_bg.png");
+		CCSprite* phelpMainScene = CCSprite::create("help01.png");
         CC_BREAK_IF(! phelpMainScene);
 
-		phelpMainScene->setScale(0.4);
-		phelpMainScene->setPosition(ccp(size.width/2,size.height/2));
+		phelpMainScene->setScale(0.85);
+		phelpMainScene->setPosition(ccp(240, 1080));
+
+		CCSprite* phelpMainScene2 = CCSprite::create("help02.png");
+        CC_BREAK_IF(! phelpMainScene2);
+
+		phelpMainScene2->setScale(0.85);
+		phelpMainScene2->setPosition(ccp(240, 350));
 
 		CCLayerColor *layer = CCLayerColor::create(ccc4(255, 255, 255, 255));
 		layer->setAnchorPoint(CCPointZero);
@@ -62,6 +68,7 @@ bool HelpScene::init()
 		layer->setContentSize(CCSizeMake(480, 1600));
 
 		layer->addChild(phelpMainScene);
+		layer->addChild(phelpMainScene2);
 
 		scrollView = CCScrollView::create();
 		scrollView->retain();
