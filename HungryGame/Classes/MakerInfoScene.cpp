@@ -33,7 +33,7 @@ bool MakerInfoScene::init()
 		CCMenuItemImage *pClose = CCMenuItemImage::create(
 			"btn_goBack.png","btn_goBack_n.png",this,menu_selector(MakerInfoScene::doClose));
 		CC_BREAK_IF(!pClose);
-		pClose->setPosition(ccp(winSize.width / 1.25 , winSize.height /14.28)); 
+		pClose->setPosition(ccp(winSize.width / 1.35 , winSize.height /14.23)); 
 		CCMenu* pMenu = CCMenu::create(pClose,NULL);
 		pMenu->setPosition(CCPointZero);
 		this->addChild(pMenu);
