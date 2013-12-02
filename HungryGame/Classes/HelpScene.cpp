@@ -53,13 +53,13 @@ bool HelpScene::init()
 		CCSprite* phelpMainScene = CCSprite::create("help01.png");
         CC_BREAK_IF(! phelpMainScene);
 
-		phelpMainScene->setScale(0.85);
+		//phelpMainScene->setScale(0.85);
 		phelpMainScene->setPosition(ccp(240, 1080));
 
 		CCSprite* phelpMainScene2 = CCSprite::create("help02.png");
         CC_BREAK_IF(! phelpMainScene2);
 
-		phelpMainScene2->setScale(0.85);
+		//phelpMainScene2->setScale(0.85);
 		phelpMainScene2->setPosition(ccp(240, 350));
 
 		CCLayerColor *layer = CCLayerColor::create(ccc4(255, 255, 255, 255));

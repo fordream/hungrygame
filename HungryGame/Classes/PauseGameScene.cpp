@@ -92,7 +92,10 @@ void PauseGameScene::goHelp( CCObject* pSender )
 void PauseGameScene::newGame( CCObject* pSender )
 {
 	//게임화면 초기화
-	string a = to_string(pStageidx);
+	char buf[16];
+	string a;
+	sprintf(buf,"%d",pStageidx);
+	a = string(buf);
 	CCString* popParam=CCString::create(a);
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("notification", popParam);         //노티피케이션 보내기
 	this->removeFromParentAndCleanup(true);

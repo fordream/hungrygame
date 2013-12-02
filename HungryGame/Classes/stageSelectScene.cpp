@@ -181,6 +181,7 @@ void stageSelectScene::stageMenu(CCObject* pSender)
 	int check, stg;
 	int dechk;
 	CCMenuItem *pGet = (CCMenuItem *)pSender;
+	dechk = pGet->getTag();
 	sStageNum = buildingNum + dechk;
 	check = CCUserDefault::sharedUserDefault()->getIntegerForKey("lastStage");
 	if( check >= sStageNum )

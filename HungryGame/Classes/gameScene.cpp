@@ -439,7 +439,6 @@ void gameScene::moveCharacter(float dt)
 
 
 	Sleep(movingSpeed);
-
 }
 
 /*
@@ -845,7 +844,7 @@ void gameScene::checkFoodToEnd()
 	{
 		CCSprite* a = ((CCSprite*)foodFollowArray->objectAtIndex(i));
 		int b = a->getTag();
-		_itoa(b,c,10);
+		sprintf(c,"%d",b);
 		result.append((string)c+" ");
 	}
 }

@@ -177,9 +177,10 @@ void BuildingScene::menuBuild1Callback(CCObject* pSender)
 	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelectScene::scene();
 	buildingNum = 10;
-	_itoa(buildingNum,buf,10);
+	sprintf(buf,"%d",buildingNum);
 	CCString* popParam=CCString::create(buf);
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("BuildingNoti", popParam);
+	
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
@@ -191,9 +192,10 @@ void BuildingScene::menuBuild2Callback(CCObject* pSender)
 	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelectScene::scene();
 	buildingNum = 20;
-	_itoa(buildingNum,buf,10);
+	sprintf(buf,"%d",buildingNum);
 	CCString* popParam=CCString::create(buf);
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("BuildingNoti", popParam);
+	
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
@@ -205,10 +207,10 @@ void BuildingScene::menuBuild3Callback(CCObject* pSender)
 	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelectScene::scene();
 	buildingNum = 30;
-	_itoa(buildingNum,buf,10);
+	sprintf(buf,"%d",buildingNum);
 	CCString* popParam=CCString::create(buf);
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("BuildingNoti", popParam);
-
+	
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
@@ -220,9 +222,10 @@ void BuildingScene::menuBuild4Callback(CCObject* pSender)
 	m.effectStart("sound\\effect_btn_click.mp3");
 	CCScene *pScene = stageSelectScene::scene();
 	buildingNum = 40;
-	_itoa(buildingNum,buf,10);
+	sprintf(buf,"%d",buildingNum);
 	CCString* popParam=CCString::create(buf);
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("BuildingNoti", popParam);
+	
 	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
