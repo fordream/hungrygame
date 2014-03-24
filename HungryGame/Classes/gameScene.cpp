@@ -124,10 +124,10 @@ bool gameScene::init()
 	/* Make Character			: Daun */
 	createCharacter();
 
-	movingSpeed = 400;														// set initial character moving speed
+	movingSpeed = 0.45;														// set initial character moving speed
 	moveDirection = UP;													// set default character moving direction
 
-	this->schedule(schedule_selector(gameScene::moveCharacter));
+	this->schedule(schedule_selector(gameScene::moveCharacter),movingSpeed);
 
 
 
@@ -438,7 +438,7 @@ void gameScene::moveCharacter(float dt)
 	}
 
 
-	Sleep(movingSpeed);
+	//Sleep(movingSpeed);
 }
 
 /*
@@ -1071,7 +1071,7 @@ void gameScene::check_item(float dt)
 	if(characterRect.intersectsRect(item2Rect))
 	{
 		//slow down effect
-		movingSpeed = 800;
+		movingSpeed = 0.65;
 		this->removeChild(item2);
 		item2=NULL;
 	}

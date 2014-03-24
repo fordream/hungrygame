@@ -178,7 +178,7 @@ void stageSelectScene::stageMenu(CCObject* pSender)
 	/***
 	 여기에 게임 화면으로 전환하는거 들어감!!
 	****/
-	int check, stg;
+	int check;
 	int dechk;
 	CCMenuItem *pGet = (CCMenuItem *)pSender;
 	dechk = pGet->getTag();

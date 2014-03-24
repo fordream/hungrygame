@@ -54,13 +54,13 @@ bool HelpScene::init()
         CC_BREAK_IF(! phelpMainScene);
 
 		//phelpMainScene->setScale(0.85);
-		phelpMainScene->setPosition(ccp(240, 1080));
+		phelpMainScene->setPosition(ccp(240, 1200));
 
 		CCSprite* phelpMainScene2 = CCSprite::create("help02.png");
         CC_BREAK_IF(! phelpMainScene2);
 
 		//phelpMainScene2->setScale(0.85);
-		phelpMainScene2->setPosition(ccp(240, 350));
+		phelpMainScene2->setPosition(ccp(240, 400));
 
 		CCLayerColor *layer = CCLayerColor::create(ccc4(255, 255, 255, 255));
 		layer->setAnchorPoint(CCPointZero);
@@ -78,7 +78,8 @@ bool HelpScene::init()
 		scrollView->setPosition(ccp(0,0));
 		scrollView->setContainer(layer);
 		scrollView->setDelegate(this);
-		scrollView->setContentOffset(ccp(0, -200), false);
+		scrollView->setContentOffset(ccp(0, -800), false);
+		scrollView->setBounceable(true);
 
 		this->addChild(scrollView);
 

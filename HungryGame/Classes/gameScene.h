@@ -69,7 +69,7 @@ public:
 	CCTMXTiledMap *tileMap; // tileMap name to select stage
 
 	/* character									: Daun */
-	int								movingSpeed;						// 캐릭터의 이동 속도
+	float								movingSpeed;						// 캐릭터의 이동 속도
 	int								moveDirection;						// 캐릭터가 현재 이동하고 있는 방향을 저장함
 	int								beforeMoveDirection;				// 이건 다음이 벽에 충돌인경우 현재 방향을 저장함
 	CCSprite*						character;
