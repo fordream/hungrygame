@@ -1,0 +1,11 @@
+#################
+## ignore files
+
+#cocosDenshion
+CocosDenshion
+
+#Debug.win32
+Debug.win32
+
+#cocos2dx
+cocos2dx
