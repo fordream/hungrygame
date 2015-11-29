@@ -1,23 +1,26 @@
 Hungrygame
 ==========
+Hanium Project
 
-##Hanium Project
-
-
-##Game Specification
+## Game Specification
 
 
-##Game Logic
+## Game Logic
+motivated from snake game
 
 
-##Collaborators
+##Framework & Libs
+- Cocos2d-x 3.x
 
--pineoc
 
--blackbell1540
+## Target Platform
+- android
+- iOS
 
--ICoi
-
--euntas
+## Collaborators
+- pineoc
+- blackbell1540
+- ICoi
+- euntas
 
 
