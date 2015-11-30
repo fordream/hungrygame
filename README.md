@@ -3,10 +3,17 @@ Hungrygame
 Hanium Project
 
 ## Game Specification
+motivated from snake game
 
+![](https://raw.githubusercontent.com/pineoc/hungrygame/readme-set/res/main_view.png)
+![](https://raw.githubusercontent.com/pineoc/hungrygame/readme-set/res/ingame_view.png)
+![](https://raw.githubusercontent.com/pineoc/hungrygame/readme-set/res/game_result_view.png)
 
 ## Game Logic
-motivated from snake game
+
+- eat Food!
+- collect the list
+- finish the shopping!
 
 
 ##Framework & Libs
