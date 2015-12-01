@@ -5,6 +5,10 @@ Hanium Project
 ## Game Specification
 motivated from snake game
 
+- UI
+
+main, ingame, game end
+
 ![](https://raw.githubusercontent.com/pineoc/hungrygame/master/res/main_view.png)
 ![](https://raw.githubusercontent.com/pineoc/hungrygame/master/res/ingame_view.png)
 ![](https://raw.githubusercontent.com/pineoc/hungrygame/master/res/game_result_view.png)
