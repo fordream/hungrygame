@@ -2,6 +2,8 @@ Hungrygame
 ==========
 Hanium Project
 
+renew project : https://github.com/pineoc/hungryGame-renew
+
 ## Game Specification
 motivated from snake game
 
